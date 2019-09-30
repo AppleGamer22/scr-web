@@ -1,5 +1,5 @@
 module.exports = {
-	name: 'website',
+	name: 'client',
 	preset: '../../jest.config.js',
 	coverageDirectory: '../../coverage/apps/website',
 	snapshotSerializers: [

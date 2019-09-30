@@ -1,5 +1,5 @@
 module.exports = {
-	name: 'api',
+	name: 'server',
 	preset: '../../jest.config.js',
-	coverageDirectory: '../../coverage/apps/api'
+	coverageDirectory: '../../coverage/apps/server'
 };
