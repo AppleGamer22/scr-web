@@ -1,19 +1,17 @@
 {
 	"name": "@scr/gui",
 	"description": "Social media web scraper GUI for post file downloads.",
-	"version": "1.0.0-alpha.1",
+	"version": "1.0.0-alpha.2",
 	"author": "Omri Bornstein",
-	"publisher": "scr.io",
+	"publisher": "AppleGamer22",
 	"private": true,
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/AppleGamer22/scr-gui.git"
 	},
 	"scripts": {
-		"ng": "ng",
-		"nx": "nx",
 		"start": "ng serve client & ng serve server",
-		"build": "ng build",
+		"build": "ng build client && ng build server",
 		"test": "ng test",
 		"lint": "nx workspace-lint && ng lint",
 		"e2e": "ng e2e",
@@ -31,8 +29,7 @@
 		"update": "ng update @nrwl/workspace",
 		"update:check": "ng update",
 		"workspace-schematic": "nx workspace-schematic",
-		"dep-graph": "nx dep-graph",
-		"help": "nx help"
+		"dep-graph": "nx dep-graph"
 	},
 	"dependencies": {
 		"@nrwl/angular": "8.5.2",
