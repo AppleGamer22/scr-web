@@ -4,7 +4,9 @@ import { AppComponent } from "./app.component";
 import { HttpClientModule } from "@angular/common/http";
 import { ServiceWorkerModule } from "@angular/service-worker";
 import { environment } from "../environments/environment";
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, IonicRouteStrategy } from "@ionic/angular";
+import { AppRoutingModule } from "./app-routing.module";
+import { RouteReuseStrategy } from "@angular/router";
 
 @NgModule({
 	declarations: [AppComponent],
@@ -13,7 +15,13 @@ import { IonicModule } from '@ionic/angular';
 		HttpClientModule,
 		ServiceWorkerModule.register("ngsw-worker.js", {enabled: environment.production}),
 		IonicModule.forRoot({scrollAssist: true}),
+		AppRoutingModule,
 	],
-	providers: [],
+	providers: [
+		{
+			provide: RouteReuseStrategy,
+			useClass: IonicRouteStrategy
+		}
+	],
 	bootstrap: [AppComponent],
 }) export class AppModule {}
