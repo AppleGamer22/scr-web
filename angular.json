@@ -32,7 +32,7 @@
 						],
 						"styles": [
 							"apps/client/src/styles.scss",
-							"apps/client/src/theme/variables.scss",
+							"apps/client/src/variables.scss",
 							"node_modules/@ionic/angular/css/normalize.css",
 							"node_modules/@ionic/angular/css/structure.css",
 							"node_modules/@ionic/angular/css/typography.css",
