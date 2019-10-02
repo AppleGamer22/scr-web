@@ -1,7 +1,7 @@
 {
 	"name": "@scr/gui",
 	"description": "Social media web scraper GUI for post file downloads.",
-	"version": "1.0.0-alpha.2",
+	"version": "1.0.0-alpha.3",
 	"author": "Omri Bornstein",
 	"publisher": "AppleGamer22",
 	"private": true,
@@ -11,7 +11,7 @@
 	},
 	"scripts": {
 		"start": "ng serve client & ng serve server",
-		"build": "ng build client && ng build server",
+		"build": "ng build client --prod && ng build server",
 		"test": "ng test",
 		"lint": "nx workspace-lint && ng lint",
 		"e2e": "ng e2e",
@@ -32,7 +32,6 @@
 		"dep-graph": "nx dep-graph"
 	},
 	"dependencies": {
-		"@nrwl/angular": "8.5.2",
 		"@angular/animations": "^8.2.0",
 		"@angular/common": "^8.2.0",
 		"@angular/compiler": "^8.2.0",
@@ -40,14 +39,17 @@
 		"@angular/forms": "^8.2.0",
 		"@angular/platform-browser": "^8.2.0",
 		"@angular/platform-browser-dynamic": "^8.2.0",
+		"@angular/pwa": "^0.803.6",
 		"@angular/router": "^8.2.0",
-		"core-js": "^2.5.4",
-		"rxjs": "~6.4.0",
-		"zone.js": "^0.9.1",
+		"@angular/service-worker": "^8.2.0",
 		"@nestjs/common": "^6.2.4",
 		"@nestjs/core": "^6.2.4",
 		"@nestjs/platform-express": "^6.2.4",
-		"reflect-metadata": "^0.1.12"
+		"@nrwl/angular": "8.5.2",
+		"core-js": "^2.5.4",
+		"reflect-metadata": "^0.1.12",
+		"rxjs": "~6.4.0",
+		"zone.js": "^0.9.1"
 	},
 	"devDependencies": {
 		"@angular/cli": "8.3.3",

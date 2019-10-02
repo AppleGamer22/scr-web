@@ -22,7 +22,8 @@
 						"tsConfig": "apps/client/tsconfig.app.json",
 						"aot": false,
 						"assets": [
-							"apps/client/src/assets"
+							"apps/client/src/assets",
+							"apps/client/src/manifest.json"
 						],
 						"styles": [
 							"apps/client/src/styles.scss"
@@ -57,7 +58,9 @@
 									"maximumWarning": "6kb",
 									"maximumError": "10kb"
 								}
-							]
+							],
+							"serviceWorker": true,
+							"ngswConfigPath": "apps/client/ngsw-config.json"
 						}
 					}
 				},
