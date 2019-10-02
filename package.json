@@ -1,7 +1,7 @@
 {
 	"name": "@scr/gui",
 	"description": "Social media web scraper GUI for post file downloads.",
-	"version": "1.0.0-alpha.3",
+	"version": "1.0.0-alpha.4",
 	"author": "Omri Bornstein",
 	"publisher": "AppleGamer22",
 	"private": true,
@@ -42,6 +42,7 @@
 		"@angular/pwa": "^0.803.6",
 		"@angular/router": "^8.2.0",
 		"@angular/service-worker": "^8.2.0",
+		"@ionic/angular": "^4.10.0",
 		"@nestjs/common": "^6.2.4",
 		"@nestjs/core": "^6.2.4",
 		"@nestjs/platform-express": "^6.2.4",
@@ -75,6 +76,7 @@
 		"@nrwl/cypress": "8.5.2",
 		"@nrwl/node": "8.5.2",
 		"@nestjs/schematics": "^6.3.0",
-		"@nestjs/testing": "^6.2.4"
+		"@nestjs/testing": "^6.2.4",
+		"@ionic/angular-toolkit": "latest"
 	}
 }

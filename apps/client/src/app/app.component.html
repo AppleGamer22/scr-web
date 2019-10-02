@@ -1,5 +1,14 @@
-<div style="text-align:center">
-	<h1>Welcome to website!</h1>
-	<img width="450" src="https://raw.githubusercontent.com/nrwl/nx/master/nx-logo.png" />
-</div>
-<div>Message: {{ hello$ | async | json }}</div>
+<ion-app>
+	<ion-header>
+		<ion-toolbar>
+			<ion-title><ion-icon name="hammer"></ion-icon> scr</ion-title>
+		</ion-toolbar>
+	</ion-header>
+	<ion-content>
+		<div style="text-align:center">
+			<h1>Welcome to website!</h1>
+			<img width="450" src="https://raw.githubusercontent.com/nrwl/nx/master/nx-logo.png">
+		</div>
+		<p>Message: {{ hello$ | async | json }}</p>
+	</ion-content>
+</ion-app>

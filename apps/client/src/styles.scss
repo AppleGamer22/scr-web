@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+ion-spinner, ion-progress-bar {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+p, ion-label, label {
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none; /* Safari */
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* Internet Explorer/Edge */
+	user-select: none;
+}
