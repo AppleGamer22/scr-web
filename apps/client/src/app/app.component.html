@@ -1,14 +1,14 @@
-<ion-app>
+<ion-app [class.dark-theme]="dark">
 	<ion-header>
 		<ion-toolbar>
 			<ion-title><ion-icon name="hammer"></ion-icon> scr</ion-title>
+			<ion-buttons slot="end">
+				<ion-label>Dark theme:</ion-label><ion-toggle (ionChange)="setTheme()" [(ngModel)]="dark"></ion-toggle>
+			</ion-buttons>
 		</ion-toolbar>
 	</ion-header>
 	<ion-content>
-		<div style="text-align:center">
-			<h1>Welcome to website!</h1>
-			<img width="450" src="https://raw.githubusercontent.com/nrwl/nx/master/nx-logo.png">
-		</div>
+		<h1 style="text-align:center">Welcome to website!</h1>
 		<p>Message: {{ hello$ | async | json }}</p>
 	</ion-content>
 	<!-- <ion-router-outlet style="margin-top: 50px;"></ion-router-outlet> -->

@@ -1,5 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { AppComponent } from "./app.component";
 import { HttpClientModule } from "@angular/common/http";
 import { ServiceWorkerModule } from "@angular/service-worker";
@@ -7,11 +7,13 @@ import { environment } from "../environments/environment";
 import { IonicModule, IonicRouteStrategy } from "@ionic/angular";
 import { AppRoutingModule } from "./app-routing.module";
 import { RouteReuseStrategy } from "@angular/router";
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
 	declarations: [AppComponent],
 	imports: [
 		BrowserModule,
+		FormsModule,
 		HttpClientModule,
 		ServiceWorkerModule.register("ngsw-worker.js", {enabled: environment.production}),
 		IonicModule.forRoot({scrollAssist: true}),
