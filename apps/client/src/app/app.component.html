@@ -1,13 +1,11 @@
 <ion-app>
-	<ion-header [class.dark-theme]="dark">
+	<ion-header>
 		<ion-toolbar>
-			<ion-title><ion-icon name="hammer"></ion-icon> scr</ion-title>
-			<ion-buttons slot="end">
-				<ion-label>Dark theme:</ion-label><ion-toggle (ionChange)="setTheme()" [(ngModel)]="dark"></ion-toggle>
-			</ion-buttons>
+			<ion-title><ion-icon name="hammer" color="primary"></ion-icon></ion-title>
+			<ion-buttons slot="end"><scr-gui-theme-toggle></scr-gui-theme-toggle></ion-buttons>
 		</ion-toolbar>
 	</ion-header>
-	<ion-content [class.dark-theme]="dark">
+	<ion-content>
 		<h1 style="text-align:center">Welcome to website!</h1>
 		<p>Message: {{ hello$ | async | json }}</p>
 	</ion-content>
