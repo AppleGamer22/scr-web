@@ -1,5 +1,5 @@
-<ion-app [class.dark-theme]="dark">
-	<ion-header>
+<ion-app>
+	<ion-header [class.dark-theme]="dark">
 		<ion-toolbar>
 			<ion-title><ion-icon name="hammer"></ion-icon> scr</ion-title>
 			<ion-buttons slot="end">
@@ -7,7 +7,7 @@
 			</ion-buttons>
 		</ion-toolbar>
 	</ion-header>
-	<ion-content>
+	<ion-content [class.dark-theme]="dark">
 		<h1 style="text-align:center">Welcome to website!</h1>
 		<p>Message: {{ hello$ | async | json }}</p>
 	</ion-content>
