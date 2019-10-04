@@ -8,10 +8,12 @@ import { IonicModule, IonicRouteStrategy } from "@ionic/angular";
 import { AppRoutingModule } from "./app-routing.module";
 import { RouteReuseStrategy } from "@angular/router";
 import { FormsModule } from '@angular/forms';
+import { ThemeToggleComponent } from './theme-toggle/theme-toggle.component';
 
 @NgModule({
 	declarations: [
-		AppComponent
+		AppComponent,
+		ThemeToggleComponent
 	],
 	imports: [
 		BrowserModule,
