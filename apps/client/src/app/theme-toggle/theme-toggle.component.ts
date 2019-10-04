@@ -20,8 +20,6 @@ import { DOCUMENT } from '@angular/common';
 			this.document.querySelector("ion-app").classList.add("dark-theme");
 		} else if (!this.dark) {
 			this.document.querySelector("ion-app").classList.remove("dark-theme");
-		} else if (window.matchMedia("(prefers-color-scheme: no-preference)").matches) {
-			this.disabled = false;
 		}
 	}
 }
