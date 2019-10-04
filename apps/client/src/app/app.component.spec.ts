@@ -1,21 +1,17 @@
 import { TestBed, async } from "@angular/core/testing";
 import { HttpClientModule } from "@angular/common/http";
 import { AppComponent } from "./app.component";
-import { IonicModule } from '@ionic/angular';
-import { ThemeToggleComponent } from './theme-toggle/theme-toggle.component';
-import { FormsModule } from '@angular/forms';
+import { IonicModule } from "@ionic/angular";
+import { FormsModule } from "@angular/forms";
 
 describe("AppComponent", () => {
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [
-				AppComponent,
-				ThemeToggleComponent
-			],
+			declarations: [AppComponent],
 			imports: [
 				FormsModule,
 				HttpClientModule,
-				IonicModule.forRoot({scrollAssist: true})
+				IonicModule.forRoot({ scrollAssist: true }),
 			],
 		}).compileComponents();
 	}));
