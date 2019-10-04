@@ -62,7 +62,7 @@
 	--ion-color-light-shade: #d7d8da;
 	--ion-color-light-tint: #f5f6f9;
 }
-/*@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
 	:root {
 		--ion-border-color: var(--ion-color-dark-shade);
 		--ion-background-color: var(--ion-color-dark);
@@ -106,7 +106,7 @@
 			color: var(--ion-text-color);
 		}
 	}
-}*/
+}
 .dark-theme {
 	--ion-border-color: var(--ion-color-dark-shade);
 	--ion-background-color: var(--ion-color-dark);
