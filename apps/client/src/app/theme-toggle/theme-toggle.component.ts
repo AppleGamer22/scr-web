@@ -8,7 +8,7 @@ import { DOCUMENT } from '@angular/common';
 }) export class ThemeToggleComponent {
 	dark = false;
 	constructor(@Inject(DOCUMENT) private document: Document) {
-		this.dark = JSON.parse(localStorage.getItem("dark")) || false;
+		this.dark = JSON.parse(localStorage.getItem("dark"));
 		this.setTheme();
 	}
 	readonly setTheme = ()  => {
