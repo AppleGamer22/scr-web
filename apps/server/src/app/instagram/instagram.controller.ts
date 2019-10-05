@@ -10,7 +10,7 @@ import { InstagramService } from "./instagram.service";
 			await browser.close();
 			return urls;
 		} catch (error) {
-			throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+			throw new HttpException(`Failed to find post ${id}`, HttpStatus.NOT_FOUND);
 		}
 	}
 }

@@ -1,6 +1,20 @@
 import { homedir } from "os";
+import * as puppeteer from "puppeteer";
 
 export const chromeUserDataDirectory = `${homedir()}/.scr/`;
+
+export function chromeExecutable(): string {
+	switch (process.platform) {
+		case "darwin":
+			return "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
+		case "win32":
+			return "C:/Program\ Files\ (x86)/Google/Chrome/Application/chrome.exe";
+		default:
+			return puppeteer.executablePath();
+			// or /usr/bin/google-chrome | /usr/lib/google-chrome
+	}
+}
+
 export function userAgent(): string {
 	switch (process.platform) {
 		case "darwin":

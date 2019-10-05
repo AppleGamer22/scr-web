@@ -1,19 +1,26 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, HttpException, HttpStatus } from "@nestjs/common";
 import * as puppeteer from "puppeteer";
-import { chromeUserDataDirectory, userAgent } from "@scr-gui/server-interfaces";
+import { chromeUserDataDirectory, userAgent, chromeExecutable } from "@scr-gui/server-interfaces";
 
 @Injectable() export class InstagramService {
 	constructor() {}
-	async beginScrape() {
-		const browser = await puppeteer.launch({
-			headless: true,
-			userDataDir: chromeUserDataDirectory,
-			args: ["--disable-gpu", "--no-sandbox", "--disable-dev-shm-usage"]
-		});
-		const page = (await browser.pages())[0];
-		await page.setUserAgent(userAgent());
-		return {browser, page};
+
+	async beginScrape(): Promise<{browser: puppeteer.Browser, page: puppeteer.Page}> {
+		try {
+			const browser = await puppeteer.launch({
+				headless: true,
+				executablePath: chromeExecutable(),
+				userDataDir: chromeUserDataDirectory,
+				args: ["--disable-gpu", "--no-sandbox", "--disable-dev-shm-usage"]
+			});
+			const page = (await browser.pages())[0];
+			await page.setUserAgent(userAgent());
+			return {browser, page};
+		} catch (error) {
+			throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
+
 	async getPostFiles(id: string, browser: puppeteer.Browser, page: puppeteer.Page): Promise<string[]> {
 		var srcs: string[] = [];
 		try {
@@ -21,6 +28,7 @@ import { chromeUserDataDirectory, userAgent } from "@scr-gui/server-interfaces";
 			if ((await page.$("div.error-container")) !== null) {
 				console.error(`Failed to find post ${id}`);
 				await browser.close();
+				throw new HttpException(`Failed to find post ${id}`, HttpStatus.NOT_FOUND);
 			}
 			await page.waitForSelector("div.ZyFrc", {visible: true});
 			let nextButtons = await page.$("div.coreSpriteRightChevron");
