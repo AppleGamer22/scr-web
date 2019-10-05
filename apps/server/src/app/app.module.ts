@@ -1,12 +1,12 @@
 import { Module } from "@nestjs/common";
-
 import { AppController } from "./app.controller";
-import { AppService } from "./app.service";
-import { InstagramService } from './instagram/instagram.service';
-import { VscoService } from './vsco/vsco.service';
+import { InstagramService } from "./instagram/instagram.service";
+import { VscoService } from "./vsco/vsco.service";
+import { InstagramController } from "./instagram/instagram.controller";
 
 @Module({
 	imports: [],
-	controllers: [AppController],
-	providers: [AppService, InstagramService, VscoService],
-}) export class AppModule {}
+	controllers: [AppController, InstagramController],
+	providers: [InstagramService, VscoService],
+})
+export class AppModule {}

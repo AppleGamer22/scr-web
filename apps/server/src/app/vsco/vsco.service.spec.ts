@@ -1,15 +1,15 @@
 import { Test, TestingModule } from "@nestjs/testing";
-import { VscoService } from "./vsco.service";
+import { VSCOService } from "./vsco.service";
 
-describe("VscoService", () => {
-	let service: VscoService;
+describe("VSCOService", () => {
+	let service: VSCOService;
 
 	beforeEach(async () => {
 		const module: TestingModule = await Test.createTestingModule({
-			providers: [VscoService],
+			providers: [VSCOService],
 		}).compile();
 
-		service = module.get<VscoService>(VscoService);
+		service = module.get<VSCOService>(VSCOService);
 	});
 
 	it("should be defined", () => {
