@@ -6,10 +6,11 @@ import { InstagramController } from "./instagram/instagram.controller";
 import { APP_FILTER, APP_INTERCEPTOR } from "@nestjs/core";
 import { ErrorFilter } from "./error.filter";
 import { LogsInterceptor } from "./logs.interceptor";
+import { VSCOController } from "./vsco/vsco.controller";
 
 @Module({
 	imports: [],
-	controllers: [AppController, InstagramController],
+	controllers: [AppController, InstagramController, VSCOController],
 	providers: [
 		{
 			provide: APP_FILTER,
