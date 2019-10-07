@@ -23,7 +23,6 @@ describe("InstagramService", () => {
 	it("scrapes Bz2MPhPhOQu & gets 1 public JPEG", async done => {
 		try {
 			const urls = await service.getPostFiles("Bz2MPhPhOQu", browser, page);
-			// await browser.close();
 			done();
 			expect(urls.length).toBe(1);
 			console.log(urls[0]);
@@ -38,7 +37,6 @@ describe("InstagramService", () => {
 	it("scrapes B3GEbBDFzng & gets 1 public MP4", async done => {
 		try {
 			const urls = await service.getPostFiles("B3GEbBDFzng", browser, page);
-			// await browser.close();
 			done();
 			expect(urls.length).toBe(1);
 			console.log(urls[0]);
@@ -53,7 +51,6 @@ describe("InstagramService", () => {
 	it("scrapes B3N2mEMA1lj & gets 2 private JPEG", async done => {
 		try {
 			const urls = await service.getPostFiles("B3N2mEMA1lj", browser, page);
-			// await browser.close();
 			done();
 			expect(urls.length).toBe(2);
 			console.log(urls[0]);
@@ -67,5 +64,20 @@ describe("InstagramService", () => {
 		} catch (error) {
 			console.error(error.message);
 		}
+	});
+	it("scrapes BqWkJemlFJb & gets a public MP4 & a public JPEG", async done => {
+		try {
+			const urls = await service.getPostFiles("BqWkJemlFJb", browser, page);
+			done();
+			expect(urls.length).toBe(2);
+			console.log(urls[0]);
+			expect(urls[0]).toContain("https://");
+			expect(urls[0]).toContain(".mp4");
+			expect(urls[0]).toContain("cdninstagram.com");
+			console.log(urls[1]);
+			expect(urls[1]).toContain("https://");
+			expect(urls[1]).toContain(".jpg");
+			expect(urls[1]).toContain("cdninstagram.com");
+		} catch (error) { console.error(error.message); }
 	});
 });

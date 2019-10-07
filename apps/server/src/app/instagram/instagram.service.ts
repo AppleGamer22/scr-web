@@ -1,9 +1,14 @@
 import { Injectable, HttpException, HttpStatus } from "@nestjs/common";
 import * as puppeteer from "puppeteer";
 
+declare global {
+	interface Window {
+		_sharedData: any
+	}
+}
+
 @Injectable() export class InstagramService {
 	async getPostFiles(id: string, browser: puppeteer.Browser, page: puppeteer.Page): Promise<string[]> {
-		var urls: string[] = [];
 		try {
 			await page.goto(`https://www.instagram.com/p/${id}`, {waitUntil: "domcontentloaded"});
 			if ((await page.$("div.error-container")) !== null) {
@@ -11,28 +16,20 @@ import * as puppeteer from "puppeteer";
 				await browser.close();
 				throw new HttpException(`Failed to find post ${id}`, HttpStatus.NOT_FOUND);
 			}
-
-			await page.waitForSelector("div.ZyFrc", {visible: true});
-			let nextButtons = await page.$("div.coreSpriteRightChevron");
-			do {
-				urls.push(...await page.$$eval("video.tWeCl", videos => videos.map(video => video.getAttribute("src"))));
-				urls.push(...await page.$$eval("img.FFVAD", images => images.map(image => image.getAttribute("src"))));
-				urls.push(...await page.$$eval(`meta[property="og:video"]`, metas => metas.map(meta => meta.getAttribute("content"))));
-				// srcs.push(...await page.$$eval(`meta[property="og:image"]`, metas => metas.map(meta => meta.getAttribute("content")!)));
-				await page.click("div.coreSpriteRightChevron");
-				nextButtons = await page.$("div.coreSpriteRightChevron");
-			} while (nextButtons !== null);
-		} catch (error) {
-			return [...(new Set<string>(this.cleanPayload(urls)))!];
-		}
-		return [...(new Set<string>(this.cleanPayload(urls)))!];
-	}
-
-	cleanPayload(urls: string[]): string[] {
-		for (let i = 0; i < urls.length; i++) {
-			const url = urls[i];
-			if (url.includes("blob:")) urls.splice(i, 1);
-		}
-		return urls;
+			const sources = await page.evaluate(() => {
+				return window._sharedData.entry_data.PostPage[0].graphql.shortcode_media;
+			});
+			var urls: string[] = [];
+			if (sources.edge_sidecar_to_children) {
+				for (let edge of sources.edge_sidecar_to_children.edges) {
+					if (!edge.node.is_video) urls.push(edge.node.display_url);
+					if (edge.node.is_video) urls.push(edge.node.video_url);
+				}
+			} else {
+				if (!sources.is_video) urls.push(sources.display_url);
+				if (sources.is_video) urls.push(sources.video_url);
+			}
+			return urls;
+		} catch (error) { console.error(error.message); }
 	}
 }

@@ -3,6 +3,7 @@
 	"rules": {
 		"no-non-null-assertion": false,
 		"prefer-const": false,
-		"no-var-keyword": false
+		"no-var-keyword": false,
+		"no-shadowed-variable": false
 	}
 }
