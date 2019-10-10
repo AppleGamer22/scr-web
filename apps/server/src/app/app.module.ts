@@ -9,6 +9,8 @@ import { VSCOService } from "./vsco/vsco.service";
 import { VSCOController } from "./vsco/vsco.controller";
 import { StoryService } from "./story/story.service";
 import { StoryController } from "./story/story.controller";
+import { HighlightService } from "./highlight/highlight.service";
+import { HighlightController } from "./highlight/highlight.controller";
 
 @Module({
 	imports: [],
@@ -16,7 +18,8 @@ import { StoryController } from "./story/story.controller";
 		AppController,
 		InstagramController,
 		VSCOController,
-		StoryController
+		StoryController,
+		HighlightController
 	],
 	providers: [
 		{
@@ -29,5 +32,6 @@ import { StoryController } from "./story/story.controller";
 		InstagramService,
 		VSCOService,
 		StoryService,
+		HighlightService,
 	],
 }) export class AppModule {}
