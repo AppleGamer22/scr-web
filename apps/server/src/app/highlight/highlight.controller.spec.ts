@@ -2,7 +2,7 @@ import { Test, TestingModule } from "@nestjs/testing";
 import { HighlightController } from "./highlight.controller";
 import { HighlightService } from "./highlight.service";
 
-describe("Highlight Controller", () => {
+describe("HighlightController", () => {
 	let controller: HighlightController;
 
 	beforeEach(async () => {
