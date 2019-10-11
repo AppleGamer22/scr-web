@@ -19,6 +19,9 @@
 		},
 		"server-interfaces": {
 			"tags": []
+		},
+		"server-schemas": {
+			"tags": []
 		}
 	}
 }

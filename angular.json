@@ -104,10 +104,7 @@
 							"apps/client/tsconfig.app.json",
 							"apps/client/tsconfig.spec.json"
 						],
-						"exclude": [
-							"**/node_modules/**",
-							"!apps/client/**"
-						]
+						"exclude": ["**/node_modules/**", "!apps/client/**"]
 					}
 				},
 				"test": {
@@ -141,13 +138,8 @@
 				"lint": {
 					"builder": "@angular-devkit/build-angular:tslint",
 					"options": {
-						"tsConfig": [
-							"apps/client-e2e/tsconfig.e2e.json"
-						],
-						"exclude": [
-							"**/node_modules/**",
-							"!apps/client-e2e/**"
-						]
+						"tsConfig": ["apps/client-e2e/tsconfig.e2e.json"],
+						"exclude": ["**/node_modules/**", "!apps/client-e2e/**"]
 					}
 				}
 			}
@@ -165,9 +157,7 @@
 						"outputPath": "dist/apps/server",
 						"main": "apps/server/src/main.ts",
 						"tsConfig": "apps/server/tsconfig.app.json",
-						"assets": [
-							"apps/server/src/assets"
-						]
+						"assets": ["apps/server/src/assets"]
 					},
 					"configurations": {
 						"production": {
@@ -196,10 +186,7 @@
 							"apps/server/tsconfig.app.json",
 							"apps/server/tsconfig.spec.json"
 						],
-						"exclude": [
-							"**/node_modules/**",
-							"!apps/server/**"
-						]
+						"exclude": ["**/node_modules/**", "!apps/server/**"]
 					}
 				},
 				"test": {
@@ -235,6 +222,34 @@
 					"options": {
 						"jestConfig": "libs/server-interfaces/jest.config.js",
 						"tsConfig": "libs/server-interfaces/tsconfig.spec.json"
+					}
+				}
+			}
+		},
+		"server-schemas": {
+			"root": "libs/server-schemas",
+			"sourceRoot": "libs/server-schemas/src",
+			"projectType": "library",
+			"schematics": {},
+			"architect": {
+				"lint": {
+					"builder": "@angular-devkit/build-angular:tslint",
+					"options": {
+						"tsConfig": [
+							"libs/server-schemas/tsconfig.lib.json",
+							"libs/server-schemas/tsconfig.spec.json"
+						],
+						"exclude": [
+							"**/node_modules/**",
+							"!libs/server-schemas/**"
+						]
+					}
+				},
+				"test": {
+					"builder": "@nrwl/jest:jest",
+					"options": {
+						"jestConfig": "libs/server-schemas/jest.config.js",
+						"tsConfig": "libs/server-schemas/tsconfig.spec.json"
 					}
 				}
 			}

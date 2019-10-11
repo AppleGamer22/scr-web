@@ -1,5 +1,7 @@
 import { Module } from "@nestjs/common";
 import { APP_FILTER, APP_INTERCEPTOR } from "@nestjs/core";
+import { MongooseModule, } from "@nestjs/mongoose";
+import { UserSchema, PostSchema } from "@scr-gui/server-schemas";
 import { ErrorFilter } from "./error.filter";
 import { LogsInterceptor } from "./logs.interceptor";
 import { AppController } from "./app.controller";
@@ -11,11 +13,22 @@ import { StoryService } from "./story/story.service";
 import { StoryController } from "./story/story.controller";
 import { HighlightService } from "./highlight/highlight.service";
 import { HighlightController } from "./highlight/highlight.controller";
-import { AuthController } from './auth/auth.controller';
-import { AuthService } from './auth/auth.service';
+import { AuthController } from "./auth/auth.controller";
+import { AuthService } from "./auth/auth.service";
 
 @Module({
-	imports: [],
+	imports: [
+		MongooseModule.forRoot("mongodb://localhost:27017/scr", {useNewUrlParser: true, retryAttempts: Number.MAX_VALUE}),
+		MongooseModule.forFeature([
+			{
+				name: "Users",
+				schema: UserSchema
+			},{
+				name: "Posts",
+				schema: PostSchema
+			}
+		])
+	],
 	controllers: [
 		AppController,
 		InstagramController,

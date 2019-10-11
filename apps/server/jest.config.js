@@ -1,5 +1,6 @@
 module.exports = {
-	name: 'server',
-	preset: '../../jest.config.js',
-	coverageDirectory: '../../coverage/apps/server'
+	name: "server",
+	preset: "../../jest.config.js",
+	coverageDirectory: "../../coverage/apps/server",
+	testEnvironment: "node"
 };
