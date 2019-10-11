@@ -1,6 +1,7 @@
 import { Module } from "@nestjs/common";
 import { APP_FILTER, APP_INTERCEPTOR } from "@nestjs/core";
 import { MongooseModule, } from "@nestjs/mongoose";
+import { JwtModule } from "@nestjs/jwt";
 import { UserSchema, PostSchema } from "@scr-gui/server-schemas";
 import { ErrorFilter } from "./error.filter";
 import { LogsInterceptor } from "./logs.interceptor";
@@ -27,7 +28,8 @@ import { AuthService } from "./auth/auth.service";
 				name: "Posts",
 				schema: PostSchema
 			}
-		])
+		]),
+		JwtModule.register({secret: "x7txX%eP8de3&Q4Y&J9bF$^4w2iEm"})
 	],
 	controllers: [
 		AppController,

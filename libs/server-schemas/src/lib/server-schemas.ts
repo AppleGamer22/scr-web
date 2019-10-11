@@ -14,13 +14,18 @@ export const UserSchema = new Schema({
 	joined: {
 		type: Date,
 		required: true
-	}
+	},
+	network: {
+		type: String,
+		required: true
+	},
 });
 
 export interface User extends Document {
 	username: string,
 	hash: string,
-	joined: Date
+	joined: Date,
+	network: "instagram" | "vsco"
 }
 
 export const PostSchema = new Schema({
@@ -33,10 +38,15 @@ export const PostSchema = new Schema({
 	URLs: {
 		type: [String],
 		required: true
-	}
+	},
+	network: {
+		type: String,
+		required: true
+	},
 });
 
 export interface Post extends Document {
 	username: string,
-	URLs: string[]
+	URLs: string[],
+	network: "instagram" | "vsco"
 }

@@ -6,7 +6,13 @@ import { User } from "@scr-gui/server-schemas";
 @Controller() export class AppController {
 	constructor(@InjectModel("Users") private readonly userCollection: Model<User>) {}
 	@Get("a") async do() {
-		const a = new this.userCollection({username: "a", hash: "aaaaa", joined: new  Date(), _id: new Types.ObjectId()});
+		const a = new this.userCollection({
+			username: "a",
+			hash: "aaaaa",
+			joined: new  Date(),
+			network: "instagram",
+			_id: new Types.ObjectId(),
+		});
 		return await a.save();
 	}
 	@Get("b") async b() {

@@ -1,5 +1,7 @@
 import { Injectable, HttpException, HttpStatus } from "@nestjs/common";
+import { userAgent } from "@scr-gui/server-interfaces";
 import * as puppeteer from "puppeteer";
+import { randomBytes } from "crypto";
 
 declare global {
 	interface Window {
@@ -31,5 +33,40 @@ declare global {
 			}
 			return urls;
 		} catch (error) { console.error(error.message); }
+	}
+	async signIn(page: puppeteer.Page, username: string, password: string): Promise<boolean> {
+		try {
+			await page.setUserAgent(userAgent());
+			await page.goto("https://www.instagram.com/accounts/login/");
+			await page.waitForSelector(`input[name="username"]`);
+			await page.type(`input[name="username"]`, username);
+			await page.type(`input[name="password"]`, password);
+			await page.click(`button[type="submit"]`);
+			await page.waitForResponse("https://www.instagram.com/");
+			return true
+		} catch (error) {
+			console.error(error.message);
+			return false;
+		}
+	}
+	async signOut(page: puppeteer.Page): Promise<boolean> {
+		try {
+			await page.setUserAgent(userAgent());
+			await page.goto(`https://www.instagram.com/${randomBytes(5).toString("hex")}/`);
+			const profileButton = "#link_profile > a";
+			await page.waitForSelector(profileButton);
+			await page.click(profileButton);
+			const settingsButton = "#react-root > section > main > div > header > section > div.nZSzR > div > button";
+			await page.waitForSelector(settingsButton);
+			await page.click(settingsButton);
+			const logOutButton = "body > div.RnEpo.Yx5HN > div > div > div > button:nth-child(8)";
+			await page.waitForSelector(logOutButton);
+			await page.click(logOutButton);
+			await page.waitForResponse("https://www.instagram.com/");
+			return true;
+		} catch (error) {
+			console.error(error.message);
+			return false;
+		}
 	}
 }
