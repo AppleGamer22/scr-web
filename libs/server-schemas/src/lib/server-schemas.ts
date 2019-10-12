@@ -19,13 +19,18 @@ export const UserSchema = new Schema({
 		type: String,
 		required: true
 	},
+	instagram: {
+		type: Boolean,
+		required: true
+	}
 });
 
 export interface User extends Document {
 	username: string,
 	hash: string,
 	joined: Date,
-	network: "instagram" | "vsco"
+	network: "instagram" | "vsco",
+	instagram: boolean
 }
 
 export const PostSchema = new Schema({

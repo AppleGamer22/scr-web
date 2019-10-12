@@ -12,7 +12,7 @@ describe("VSCOService", () => {
 			providers: [VSCOService],
 		}).compile();
 		service = module.get<VSCOService>(VSCOService);
-		const testConditions = await beginScrape();
+		const testConditions = await beginScrape("");
 		browser = testConditions.browser;
 		page = testConditions.page;
 	});

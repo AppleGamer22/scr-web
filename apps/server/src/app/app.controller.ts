@@ -12,6 +12,7 @@ import { User } from "@scr-gui/server-schemas";
 			joined: new  Date(),
 			network: "instagram",
 			_id: new Types.ObjectId(),
+			instagram: false
 		});
 		return await a.save();
 	}

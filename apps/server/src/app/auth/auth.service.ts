@@ -17,27 +17,30 @@ import { InstagramService } from "../instagram/instagram.service";
 		try {
 			const possibleUser = await this.userCollection.findOne({username}).exec();
 			if (possibleUser) throw new HttpException( "Username already exists.", HttpStatus.CONFLICT);
-			return new this.userCollection({
+			return await new this.userCollection({
 				username,
 				hash: await hash(password, 10),
 				joined: new Date(),
 				network: "instagram",
+				instagram: false,
 				_id: new Types.ObjectId()
-			});
+			}).save();
 		} catch (error) {
 			throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	async signInInstagram(username: string, password: string): Promise<string> {
+	async signInInstagram(username: string, password: string): Promise<string | undefined> {
 		try {
 			const possibleUser = await this.userCollection.findOne({username}).exec();
 			if (!possibleUser) throw new HttpException("Authentication failed", HttpStatus.UNAUTHORIZED);
 			const isRealUser = await compare(password, possibleUser.hash);
 			if (!isRealUser) throw new HttpException("Authentication failed", HttpStatus.UNAUTHORIZED);
-			const webToken = await this.jwt.signAsync({username, UID: possibleUser._id});
-			const {page} = await beginScrape();
+			const webToken = await this.jwt.signAsync({username, U_ID: possibleUser._id});
+			const {page} = await beginScrape(possibleUser._id);
 			if (isRealUser) {
 				if (await this.instagramService.signIn(page, username, password)) {
+					possibleUser.instagram = true;
+					await possibleUser.save();
 					return webToken;
 				}
 			}

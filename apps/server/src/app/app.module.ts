@@ -16,6 +16,7 @@ import { HighlightService } from "./highlight/highlight.service";
 import { HighlightController } from "./highlight/highlight.controller";
 import { AuthController } from "./auth/auth.controller";
 import { AuthService } from "./auth/auth.service";
+import { AuthGuard } from "./auth/auth.guard";
 
 @Module({
 	imports: [
@@ -52,5 +53,6 @@ import { AuthService } from "./auth/auth.service";
 		StoryService,
 		HighlightService,
 		AuthService,
+		AuthGuard
 	],
 }) export class AppModule {}

@@ -1,12 +1,13 @@
-import { Controller, Get, Param, HttpException, HttpStatus } from "@nestjs/common";
+import { Controller, Get, Param, HttpException, HttpStatus, Req } from "@nestjs/common";
 import { beginScrape } from "@scr-gui/server-interfaces";
 import { InstagramService } from "./instagram.service";
+import { Request } from "express";
 
 @Controller("instagram") export class InstagramController {
 	constructor(private readonly instagramService: InstagramService) {}
-	@Get(":post") async getPostFiles(@Param("post") post: string): Promise<string[]> {
+	@Get(":post") async getPostFiles(@Param("post") post: string, @Req() request: any): Promise<string[]> {
 		try {
-			const {browser, page} = await beginScrape()
+			const {browser, page} = await beginScrape(request.user.UID);
 			const urls = await this.instagramService.getPostFiles(post, browser, page);
 			await browser.close();
 			return urls;

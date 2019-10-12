@@ -1,8 +1,20 @@
-import { homedir } from "os";
-import * as puppeteer from "puppeteer";
 import { HttpStatus, HttpException } from "@nestjs/common";
+import { homedir } from "os";
+import { Request } from "express";
+import { Schema } from "mongoose";
+import * as puppeteer from "puppeteer";
 
-export const chromeUserDataDirectory = `${homedir()}/.scr/`;
+export function chromeUserDataDirectory(U_ID: string): string {
+	if (U_ID === "") return `${homedir()}/.scr/`;
+	return `${homedir()}/.scr-gui/${U_ID}/`;
+}
+
+export interface ScrapeRequest extends Request {
+	user?: {
+		username: string,
+		U_ID: Schema.Types.ObjectId | string
+	}
+}
 
 export function chromeExecutable(): string {
 	switch (process.platform) {
@@ -27,12 +39,12 @@ export function userAgent(): string {
 	}
 }
 
-export async function beginScrape(): Promise<{browser: puppeteer.Browser, page: puppeteer.Page}> {
+export async function beginScrape(U_ID: string): Promise<{browser: puppeteer.Browser, page: puppeteer.Page}> {
 	try {
 		const browser = await puppeteer.launch({
 			headless: true,
-			executablePath: puppeteer.executablePath(),//chromeExecutable(),
-			userDataDir: chromeUserDataDirectory,
+			executablePath: chromeExecutable(),
+			userDataDir: chromeUserDataDirectory(U_ID),
 			args: ["--disable-gpu" , "--no-sandbox", "--disable-dev-shm-usage"]
 		});
 		const page = (await browser.pages())[0];

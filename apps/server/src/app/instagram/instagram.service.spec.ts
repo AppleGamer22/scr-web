@@ -11,7 +11,7 @@ describe("InstagramService", () => {
 			providers: [InstagramService]
 		}).compile();
 		service = module.get<InstagramService>(InstagramService);
-		const testConditions = await beginScrape();
+		const testConditions = await beginScrape("");
 		browser = testConditions.browser;
 		page = testConditions.page;
 	});
