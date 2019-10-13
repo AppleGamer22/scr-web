@@ -9,12 +9,10 @@ export function chromeUserDataDirectory(U_ID: string): string {
 	return `${homedir()}/.scr-gui/${U_ID}/`;
 }
 
-declare global {
-	interface ScrapeRequest extends Request {
-		user?: {
-			username: string,
-			U_ID: Schema.Types.ObjectId | string
-		}
+export interface ScrapeRequest extends Request {
+	user?: {
+		username: string,
+		U_ID: Schema.Types.ObjectId | string
 	}
 }
 
