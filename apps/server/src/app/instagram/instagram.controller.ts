@@ -1,13 +1,16 @@
-import { Controller, Get, Param, HttpException, HttpStatus, Req } from "@nestjs/common";
+import { Controller, Get, Param, HttpException, HttpStatus, Req, UseGuards } from "@nestjs/common";
 import { beginScrape } from "@scr-gui/server-interfaces";
 import { InstagramService } from "./instagram.service";
-import { Request } from "express";
+import { AuthGuard } from "../auth/auth.guard";
 
 @Controller("instagram") export class InstagramController {
 	constructor(private readonly instagramService: InstagramService) {}
-	@Get(":post") async getPostFiles(@Param("post") post: string, @Req() request: any): Promise<string[]> {
+	@Get(":post") @UseGuards(AuthGuard) async getPostFiles(
+		@Param("post") post: string,
+		@Req() request: ScrapeRequest
+	): Promise<string[]> {
 		try {
-			const {browser, page} = await beginScrape(request.user.UID);
+			const {browser, page} = await beginScrape(request.user.U_ID as string);
 			const urls = await this.instagramService.getPostFiles(post, browser, page);
 			await browser.close();
 			return urls;

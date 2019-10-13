@@ -9,10 +9,12 @@ export function chromeUserDataDirectory(U_ID: string): string {
 	return `${homedir()}/.scr-gui/${U_ID}/`;
 }
 
-export interface ScrapeRequest extends Request {
-	user?: {
-		username: string,
-		U_ID: Schema.Types.ObjectId | string
+declare global {
+	interface ScrapeRequest extends Request {
+		user?: {
+			username: string,
+			U_ID: Schema.Types.ObjectId | string
+		}
 	}
 }
 
@@ -24,7 +26,6 @@ export function chromeExecutable(): string {
 			return "C:/Program\ Files\ (x86)/Google/Chrome/Application/chrome.exe";
 		default:
 			return puppeteer.executablePath();
-			// or /usr/bin/google-chrome | /usr/lib/google-chrome
 	}
 }
 

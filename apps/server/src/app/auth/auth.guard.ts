@@ -2,7 +2,6 @@ import { CanActivate, ExecutionContext, Injectable, HttpException, HttpStatus } 
 import { JwtService } from "@nestjs/jwt";
 import { InjectModel } from "@nestjs/mongoose";
 import { User } from "@scr-gui/server-schemas";
-import { ScrapeRequest } from "@scr-gui/server-interfaces";
 import { Model } from "mongoose";
 import { Request } from "express";
 
