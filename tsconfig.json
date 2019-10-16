@@ -16,8 +16,8 @@
 		"skipDefaultLibCheck": true,
 		"baseUrl": ".",
 		"paths": {
-			"@scr-gui/server-interfaces": ["libs/server-interfaces/src/index.ts"],
-			"@scr-gui/server-schemas": ["libs/server-schemas/src/index.ts"]
+			"@scr-gui/server-interfaces": ["libs/scr/src/lib/server-interfaces.ts"],
+			"@scr-gui/server-schemas": ["libs/scr/src/lib/server-schemas.ts"]
 		}
 	},
 	"exclude": ["node_modules", "tmp"]

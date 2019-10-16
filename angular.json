@@ -198,9 +198,9 @@
 				}
 			}
 		},
-		"server-interfaces": {
-			"root": "libs/server-interfaces",
-			"sourceRoot": "libs/server-interfaces/src",
+		"scr": {
+			"root": "libs/scr",
+			"sourceRoot": "libs/scr/src",
 			"projectType": "library",
 			"schematics": {},
 			"architect": {
@@ -208,48 +208,17 @@
 					"builder": "@angular-devkit/build-angular:tslint",
 					"options": {
 						"tsConfig": [
-							"libs/server-interfaces/tsconfig.lib.json",
-							"libs/server-interfaces/tsconfig.spec.json"
+							"libs/scr/tsconfig.lib.json",
+							"libs/scr/tsconfig.spec.json"
 						],
-						"exclude": [
-							"**/node_modules/**",
-							"!libs/server-interfaces/**"
-						]
+						"exclude": ["**/node_modules/**", "!libs/scr/**"]
 					}
 				},
 				"test": {
 					"builder": "@nrwl/jest:jest",
 					"options": {
-						"jestConfig": "libs/server-interfaces/jest.config.js",
-						"tsConfig": "libs/server-interfaces/tsconfig.spec.json"
-					}
-				}
-			}
-		},
-		"server-schemas": {
-			"root": "libs/server-schemas",
-			"sourceRoot": "libs/server-schemas/src",
-			"projectType": "library",
-			"schematics": {},
-			"architect": {
-				"lint": {
-					"builder": "@angular-devkit/build-angular:tslint",
-					"options": {
-						"tsConfig": [
-							"libs/server-schemas/tsconfig.lib.json",
-							"libs/server-schemas/tsconfig.spec.json"
-						],
-						"exclude": [
-							"**/node_modules/**",
-							"!libs/server-schemas/**"
-						]
-					}
-				},
-				"test": {
-					"builder": "@nrwl/jest:jest",
-					"options": {
-						"jestConfig": "libs/server-schemas/jest.config.js",
-						"tsConfig": "libs/server-schemas/tsconfig.spec.json"
+						"jestConfig": "libs/scr/jest.config.js",
+						"tsConfig": "libs/scr/tsconfig.spec.json"
 					}
 				}
 			}

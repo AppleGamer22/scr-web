@@ -17,10 +17,7 @@
 		"server": {
 			"tags": []
 		},
-		"server-interfaces": {
-			"tags": []
-		},
-		"server-schemas": {
+		"scr": {
 			"tags": []
 		}
 	}
