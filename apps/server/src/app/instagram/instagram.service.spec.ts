@@ -19,7 +19,7 @@ describe("InstagramService", () => {
 	afterEach(async () => await browser.close());
 
 	it("should be defined", () => expect(service).toBeDefined());
-
+	// may be fbcdn.net
 	it("scrapes Bz2MPhPhOQu & gets 1 public JPEG", async done => {
 		try {
 			const urls = await service.getPostFiles("Bz2MPhPhOQu", browser, page);
@@ -28,7 +28,7 @@ describe("InstagramService", () => {
 			console.log(urls[0]);
 			expect(urls[0]).toContain("https://");
 			expect(urls[0]).toContain(".jpg");
-			expect(urls[0]).toContain("fbcdn.net");
+			expect(urls[0]).toContain("cdninstagram.com");
 		} catch (error) {
 			console.error(error.message);
 		}
@@ -42,7 +42,7 @@ describe("InstagramService", () => {
 			console.log(urls[0]);
 			expect(urls[0]).toContain("https://");
 			expect(urls[0]).toContain(".mp4");
-			expect(urls[0]).toContain("fbcdn.net");
+			expect(urls[0]).toContain("cdninstagram.com");
 		} catch (error) {
 			console.error(error.message);
 		}
@@ -56,11 +56,11 @@ describe("InstagramService", () => {
 			console.log(urls[0]);
 			expect(urls[0]).toContain("https://");
 			expect(urls[0]).toContain(".jpg");
-			expect(urls[0]).toContain("fbcdn.net");
+			expect(urls[0]).toContain("cdninstagram.com");
 			console.log(urls[1]);
 			expect(urls[1]).toContain("https://");
 			expect(urls[1]).toContain(".jpg");
-			expect(urls[1]).toContain("fbcdn.net");
+			expect(urls[1]).toContain("cdninstagram.com");
 		} catch (error) {
 			console.error(error.message);
 		}
@@ -73,11 +73,11 @@ describe("InstagramService", () => {
 			console.log(urls[0]);
 			expect(urls[0]).toContain("https://");
 			expect(urls[0]).toContain(".mp4");
-			expect(urls[0]).toContain("fbcdn.net");
+			expect(urls[0]).toContain("cdninstagram.com");
 			console.log(urls[1]);
 			expect(urls[1]).toContain("https://");
 			expect(urls[1]).toContain(".jpg");
-			expect(urls[1]).toContain("fbcdn.net");
+			expect(urls[1]).toContain("cdninstagram.com");
 		} catch (error) { console.error(error.message); }
 	});
 });
