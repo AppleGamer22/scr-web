@@ -1,0 +1,11 @@
+version: '3'
+services:
+    database:
+            # $ docker-compose up -d database
+            container_name: database
+            image: mongo:4.2.0
+            restart: always
+            volumes:
+                - ./database:/data/db
+            ports:
+                - 27017:27017

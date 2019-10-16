@@ -1,0 +1,17 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"type": "chrome",
+			"request": "launch",
+			"name": "client",
+			"url": "http://localhost:4200",
+			"webRoot": "${workspaceFolder}"
+		},{
+			"type": "node",
+			"request": "attach",
+			"name": "server",
+			"port": 7777
+		}
+	]
+}

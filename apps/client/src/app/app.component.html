@@ -1,0 +1,13 @@
+<ion-app>
+	<ion-header>
+		<ion-toolbar>
+			<ion-title><ion-icon name="hammer" color="primary"></ion-icon></ion-title>
+			<ion-buttons slot="end"><scr-gui-theme-toggle></scr-gui-theme-toggle></ion-buttons>
+		</ion-toolbar>
+	</ion-header>
+	<ion-content>
+		<h1 style="text-align:center">Welcome to website!</h1>
+		<p>Message: {{ hello$ | async | json }}</p>
+	</ion-content>
+	<!-- <ion-router-outlet style="margin-top: 50px;"></ion-router-outlet> -->
+</ion-app>
