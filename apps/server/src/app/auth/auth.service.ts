@@ -1,4 +1,4 @@
-import { Injectable, HttpStatus, HttpException } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { InjectModel } from "@nestjs/mongoose";
 import { User } from "@scr-gui/server-schemas";
@@ -16,7 +16,7 @@ import { InstagramService } from "../instagram/instagram.service";
 	async signUpInstagram(username: string, password: string): Promise<User> {
 		try {
 			const possibleUser = await this.userCollection.findOne({username}).exec();
-			if (possibleUser) throw new HttpException( "Username already exists.", HttpStatus.CONFLICT);
+			if (possibleUser) throw new Error( "Username already exists.");
 			return await new this.userCollection({
 				username,
 				hash: await hash(password, 10),
@@ -26,15 +26,15 @@ import { InstagramService } from "../instagram/instagram.service";
 				_id: new Types.ObjectId()
 			}).save();
 		} catch (error) {
-			throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+			throw new Error(error.message);
 		}
 	}
 	async signInInstagram(username: string, password: string): Promise<string | undefined> {
 		try {
 			const possibleUser = await this.userCollection.findOne({username}).exec();
-			if (!possibleUser) throw new HttpException("Authentication failed", HttpStatus.UNAUTHORIZED);
+			if (!possibleUser) throw new Error("Authentication failed.");
 			const isRealUser = await compare(password, possibleUser.hash);
-			if (!isRealUser) throw new HttpException("Authentication failed", HttpStatus.UNAUTHORIZED);
+			if (!isRealUser) throw new Error("Authentication failed.");
 			const webToken = await this.jwt.signAsync({username, U_ID: possibleUser._id});
 			const {page} = await beginScrape(possibleUser._id);
 			if (isRealUser) {
@@ -45,7 +45,7 @@ import { InstagramService } from "../instagram/instagram.service";
 				}
 			}
 		} catch (error) {
-			throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+			throw new Error(error.message as string);
 		}
 	}
 }

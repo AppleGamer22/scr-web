@@ -1,4 +1,3 @@
-import { HttpStatus, HttpException } from "@nestjs/common";
 import { homedir } from "os";
 import { Request } from "express";
 import { Schema } from "mongoose";
@@ -50,6 +49,6 @@ export async function beginScrape(U_ID: string): Promise<{browser: puppeteer.Bro
 		await page.setUserAgent(userAgent());
 		return {browser, page};
 	} catch (error) {
-		throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+		throw new Error(error.message as string);
 	}
 }

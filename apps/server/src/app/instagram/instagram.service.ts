@@ -1,4 +1,4 @@
-import { Injectable, HttpException, HttpStatus } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { userAgent } from "@scr-gui/server-interfaces";
 import * as puppeteer from "puppeteer";
 import { randomBytes } from "crypto";
@@ -14,9 +14,8 @@ declare global {
 		try {
 			await page.goto(`https://www.instagram.com/p/${id}`, {waitUntil: "domcontentloaded"});
 			if ((await page.$("div.error-container")) !== null) {
-				console.error(`Failed to find post ${id}`);
 				await browser.close();
-				throw new HttpException(`Failed to find post ${id}`, HttpStatus.NOT_FOUND);
+				throw new Error(`Failed to find post ${id}`);
 			}
 			const sources = await page.evaluate(() => {
 				return window._sharedData.entry_data.PostPage[0].graphql.shortcode_media;
@@ -32,8 +31,12 @@ declare global {
 				if (sources.is_video) urls.push(sources.video_url);
 			}
 			return urls;
-		} catch (error) { console.error(error.message); }
+		} catch (error) {
+			console.error(error.message);
+			throw new Error(`Failed to process post ${id}`);
+		}
 	}
+
 	async signIn(page: puppeteer.Page, username: string, password: string): Promise<boolean> {
 		try {
 			await page.setUserAgent(userAgent());
@@ -49,6 +52,7 @@ declare global {
 			return false;
 		}
 	}
+
 	async signOut(page: puppeteer.Page): Promise<boolean> {
 		try {
 			await page.setUserAgent(userAgent());
