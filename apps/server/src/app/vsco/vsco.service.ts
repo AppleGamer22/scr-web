@@ -15,7 +15,6 @@ import * as puppeteer from "puppeteer";
 			const videoURL = await page.$$eval(`meta[property="og:video"]`, metas => {
 				return metas.map(meta => meta.getAttribute("content"));
 			});
-			await page.goto(`https://vsco.co/${id}`, {waitUntil: "domcontentloaded"});
 			if (videoURL[0]) return videoURL[0];
 			if (imageURL[0]) return imageURL[0].split("?")[0];
 		} catch (error) {
