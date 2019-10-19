@@ -12,7 +12,10 @@ import { AuthService } from "./auth.service";
 			const user = await this.authService.signUpInstagram(body.username, body.password);
 			return response.json(user).status(HttpStatus.CREATED);
 		} catch (error) {
-			throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+			const errorMessage = error.message as string;
+			var errorCode = HttpStatus.INTERNAL_SERVER_ERROR;
+			if (errorMessage.includes("already exists")) errorCode = HttpStatus.CONFLICT;
+			throw new HttpException(error.message, errorCode);
 		}
 	}
 
@@ -24,7 +27,10 @@ import { AuthService } from "./auth.service";
 			const token = await this.authService.signInInstagram(body.username, body.password);
 			return response.json({token}).status(HttpStatus.OK);
 		} catch (error) {
-			throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+			const errorMessage = error.message as string;
+			var errorCode = HttpStatus.INTERNAL_SERVER_ERROR;
+			if (errorMessage.includes("failed.")) errorCode = HttpStatus.UNAUTHORIZED;
+			throw new HttpException(error.message, errorCode);
 		}
 	}
 }

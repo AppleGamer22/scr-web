@@ -12,8 +12,11 @@ import { VSCOService } from "./vsco.service";
 			await browser.close();
 			return url;
 		} catch (error) {
-			throw new HttpException(`Failed to find post ${postAddress}`, HttpStatus.NOT_FOUND);
-			// throw new HttpException(error.message, HttpStatus.NOT_FOUND);
+			const errorMessage = error.message as string;
+			var errorCode: HttpStatus;
+			if (errorMessage.includes("to find")) errorCode = HttpStatus.NOT_FOUND;
+			if (errorMessage.includes("to process")) errorCode = HttpStatus.INTERNAL_SERVER_ERROR;
+			throw new HttpException(error.message, errorCode);
 		}
 	}
 }
