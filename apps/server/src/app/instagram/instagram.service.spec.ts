@@ -1,11 +1,11 @@
 import { Test, TestingModule } from "@nestjs/testing";
-import * as puppeteer from "puppeteer";
 import { beginScrape } from "@scr-gui/server-interfaces";
+import { Browser, Page } from "puppeteer";
 import { InstagramService } from "./instagram.service";
 
 describe("InstagramService", () => {
 	jest.setTimeout(15000);
-	let service: InstagramService, browser: puppeteer.Browser, page: puppeteer.Page;
+	let service: InstagramService, browser: Browser, page: Page;
 	beforeEach(async () => {
 		const module: TestingModule = await Test.createTestingModule({
 			providers: [InstagramService]

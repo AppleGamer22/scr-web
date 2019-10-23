@@ -7,7 +7,7 @@ import { VSCOService } from "./vsco.service";
 	@Get(":user/:post") async getPostFiles(@Param("user") user: string, @Param("post") post: string): Promise<string> {
 		const postAddress = `${user}/media/${post}`;
 		try {
-			const {browser, page} = await beginScrape("");
+			const { browser, page } = await beginScrape("");
 			const url = await this.vscoService.getPostFiles(postAddress, browser, page);
 			await browser.close();
 			return url;

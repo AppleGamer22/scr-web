@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { userAgent } from "@scr-gui/server-interfaces";
-import * as puppeteer from "puppeteer";
+import { Browser, Page } from "puppeteer";
 import { randomBytes } from "crypto";
 
 declare global {
@@ -10,7 +10,7 @@ declare global {
 }
 
 @Injectable() export class InstagramService {
-	async getPostFiles(id: string, browser: puppeteer.Browser, page: puppeteer.Page): Promise<string[]> {
+	async getPostFiles(id: string, browser: Browser, page: Page): Promise<string[]> {
 		try {
 			await page.goto(`https://www.instagram.com/p/${id}`, {waitUntil: "domcontentloaded"});
 			if ((await page.$("div.error-container")) !== null) {
@@ -37,7 +37,7 @@ declare global {
 		}
 	}
 
-	async signIn(page: puppeteer.Page, username: string, password: string): Promise<boolean> {
+	async signIn(page: Page, username: string, password: string): Promise<boolean> {
 		try {
 			await page.setUserAgent(userAgent());
 			await page.goto("https://www.instagram.com/accounts/login/");
@@ -53,7 +53,7 @@ declare global {
 		}
 	}
 
-	async signOut(page: puppeteer.Page): Promise<boolean> {
+	async signOut(page: Page): Promise<boolean> {
 		try {
 			await page.setUserAgent(userAgent());
 			await page.goto(`https://www.instagram.com/${randomBytes(5).toString("hex")}/`);

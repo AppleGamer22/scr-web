@@ -75,7 +75,7 @@
 		"@types/jest": "^24.0.18",
 		"@types/mongoose": "^5.5.20",
 		"@types/node": "^12.7.12",
-		"@types/puppeteer": "^1.20.1",
+		"@types/puppeteer": "^1.20.2",
 		"codelyzer": "~5.0.1",
 		"cypress": "3.4.1",
 		"dotenv": "^8.1.0",
