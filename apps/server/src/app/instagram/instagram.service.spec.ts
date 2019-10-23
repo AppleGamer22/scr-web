@@ -28,7 +28,7 @@ describe("InstagramService", () => {
 			console.log(urls[0]);
 			expect(urls[0]).toContain("https://");
 			expect(urls[0]).toContain(".jpg");
-			expect(urls[0]).toContain("cdninstagram.com");
+			expect(urls[0].includes("cdninstagram.com") || urls[0].includes("fbcdn.net")).toBe(true);
 		} catch (error) {
 			console.error(error.message);
 		}
@@ -42,7 +42,7 @@ describe("InstagramService", () => {
 			console.log(urls[0]);
 			expect(urls[0]).toContain("https://");
 			expect(urls[0]).toContain(".mp4");
-			expect(urls[0]).toContain("cdninstagram.com");
+			expect(urls[0].includes("cdninstagram.com") || urls[0].includes("fbcdn.net")).toBe(true);
 		} catch (error) {
 			console.error(error.message);
 		}
@@ -56,11 +56,11 @@ describe("InstagramService", () => {
 			console.log(urls[0]);
 			expect(urls[0]).toContain("https://");
 			expect(urls[0]).toContain(".jpg");
-			expect(urls[0]).toContain("cdninstagram.com");
+			expect(urls[0].includes("cdninstagram.com") || urls[0].includes("fbcdn.net")).toBe(true);
 			console.log(urls[1]);
 			expect(urls[1]).toContain("https://");
 			expect(urls[1]).toContain(".jpg");
-			expect(urls[1]).toContain("cdninstagram.com");
+			expect(urls[1].includes("cdninstagram.com") || urls[1].includes("fbcdn.net")).toBe(true);
 		} catch (error) {
 			console.error(error.message);
 		}
@@ -73,11 +73,11 @@ describe("InstagramService", () => {
 			console.log(urls[0]);
 			expect(urls[0]).toContain("https://");
 			expect(urls[0]).toContain(".mp4");
-			expect(urls[0]).toContain("cdninstagram.com");
+			expect(urls[0].includes("cdninstagram.com") || urls[0].includes("fbcdn.net")).toBe(true);
 			console.log(urls[1]);
 			expect(urls[1]).toContain("https://");
 			expect(urls[1]).toContain(".jpg");
-			expect(urls[1]).toContain("cdninstagram.com");
+			expect(urls[1].includes("cdninstagram.com") || urls[1].includes("fbcdn.net")).toBe(true);
 		} catch (error) { console.error(error.message); }
 	});
 });

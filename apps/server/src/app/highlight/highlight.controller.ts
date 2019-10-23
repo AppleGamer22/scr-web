@@ -9,14 +9,14 @@ import { AuthGuard } from "../auth/auth.guard";
 
 	@Get(":highlight/:item") @UseGuards(AuthGuard) async getHighlightFile(
 		@Param("highlight") highlight: string,
-		@Param("item") item: string,
+		@Param("item") item: number,
 		@Req() request: Request
-	): Promise<string> {
+	): Promise<string[]> {
 		try {
 			const { browser, page } = await beginScrape((request as ScrapeRequest).user.U_ID as string);
-			const url = await this.highlightService.getHighlightFile(highlight, Number(item), browser, page);
+			const urls = await this.highlightService.getHighlightFile(highlight, item, browser, page);
 			await browser.close();
-			return url;
+			return urls;
 		} catch (error) {
 			const errorMessage = error.message as string;
 			var errorCode: HttpStatus;
