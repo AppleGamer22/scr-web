@@ -37,7 +37,7 @@ export function userAgent(): string {
 	}
 }
 
-export async function beginScrape(U_ID: string): Promise<{browser: puppeteer.Browser, page: puppeteer.Page}> {
+export async function beginScrape(U_ID: string): Promise<{ browser: puppeteer.Browser, page: puppeteer.Page }> {
 	try {
 		const browser = await puppeteer.launch({
 			headless: true,
@@ -47,7 +47,7 @@ export async function beginScrape(U_ID: string): Promise<{browser: puppeteer.Bro
 		});
 		const page = (await browser.pages())[0];
 		await page.setUserAgent(userAgent());
-		return {browser, page};
+		return { browser, page };
 	} catch (error) {
 		throw new Error(error.message as string);
 	}

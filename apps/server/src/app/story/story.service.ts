@@ -16,7 +16,6 @@ import * as puppeteer from "puppeteer";
 			}
 			await page.waitForSelector("div.uL8Hv", {visible: true});
 			await page.click("div.uL8Hv");
-			var urls: string[] = [];
 			await page.waitForSelector("div.qbCDp", {visible: true});
 			// console.log(await page.content());
 			const imageURLs = await page.$$eval("div.qbCDp > img", images => images.map(image => image.getAttribute("srcset")));
@@ -25,7 +24,7 @@ import * as puppeteer from "puppeteer";
 			if (videoURLs) return videoURLs[0];
 		} catch (error) {
 			console.error(error.message);
-			throw new Error("Failed to process requested story file");
+			throw new Error("Failed to process requested story file.");
 		}
 	}
 }

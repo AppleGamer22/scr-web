@@ -11,7 +11,7 @@ import { AuthGuard } from "../auth/auth.guard";
 		@Req() request: Request
 	): Promise<string[]> {
 		try {
-			const {browser, page} = await beginScrape((request as ScrapeRequest).user.U_ID as string);
+			const { browser, page } = await beginScrape((request as ScrapeRequest).user.U_ID as string);
 			const urls = await this.instagramService.getPostFiles(post, browser, page);
 			await browser.close();
 			return urls;

@@ -1,8 +1,8 @@
 import { Injectable } from "@nestjs/common";
-import * as puppeteer from "puppeteer";
+import { Browser, Page } from "puppeteer";
 
 @Injectable() export class VSCOService {
-	async getPostFiles(id: string, browser: puppeteer.Browser, page: puppeteer.Page): Promise<string> {
+	async getPostFiles(id: string, browser: Browser, page: Page): Promise<string> {
 		try {
 			await page.goto(`https://vsco.co/${id}`, {waitUntil: "domcontentloaded"});
 			if ((await page.$("p.NotFound-heading")) !== null) {
@@ -15,7 +15,6 @@ import * as puppeteer from "puppeteer";
 			const videoURL = await page.$$eval(`meta[property="og:video"]`, metas => {
 				return metas.map(meta => meta.getAttribute("content"));
 			});
-			await page.goto(`https://vsco.co/${id}`, {waitUntil: "domcontentloaded"});
 			if (videoURL[0]) return videoURL[0];
 			if (imageURL[0]) return imageURL[0].split("?")[0];
 		} catch (error) {
