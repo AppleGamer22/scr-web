@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3e676335-c69e-4250-b646-51e47a0008ba" name="Default Changelist" comment="WebStorm config files">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/server/src/app/highlight/highlight.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/server/src/app/highlight/highlight.controller.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/server/src/app/highlight/highlight.service.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/server/src/app/highlight/highlight.service.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/server/src/app/highlight/highlight.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/server/src/app/highlight/highlight.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/server/src/app/instagram/instagram.service.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/server/src/app/instagram/instagram.service.spec.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -59,75 +56,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Jest.HighlightService.scrapes 4th 17912059153309881 and gets a JPEG">
-    <configuration name="HighlightService" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$/apps/server" />
-      <envs />
-      <scope-kind value="SUITE" />
-      <test-file value="$PROJECT_DIR$/apps/server/src/app/highlight/highlight.service.spec.ts" />
-      <test-names>
-        <test-name value="HighlightService" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="HighlightService.scrapes 1st 17941742392256135 and gets an MP4" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$/apps/server" />
-      <envs />
-      <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/apps/server/src/app/highlight/highlight.service.spec.ts" />
-      <test-names>
-        <test-name value="HighlightService" />
-        <test-name value="scrapes 1st 17941742392256135 and gets an MP4" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="HighlightService.scrapes 4th 17912059153309881 and gets a JPEG" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$/apps/server" />
-      <envs />
-      <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/apps/server/src/app/highlight/highlight.service.spec.ts" />
-      <test-names>
-        <test-name value="HighlightService" />
-        <test-name value="scrapes 4th 17912059153309881 and gets a JPEG" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="HighlightService.should be defined" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$/apps/server" />
-      <envs />
-      <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/apps/server/src/app/highlight/highlight.service.spec.ts" />
-      <test-names>
-        <test-name value="HighlightService" />
-        <test-name value="should be defined" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="InstagramService" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$/apps/server" />
-      <envs />
-      <scope-kind value="SUITE" />
-      <test-file value="$PROJECT_DIR$/apps/server/src/app/instagram/instagram.service.spec.ts" />
-      <test-names>
-        <test-name value="InstagramService" />
-      </test-names>
-      <method v="2" />
-    </configuration>
+  <component name="RunManager">
     <configuration default="true" type="js.build_tools.npm">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -138,15 +67,6 @@
       <envs />
       <method v="2" />
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Jest.HighlightService.scrapes 4th 17912059153309881 and gets a JPEG" />
-        <item itemvalue="Jest.HighlightService" />
-        <item itemvalue="Jest.HighlightService.scrapes 1st 17941742392256135 and gets an MP4" />
-        <item itemvalue="Jest.HighlightService.should be defined" />
-        <item itemvalue="Jest.InstagramService" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="ServiceViewManager">
     <option name="allServicesViewState">
@@ -190,7 +110,8 @@
       <workItem from="1570699946043" duration="133000" />
       <workItem from="1571192080467" duration="23000" />
       <workItem from="1571192129903" duration="312000" />
-      <workItem from="1571872059797" duration="2403000" />
+      <workItem from="1571872059797" duration="2728000" />
+      <workItem from="1571899652849" duration="519000" />
     </task>
     <task id="LOCAL-00001" summary="WebStorm config files">
       <created>1571192322206</created>
@@ -199,7 +120,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571192322206</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="updated functions return type for highlight service">
+      <created>1571874603440</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1571874603440</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -220,6 +148,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="WebStorm config files" />
-    <option name="LAST_COMMIT_MESSAGE" value="WebStorm config files" />
+    <MESSAGE value="updated functions return type for highlight service" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated functions return type for highlight service" />
   </component>
 </project>

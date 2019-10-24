@@ -48,7 +48,7 @@ describe("InstagramService", () => {
 		}
 	});
 
-	it("scrapes B3N2mEMA1lj & gets 2 private JPEG", async done => {
+	it("scrapes B3N2mEMA1lj & gets 2 public JPEG", async done => {
 		try {
 			const urls = await service.getPostFiles("B3N2mEMA1lj", browser, page);
 			done();
