@@ -1,20 +1,21 @@
+import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
-import { AppComponent } from "./app.component";
-import { HttpClientModule } from "@angular/common/http";
-import { ServiceWorkerModule } from "@angular/service-worker";
-import { environment } from "../environments/environment";
-import { IonicModule, IonicRouteStrategy } from "@ionic/angular";
-import { AppRoutingModule } from "./app-routing.module";
 import { RouteReuseStrategy } from "@angular/router";
-import { FormsModule } from '@angular/forms';
-import { ThemeToggleComponent } from './theme-toggle/theme-toggle.component';
+import { HttpClientModule } from "@angular/common/http";
+import { FormsModule } from "@angular/forms";
+import { ServiceWorkerModule } from "@angular/service-worker";
+import { IonicModule, IonicRouteStrategy } from "@ionic/angular";
+import { AppComponent } from "./app.component";
+import { environment } from "../environments/environment";
+import { AppRoutingModule } from "./app-routing.module";
+import { ThemeToggleComponent } from "./theme-toggle/theme-toggle.component";
+import { InstagramComponent } from "./instagram/instagram.component";
+import { VSCOComponent } from "./vsco/vsco.component";
+import { HighlightComponent } from './highlight/highlight.component';
+import { StoryComponent } from './story/story.component';
 
 @NgModule({
-	declarations: [
-		AppComponent,
-		ThemeToggleComponent
-	],
+	declarations: [AppComponent, ThemeToggleComponent, InstagramComponent, VSCOComponent, HighlightComponent, StoryComponent],
 	imports: [
 		BrowserModule,
 		FormsModule,
@@ -26,8 +27,8 @@ import { ThemeToggleComponent } from './theme-toggle/theme-toggle.component';
 	providers: [
 		{
 			provide: RouteReuseStrategy,
-			useClass: IonicRouteStrategy
-		}
+			useClass: IonicRouteStrategy,
+		},
 	],
 	bootstrap: [AppComponent],
 }) export class AppModule {}

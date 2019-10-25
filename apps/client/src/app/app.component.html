@@ -1,13 +1,41 @@
 <ion-app>
-	<ion-header>
-		<ion-toolbar>
-			<ion-title><ion-icon name="hammer" color="primary"></ion-icon></ion-title>
-			<ion-buttons slot="end"><scr-gui-theme-toggle></scr-gui-theme-toggle></ion-buttons>
-		</ion-toolbar>
-	</ion-header>
-	<ion-content>
-		<h1 style="text-align:center">Welcome to website!</h1>
-		<p>Message: {{ hello$ | async | json }}</p>
-	</ion-content>
-	<!-- <ion-router-outlet style="margin-top: 50px;"></ion-router-outlet> -->
+	<ion-split-pane contentId="main">
+		<ion-menu menuId="menu" [swipeGesture]="true" type="overlay" when="true">
+			<ion-header>
+				<ion-toolbar>
+					<ion-title>
+						scr.io<ion-icon name="hammer" color="primary"></ion-icon>
+					</ion-title>
+					<ion-buttons slot="end">
+						<scr-gui-theme-toggle></scr-gui-theme-toggle>
+					</ion-buttons>
+				</ion-toolbar>
+			</ion-header>
+			<ion-content>
+				<ion-list>
+					<ion-menu-toggle auto-hide="false" menu="menu">
+						<ion-item routerDirection="root" routerLink="instagram">
+							<ion-label>Instagram Post</ion-label>
+						</ion-item>
+					</ion-menu-toggle>
+					<ion-menu-toggle auto-hide="false" menu="menu">
+						<ion-item routerDirection="root" routerLink="highlight">
+							<ion-label>Instagram Highlight</ion-label>
+						</ion-item>
+					</ion-menu-toggle>
+					<ion-menu-toggle auto-hide="false" menu="menu">
+							<ion-item routerDirection="root" routerLink="story">
+								<ion-label>Instagram Story</ion-label>
+							</ion-item>
+						</ion-menu-toggle>
+					<ion-menu-toggle auto-hide="false" menu="menu">
+							<ion-item routerDirection="root" routerLink="vsco">
+								<ion-label>VSCO Post</ion-label>
+							</ion-item>
+						</ion-menu-toggle>
+				</ion-list>
+			</ion-content>
+		</ion-menu>
+		<ion-router-outlet id="main" main></ion-router-outlet>
+	</ion-split-pane>
 </ion-app>
