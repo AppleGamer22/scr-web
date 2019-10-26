@@ -1,4 +1,7 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { FormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
+import { IonicModule } from "@ionic/angular";
 import { InstagramComponent } from "./instagram.component";
 
 describe("InstagramComponent", () => {
@@ -7,6 +10,11 @@ describe("InstagramComponent", () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
+			imports: [
+				IonicModule.forRoot({scrollAssist: true}),
+				FormsModule,
+				HttpClientModule
+			],
 			declarations: [InstagramComponent],
 		}).compileComponents();
 	}));

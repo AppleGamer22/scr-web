@@ -15,5 +15,5 @@ import { MenuController } from "@ionic/angular";
 		});
 	}
 
-	// hello$ = this.http.get<string[]>("/api/instagram/Bz2MPhPhOQu", {headers: new HttpHeaders({"Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFwcGxlZ2FtZXIyMi5vYiIsIlVfSUQiOiI1ZGExOWRkZDJhZDVhMDBmMmM3YjUyMDUiLCJpYXQiOjE1NzA5NTM3Mjd9.igUv2iJONioQmBmCuI2Qej--qVdMulYKK-EySU1qf6w"})});
+	// hello$ = this.http.get<string[]>("/api/instagram/Bz2MPhPhOQu", {headers: });
 }
