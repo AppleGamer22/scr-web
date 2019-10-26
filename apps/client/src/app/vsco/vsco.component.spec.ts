@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-
+import { FormsModule } from "@angular/forms";
+import { IonicModule } from "@ionic/angular";
 import { VSCOComponent } from "./vsco.component";
 
 describe("VSCOComponent", () => {
@@ -8,6 +9,10 @@ describe("VSCOComponent", () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
+			imports: [
+				IonicModule.forRoot({scrollAssist: true}),
+				FormsModule,
+			],
 			declarations: [VSCOComponent],
 		}).compileComponents();
 	}));
