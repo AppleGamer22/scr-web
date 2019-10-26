@@ -1,6 +1,6 @@
-import { NgModule } from "@angular/core";
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
-import { RouteReuseStrategy } from "@angular/router";
+import { RouteReuseStrategy, RouterModule } from "@angular/router";
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
 import { ServiceWorkerModule } from "@angular/service-worker";
@@ -11,15 +11,23 @@ import { AppRoutingModule } from "./app-routing.module";
 import { ThemeToggleComponent } from "./theme-toggle/theme-toggle.component";
 import { InstagramComponent } from "./instagram/instagram.component";
 import { VSCOComponent } from "./vsco/vsco.component";
-import { HighlightComponent } from './highlight/highlight.component';
-import { StoryComponent } from './story/story.component';
+import { HighlightComponent } from "./highlight/highlight.component";
+import { StoryComponent } from "./story/story.component";
 
 @NgModule({
-	declarations: [AppComponent, ThemeToggleComponent, InstagramComponent, VSCOComponent, HighlightComponent, StoryComponent],
+	declarations: [
+		AppComponent,
+		ThemeToggleComponent,
+		InstagramComponent,
+		VSCOComponent,
+		HighlightComponent,
+		StoryComponent
+	],
 	imports: [
 		BrowserModule,
 		FormsModule,
 		HttpClientModule,
+		RouterModule,
 		ServiceWorkerModule.register("ngsw-worker.js", {enabled: environment.production}),
 		IonicModule.forRoot({scrollAssist: true}),
 		AppRoutingModule,
@@ -30,5 +38,6 @@ import { StoryComponent } from './story/story.component';
 			useClass: IonicRouteStrategy,
 		},
 	],
-	bootstrap: [AppComponent],
+	schemas: [CUSTOM_ELEMENTS_SCHEMA],
+	bootstrap: [AppComponent]
 }) export class AppModule {}

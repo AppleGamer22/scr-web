@@ -1,10 +1,11 @@
 import { TestBed, async } from "@angular/core/testing";
-import { HttpClientModule } from "@angular/common/http";
 import { RouterTestingModule } from "@angular/router/testing";
+import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { FormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
 import { IonicModule } from "@ionic/angular";
 import { AppComponent } from "./app.component";
 import { ThemeToggleComponent } from "./theme-toggle/theme-toggle.component";
-import { FormsModule } from "@angular/forms";
 
 describe("AppComponent", () => {
 	beforeEach(async(() => {
@@ -19,6 +20,7 @@ describe("AppComponent", () => {
 				AppComponent,
 				ThemeToggleComponent
 			],
+			schemas: [CUSTOM_ELEMENTS_SCHEMA]
 		}).compileComponents();
 	}));
 
