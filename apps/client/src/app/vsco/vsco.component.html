@@ -1,1 +1,13 @@
-<p>vsco works!</p>
+<ion-content>
+	<form>
+		<ion-item>
+			<ion-label>post owner</ion-label>
+			<ion-input type="text" [clearInput]="true" placeholder="https://vsco.co/OWNER/media/id" required></ion-input>
+		</ion-item>
+		<ion-item>
+			<ion-label>post ID</ion-label>
+			<ion-input type="text" [clearInput]="true" placeholder="https://vsco.co/owner/media/ID" required></ion-input>
+		</ion-item>
+		<ion-button>submit</ion-button>
+	</form>
+</ion-content>
