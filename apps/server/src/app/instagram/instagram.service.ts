@@ -6,6 +6,7 @@ import { randomBytes } from "crypto";
 declare global {
 	interface Window {
 		_sharedData: any
+		__additionalData: any
 	}
 }
 
@@ -17,9 +18,7 @@ declare global {
 				await browser.close();
 				throw new Error(`Failed to find post ${id}`);
 			}
-			const sources = await page.evaluate(() => {
-				return window._sharedData.entry_data.PostPage[0].graphql.shortcode_media;
-			});
+			const sources = (await page.evaluate(() => window.__additionalData))[`/p/${id}/`].data.graphql.shortcode_media;
 			var urls: string[] = [];
 			if (sources.edge_sidecar_to_children) {
 				for (let edge of sources.edge_sidecar_to_children.edges) {
