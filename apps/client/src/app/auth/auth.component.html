@@ -5,26 +5,23 @@
 				<ion-label>new user</ion-label>
 			</ion-segment-button>
 			<ion-segment-button value="sign-in">
-					<ion-label>existing user</ion-label>
-				</ion-segment-button>
+				<ion-label>existing user</ion-label>
+			</ion-segment-button>
 		</ion-segment>
-		<ion-select
-			interface="action-sheet"
-			placeholder="platform"
-			[(ngModel)]="platform"
-			name="platform">
+		<ion-select interface="action-sheet" placeholder="platform" [(ngModel)]="platform" name="platform">
 			<ion-select-option value="instagram">Instagram</ion-select-option>
-			<ion-select-option value="vsco">VSCO</ion-select-option>
+			<ion-select-option value="vsco" disabled>VSCO</ion-select-option>
 		</ion-select>
 		<ion-item>
 			<ion-label>username</ion-label>
-			<ion-input type="text" [(ngModel)]="username" name="username"></ion-input>
+			<ion-input type="text" [(ngModel)]="usernameField" name="username"></ion-input>
 		</ion-item>
 		<ion-item>
 			<ion-label>password</ion-label>
-			<ion-input type="password" [(ngModel)]="password" name="password"></ion-input>
+			<ion-input type="password" [(ngModel)]="passwordField" name="password"></ion-input>
 		</ion-item>
 	</form>
-	<ion-button *ngIf="authOption === 'sign-up'" (click)="signUp()">sign-up</ion-button>
-	<ion-button *ngIf="authOption === 'sign-in'" (click)="signIn()">sign-in</ion-button>
+	<ion-progress-bar *ngIf="processing" color="primary" type="indeterminate"></ion-progress-bar>
+	<ion-button *ngIf="authOption === 'sign-up'" (click)="signUp(usernameField, passwordField)">sign-up</ion-button>
+	<ion-button *ngIf="authOption === 'sign-in'" (click)="signIn(usernameField, passwordField)">sign-in</ion-button>
 </ion-content>
