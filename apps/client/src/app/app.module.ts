@@ -13,6 +13,7 @@ import { InstagramComponent } from "./instagram/instagram.component";
 import { VSCOComponent } from "./vsco/vsco.component";
 import { HighlightComponent } from "./highlight/highlight.component";
 import { StoryComponent } from "./story/story.component";
+import { AuthComponent } from "./auth/auth.component";
 
 @NgModule({
 	declarations: [
@@ -21,7 +22,8 @@ import { StoryComponent } from "./story/story.component";
 		InstagramComponent,
 		VSCOComponent,
 		HighlightComponent,
-		StoryComponent
+		StoryComponent,
+		AuthComponent
 	],
 	imports: [
 		BrowserModule,

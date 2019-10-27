@@ -14,6 +14,11 @@
 			<ion-content>
 				<ion-list>
 					<ion-menu-toggle auto-hide="false" menu="menu">
+						<ion-item routerDirection="root" routerLink="">
+							<ion-label [class.selected]="currentURL === '/'">Authentication</ion-label>
+						</ion-item>
+					</ion-menu-toggle>
+					<ion-menu-toggle auto-hide="false" menu="menu">
 						<ion-item routerDirection="root" routerLink="instagram">
 							<ion-label [class.selected]="currentURL === '/instagram'">Instagram Post</ion-label>
 						</ion-item>
@@ -24,15 +29,15 @@
 						</ion-item>
 					</ion-menu-toggle>
 					<ion-menu-toggle auto-hide="false" menu="menu">
-							<ion-item routerDirection="root" routerLink="story">
-								<ion-label [class.selected]="currentURL === '/story'">Instagram Story</ion-label>
-							</ion-item>
-						</ion-menu-toggle>
+						<ion-item routerDirection="root" routerLink="story">
+							<ion-label [class.selected]="currentURL === '/story'">Instagram Story</ion-label>
+						</ion-item>
+					</ion-menu-toggle>
 					<ion-menu-toggle auto-hide="false" menu="menu">
-							<ion-item routerDirection="root" routerLink="vsco">
-								<ion-label [class.selected]="currentURL === '/vsco'">VSCO Post</ion-label>
-							</ion-item>
-						</ion-menu-toggle>
+						<ion-item routerDirection="root" routerLink="vsco">
+							<ion-label [class.selected]="currentURL === '/vsco'">VSCO Post</ion-label>
+						</ion-item>
+					</ion-menu-toggle>
 				</ion-list>
 			</ion-content>
 		</ion-menu>
