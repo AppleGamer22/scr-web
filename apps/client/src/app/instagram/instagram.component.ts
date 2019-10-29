@@ -9,18 +9,29 @@ import { ToastService } from "../toast.service";
 	styleUrls: ["./instagram.component.scss"],
 }) export class InstagramComponent {
 	postID: string;
-	urls: Observable<string[]>;
+	processing = false;
+	urls: string[];
 	constructor(private readonly http: HttpClient, readonly toast: ToastService) {}
-	async submit() {
+
+	async submit(id: string) {
+		this.processing = true;
 		try {
-			const token = localStorage.getItem("instagram")
+			const token = localStorage.getItem("instagram");
 			if (token) {
 				const headers = new HttpHeaders({"Authorization": token});
-				if (this.postID) {
-					this.urls = this.http.get<string[]>(`/api/instagram/${this.postID}`, { headers })
-				} else await this.toast.showToast("Please enter a post ID.", "danger");
-			} else await this.toast.showToast("You are not authenticated.", "danger");
+				if (id) {
+					this.urls = await this.http.get<string[]>(`/api/instagram/${id}`, { headers }).toPromise();
+					this.processing = false;
+				} else {
+					this.processing = false;
+					await this.toast.showToast("Please enter a post ID.", "danger");
+				}
+			} else {
+				this.processing = false;
+				await this.toast.showToast("You are not authenticated.", "danger");
+			}
 		} catch (error) {
+			this.processing = false;
 			console.error((error as Error).message);
 			this.toast.showToast((error as Error).message, "danger");
 		}

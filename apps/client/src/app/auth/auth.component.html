@@ -20,8 +20,8 @@
 			<ion-label>password</ion-label>
 			<ion-input type="password" [(ngModel)]="passwordField" name="password"></ion-input>
 		</ion-item>
+		<ion-button *ngIf="authOption === 'sign-up'" (click)="signUp(usernameField, passwordField)">sign-up</ion-button>
+		<ion-button *ngIf="authOption === 'sign-in'" (click)="signIn(usernameField, passwordField)">sign-in</ion-button>
 	</form>
 	<ion-progress-bar *ngIf="processing" color="primary" type="indeterminate"></ion-progress-bar>
-	<ion-button *ngIf="authOption === 'sign-up'" (click)="signUp(usernameField, passwordField)">sign-up</ion-button>
-	<ion-button *ngIf="authOption === 'sign-in'" (click)="signIn(usernameField, passwordField)">sign-in</ion-button>
 </ion-content>
