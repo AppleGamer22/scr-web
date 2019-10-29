@@ -10,7 +10,7 @@
 		</ion-segment>
 		<ion-select interface="action-sheet" placeholder="platform" [(ngModel)]="platform" name="platform">
 			<ion-select-option value="instagram">Instagram</ion-select-option>
-			<ion-select-option value="vsco" disabled>VSCO</ion-select-option>
+			<ion-select-option value="vsco" [disabled]="true">VSCO</ion-select-option>
 		</ion-select>
 		<ion-item>
 			<ion-label>username</ion-label>

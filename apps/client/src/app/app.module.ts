@@ -14,6 +14,7 @@ import { VSCOComponent } from "./vsco/vsco.component";
 import { HighlightComponent } from "./highlight/highlight.component";
 import { StoryComponent } from "./story/story.component";
 import { AuthComponent } from "./auth/auth.component";
+import { ToastService } from "./toast.service";
 
 @NgModule({
 	declarations: [
@@ -38,7 +39,7 @@ import { AuthComponent } from "./auth/auth.component";
 		{
 			provide: RouteReuseStrategy,
 			useClass: IonicRouteStrategy,
-		},
+		}
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 	bootstrap: [AppComponent]

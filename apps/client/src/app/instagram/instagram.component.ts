@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
+import { ToastService } from "../toast.service";
 
 @Component({
 	selector: "scr-gui-instagram",
@@ -9,9 +10,19 @@ import { Observable } from "rxjs";
 }) export class InstagramComponent {
 	postID: string;
 	urls: Observable<string[]>;
-	constructor(private readonly http: HttpClient) {}
+	constructor(private readonly http: HttpClient, readonly toast: ToastService) {}
 	async submit() {
-		const headers = new HttpHeaders({"Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFwcGxlZ2FtZXIyMi5vYiIsIlVfSUQiOiI1ZGExOWRkZDJhZDVhMDBmMmM3YjUyMDUiLCJpYXQiOjE1NzA5NTM3Mjd9.igUv2iJONioQmBmCuI2Qej--qVdMulYKK-EySU1qf6w"});
-		if (this.postID) this.urls = this.http.get<string[]>(`/api/instagram/${this.postID}`, { headers })
+		try {
+			const token = localStorage.getItem("instagram")
+			if (token) {
+				const headers = new HttpHeaders({"Authorization": token});
+				if (this.postID) {
+					this.urls = this.http.get<string[]>(`/api/instagram/${this.postID}`, { headers })
+				} else await this.toast.showToast("Please enter a post ID.", "danger");
+			} else await this.toast.showToast("You are not authenticated.", "danger");
+		} catch (error) {
+			console.error((error as Error).message);
+			this.toast.showToast((error as Error).message, "danger");
+		}
 	}
 }

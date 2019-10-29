@@ -13,31 +13,43 @@
 			</ion-header>
 			<ion-content>
 				<ion-list>
-					<ion-menu-toggle auto-hide="false" menu="menu">
-						<ion-item routerDirection="root" routerLink="">
-							<ion-label [class.selected]="currentURL === '/'">Authentication</ion-label>
+					<ion-item-group>
+						<ion-menu-toggle auto-hide="false" menu="menu">
+							<ion-item routerDirection="root" routerLink="">
+								<ion-label [class.selected]="currentURL === '/'">Authentication</ion-label>
+							</ion-item>
+						</ion-menu-toggle>
+						<ion-menu-toggle auto-hide="false" menu="menu">
+							<ion-item routerDirection="root" routerLink="instagram">
+								<ion-label [class.selected]="currentURL === '/instagram'">Instagram Post</ion-label>
+							</ion-item>
+						</ion-menu-toggle>
+						<ion-menu-toggle auto-hide="false" menu="menu">
+							<ion-item routerDirection="root" routerLink="highlight">
+								<ion-label [class.selected]="currentURL === '/highlight'">Instagram Highlight
+								</ion-label>
+							</ion-item>
+						</ion-menu-toggle>
+						<ion-menu-toggle auto-hide="false" menu="menu">
+							<ion-item routerDirection="root" routerLink="story">
+								<ion-label [class.selected]="currentURL === '/story'">Instagram Story</ion-label>
+							</ion-item>
+						</ion-menu-toggle>
+						<ion-menu-toggle auto-hide="false" menu="menu">
+							<ion-item routerDirection="root" routerLink="vsco">
+								<ion-label [class.selected]="currentURL === '/vsco'">VSCO Post</ion-label>
+							</ion-item>
+						</ion-menu-toggle>
+					</ion-item-group>
+					<ion-item-group>
+						<ion-item-divider>
+							<ion-label>authenticated with:</ion-label>
+						</ion-item-divider>
+						<ion-item>
+							<ion-checkbox [checked]="instagram" [disabled]="true"></ion-checkbox>
+							<ion-label>Instagram</ion-label>
 						</ion-item>
-					</ion-menu-toggle>
-					<ion-menu-toggle auto-hide="false" menu="menu">
-						<ion-item routerDirection="root" routerLink="instagram">
-							<ion-label [class.selected]="currentURL === '/instagram'">Instagram Post</ion-label>
-						</ion-item>
-					</ion-menu-toggle>
-					<ion-menu-toggle auto-hide="false" menu="menu">
-						<ion-item routerDirection="root" routerLink="highlight">
-							<ion-label [class.selected]="currentURL === '/highlight'">Instagram Highlight</ion-label>
-						</ion-item>
-					</ion-menu-toggle>
-					<ion-menu-toggle auto-hide="false" menu="menu">
-						<ion-item routerDirection="root" routerLink="story">
-							<ion-label [class.selected]="currentURL === '/story'">Instagram Story</ion-label>
-						</ion-item>
-					</ion-menu-toggle>
-					<ion-menu-toggle auto-hide="false" menu="menu">
-						<ion-item routerDirection="root" routerLink="vsco">
-							<ion-label [class.selected]="currentURL === '/vsco'">VSCO Post</ion-label>
-						</ion-item>
-					</ion-menu-toggle>
+					</ion-item-group>
 				</ion-list>
 			</ion-content>
 		</ion-menu>

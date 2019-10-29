@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { User } from "@scr-gui/server-schemas";
+import { ToastService } from "../toast.service";
 
 @Component({
 	selector: "scr-gui-auth",
@@ -12,7 +13,8 @@ import { User } from "@scr-gui/server-schemas";
 	usernameField: string;
 	passwordField: string;
 	processing = false;
-	constructor(private readonly http: HttpClient) {}
+	constructor(private readonly http: HttpClient, readonly toast: ToastService) {}
+
 	async signUp(username: string, password: string) {
 		this.processing = true;
 		try {
@@ -29,8 +31,10 @@ import { User } from "@scr-gui/server-schemas";
 		} catch (error) {
 			this.processing = false;
 			console.error((error as Error).message);
+			this.toast.showToast((error as Error).message, "danger");
 		}
 	}
+
 	async signIn(username: string, password: string) {
 		this.processing = true;
 		try {
@@ -46,6 +50,7 @@ import { User } from "@scr-gui/server-schemas";
 		} catch (error) {
 			this.processing = false;
 			console.error((error as Error).message);
+			this.toast.showToast((error as Error).message, "danger");
 		}
 	}
 }
