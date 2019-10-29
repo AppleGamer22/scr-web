@@ -13,6 +13,8 @@ import { InstagramComponent } from "./instagram/instagram.component";
 import { VSCOComponent } from "./vsco/vsco.component";
 import { HighlightComponent } from "./highlight/highlight.component";
 import { StoryComponent } from "./story/story.component";
+import { AuthComponent } from "./auth/auth.component";
+import { ToastService } from "./toast.service";
 
 @NgModule({
 	declarations: [
@@ -21,7 +23,8 @@ import { StoryComponent } from "./story/story.component";
 		InstagramComponent,
 		VSCOComponent,
 		HighlightComponent,
-		StoryComponent
+		StoryComponent,
+		AuthComponent
 	],
 	imports: [
 		BrowserModule,
@@ -36,7 +39,7 @@ import { StoryComponent } from "./story/story.component";
 		{
 			provide: RouteReuseStrategy,
 			useClass: IonicRouteStrategy,
-		},
+		}
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 	bootstrap: [AppComponent]

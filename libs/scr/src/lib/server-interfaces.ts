@@ -41,7 +41,7 @@ export async function beginScrape(U_ID: string): Promise<{ browser: puppeteer.Br
 	try {
 		const browser = await puppeteer.launch({
 			headless: true,
-			executablePath: chromeExecutable(),
+			executablePath: puppeteer.executablePath(),
 			userDataDir: chromeUserDataDirectory(U_ID),
 			args: ["--disable-gpu" , "--no-sandbox", "--disable-dev-shm-usage"]
 		});

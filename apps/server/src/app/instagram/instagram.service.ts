@@ -36,7 +36,7 @@ declare global {
 		}
 	}
 
-	async signIn(page: Page, username: string, password: string): Promise<boolean> {
+	async signIn(browser: Browser, page: Page, username: string, password: string): Promise<boolean> {
 		try {
 			await page.setUserAgent(userAgent());
 			await page.goto("https://www.instagram.com/accounts/login/");
@@ -48,6 +48,7 @@ declare global {
 			return true
 		} catch (error) {
 			console.error(error.message);
+			await browser.close();
 			return false;
 		}
 	}

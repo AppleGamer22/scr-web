@@ -36,13 +36,15 @@ import { InstagramService } from "../instagram/instagram.service";
 			const isRealUser = await compare(password, possibleUser.hash);
 			if (!isRealUser) throw new Error("Authentication failed.");
 			const webToken = await this.jwt.signAsync({username, U_ID: possibleUser._id});
-			const {page} = await beginScrape(possibleUser._id);
-			if (isRealUser) {
-				if (await this.instagramService.signIn(page, username, password)) {
-					possibleUser.instagram = true;
-					await possibleUser.save();
-					return webToken;
-				}
+			const { browser, page } = await beginScrape(possibleUser._id);
+			if (isRealUser && possibleUser.instagram) {
+				await browser.close();
+				return webToken;
+			} else if (await this.instagramService.signIn(browser, page, username, password)) {
+				possibleUser.instagram = true;
+				await possibleUser.save();
+				await browser.close();
+				return webToken;
 			}
 		} catch (error) {
 			throw new Error(error.message as string);
