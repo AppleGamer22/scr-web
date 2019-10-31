@@ -13,9 +13,7 @@ import { Router, NavigationEnd } from "@angular/router";
 		router.events.subscribe(event => {
 			if (event instanceof NavigationEnd) {
 				this.currentURL = router.url;
-				if (router.url === "/") {
-					if (localStorage.getItem("instagram")) this.instagram = true;
-				}
+				if (localStorage.getItem("instagram")) this.instagram = true;
 			}
 		});
 	}

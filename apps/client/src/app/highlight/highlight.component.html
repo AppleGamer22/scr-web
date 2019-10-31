@@ -2,13 +2,28 @@
 	<form>
 		<ion-item>
 			<ion-label>highlight ID</ion-label>
-			<ion-input type="text" [clearInput]="true" placeholder="https://instagram.com/stories/highlights/ID" required></ion-input>
+			<ion-input type="text" [clearInput]="true" placeholder="https://instagram.com/stories/highlights/ID"
+				[required]="true" [(ngModel)]="highlightID" name="highlight"></ion-input>
 		</ion-item>
 		<ion-item>
 			<ion-label>highlight number</ion-label>
-			<ion-input type="number" [clearInput]="true" placeholder="number" required>
-			</ion-input>
+			<ion-input type="number" [clearInput]="true" placeholder="number" [required]="true"
+				[(ngModel)]="highlightNumber" name="number"></ion-input>
 		</ion-item>
-		<ion-button>submit</ion-button>
+		<ion-button (click)="submit(highlightID, highlightNumber)">submit</ion-button>
 	</form>
+	<ion-progress-bar *ngIf="processing" color="primary" type="indeterminate"></ion-progress-bar>
+	<ion-list>
+		<ion-item *ngFor="let url of urls">
+			<ion-grid>
+				<ion-row>
+					<ion-col>
+						<ion-label *ngIf="url.includes('.jpg')">picture</ion-label>
+						<ion-label *ngIf="url.includes('.mp4')">video</ion-label>
+					</ion-col>
+					<ion-col><a [href]="url">{{url}}</a></ion-col>
+				</ion-row>
+			</ion-grid>
+		</ion-item>
+	</ion-list>
 </ion-content>

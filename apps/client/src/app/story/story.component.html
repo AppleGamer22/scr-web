@@ -2,14 +2,28 @@
 	<form>
 		<ion-item>
 			<ion-label>story owner</ion-label>
-			<ion-input type="text" [clearInput]="true" placeholder="https://www.instagram.com/stories/OWNER" required>
-			</ion-input>
+			<ion-input type="text" [clearInput]="true" placeholder="https://www.instagram.com/stories/OWNER"
+				[required]="true" [(ngModel)]="storyID" name="id"></ion-input>
 		</ion-item>
 		<ion-item>
 			<ion-label>story number</ion-label>
-			<ion-input type="number" [clearInput]="true" placeholder="number" required>
-			</ion-input>
+			<ion-input type="number" [clearInput]="true" placeholder="number" [required]="true"
+				[(ngModel)]="storyNumber" name="number"></ion-input>
 		</ion-item>
-		<ion-button>submit</ion-button>
+		<ion-button (click)="submit(storyID, storyNumber)">submit</ion-button>
 	</form>
+	<ion-progress-bar *ngIf="processing" color="primary" type="indeterminate"></ion-progress-bar>
+	<ion-list>
+		<ion-item *ngFor="let url of urls">
+			<ion-grid>
+				<ion-row>
+					<ion-col>
+						<ion-label *ngIf="url.includes('.jpg')">picture</ion-label>
+						<ion-label *ngIf="url.includes('.mp4')">video</ion-label>
+					</ion-col>
+					<ion-col><a [href]="url">{{url}}</a></ion-col>
+				</ion-row>
+			</ion-grid>
+		</ion-item>
+	</ion-list>
 </ion-content>
