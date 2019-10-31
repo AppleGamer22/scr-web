@@ -5,10 +5,11 @@ import { Browser, Page } from "puppeteer";
 	async getHighlightFile(highlight: string, item: number, browser: Browser, page: Page): Promise<string[]> {
 		try {
 			await page.goto(`https://www.instagram.com/stories/highlights/${highlight}`, {waitUntil: "domcontentloaded"});
-			const potentialErrorMessage: string = await (await (await page.$("body"))!.getProperty("textContent")).jsonValue();
-			if (potentialErrorMessage.includes("Oops, an error occurred.")) {
+			await page.waitForSelector("body", {visible: true});
+			const potentialError = await page.$eval("body", body => body.innerHTML);
+			if (potentialError.includes("Oops, an error occurred.")) {
 				await browser.close();
-				throw new Error(`Failed to find highlight ${highlight}`);
+				throw new Error(`Failed to find highlight ${highlight}.`);
 			}
 			for (let i = 0; i < item - 1; i += 1) {
 				await page.waitForSelector("div.coreSpriteRightChevron", {visible: true});
