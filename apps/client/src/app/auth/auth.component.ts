@@ -8,7 +8,7 @@ import { ToastService } from "../toast.service";
 	templateUrl: "./auth.component.html",
 	styleUrls: ["./auth.component.scss"],
 }) export class AuthComponent {
-	authOption = "sign-up";
+	authOption: "sign-up" | "sign-in" | "sign-out" = "sign-up";
 	platform = "instagram";
 	usernameField: string;
 	passwordField: string;

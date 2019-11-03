@@ -3,12 +3,8 @@
 		<ion-menu menuId="menu" [swipeGesture]="true" type="overlay" when="true">
 			<ion-header>
 				<ion-toolbar>
-					<ion-title>
-						scr.io<ion-icon name="hammer" color="primary"></ion-icon>
-					</ion-title>
-					<ion-buttons slot="end">
-						<scr-gui-theme-toggle></scr-gui-theme-toggle>
-					</ion-buttons>
+					<ion-title>scr.io<ion-icon name="hammer" color="primary"></ion-icon></ion-title>
+					<ion-buttons slot="end"><scr-gui-theme-toggle></scr-gui-theme-toggle></ion-buttons>
 				</ion-toolbar>
 			</ion-header>
 			<ion-content>
@@ -41,10 +37,10 @@
 							</ion-item>
 						</ion-menu-toggle>
 					</ion-item-group>
+					<ion-item-divider>
+						<ion-label>authenticated with:</ion-label>
+					</ion-item-divider>
 					<ion-item-group>
-						<ion-item-divider>
-							<ion-label>authenticated with:</ion-label>
-						</ion-item-divider>
 						<ion-item>
 							<ion-checkbox [checked]="instagram" [disabled]="true"></ion-checkbox>
 							<ion-label>Instagram</ion-label>
