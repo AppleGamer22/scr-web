@@ -53,13 +53,13 @@ declare global {
 		}
 	}
 
-	async signOut(page: Page): Promise<boolean> {
+	async signOut(page: Page, username: string): Promise<boolean> {
 		try {
 			await page.setUserAgent(userAgent());
-			await page.goto(`https://www.instagram.com/${randomBytes(5).toString("hex")}/`);
-			const profileButton = "#link_profile > a";
-			await page.waitForSelector(profileButton);
-			await page.click(profileButton);
+			await page.goto(`https://www.instagram.com/${username}/`);
+			// const profileButton = "#link_profile > a";
+			// await page.waitForSelector(profileButton);
+			// await page.click(profileButton);
 			const settingsButton = "#react-root > section > main > div > header > section > div.nZSzR > div > button";
 			await page.waitForSelector(settingsButton);
 			await page.click(settingsButton);

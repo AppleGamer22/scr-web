@@ -28,7 +28,7 @@
 		</ion-item>
 		<ion-button *ngIf="authOption === 'sign-up'" (click)="signUp(usernameField, passwordField)">sign-up</ion-button>
 		<ion-button *ngIf="authOption === 'sign-in'" (click)="signIn(usernameField, passwordField)">sign-in</ion-button>
-		<ion-button *ngIf="authOption === 'sign-out'">sign-out</ion-button>
+		<ion-button *ngIf="authOption === 'sign-out'" (click)="signOut()">sign-out</ion-button>
 	</form>
 	<ion-progress-bar *ngIf="processing" color="primary" type="indeterminate"></ion-progress-bar>
 </ion-content>

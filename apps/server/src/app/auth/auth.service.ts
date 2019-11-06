@@ -50,4 +50,20 @@ import { InstagramService } from "../instagram/instagram.service";
 			throw new Error(error.message as string);
 		}
 	}
+
+	async signOutInstagram(U_ID: string): Promise<{authenticated: boolean} | undefined> {
+		try {
+			const possibleUser = await this.userCollection.findById(U_ID).exec();
+			if (!possibleUser) throw new Error("Authentication failed.");
+			const { browser, page } = await beginScrape(possibleUser._id);
+			if (possibleUser.instagram && await this.instagramService.signOut(page, possibleUser.username)) {
+				possibleUser.instagram = false;
+				await possibleUser.save();
+				await browser.close();
+				return {authenticated: false};
+			}
+		} catch (error) {
+			throw new Error(error.message as string);
+		}
+	}
 }
