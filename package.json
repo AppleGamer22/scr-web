@@ -42,7 +42,7 @@
 		"@angular/pwa": "^0.803.8",
 		"@angular/router": "^8.2.13",
 		"@angular/service-worker": "^8.2.13",
-		"@ionic/angular": "^4.11.3",
+		"@ionic/angular": "^4.11.4",
 		"@nestjs/common": "^6.8.3",
 		"@nestjs/core": "^6.8.3",
 		"@nestjs/jwt": "^6.1.1",
@@ -58,8 +58,8 @@
 		"zone.js": "^0.9.1"
 	},
 	"devDependencies": {
-		"@angular-devkit/build-angular": "^0.803.16",
-		"@angular/cli": "^8.3.16",
+		"@angular-devkit/build-angular": "^0.803.18",
+		"@angular/cli": "^8.3.18",
 		"@angular/compiler-cli": "^8.2.13",
 		"@angular/language-service": "^8.2.13",
 		"@ionic/angular-toolkit": "^2.1.1",
