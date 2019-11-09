@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="3e676335-c69e-4250-b646-51e47a0008ba" name="Default Changelist" comment="WebStorm config files">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/server/src/app/highlight/highlight.service.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/server/src/app/highlight/highlight.service.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,7 +42,7 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
-    <property name="settings.editor.selected.configurable" value="project.propDebugger" />
+    <property name="settings.editor.selected.configurable" value="settings.nodejs" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
   </component>
   <component name="RunDashboard">
@@ -112,6 +113,7 @@
       <workItem from="1571192129903" duration="312000" />
       <workItem from="1571872059797" duration="2728000" />
       <workItem from="1571899652849" duration="519000" />
+      <workItem from="1573262133003" duration="356000" />
     </task>
     <task id="LOCAL-00001" summary="WebStorm config files">
       <created>1571192322206</created>
