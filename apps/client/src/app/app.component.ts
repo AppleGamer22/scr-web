@@ -1,7 +1,6 @@
 import { Component } from "@angular/core";
 import { Router, NavigationEnd } from "@angular/router";
 
-
 @Component({
 	selector: "scr-gui-root",
 	templateUrl: "./app.component.html",
