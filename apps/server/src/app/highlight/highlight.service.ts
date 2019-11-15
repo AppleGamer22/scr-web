@@ -6,7 +6,7 @@ import { Browser, Page } from "puppeteer";
 		try {
 			await page.goto(`https://www.instagram.com/stories/highlights/${highlight}`, {waitUntil: "domcontentloaded"});
 			await page.waitForSelector("body", {visible: true});
-			const potentialError = await page.$eval("body", body => body.innerHTML);
+			const potentialError = await page.$eval("body", body => (body as HTMLBodyElement).innerText);
 			if (potentialError.includes("Oops, an error occurred.")) {
 				await browser.close();
 				throw new Error(`Failed to find highlight ${highlight}.`);
