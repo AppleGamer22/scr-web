@@ -15,8 +15,8 @@ import { Request } from "express";
 			const userDetails = await this.jwt.verifyAsync<{username: string, U_ID: string}>(webToken);
 			if ((await this.Users.findById(userDetails.U_ID).exec()) !== null) {
 				(request as ScrapeRequest).user = userDetails;
-				return true
-			} else return false
+				return true;
+			} else return false;
 		} catch (error) {
 			throw new HttpException("Authentication failed.", HttpStatus.UNAUTHORIZED);
 		}

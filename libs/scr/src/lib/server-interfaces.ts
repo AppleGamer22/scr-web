@@ -1,7 +1,18 @@
 import { homedir } from "os";
+import { config } from "dotenv"
+import * as puppeteer from "puppeteer";
 import { Request } from "express";
 import { Schema } from "mongoose";
-import * as puppeteer from "puppeteer";
+
+export function initEnvironment() {
+	config({path: `${homedir()}/.scr-gui/env.env`});
+	const { JWT_SECRET } = process.env;
+	if (JWT_SECRET !== undefined) {
+		return { JWT_SECRET };
+	} else {
+		process.exit(1);
+	}
+}
 
 export function chromeUserDataDirectory(U_ID: string): string {
 	if (U_ID === "") return `${homedir()}/.scr/`;

@@ -3,6 +3,7 @@ import { APP_FILTER, APP_INTERCEPTOR } from "@nestjs/core";
 import { MongooseModule, } from "@nestjs/mongoose";
 import { JwtModule } from "@nestjs/jwt";
 import { UserSchema, PostSchema } from "@scr-gui/server-schemas";
+import { initEnvironment } from "@scr-gui/server-interfaces";
 import { ErrorFilter } from "./error.filter";
 import { LogsInterceptor } from "./logs.interceptor";
 import { AppController } from "./app.controller";
@@ -30,7 +31,7 @@ import { AuthGuard } from "./auth/auth.guard";
 				schema: PostSchema
 			}
 		]),
-		JwtModule.register({secret: "x7txX%eP8de3&Q4Y&J9bF$^4w2iEm"})
+		JwtModule.register({secret: initEnvironment().JWT_SECRET})
 	],
 	controllers: [
 		AppController,

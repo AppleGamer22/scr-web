@@ -3,12 +3,8 @@
 		<ion-menu menuId="menu" [swipeGesture]="true" type="overlay" when="true">
 			<ion-header>
 				<ion-toolbar>
-					<ion-title>
-						scr.io<ion-icon name="hammer" color="primary"></ion-icon>
-					</ion-title>
-					<ion-buttons slot="end">
-						<scr-gui-theme-toggle></scr-gui-theme-toggle>
-					</ion-buttons>
+					<ion-title>scr.io</ion-title>
+					<ion-buttons slot="end"><scr-gui-theme-toggle></scr-gui-theme-toggle></ion-buttons>
 				</ion-toolbar>
 			</ion-header>
 			<ion-content>
@@ -16,38 +12,52 @@
 					<ion-item-group>
 						<ion-menu-toggle auto-hide="false" menu="menu">
 							<ion-item routerDirection="root" routerLink="">
+								<ion-icon slot="start" name="lock"></ion-icon>
 								<ion-label [class.selected]="currentURL === '/'">Authentication</ion-label>
 							</ion-item>
 						</ion-menu-toggle>
 						<ion-menu-toggle auto-hide="false" menu="menu">
 							<ion-item routerDirection="root" routerLink="instagram">
+								<ion-icon slot="start" name="logo-instagram"></ion-icon>
 								<ion-label [class.selected]="currentURL === '/instagram'">Instagram Post</ion-label>
 							</ion-item>
 						</ion-menu-toggle>
 						<ion-menu-toggle auto-hide="false" menu="menu">
 							<ion-item routerDirection="root" routerLink="highlight">
+								<ion-icon slot="start" name="logo-instagram"></ion-icon>
 								<ion-label [class.selected]="currentURL === '/highlight'">Instagram Highlight
 								</ion-label>
 							</ion-item>
 						</ion-menu-toggle>
 						<ion-menu-toggle auto-hide="false" menu="menu">
 							<ion-item routerDirection="root" routerLink="story">
+								<ion-icon slot="start" name="logo-instagram"></ion-icon>
 								<ion-label [class.selected]="currentURL === '/story'">Instagram Story</ion-label>
 							</ion-item>
 						</ion-menu-toggle>
 						<ion-menu-toggle auto-hide="false" menu="menu">
 							<ion-item routerDirection="root" routerLink="vsco">
+								<ion-icon slot="start" name="aperture"></ion-icon>
 								<ion-label [class.selected]="currentURL === '/vsco'">VSCO Post</ion-label>
 							</ion-item>
 						</ion-menu-toggle>
 					</ion-item-group>
+					<ion-item-divider>
+						<ion-label>authenticated with:</ion-label>
+					</ion-item-divider>
 					<ion-item-group>
-						<ion-item-divider>
-							<ion-label>authenticated with:</ion-label>
-						</ion-item-divider>
 						<ion-item>
 							<ion-checkbox [checked]="instagram" [disabled]="true"></ion-checkbox>
 							<ion-label>Instagram</ion-label>
+						</ion-item>
+					</ion-item-group>
+					<ion-item-divider><ion-label>links:</ion-label></ion-item-divider>
+					<ion-item-group>
+						<ion-item>
+							<ion-icon slot="start" name="logo-github"></ion-icon>
+							<a href="https://github.com/AppleGamer22/scr-gui.git" target="_blank">
+								<ion-label><b>GitHub</b></ion-label>
+							</a>
 						</ion-item>
 					</ion-item-group>
 				</ion-list>

@@ -1,6 +1,8 @@
-import { Controller, Patch, Body, Res, HttpStatus, HttpException } from "@nestjs/common";
-import { Response } from "express";
+import { Controller, Patch, Body, Req, Res, HttpStatus, HttpException, UseGuards } from "@nestjs/common";
+import { ScrapeRequest } from "@scr-gui/server-interfaces";
+import { Request, Response } from "express";
 import { AuthService } from "./auth.service";
+import { AuthGuard } from "./auth.guard";
 
 @Controller("auth") export class AuthController {
 	constructor(private readonly authService: AuthService) {}
@@ -12,25 +14,40 @@ import { AuthService } from "./auth.service";
 			const user = await this.authService.signUpInstagram(body.username, body.password);
 			return response.json(user).status(HttpStatus.CREATED);
 		} catch (error) {
-			const errorMessage = error.message as string;
+			const errorMessage = (error as Error).message;
 			var errorCode = HttpStatus.INTERNAL_SERVER_ERROR;
 			if (errorMessage.includes("already exists")) errorCode = HttpStatus.CONFLICT;
-			throw new HttpException(error.message, errorCode);
+			throw new HttpException(errorMessage, errorCode);
 		}
 	}
 
 	@Patch("sign_in/instagram") async signInInstagram(
 		@Body() body: {username: string, password: string},
 		@Res() response: Response
-	) {
+	): Promise<Response> {
 		try {
 			const token = await this.authService.signInInstagram(body.username, body.password);
 			return response.json({token}).status(HttpStatus.OK);
 		} catch (error) {
-			const errorMessage = error.message as string;
+			const errorMessage = (error as Error).message;
 			var errorCode = HttpStatus.INTERNAL_SERVER_ERROR;
 			if (errorMessage.includes("failed.")) errorCode = HttpStatus.UNAUTHORIZED;
-			throw new HttpException(error.message, errorCode);
+			throw new HttpException(errorMessage, errorCode);
+		}
+	}
+	@Patch("sign_out/instagram") @UseGuards(AuthGuard) async signOutInstagram(
+		@Req() request: Request,
+		@Res() response: Response
+	): Promise<Response> {
+		try {
+			const signOutRequest = request as ScrapeRequest
+			const { authenticated } = await this.authService.signOutInstagram(signOutRequest.user!.U_ID as string)
+			if (!authenticated) return response.json({ status: authenticated }).status(HttpStatus.GONE);
+		} catch (error) {
+			const errorMessage = (error as Error).message;
+			var errorCode = HttpStatus.INTERNAL_SERVER_ERROR;
+			if (errorMessage.includes("failed.")) errorCode = HttpStatus.UNAUTHORIZED;
+			throw new HttpException(errorMessage, errorCode);
 		}
 	}
 }
