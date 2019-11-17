@@ -21,7 +21,7 @@ import { AuthGuard } from "./auth/auth.guard";
 
 @Module({
 	imports: [
-		MongooseModule.forRoot("mongodb://localhost:27017/scr", {useNewUrlParser: true, retryAttempts: Number.MAX_VALUE}),
+		MongooseModule.forRoot(initEnvironment().DB_URL, {useNewUrlParser: true, retryAttempts: Number.MAX_VALUE}),
 		MongooseModule.forFeature([
 			{
 				name: "Users",

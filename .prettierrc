@@ -4,5 +4,14 @@
 	"tabWidth": 4,
 	"arrowParens": "avoid",
 	"useTabs": true,
-	"semi": true
+	"semi": true,
+	"overrides": [
+		{
+			"files": ["*.yml", "*.yaml"],
+			"options": {
+				"tabWidth": 2,
+				"useTabs": false
+			}
+		}
+	]
 }

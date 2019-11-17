@@ -4,14 +4,12 @@ import * as puppeteer from "puppeteer";
 import { Request } from "express";
 import { Schema } from "mongoose";
 
-export function initEnvironment() {
+export function initEnvironment(): {JWT_SECRET: string, DB_URL: string} {
 	config({path: `${homedir()}/.scr-gui/env.env`});
-	const { JWT_SECRET } = process.env;
-	if (JWT_SECRET !== undefined) {
-		return { JWT_SECRET };
-	} else {
-		process.exit(1);
-	}
+	const { JWT_SECRET, ENV } = process.env;
+	const DB_URL = (ENV === "docker") ? "mongodb://database:27017/scr" : "mongodb://localhost:27017/scr";
+	if (JWT_SECRET !== undefined) return { JWT_SECRET, DB_URL };
+	if (JWT_SECRET === undefined) process.exit(1);
 }
 
 export function chromeUserDataDirectory(U_ID: string): string {
@@ -26,13 +24,14 @@ export interface ScrapeRequest extends Request {
 	}
 }
 
-export function chromeExecutable(): string {
+function chromeExecutable(): string {
 	switch (process.platform) {
 		case "darwin":
 			return "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 		case "win32":
 			return "C:/Program\ Files\ (x86)/Google/Chrome/Application/chrome.exe";
 		default:
+			if (process.env.ENV === "docker") return "/usr/bin/chromium-browser";
 			return puppeteer.executablePath();
 	}
 }
@@ -52,7 +51,7 @@ export async function beginScrape(U_ID: string): Promise<{ browser: puppeteer.Br
 	try {
 		const browser = await puppeteer.launch({
 			headless: true,
-			executablePath: puppeteer.executablePath(),
+			executablePath: chromeExecutable(),
 			userDataDir: chromeUserDataDirectory(U_ID),
 			args: ["--disable-gpu" , "--no-sandbox", "--disable-dev-shm-usage"]
 		});

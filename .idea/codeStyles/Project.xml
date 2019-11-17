@@ -24,6 +24,9 @@
       <option name="SPACES_WITHIN_IMPORTS" value="true" />
       <option name="BLACKLIST_IMPORTS" value="rxjs/Rx" />
     </TypeScriptCodeStyleSettings>
+    <editorconfig>
+      <option name="ENABLED" value="false" />
+    </editorconfig>
     <codeStyleSettings language="CSS">
       <indentOptions>
         <option name="USE_TAB_CHARACTER" value="true" />
@@ -76,11 +79,6 @@
       <indentOptions>
         <option name="USE_TAB_CHARACTER" value="true" />
         <option name="SMART_TABS" value="true" />
-      </indentOptions>
-    </codeStyleSettings>
-    <codeStyleSettings language="yaml">
-      <indentOptions>
-        <option name="INDENT_SIZE" value="4" />
       </indentOptions>
     </codeStyleSettings>
   </code_scheme>
