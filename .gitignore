@@ -40,4 +40,4 @@ Thumbs.db
 *.mp4
 database/
 *.env
-docker-compose.yaml
+docker-compose.yml
