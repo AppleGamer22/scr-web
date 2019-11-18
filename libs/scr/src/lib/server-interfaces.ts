@@ -5,7 +5,7 @@ import { Request } from "express";
 import { Schema } from "mongoose";
 
 export function initEnvironment(): {JWT_SECRET: string, DB_URL: string} {
-	config({path: `${homedir()}/.scr-gui/env.env`});
+	config({path: `${process.cwd()}/env.env`});
 	const { JWT_SECRET, ENV } = process.env;
 	const DB_URL = (ENV === "docker") ? "mongodb://database:27017/scr" : "mongodb://localhost:27017/scr";
 	if (JWT_SECRET !== undefined) return { JWT_SECRET, DB_URL };
@@ -13,8 +13,9 @@ export function initEnvironment(): {JWT_SECRET: string, DB_URL: string} {
 }
 
 export function chromeUserDataDirectory(U_ID: string): string {
-	if (U_ID === "") return `${homedir()}/.scr/`;
-	return `${homedir()}/.scr-gui/${U_ID}/`;
+	if (U_ID === "") return `${homedir()}/.scr-cli/`;
+	if (process.env.ENV === "docker") return `/scr/users/${U_ID}/`;
+	return `${process.cwd()}/users_dev/${U_ID}/`;
 }
 
 export interface ScrapeRequest extends Request {
@@ -47,7 +48,7 @@ export function userAgent(): string {
 	}
 }
 
-export async function beginScrape(U_ID: string): Promise<{ browser: puppeteer.Browser, page: puppeteer.Page }> {
+export async function beginScrape(U_ID: string): Promise<{browser: puppeteer.Browser, page: puppeteer.Page}> {
 	try {
 		const browser = await puppeteer.launch({
 			headless: true,

@@ -10,7 +10,7 @@
 		"url": "https://github.com/AppleGamer22/scr-gui.git"
 	},
 	"scripts": {
-		"start": "ng serve --host 0.0.0.0 client & ng serve server",
+		"start": "ng serve client & ng serve server",
 		"start:client": "ng serve client",
 		"start:server": "ng serve server",
 		"build": "ng build client --prod && ng build server",

@@ -38,6 +38,8 @@ testem.log
 Thumbs.db
 *.jpg
 *.mp4
-database/
+database
+users_dev
+users_prod
 *.env
 docker-compose.yml

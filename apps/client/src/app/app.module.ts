@@ -31,7 +31,10 @@ import { ToastService } from "./toast.service";
 		FormsModule,
 		HttpClientModule,
 		RouterModule,
-		ServiceWorkerModule.register("ngsw-worker.js", {enabled: environment.production}),
+		ServiceWorkerModule.register("ngsw-worker.js", {
+			enabled: environment.production,
+			registrationStrategy: "registerImmediately"
+		}),
 		IonicModule.forRoot({scrollAssist: true}),
 		AppRoutingModule,
 	],
