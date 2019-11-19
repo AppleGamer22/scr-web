@@ -14,16 +14,11 @@ jobs:
 #           node-version: 12
       - name: Sign-in to Docker Hub
         run: docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
-      - name: Extract release version number
-        id: tag
-        uses: actions/github-script@0.2.0
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: return context.payload.ref.replace(/\/refs\/tags\//, '');
+
       - name: Build Docker image
-        run: docker build . --tag $DOCKER_USERNAME/scr-gui:${{steps.tag.outputs.result}}
+        run: docker build . --tag $DOCKER_USERNAME/scr-gui:${GITHUB_REF##*/}
       - name: Push to Docker Hub
-        run: docker push $DOCKER_USERNAME/scr-gui:${{steps.tag.outputs.result}}
+        run: docker push $DOCKER_USERNAME/scr-gui:${GITHUB_REF##*/}
     env:
       DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
       DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
