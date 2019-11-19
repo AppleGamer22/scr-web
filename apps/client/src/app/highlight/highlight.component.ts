@@ -20,7 +20,7 @@ import { ToastService } from "../toast.service";
 			if (token) {
 				const headers = new HttpHeaders({"Authorization": token});
 				if (id && number) {
-					this.urls = await this.http.get<string[]>(`/api/highlight/${id}/${number}`, { headers }).toPromise();
+					this.urls = await this.http.get<string[]>(`http://localhost:4100/api/highlight/${id}/${number}`, { headers }).toPromise();
 					this.processing = false;
 				} else {
 					this.processing = false;

@@ -17,7 +17,7 @@ import { ToastService } from "../toast.service";
 		this.processing = true;
 		try {
 			if (owner && id) {
-				this.urls = await this.http.get<string[]>(`/api/vsco/${owner}/${id}`).toPromise();
+				this.urls = await this.http.get<string[]>(`http://localhost:4100/api/vsco/${owner}/${id}`).toPromise();
 				this.processing = false;
 			} else {
 				this.processing = false;

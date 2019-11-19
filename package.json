@@ -11,6 +11,7 @@
 	},
 	"scripts": {
 		"start": "ng serve client & ng serve server",
+		"start:prod": "http-server -p 4200 -c-1 dist/apps/client & node dist/apps/server/main.js",
 		"start:client": "ng serve client",
 		"start:server": "ng serve server",
 		"build": "ng build client --prod && ng build server",
@@ -54,7 +55,6 @@
 		"bcryptjs": "^2.4.3",
 		"core-js": "^2.5.4",
 		"dotenv": "^8.2.0",
-		"http-server": "^0.11.1",
 		"mongoose": "^5.7.9",
 		"puppeteer": "^1.20.0",
 		"reflect-metadata": "^0.1.13",
@@ -82,6 +82,7 @@
 		"@types/puppeteer": "^1.20.2",
 		"codelyzer": "~5.0.1",
 		"eslint": "^6.6.0",
+		"http-server": "^0.11.1",
 		"jest": "^24.9.0",
 		"jest-preset-angular": "^7.1.1",
 		"prettier": "^1.19.0",

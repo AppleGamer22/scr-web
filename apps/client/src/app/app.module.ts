@@ -42,7 +42,8 @@ import { ToastService } from "./toast.service";
 		{
 			provide: RouteReuseStrategy,
 			useClass: IonicRouteStrategy,
-		}
+		},
+		ToastService
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 	bootstrap: [AppComponent]
