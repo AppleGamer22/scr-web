@@ -1,4 +1,26 @@
-# scr-gui (scr.io)
+# scr-gui
+## Minimum `docker-compose.yml` configureation
+	version: "3"
+	services:
+	scr:
+		container_name: scr
+		build: .
+		environment:
+		JWT_SECRET: some_private_key
+		ports:
+		- 4100:4100
+		- 4200:4200
+		- 7777:7777
+		volumes:
+		- ./some_local_directory:/scr/users
+	database:
+		container_name: database
+		image: mongo:4.2.0
+		restart: always
+		volumes:
+		- ./database:/data/db
+		ports:
+		- 27017:27017
 ## Generating icon assets
 1. Get [Ionicons Tool SVG File](https://ionicons.com/ionicons/svg/md-hammer.svg).
 2. Go to [online SVG editor](https://editor.method.ac):

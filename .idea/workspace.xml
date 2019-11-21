@@ -2,28 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e676335-c69e-4250-b646-51e47a0008ba" name="Default Changelist" comment="npm update dev packages">
-      <change afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.prettierrc" beforeDir="false" afterPath="$PROJECT_DIR$/.prettierrc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/angular.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/client-e2e/cypress.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/client-e2e/src/fixtures/example.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/client-e2e/src/integration/app.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/client-e2e/src/plugins/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/client-e2e/src/support/app.po.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/client-e2e/src/support/commands.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/client-e2e/src/support/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/client-e2e/tsconfig.e2e.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/client-e2e/tsconfig.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/client-e2e/tslint.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/client/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/client/src/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/server/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/server/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/scr/src/lib/server-interfaces.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/scr/src/lib/server-interfaces.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nx.json" beforeDir="false" afterPath="$PROJECT_DIR$/nx.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -125,12 +103,7 @@
       <serviceView>
         <option name="contentProportion" value="0.17985612" />
         <treeState>
-          <expand>
-            <path>
-              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@6c683771" type="9fbbdea:ServiceModel$ServiceNode" />
-            </path>
-          </expand>
+          <expand />
           <select />
         </treeState>
       </serviceView>
@@ -156,6 +129,7 @@
       <workItem from="1571899652849" duration="519000" />
       <workItem from="1573262133003" duration="425000" />
       <workItem from="1573976361141" duration="982000" />
+      <workItem from="1574329312438" duration="42000" />
     </task>
     <task id="LOCAL-00001" summary="WebStorm config files">
       <created>1571192322206</created>
