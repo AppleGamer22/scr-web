@@ -9,22 +9,12 @@ import { AppComponent } from "./app.component";
 import { environment } from "../environments/environment";
 import { AppRoutingModule } from "./app-routing.module";
 import { ThemeToggleComponent } from "./theme-toggle/theme-toggle.component";
-import { InstagramComponent } from "./instagram/instagram.component";
-import { VSCOComponent } from "./vsco/vsco.component";
-import { HighlightComponent } from "./highlight/highlight.component";
-import { StoryComponent } from "./story/story.component";
-import { AuthComponent } from "./auth/auth.component";
 import { ToastService } from "./toast.service";
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		ThemeToggleComponent,
-		InstagramComponent,
-		VSCOComponent,
-		HighlightComponent,
-		StoryComponent,
-		AuthComponent
 	],
 	imports: [
 		BrowserModule,
