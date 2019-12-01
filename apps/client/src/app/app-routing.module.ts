@@ -1,31 +1,26 @@
 import { NgModule } from "@angular/core";
-import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
-import { InstagramComponent } from "./instagram/instagram.component";
-import { HighlightComponent } from "./highlight/highlight.component";
-import { StoryComponent } from "./story/story.component";
-import { VSCOComponent } from "./vsco/vsco.component";
-import { AuthComponent } from "./auth/auth.component";
+import { RouterModule, Routes } from "@angular/router";
 
 const routes: Routes = [
 	{
 		path: "",
-		component: AuthComponent,
+		loadChildren: () => import("./auth/auth.module").then(m => m.AuthModule)
 	},{
 		path: "instagram",
-		component: InstagramComponent
+		loadChildren: () => import("./instagram/instagram.module").then(m => m.InstagramModule)
 	},{
 		path: "highlight",
-		component: HighlightComponent
+		loadChildren: () => import("./highlight/highlight.module").then(m => m.HighlightModule)
 	},{
 		path: "story",
-		component: StoryComponent
+		loadChildren: () => import("./story/story.module").then(m => m.StoryModule)
 	},{
 		path: "vsco",
-		component: VSCOComponent
+		loadChildren: () => import("./vsco/vsco.module").then(m => m.VSCOModule)
 	}
 ];
 
 @NgModule({
-	imports: [RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules})],
+	imports: [RouterModule.forRoot(routes)],
 	exports: [RouterModule]
 }) export class AppRoutingModule {}

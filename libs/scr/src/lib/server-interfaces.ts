@@ -54,7 +54,12 @@ export async function beginScrape(U_ID: string): Promise<{browser: puppeteer.Bro
 			headless: true,
 			executablePath: chromeExecutable(),
 			userDataDir: chromeUserDataDirectory(U_ID),
-			args: ["--disable-gpu" , "--no-sandbox", "--disable-dev-shm-usage"]
+			args: [
+				"--disable-gpu" ,
+				"--no-sandbox",
+				"--disable-dev-shm-usage",
+				"--mute-audio"
+			]
 		});
 		const page = (await browser.pages())[0];
 		await page.setUserAgent(userAgent());
