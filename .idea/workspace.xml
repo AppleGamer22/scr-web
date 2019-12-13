@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3e676335-c69e-4250-b646-51e47a0008ba" name="Default Changelist" comment="npm update dev packages">
+    <list default="true" id="3e676335-c69e-4250-b646-51e47a0008ba" name="Default Changelist" comment="npm update nest">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -57,7 +55,37 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Jest.test client">
+    <configuration name="test all" type="JavaScriptTestRunnerJest">
+      <config-file value="$PROJECT_DIR$/jest.config.js" />
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="ALL" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test client" type="JavaScriptTestRunnerJest">
+      <config-file value="$PROJECT_DIR$/apps/client/jest.config.js" />
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="ALL" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test server" type="JavaScriptTestRunnerJest">
+      <config-file value="$PROJECT_DIR$/apps/server/jest.config.js" />
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="ALL" />
+      <method v="2" />
+    </configuration>
     <configuration name="compose" type="docker-deploy" factoryName="docker-compose.yml" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
@@ -77,6 +105,12 @@
       <envs />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Docker.compose" />
+      <item itemvalue="Jest.test all" />
+      <item itemvalue="Jest.test server" />
+      <item itemvalue="Jest.test client" />
+    </list>
   </component>
   <component name="ServiceViewManager">
     <option name="allServicesViewState">
@@ -109,7 +143,7 @@
       <workItem from="1571899652849" duration="519000" />
       <workItem from="1573262133003" duration="425000" />
       <workItem from="1573976361141" duration="982000" />
-      <workItem from="1575534746898" duration="563000" />
+      <workItem from="1575534746898" duration="1743000" />
     </task>
     <task id="LOCAL-00001" summary="WebStorm config files">
       <created>1571192322206</created>
@@ -132,7 +166,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573262537168</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="npm update nest">
+      <created>1575535424571</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1575535424571</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -155,6 +196,7 @@
     <MESSAGE value="WebStorm config files" />
     <MESSAGE value="updated functions return type for highlight service" />
     <MESSAGE value="npm update dev packages" />
-    <option name="LAST_COMMIT_MESSAGE" value="npm update dev packages" />
+    <MESSAGE value="npm update nest" />
+    <option name="LAST_COMMIT_MESSAGE" value="npm update nest" />
   </component>
 </project>
