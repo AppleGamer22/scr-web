@@ -1,10 +1,10 @@
 # scr-gui
-## Minimum `docker-compose.yml` configureation
+## Minimum `docker-compose.yml` configuration
 	version: "3"
 	services:
 	scr:
 		container_name: scr
-		build: .
+		build: applegamer22/scr-gui:<version>
 		environment:
 		JWT_SECRET: some_private_key
 		ports:
