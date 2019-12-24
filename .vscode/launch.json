@@ -4,14 +4,24 @@
 		{
 			"type": "chrome",
 			"request": "launch",
-			"name": "client",
+			"name": "debug client",
 			"url": "http://localhost:4200",
 			"webRoot": "${workspaceFolder}"
 		},{
 			"type": "node",
 			"request": "attach",
-			"name": "server",
+			"name": "debug server",
 			"port": 7777
+		},{
+			"type": "node",
+			"request": "launch",
+			"name": "test all",
+			"program": "${workspaceFolder}/node_modules/@angular/cli/bin/ng",
+			"cwd": "${workspaceFolder}",
+			"args": ["test"],
+			"console": "internalConsole",
+			"internalConsoleOptions": "openOnSessionStart",
+			"disableOptimisticBPs": true,
 		}
 	]
 }
