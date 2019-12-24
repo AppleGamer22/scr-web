@@ -8,3 +8,4 @@ tslint.json
 .editorconfig
 .prettierignore
 .prettierrc
+package-lock.json
