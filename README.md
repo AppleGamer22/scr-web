@@ -4,7 +4,7 @@
 	services:
 	scr:
 		container_name: scr
-		build: applegamer22/scr-gui:<version>
+		image: applegamer22/scr-gui:<version>
 		environment:
 		JWT_SECRET: some_private_key
 		ports:

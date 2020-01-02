@@ -18,9 +18,9 @@ describe("HighlightService", () => {
 
 	afterEach(async () => await browser.close());
 	it("should be defined", () => expect(service).toBeDefined());
-	it("scrapes 7th 17854701943592281 and gets a private MP4", async done => {
+	it("scrapes 6th 17854701943592281 and gets a private MP4", async done => {
 		try {
-			const urls = await service.getHighlightFile("17854701943592281", 7, browser, page);
+			const urls = await service.getHighlightFile("17854701943592281", 6, browser, page);
 			done();
 			console.log(urls[0]);
 			expect(urls[0]).toContain("https://");
