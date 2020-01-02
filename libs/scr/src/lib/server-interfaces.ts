@@ -1,5 +1,5 @@
 import { homedir } from "os";
-import { config } from "dotenv"
+import { config } from "dotenv";
 import * as puppeteer from "puppeteer";
 import { Request } from "express";
 import { Schema } from "mongoose";
