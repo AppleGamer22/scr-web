@@ -1,5 +1,6 @@
 <ion-content>
-	<ion-list>
+	<ion-progress-bar *ngIf="processing" color="primary" type="indeterminate"></ion-progress-bar>
+	<ion-list *ngIf="!processing">
 		<ion-item *ngFor="let history of histories">
 			<ion-grid>
 				<ion-row>
@@ -10,17 +11,22 @@
 					</ion-col>
 					<ion-col size="auto">
 						<ion-list>
-							<ion-item *ngFor="let url of history.urls">
-								<ion-grid>
-									<ion-row>
-										<ion-col  size="auto">
-											<ion-label *ngIf="url.includes('.jpg')">picture</ion-label>
-											<ion-label *ngIf="url.includes('.mp4')">video</ion-label>
-										</ion-col>
-										<ion-col size="auto"><a [href]="url">{{url}}</a></ion-col>
-									</ion-row>
-								</ion-grid>
-							</ion-item>
+							<ion-item-sliding *ngFor="let url of history.urls">
+								<ion-item-options>
+									<ion-item-option slot="end" color="danger" (click)="editHistory(history, url)">Delete</ion-item-option>
+								</ion-item-options>
+								<ion-item >
+									<ion-grid>
+										<ion-row>
+											<ion-col  size="auto">
+												<ion-label *ngIf="url.includes('.jpg')">picture</ion-label>
+												<ion-label *ngIf="url.includes('.mp4')">video</ion-label>
+											</ion-col>
+											<ion-col size="auto"><a [href]="url">{{url}}</a></ion-col>
+										</ion-row>
+									</ion-grid>
+								</ion-item>
+							</ion-item-sliding>
 						</ion-list>
 					</ion-col>
 				</ion-row>

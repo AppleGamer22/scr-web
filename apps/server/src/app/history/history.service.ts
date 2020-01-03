@@ -26,4 +26,12 @@ import { Model, Types } from "mongoose";
 			throw new Error(error.message as string);
 		}
 	}
+
+	async deleteHistoryItem(_id: string): Promise<History> {
+		try {
+			return this.historyCollection.findByIdAndRemove(_id).exec();
+		} catch (error) {
+			throw new Error(error.message as string);
+		}
+	}
 }
