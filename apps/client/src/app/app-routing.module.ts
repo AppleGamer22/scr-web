@@ -17,6 +17,9 @@ const routes: Routes = [
 	},{
 		path: "vsco",
 		loadChildren: () => import("./vsco/vsco.module").then(m => m.VSCOModule)
+	},{
+		path: "history",
+		loadChildren: () => import("./history/history.module").then(m => m.HistoryModule)
 	}
 ];
 

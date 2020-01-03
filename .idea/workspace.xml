@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3e676335-c69e-4250-b646-51e47a0008ba" name="Default Changelist" comment="npm update nest">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-    </list>
+    <list default="true" id="3e676335-c69e-4250-b646-51e47a0008ba" name="Default Changelist" comment="npm update nest" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -48,6 +45,11 @@
     <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
     <property name="settings.editor.selected.configurable" value="settings.nodejs" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="cd .." />
+    </option>
   </component>
   <component name="RunManager" selected="Jest.test client">
     <configuration name="test all" type="JavaScriptTestRunnerJest">
@@ -141,6 +143,7 @@
       <workItem from="1575534746898" duration="1743000" />
       <workItem from="1578013554980" duration="150000" />
       <workItem from="1578013769564" duration="20000" />
+      <workItem from="1578013809352" duration="193000" />
     </task>
     <task id="LOCAL-00001" summary="WebStorm config files">
       <created>1571192322206</created>
