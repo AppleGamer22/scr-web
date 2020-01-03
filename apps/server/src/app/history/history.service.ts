@@ -16,12 +16,12 @@ import { Model, Types } from "mongoose";
 
 	async addHistoryItem(url: string, U_ID: string, item: { urls: string[], network: "instagram" | "vsco" }): Promise<History> {
 		try {
-			return new this.historyCollection({
-				_id: url,
+			// https://mongoosejs.com/docs/tutorials/findoneandupdate.html
+			return this.historyCollection.findOneAndUpdate({_id: url}, {
 				U_ID,
 				urls: item.urls,
 				network: item.network
-			}).save();
+			}, {new: true, upsert: true}).exec();
 		} catch (error) {
 			throw new Error(error.message as string);
 		}

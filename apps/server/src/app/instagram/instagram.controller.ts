@@ -15,7 +15,7 @@ import { HistoryService } from "../history/history.service";
 		@Req() request: Request
 	): Promise<string[]> {
 		try {
-			const U_ID = (request as ScrapeRequest).user.U_ID
+			const U_ID = (request as ScrapeRequest).user.U_ID;
 			const { browser, page } = await beginScrape(U_ID);
 			const urls = await this.instagramService.getPostFiles(post, browser, page);
 			await browser.close();
@@ -23,7 +23,7 @@ import { HistoryService } from "../history/history.service";
 			return urls;
 		} catch (error) {
 			const errorMessage = error.message as string;
-			var errorCode: HttpStatus;
+			var errorCode: HttpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
 			if (errorMessage.includes("to find")) errorCode = HttpStatus.NOT_FOUND;
 			if (errorMessage.includes("to process")) errorCode = HttpStatus.INTERNAL_SERVER_ERROR;
 			throw new HttpException(error.message, errorCode);
