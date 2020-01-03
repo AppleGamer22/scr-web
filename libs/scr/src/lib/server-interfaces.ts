@@ -21,7 +21,7 @@ export function chromeUserDataDirectory(U_ID: string): string {
 export interface ScrapeRequest extends Request {
 	user?: {
 		username: string,
-		U_ID: Schema.Types.ObjectId | string
+		U_ID: string
 	}
 }
 

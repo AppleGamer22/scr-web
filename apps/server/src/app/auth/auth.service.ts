@@ -17,7 +17,7 @@ import { InstagramService } from "../instagram/instagram.service";
 		try {
 			const possibleUser = await this.userCollection.findOne({username}).exec();
 			if (possibleUser) throw new Error( "Username already exists.");
-			return await new this.userCollection({
+			return new this.userCollection({
 				username,
 				hash: await hash(password, 10),
 				joined: new Date(),

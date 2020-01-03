@@ -1,22 +1,21 @@
-import { Test, TestingModule } from "@nestjs/testing";
-import { JwtModule } from "@nestjs/jwt";
-import { getModelToken } from "@nestjs/mongoose";
-import { User } from "@scr-gui/server-schemas";
 import { initEnvironment } from "@scr-gui/server-interfaces";
-import { InstagramController } from "./instagram.controller";
-import { InstagramService } from "./instagram.service";
-import { HistoryService } from "../history/history.service";
+import { Test, TestingModule } from "@nestjs/testing";
+import { getModelToken } from "@nestjs/mongoose";
+import { JwtModule } from "@nestjs/jwt";
+import { HistoryController } from "./history.controller";
+import { HistoryService } from "./history.service";
+import { User, History } from "@scr-gui/server-schemas";
 
-describe("InstagramController", () => {
-	let controller: InstagramController;
+describe("History Controller", () => {
+	let controller: HistoryController;
+
 	beforeEach(async () => {
 		const module: TestingModule = await Test.createTestingModule({
 			imports: [
 				JwtModule.register({secret: initEnvironment().JWT_SECRET}),
 			],
-			controllers: [InstagramController],
+			controllers: [HistoryController],
 			providers: [
-				InstagramService,
 				HistoryService,
 				{
 					provide: getModelToken("Users"),
@@ -31,9 +30,10 @@ describe("InstagramController", () => {
 						this.save  = async () => this.data;
 					}
 				}
-			],
+			]
 		}).compile();
-		controller = module.get<InstagramController>(InstagramController);
+
+		controller = module.get<HistoryController>(HistoryController);
 	});
 
 	it("should be defined", () => expect(controller).toBeDefined());

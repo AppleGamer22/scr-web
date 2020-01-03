@@ -17,8 +17,7 @@
 		"build": "ng build client --prod && ng build server",
 		"build:client": "ng build client --prod",
 		"build:server": "ng build server",
-		"test": "ng test",
-		"update": "ng update"
+		"test": "ng test"
 	},
 	"dependencies": {
 		"@angular-devkit/build-angular": "^0.803.21",

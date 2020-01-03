@@ -25,10 +25,9 @@ import { Browser, Page } from "puppeteer";
 				return images.map(image => image.getAttribute("srcset"));
 			});
 			if (imageURLs) urls.push(imageURLs[0].split(",")[0].split(" ")[0]);
-			return urls
+			return urls.filter(url => url);
 		} catch (error) {
-			console.error(error.message);
-			throw new Error(error.message);//"Failed to process requested highlight file."
+			throw new Error(error.message as string);
 		}
 	}
 }

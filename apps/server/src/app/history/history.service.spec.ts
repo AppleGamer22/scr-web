@@ -1,17 +1,13 @@
 import { Test, TestingModule } from "@nestjs/testing";
 import { getModelToken } from "@nestjs/mongoose";
-import { VSCOController } from "./vsco.controller";
-import { VSCOService } from "./vsco.service";
-import { HistoryService } from "../history/history.service";
+import { HistoryService } from "./history.service";
 
-describe("VSCOController", () => {
-	let controller: VSCOController;
+describe("HistoryService", () => {
+	let service: HistoryService;
 
 	beforeEach(async () => {
 		const module: TestingModule = await Test.createTestingModule({
-			controllers: [VSCOController],
 			providers: [
-				VSCOService,
 				HistoryService,
 				{
 					provide: getModelToken("History"),
@@ -20,11 +16,11 @@ describe("VSCOController", () => {
 						this.save  = async () => this.data;
 					}
 				}
-			]
+			],
 		}).compile();
 
-		controller = module.get<VSCOController>(VSCOController);
+		service = module.get<HistoryService>(HistoryService);
 	});
 
-	it("should be defined", () => expect(controller).toBeDefined());
+	it("should be defined", () => expect(service).toBeDefined());
 });

@@ -13,7 +13,7 @@ import { AuthGuard } from "../auth/auth.guard";
 		@Req() request: Request
 	): Promise<string[]> {
 		try {
-			const { browser, page } = await beginScrape((request as ScrapeRequest).user.U_ID as string);
+			const { browser, page } = await beginScrape((request as ScrapeRequest).user.U_ID);
 			const url = await this.storyService.getStoryFile(story, item, browser, page);
 			await browser.close();
 			return [url];

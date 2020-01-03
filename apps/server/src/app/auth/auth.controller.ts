@@ -41,7 +41,7 @@ import { AuthGuard } from "./auth.guard";
 	): Promise<Response> {
 		try {
 			const signOutRequest = request as ScrapeRequest
-			const { authenticated } = await this.authService.signOutInstagram(signOutRequest.user!.U_ID as string)
+			const { authenticated } = await this.authService.signOutInstagram(signOutRequest.user!.U_ID)
 			if (!authenticated) return response.json({ status: authenticated }).status(HttpStatus.GONE);
 		} catch (error) {
 			const errorMessage = (error as Error).message;

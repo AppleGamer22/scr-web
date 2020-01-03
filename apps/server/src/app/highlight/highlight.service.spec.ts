@@ -32,10 +32,10 @@ describe("HighlightService", () => {
 		try {
 			const urls = await service.getHighlightFile("17912059153309881", 4, browser, page);
 			done();
-			console.log(urls[1]);
-			expect(urls[1]).toContain("https://");
-			expect(urls[1]).toContain(".jpg");
-			expect(urls[1].includes("cdninstagram.com") || urls[1].includes("fbcdn.net")).toBe(true);
+			console.log(urls[0]);
+			expect(urls[0]).toContain("https://");
+			expect(urls[0]).toContain(".jpg");
+			expect(urls[0].includes("cdninstagram.com") || urls[0].includes("fbcdn.net")).toBe(true);
 		} catch (error) { console.error(error.message); }
 	});
 });

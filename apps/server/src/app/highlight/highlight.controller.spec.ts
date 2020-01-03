@@ -5,6 +5,7 @@ import { User } from "@scr-gui/server-schemas";
 import { initEnvironment } from "@scr-gui/server-interfaces";
 import { HighlightController } from "./highlight.controller";
 import { HighlightService } from "./highlight.service";
+import { HistoryService } from "../history/history.service";
 
 describe("HighlightController", () => {
 	let controller: HighlightController;
@@ -17,9 +18,16 @@ describe("HighlightController", () => {
 			controllers: [HighlightController],
 			providers: [
 				HighlightService,
+				HistoryService,
 				{
 					provide: getModelToken("Users"),
 					useValue: (dto: User) => {
+						this.data = dto;
+						this.save  = async () => this.data;
+					}
+				},{
+					provide: getModelToken("History"),
+					useValue: (dto: History) => {
 						this.data = dto;
 						this.save  = async () => this.data;
 					}
