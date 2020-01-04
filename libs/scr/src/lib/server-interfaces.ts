@@ -26,14 +26,10 @@ export interface ScrapeRequest extends Request {
 }
 
 function chromeExecutable(): string {
-	switch (process.platform) {
-		case "darwin":
-			return "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
-		case "win32":
-			return "C:/Program\ Files\ (x86)/Google/Chrome/Application/chrome.exe";
-		default:
-			if (process.env.ENV === "docker") return "/usr/bin/chromium-browser";
-			return puppeteer.executablePath();
+	if (process.env.ENV === "docker") {
+		return "/usr/bin/chromium-browser";
+	} else {
+		return puppeteer.executablePath();
 	}
 }
 
@@ -51,7 +47,8 @@ export function userAgent(): string {
 export async function beginScrape(U_ID: string): Promise<{browser: puppeteer.Browser, page: puppeteer.Page}> {
 	try {
 		const browser = await puppeteer.launch({
-			headless: true,
+			headless: false,
+			defaultViewport: null,
 			executablePath: chromeExecutable(),
 			userDataDir: chromeUserDataDirectory(U_ID),
 			args: [

@@ -51,6 +51,7 @@ import { ToastService } from "../toast.service";
 					console.log("Authenticated successfully.");
 					this.toast.showToast("Authenticated successfully.", "success");
 					this.processing = false;
+					location.reload();
 				} else {
 					this.processing = false;
 					console.error("Authentication failed.");
@@ -68,9 +69,10 @@ import { ToastService } from "../toast.service";
 			const token = localStorage.getItem("instagram");
 			if (token !== undefined) {
 				const headers = new HttpHeaders({"Authorization": token});
-				const { status } = await this.http.patch<{status: boolean}>("http://localhost:4100/api/auth/sign_out/instagram", headers).toPromise();
+				const { status } = await this.http.patch<{status: boolean}>("http://localhost:4100/api/auth/sign_out/instagram", {}, { headers }).toPromise();
 				if (!status) {
 					localStorage.removeItem("instagram");
+					this.toast.showToast("Deauthenticationed successfully.", "success");
 					location.reload();
 				} else {
 					this.processing = false;
