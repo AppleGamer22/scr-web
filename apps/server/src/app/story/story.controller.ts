@@ -14,9 +14,9 @@ import { AuthGuard } from "../auth/auth.guard";
 	): Promise<string[]> {
 		try {
 			const { browser, page } = await beginScrape((request as ScrapeRequest).user.U_ID);
-			const url = await this.storyService.getStoryFile(story, item, browser, page);
+			const urls = await this.storyService.getStoryFile(story, item, browser, page);
 			await browser.close();
-			return [url];
+			return urls;
 		} catch (error) {
 			const errorMessage = error.message as string;
 			var errorCode: HttpStatus;

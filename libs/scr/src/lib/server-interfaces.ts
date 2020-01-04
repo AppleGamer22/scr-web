@@ -2,7 +2,6 @@ import { homedir } from "os";
 import { config } from "dotenv";
 import * as puppeteer from "puppeteer";
 import { Request } from "express";
-import { Schema } from "mongoose";
 
 export function initEnvironment(): {JWT_SECRET: string, DB_URL: string} {
 	config({path: `${process.cwd()}/env.env`});

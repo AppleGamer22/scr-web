@@ -11,21 +11,17 @@ import { Browser, Page } from "puppeteer";
 				await browser.close();
 				throw new Error(`Failed to find highlight ${highlight}.`);
 			}
-			for (let i = 0; i < item - 1; i += 1) {
+			for (var i = 0; i < item - 1; i += 1) {
 				await page.waitForSelector("div.coreSpriteRightChevron", {visible: true});
 				await page.click("div.coreSpriteRightChevron");
 			}
-			await page.waitForSelector("div.qbCDp", {visible: true});
 			var urls: string[] = [];
-			const videoURLs = await page.$$eval("video > source", sources => {
-				return sources.map(source => source.getAttribute("src"));
-			});
-			if (videoURLs) urls.push(videoURLs[0]);
-			const imageURLs = await page.$$eval("div.qbCDp > img", images => {
-				return images.map(image => image.getAttribute("srcset"));
-			});
-			if (imageURLs) urls.push(imageURLs[0].split(",")[0].split(" ")[0]);
-			return urls.filter(url => url);
+			await page.waitForSelector("div.qbCDp", {visible: true});
+			const imageURL = (await page.$$eval("div.qbCDp > img", images => images.map(image => image.getAttribute("srcset"))))[0];
+			if (imageURL) urls.push(imageURL.split(",")[0].split(" ")[0]);
+			const videoURL = (await page.$$eval("video > source", sources => sources.map(source => source.getAttribute("src"))))[0];
+			if (videoURL) urls.push(videoURL);
+			return urls;
 		} catch (error) {
 			throw new Error(error.message as string);
 		}
