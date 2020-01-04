@@ -52,6 +52,7 @@ export const HistorySchema = new Schema({
 	}
 });
 export interface History extends Document {
+	_id: string,
 	urls: string[],
 	U_ID: string,
 	network: "instagram" | "vsco"

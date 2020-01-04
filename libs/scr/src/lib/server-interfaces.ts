@@ -47,8 +47,7 @@ export function userAgent(): string {
 export async function beginScrape(U_ID: string): Promise<{browser: puppeteer.Browser, page: puppeteer.Page}> {
 	try {
 		const browser = await puppeteer.launch({
-			headless: false,
-			defaultViewport: null,
+			headless: true,
 			executablePath: chromeExecutable(),
 			userDataDir: chromeUserDataDirectory(U_ID),
 			args: [
