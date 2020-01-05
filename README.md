@@ -1,4 +1,14 @@
 # scr-gui
+|Network|GitHub|Docker Hub|
+|-|-|-|
+|license|![GitHub](https://img.shields.io/github/license/AppleGamer22/scr-gui?logo=github)||
+|relase|![GitHub release](https://img.shields.io/github/v/release/AppleGamer22/scr-gui?logo=Github)||
+|downloads|![GitHub downloads](https://img.shields.io/github/downloads/AppleGamer22/scr-gui/total?&logo=github)|![Docker Pulls](https://img.shields.io/docker/pulls/applegamer22/scr-gui?label=downloads&logo=docker)|
+|people|![GitHub contributors](https://img.shields.io/github/contributors/AppleGamer22/scr-gui?logo=github)||
+|code size|![GitHub code size](https://img.shields.io/github/languages/code-size/AppleGamer22/scr-gui?logo=GitHub)|
+|forks|![GitHub forks](https://img.shields.io/github/forks/AppleGamer22/scr-gui?logo=github)|
+|stars|![GitHub stars](https://img.shields.io/github/stars/AppleGamer22/scr-gui?logo=github)|![Docker Stars](https://img.shields.io/docker/stars/applegamer22/scr-gui?label=stars&logo=docker)|
+|watchers|![GitHub watchers](https://img.shields.io/github/watchers/AppleGamer22/scr-gui?logo=github)|
 ## Minimum `docker-compose.yml` configuration
 	version: "3"
 	services:
