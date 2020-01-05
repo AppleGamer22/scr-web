@@ -2,7 +2,6 @@ import { homedir } from "os";
 import { config } from "dotenv";
 import * as puppeteer from "puppeteer";
 import { Request } from "express";
-import { Schema } from "mongoose";
 
 export function initEnvironment(): {JWT_SECRET: string, DB_URL: string} {
 	config({path: `${process.cwd()}/env.env`});
@@ -21,19 +20,15 @@ export function chromeUserDataDirectory(U_ID: string): string {
 export interface ScrapeRequest extends Request {
 	user?: {
 		username: string,
-		U_ID: Schema.Types.ObjectId | string
+		U_ID: string
 	}
 }
 
 function chromeExecutable(): string {
-	switch (process.platform) {
-		case "darwin":
-			return "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
-		case "win32":
-			return "C:/Program\ Files\ (x86)/Google/Chrome/Application/chrome.exe";
-		default:
-			if (process.env.ENV === "docker") return "/usr/bin/chromium-browser";
-			return puppeteer.executablePath();
+	if (process.env.ENV === "docker") {
+		return "/usr/bin/chromium-browser";
+	} else {
+		return puppeteer.executablePath();
 	}
 }
 

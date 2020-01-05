@@ -2,7 +2,7 @@ import { Module } from "@nestjs/common";
 import { APP_FILTER, APP_INTERCEPTOR } from "@nestjs/core";
 import { MongooseModule, } from "@nestjs/mongoose";
 import { JwtModule } from "@nestjs/jwt";
-import { UserSchema, PostSchema } from "@scr-gui/server-schemas";
+import { UserSchema, HistorySchema } from "@scr-gui/server-schemas";
 import { initEnvironment } from "@scr-gui/server-interfaces";
 import { ErrorFilter } from "./error.filter";
 import { LogsInterceptor } from "./logs.interceptor";
@@ -18,6 +18,8 @@ import { HighlightController } from "./highlight/highlight.controller";
 import { AuthController } from "./auth/auth.controller";
 import { AuthService } from "./auth/auth.service";
 import { AuthGuard } from "./auth/auth.guard";
+import { HistoryController } from "./history/history.controller";
+import { HistoryService } from "./history/history.service";
 
 @Module({
 	imports: [
@@ -27,8 +29,8 @@ import { AuthGuard } from "./auth/auth.guard";
 				name: "Users",
 				schema: UserSchema
 			},{
-				name: "Posts",
-				schema: PostSchema
+				name: "History",
+				schema: HistorySchema
 			}
 		]),
 		JwtModule.register({secret: initEnvironment().JWT_SECRET})
@@ -39,7 +41,8 @@ import { AuthGuard } from "./auth/auth.guard";
 		VSCOController,
 		StoryController,
 		HighlightController,
-		AuthController
+		AuthController,
+		HistoryController
 	],
 	providers: [
 		{
@@ -54,6 +57,7 @@ import { AuthGuard } from "./auth/auth.guard";
 		StoryService,
 		HighlightService,
 		AuthService,
-		AuthGuard
+		AuthGuard,
+		HistoryService
 	],
 }) export class AppModule {}

@@ -17,7 +17,7 @@ import { InstagramService } from "../instagram/instagram.service";
 		try {
 			const possibleUser = await this.userCollection.findOne({username}).exec();
 			if (possibleUser) throw new Error( "Username already exists.");
-			return await new this.userCollection({
+			return new this.userCollection({
 				username,
 				hash: await hash(password, 10),
 				joined: new Date(),
@@ -54,11 +54,10 @@ import { InstagramService } from "../instagram/instagram.service";
 	async signOutInstagram(U_ID: string): Promise<{authenticated: boolean} | undefined> {
 		try {
 			const possibleUser = await this.userCollection.findById(U_ID).exec();
-			if (!possibleUser) throw new Error("Authentication failed.");
+			if (!possibleUser) throw new Error("Unauthentication failed.");
 			const { browser, page } = await beginScrape(possibleUser._id);
 			if (possibleUser.instagram && await this.instagramService.signOut(page, possibleUser.username)) {
-				possibleUser.instagram = false;
-				await possibleUser.save();
+				await this.userCollection.findByIdAndUpdate(U_ID, {instagram: false}).exec();
 				await browser.close();
 				return {authenticated: false};
 			}

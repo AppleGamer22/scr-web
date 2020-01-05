@@ -41,6 +41,12 @@
 								<ion-label [class.selected]="currentURL === '/vsco'">VSCO Post</ion-label>
 							</ion-item>
 						</ion-menu-toggle>
+						<ion-menu-toggle auto-hide="false" menu="menu">
+							<ion-item routerDirection="root" routerLink="history">
+								<ion-icon slot="start" name="list"></ion-icon>
+								<ion-label [class.selected]="currentURL === '/history'">History</ion-label>
+							</ion-item>
+						</ion-menu-toggle>
 					</ion-item-group>
 					<ion-item-divider>
 						<ion-label>authenticated with:</ion-label>

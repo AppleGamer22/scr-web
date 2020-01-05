@@ -3,6 +3,7 @@ import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { IonicModule } from "@ionic/angular";
 import { InstagramComponent } from "./instagram.component";
+import { RouterTestingModule } from "@angular/router/testing";
 
 describe("InstagramComponent", () => {
 	let component: InstagramComponent;
@@ -13,7 +14,8 @@ describe("InstagramComponent", () => {
 			imports: [
 				IonicModule.forRoot({scrollAssist: true}),
 				FormsModule,
-				HttpClientModule
+				HttpClientModule,
+				RouterTestingModule
 			],
 			declarations: [InstagramComponent],
 		}).compileComponents();

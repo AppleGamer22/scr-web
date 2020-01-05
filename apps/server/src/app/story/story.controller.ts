@@ -13,10 +13,10 @@ import { AuthGuard } from "../auth/auth.guard";
 		@Req() request: Request
 	): Promise<string[]> {
 		try {
-			const { browser, page } = await beginScrape((request as ScrapeRequest).user.U_ID as string);
-			const url = await this.storyService.getStoryFile(story, item, browser, page);
+			const { browser, page } = await beginScrape((request as ScrapeRequest).user.U_ID);
+			const urls = await this.storyService.getStoryFile(story, item, browser, page);
 			await browser.close();
-			return [url];
+			return urls;
 		} catch (error) {
 			const errorMessage = error.message as string;
 			var errorCode: HttpStatus;

@@ -24,7 +24,6 @@ export const UserSchema = new Schema({
 		required: true
 	}
 });
-
 export interface User extends Document {
 	username: string,
 	hash: string,
@@ -33,25 +32,28 @@ export interface User extends Document {
 	instagram: boolean
 }
 
-export const PostSchema = new Schema({
-	_id: Schema.Types.ObjectId,
-	username: {
+
+export const HistorySchema = new Schema({
+	_id: {
 		type: String,
-		unique: true,
 		required: true
 	},
-	URLs: {
-		type: [String],
+	U_ID: {
+		type: String,
 		required: true
 	},
 	network: {
 		type: String,
 		required: true
 	},
+	urls: {
+		type: [String],
+		required: true
+	}
 });
-
-export interface Post extends Document {
-	username: string,
-	URLs: string[],
+export interface History extends Document {
+	_id: string,
+	urls: string[],
+	U_ID: string,
 	network: "instagram" | "vsco"
 }

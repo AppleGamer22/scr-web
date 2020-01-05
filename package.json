@@ -1,7 +1,7 @@
 {
-	"name": "@scr/gui",
+	"name": "@applegamer22/scr-gui",
 	"description": "Social media web scraper GUI for post file downloads.",
-	"version": "1.0.0-alpha.12.5",
+	"version": "1.0.0-alpha.13",
 	"author": "Omri Bornstein",
 	"publisher": "AppleGamer22",
 	"license": "MIT",
@@ -18,8 +18,7 @@
 		"build": "ng build client --prod && ng build server",
 		"build:client": "ng build client --prod",
 		"build:server": "ng build server",
-		"test": "ng test",
-		"update": "ng update"
+		"test": "ng test"
 	},
 	"dependencies": {
 		"@angular-devkit/build-angular": "^0.803.21",
@@ -51,7 +50,7 @@
 		"core-js": "^2.5.4",
 		"dotenv": "^8.2.0",
 		"http-server": "^0.12.0",
-		"mongoose": "^5.8.3",
+		"mongoose": "^5.8.4",
 		"puppeteer": "^2.0.0",
 		"reflect-metadata": "^0.1.13",
 		"rxjs": "~6.5.4",
@@ -66,7 +65,7 @@
 		"@types/bcryptjs": "^2.4.2",
 		"@types/express": "^4.17.2",
 		"@types/jest": "^24.0.24",
-		"@types/mongoose": "^5.5.35",
+		"@types/mongoose": "^5.5.38",
 		"@types/node": "^13.1.0",
 		"@types/puppeteer": "^2.0.0",
 		"codelyzer": "~5.0.1",

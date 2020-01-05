@@ -17,10 +17,13 @@ const routes: Routes = [
 	},{
 		path: "vsco",
 		loadChildren: () => import("./vsco/vsco.module").then(m => m.VSCOModule)
+	},{
+		path: "history",
+		loadChildren: () => import("./history/history.module").then(m => m.HistoryModule)
 	}
 ];
 
 @NgModule({
-	imports: [RouterModule.forRoot(routes)],
+	imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: "enabled", onSameUrlNavigation: "ignore"})],
 	exports: [RouterModule]
 }) export class AppRoutingModule {}
