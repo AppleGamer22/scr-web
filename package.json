@@ -33,7 +33,7 @@
 		"@angular/pwa": "^0.803.20",
 		"@angular/router": "^8.2.14",
 		"@angular/service-worker": "^8.2.14",
-		"@ionic/angular": "^4.11.8",
+		"@ionic/angular": "^4.11.9",
 		"@ionic/angular-toolkit": "^2.1.2",
 		"@nestjs/common": "^6.10.12",
 		"@nestjs/core": "^6.10.12",
