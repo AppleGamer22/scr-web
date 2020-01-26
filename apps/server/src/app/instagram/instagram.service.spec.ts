@@ -19,7 +19,7 @@ describe("InstagramService", () => {
 	afterEach(async () => await browser.close());
 
 	it("should be defined", () => expect(service).toBeDefined());
-	// may be fbcdn.net
+
 	it("scrapes Bz2MPhPhOQu & gets 1 public JPEG", async done => {
 		try {
 			const urls = await service.getPostFiles("Bz2MPhPhOQu", browser, page);
