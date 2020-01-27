@@ -17,7 +17,7 @@ import { HistoryService } from "../history/history.service";
 		@Req() request: Request
 	): Promise<string[]> {
 		try {
-			const U_ID = (request as ScrapeRequest).user.U_ID;
+			const { U_ID } = (request as ScrapeRequest).user;
 			const { browser, page } = await beginScrape(U_ID);
 			const urls = await this.storyService.getStoryFile(story, item, browser, page);
 			await browser.close();
