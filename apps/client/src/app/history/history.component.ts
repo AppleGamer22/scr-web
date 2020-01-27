@@ -10,9 +10,10 @@ import { ToastService } from "../toast.service";
 })
 export class HistoryComponent {
 	processing = false;
-	histories: History[]
+	type: "instagram" | "highlight" | "story" | "vsco" | "all" = "all";
+	histories: History[];
 	constructor(private readonly http: HttpClient, readonly toast: ToastService) {
-		this.getHistories()
+		this.getHistories();
 	}
 
 	async getHistories() {
@@ -21,7 +22,7 @@ export class HistoryComponent {
 			const token = localStorage.getItem("instagram");
 			if (token) {
 				const headers = new HttpHeaders({"Authorization": token});
-				this.histories = await this.http.get<History[]>("http://localhost:4100/api/history/", { headers }).toPromise();
+				this.histories = await this.http.get<History[]>(`http://localhost:4100/api/history/${this.type}`, { headers }).toPromise();
 				this.processing = false;
 			} else {
 				this.processing = false;
@@ -41,7 +42,7 @@ export class HistoryComponent {
 			if (token) {
 				const headers = new HttpHeaders({"Authorization": token});
 				await this.http.patch("http://localhost:4100/api/history/", { history, urlToDelete }, { headers }).toPromise();
-				this.histories = await this.http.get<History[]>("http://localhost:4100/api/history/", { headers }).toPromise();
+				this.histories = await this.http.get<History[]>(`http://localhost:4100/api/history/${this.type}`, { headers }).toPromise();
 				this.processing = false;
 			} else {
 				this.processing = false;
@@ -52,5 +53,25 @@ export class HistoryComponent {
 			console.error((error as Error).message);
 			this.toast.showToast((error as Error).message, "danger");
 		}
+	}
+
+	async filterHistory() {
+		this.processing = true;
+		try {
+			const token = localStorage.getItem("instagram");
+			if (token) {
+				const headers = new HttpHeaders({"Authorization": token});
+				this.histories = await this.http.get<History[]>(`http://localhost:4100/api/history/${this.type}`, { headers }).toPromise();
+				this.processing = false;
+			} else {
+				this.processing = false;
+				await this.toast.showToast("You are not authenticated.", "danger");
+			}
+		} catch (error) {
+			this.processing = false;
+			console.error((error as Error).message);
+			this.toast.showToast((error as Error).message, "danger");
+		}
+
 	}
 }

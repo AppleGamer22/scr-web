@@ -1,3 +1,17 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons>
+			<ion-label><ion-icon name="funnel"></ion-icon> Filter by: </ion-label>
+			<ion-select interface="action-sheet" placeholder="Item Type" (ionChange)="filterHistory()" [(ngModel)]="type">
+				<ion-select-option value="all">All Items</ion-select-option>
+				<ion-select-option value="instagram">Instagram Post</ion-select-option>
+				<ion-select-option value="highlight">Instagram Highlight</ion-select-option>
+				<ion-select-option value="story">Instagram Story</ion-select-option>
+				<ion-select-option value="vsco">VSCO Post</ion-select-option>
+			</ion-select>
+		</ion-buttons>
+	</ion-toolbar>
+</ion-header>
 <ion-content>
 	<ion-progress-bar *ngIf="processing" color="primary" type="indeterminate"></ion-progress-bar>
 	<ion-list *ngIf="!processing">
@@ -7,6 +21,7 @@
 					<ion-col  size="auto">
 						<ion-label *ngIf="history._id.includes('instagram')">Instagram Post ({{history._id}})</ion-label>
 						<ion-label *ngIf="history._id.includes('highlight')">Instagram Highlight ({{history._id}})</ion-label>
+						<ion-label *ngIf="history._id.includes('story')">Instagram Story ({{history._id}})</ion-label>
 						<ion-label *ngIf="history._id.includes('vsco')">VSCO Post ({{history._id}})</ion-label>
 					</ion-col>
 					<ion-col size="auto">
