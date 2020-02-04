@@ -1,7 +1,8 @@
 import { History } from "@scr-gui/server-schemas";
-import { Component } from "@angular/core";
+import { Component, Inject } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { ToastService } from "../toast.service";
+import { DOCUMENT } from "@angular/common";
 
 @Component({
 	selector: "scr-gui-history",
@@ -12,7 +13,7 @@ export class HistoryComponent {
 	processing = false;
 	type: "instagram" | "highlight" | "story" | "vsco" | "all" = "all";
 	histories: History[];
-	constructor(private readonly http: HttpClient, readonly toast: ToastService) {
+	constructor(private readonly http: HttpClient, readonly toast: ToastService, @Inject(DOCUMENT) private document: Document) {
 		this.getHistories();
 	}
 
@@ -72,6 +73,14 @@ export class HistoryComponent {
 			console.error((error as Error).message);
 			this.toast.showToast((error as Error).message, "danger");
 		}
+	}
 
+	async downloadFile(url: string) {
+		const arrayBuffer = await this.http.get(url, {responseType: "arraybuffer"}).toPromise();
+		const blob = new Blob([arrayBuffer], {type: "image/jpeg"});
+		const a = this.document.createElement("a");
+		a.href = URL.createObjectURL(blob);;
+		a.download = "";
+		a.click();
 	}
 }

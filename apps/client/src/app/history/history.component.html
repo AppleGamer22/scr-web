@@ -28,7 +28,12 @@
 						<ion-list>
 							<ion-item-sliding *ngFor="let url of history.urls">
 								<ion-item-options>
-									<ion-item-option slot="end" color="danger" (click)="editHistory(history, url)">Delete</ion-item-option>
+									<ion-item-option slot="end" color="primary" (click)="downloadFile(url)">
+										<ion-icon name="download"></ion-icon>
+									</ion-item-option>
+									<ion-item-option slot="end" color="danger" (click)="editHistory(history, url)">
+										<ion-icon name="trash"></ion-icon>
+									</ion-item-option>
 								</ion-item-options>
 								<ion-item >
 									<ion-grid>
