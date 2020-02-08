@@ -5,6 +5,7 @@ import { User } from "@scr-gui/server-schemas";
 import { initEnvironment } from "@scr-gui/server-interfaces";
 import { StoryController } from "./story.controller";
 import { StoryService } from "./story.service";
+import { HistoryService } from "../history/history.service";
 
 describe("StoryController", () => {
 	let controller: StoryController;
@@ -17,9 +18,16 @@ describe("StoryController", () => {
 			controllers: [StoryController],
 			providers: [
 				StoryService,
+				HistoryService,
 				{
 					provide: getModelToken("Users"),
 					useValue: (dto: User) => {
+						this.data = dto;
+						this.save  = async () => this.data;
+					}
+				},{
+					provide: getModelToken("History"),
+					useValue: (dto: History) => {
 						this.data = dto;
 						this.save  = async () => this.data;
 					}

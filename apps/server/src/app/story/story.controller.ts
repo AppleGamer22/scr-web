@@ -3,9 +3,13 @@ import { beginScrape, ScrapeRequest } from "@scr-gui/server-interfaces";
 import { Request } from "express";
 import { StoryService } from "./story.service";
 import { AuthGuard } from "../auth/auth.guard";
+import { HistoryService } from "../history/history.service";
 
 @Controller("story") export class StoryController {
-	constructor(private readonly storyService: StoryService) {}
+	constructor(
+		private readonly storyService: StoryService,
+		private readonly historyService: HistoryService
+	) {}
 
 	@Get(":story/:item") @UseGuards(AuthGuard) async getHighlightFile(
 		@Param("story") story: string,
@@ -13,9 +17,11 @@ import { AuthGuard } from "../auth/auth.guard";
 		@Req() request: Request
 	): Promise<string[]> {
 		try {
-			const { browser, page } = await beginScrape((request as ScrapeRequest).user.U_ID);
+			const { U_ID } = (request as ScrapeRequest).user;
+			const { browser, page } = await beginScrape(U_ID);
 			const urls = await this.storyService.getStoryFile(story, item, browser, page);
 			await browser.close();
+			await this.historyService.addHistoryItem(`story/${story}/${item}`, U_ID, { urls, network: "instagram" });
 			return urls;
 		} catch (error) {
 			const errorMessage = error.message as string;

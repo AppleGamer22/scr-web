@@ -1,7 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { userAgent } from "@scr-gui/server-interfaces";
 import { Browser, Page } from "puppeteer";
-import { randomBytes } from "crypto";
 
 declare global {
 	interface Window {
