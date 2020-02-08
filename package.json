@@ -1,7 +1,7 @@
 {
 	"name": "@applegamer22/scr-gui",
 	"description": "Social media web scraper GUI for post file downloads.",
-	"version": "1.0.0-alpha.13",
+	"version": "1.0.0-alpha.14",
 	"author": "Omri Bornstein",
 	"publisher": "AppleGamer22",
 	"private": true,
