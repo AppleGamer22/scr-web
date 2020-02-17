@@ -1,5 +1,4 @@
-#https://github.com/puppeteer/puppeteer/blob/master/docs/troubleshooting.md#running-on-alpine
-FROM node:12.15.0-alpine
+FROM node:12.16.0-alpine
 ENV ENV "docker"
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
 WORKDIR /scr/
