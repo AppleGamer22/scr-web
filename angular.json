@@ -111,7 +111,8 @@
 					"options": {
 						"jestConfig": "apps/client/jest.config.js",
 						"tsConfig": "apps/client/tsconfig.spec.json",
-						"setupFile": "apps/client/src/test-setup.ts"
+						"setupFile": "apps/client/src/test-setup.ts",
+						"passWithNoTests": true
 					}
 				}
 			}
@@ -165,7 +166,8 @@
 					"builder": "@nrwl/jest:jest",
 					"options": {
 						"jestConfig": "apps/server/jest.config.js",
-						"tsConfig": "apps/server/tsconfig.spec.json"
+						"tsConfig": "apps/server/tsconfig.spec.json",
+						"passWithNoTests": true
 					}
 				}
 			}
@@ -190,7 +192,8 @@
 					"builder": "@nrwl/jest:jest",
 					"options": {
 						"jestConfig": "libs/scr/jest.config.js",
-						"tsConfig": "libs/scr/tsconfig.spec.json"
+						"tsConfig": "libs/scr/tsconfig.spec.json",
+						"passWithNoTests": true
 					}
 				}
 			}

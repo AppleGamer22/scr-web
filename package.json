@@ -17,7 +17,8 @@
 		"build": "ng build client --prod && ng build server",
 		"build:client": "ng build client --prod",
 		"build:server": "ng build server",
-		"test": "ng test"
+		"test": "ng test",
+		"postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points"
 	},
 	"dependencies": {
 		"@angular-devkit/build-angular": "~0.900.2",
@@ -39,11 +40,11 @@
 		"@nestjs/jwt": "^6.1.1",
 		"@nestjs/mongoose": "^6.3.1",
 		"@nestjs/platform-express": "^6.11.1",
-		"@nrwl/angular": "8.12.2",
-		"@nrwl/jest": "^8.12.2",
-		"@nrwl/nest": "^8.12.2",
-		"@nrwl/node": "^8.12.2",
-		"@nrwl/workspace": "^8.12.2",
+		"@nrwl/angular": "9.0.1",
+		"@nrwl/jest": "^9.0.1",
+		"@nrwl/nest": "^9.0.1",
+		"@nrwl/node": "^9.0.1",
+		"@nrwl/workspace": "^9.0.1",
 		"bcryptjs": "^2.4.3",
 		"core-js": "^2.5.4",
 		"dotenv": "^8.2.0",
@@ -70,7 +71,7 @@
 		"codelyzer": "^5.1.2",
 		"eslint": "^6.6.0",
 		"jest": "^24.9.0",
-		"jest-preset-angular": "^7.1.1",
+		"jest-preset-angular": "8.0.0",
 		"prettier": "^1.19.1",
 		"ts-jest": "^24.2.0",
 		"tslint": "^5.20.1"
