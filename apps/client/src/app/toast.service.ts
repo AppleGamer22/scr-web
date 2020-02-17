@@ -6,11 +6,13 @@ import { ToastController } from "@ionic/angular";
 	async showToast(message: string, type: "danger" | "success") {
 		try {
 			const toast = await this.toastController.create({
-				message: message,
+				message,
+				buttons: [{
+					text: "OK",
+					role: "cancel"
+				}],
 				duration: 5000,
-				showCloseButton: true,
 				position: "top",
-				closeButtonText: "OK",
 				animated: true,
 				color: type
 			});
