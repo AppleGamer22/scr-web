@@ -20,7 +20,7 @@
 						"main": "apps/client/src/main.ts",
 						"polyfills": "apps/client/src/polyfills.ts",
 						"tsConfig": "apps/client/tsconfig.app.json",
-						"aot": false,
+						"aot": true,
 						"assets": [
 							"apps/client/src/assets",
 							"apps/client/src/manifest.json",
@@ -58,7 +58,6 @@
 							"sourceMap": false,
 							"extractCss": true,
 							"namedChunks": false,
-							"aot": true,
 							"extractLicenses": true,
 							"vendorChunk": false,
 							"buildOptimizer": true,
