@@ -1,25 +1,31 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { FormsModule } from "@angular/forms";
+import { RouterTestingModule } from "@angular/router/testing";
+import { HttpClientModule } from "@angular/common/http";
+import { IonicModule } from "@ionic/angular";
+import { TikTokComponent } from "./tiktok.component";
 
-import { TiktokComponent } from './tiktok.component';
+describe("TikTokComponent", () => {
+	let component: TikTokComponent;
+	let fixture: ComponentFixture<TikTokComponent>;
 
-describe('TiktokComponent', () => {
-  let component: TiktokComponent;
-  let fixture: ComponentFixture<TiktokComponent>;
+	beforeEach(async(() => {
+		TestBed.configureTestingModule({
+			imports: [
+				IonicModule.forRoot({scrollAssist: true}),
+				FormsModule,
+				RouterTestingModule,
+				HttpClientModule
+			],
+			declarations: [TikTokComponent],
+		}).compileComponents();
+	}));
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ TiktokComponent ]
-    })
-    .compileComponents();
-  }));
+	beforeEach(() => {
+		fixture = TestBed.createComponent(TikTokComponent);
+		component = fixture.componentInstance;
+		fixture.detectChanges();
+	});
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(TiktokComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+	it("should create", () => expect(component).toBeTruthy());
 });

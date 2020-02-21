@@ -20,6 +20,8 @@ import { AuthService } from "./auth/auth.service";
 import { AuthGuard } from "./auth/auth.guard";
 import { HistoryController } from "./history/history.controller";
 import { HistoryService } from "./history/history.service";
+import { TikTokController } from "./tiktok/tiktok.controller";
+import { TikTokService } from "./tiktok/tiktok.service";
 
 @Module({
 	imports: [
@@ -42,7 +44,8 @@ import { HistoryService } from "./history/history.service";
 		StoryController,
 		HighlightController,
 		AuthController,
-		HistoryController
+		HistoryController,
+		TikTokController
 	],
 	providers: [
 		{
@@ -58,6 +61,7 @@ import { HistoryService } from "./history/history.service";
 		HighlightService,
 		AuthService,
 		AuthGuard,
-		HistoryService
+		HistoryService,
+		TikTokService
 	],
 }) export class AppModule {}

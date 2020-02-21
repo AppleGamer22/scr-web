@@ -1,20 +1,20 @@
 import { Controller, Get, Param, HttpException, HttpStatus } from "@nestjs/common";
 import { beginScrape } from "@scr-gui/server-interfaces";
-import { VSCOService } from "./vsco.service";
-import { HistoryService } from "../history/history.service";
+import { TikTokService } from "./tiktok.service";
 
-@Controller("vsco") export class VSCOController {
+@Controller("tiktok") export class TikTokController {
 	constructor(
-		private readonly vscoService: VSCOService,
-		private readonly historyService: HistoryService
+		private readonly tiktokService: TikTokService,
+		// private readonly historyService: HistoryService
 	) {}
+
 	@Get(":user/:post") async getPostFiles(@Param("user") user: string, @Param("post") post: string): Promise<string[]> {
-		const postAddress = `${user}/media/${post}`;
+		const postAddress = `${user}/video/${post}`;
 		try {
 			const { browser, page } = await beginScrape("");
-			const url = await this.vscoService.getPostFile(postAddress, browser, page);
+			const url = await this.tiktokService.getPostFile(postAddress, browser, page);
 			await browser.close();
-			await this.historyService.addHistoryItem(`vsco/${user}/${post}`, "public", { urls: [url], network: "vsco" });
+			// await this.historyService.addHistoryItem(`vsco/${user}/${post}`, "public", { urls: [url], network: "vsco" });
 			return [url];
 		} catch (error) {
 			const errorMessage = error.message as string;
