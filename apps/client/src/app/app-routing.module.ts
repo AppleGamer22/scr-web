@@ -15,6 +15,9 @@ const routes: Routes = [
 		path: "story",
 		loadChildren: () => import("./story/story.module").then(m => m.StoryModule)
 	},{
+		path: "tiktok",
+		loadChildren: () => import("./tiktok/tiktok.module").then(m => m.TikTokModule)
+	},{
 		path: "vsco",
 		loadChildren: () => import("./vsco/vsco.module").then(m => m.VSCOModule)
 	},{

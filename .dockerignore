@@ -2,10 +2,11 @@ node_modules
 dist
 .idea
 .vscode
+.git
+.github
 .gitignore
 .prettierrc
 tslint.json
 .editorconfig
 .prettierignore
-.prettierrc
 package-lock.json

@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { Browser, Page } from "puppeteer";
 
 @Injectable() export class VSCOService {
-	async getPostFiles(id: string, browser: Browser, page: Page): Promise<string> {
+	async getPostFile(id: string, browser: Browser, page: Page): Promise<string> {
 		try {
 			await page.goto(`https://vsco.co/${id}`, {waitUntil: "domcontentloaded"});
 			if ((await page.$("p.NotFound-heading")) !== null) {

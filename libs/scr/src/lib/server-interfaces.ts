@@ -28,7 +28,15 @@ function chromeExecutable(): string {
 	if (process.env.ENV === "docker") {
 		return "/usr/bin/chromium-browser";
 	} else {
-		return puppeteer.executablePath();
+		switch (process.platform) {
+			case "darwin":
+				return "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
+			case "win32":
+				return "C:/Program\ Files\ (x86)/Google/Chrome/Application/chrome.exe";
+			default:
+				return "/opt/google/chrome/google-chrome";
+				// or /usr/bin/google-chrome or /usr/lib/google-chrome
+		}
 	}
 }
 
