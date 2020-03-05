@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { userAgent } from "@scr-gui/server-interfaces";
+import { userAgent } from "@scr-web/server-interfaces";
 import { Browser, Page } from "puppeteer";
 
 declare global {

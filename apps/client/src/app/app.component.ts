@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { Router, NavigationEnd } from "@angular/router";
 
 @Component({
-	selector: "scr-gui-root",
+	selector: "scr-web-root",
 	templateUrl: "./app.component.html",
 	styleUrls: ["./app.component.scss"],
 }) export class AppComponent {

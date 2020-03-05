@@ -1,5 +1,5 @@
 {
-	"npmScope": "scr-gui",
+	"npmScope": "scr-web",
 	"implicitDependencies": {
 		"angular.json": "*",
 		"package.json": "*",

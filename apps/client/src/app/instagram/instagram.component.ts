@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { ToastService } from "../toast.service";
 
 @Component({
-	selector: "scr-gui-instagram",
+	selector: "scr-web-instagram",
 	templateUrl: "./instagram.component.html",
 	styleUrls: ["./instagram.component.scss"],
 }) export class InstagramComponent {

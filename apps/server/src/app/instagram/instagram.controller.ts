@@ -1,5 +1,5 @@
 import { Controller, Get, Param, HttpException, HttpStatus, Req, UseGuards } from "@nestjs/common";
-import { beginScrape, ScrapeRequest } from "@scr-gui/server-interfaces";
+import { beginScrape, ScrapeRequest } from "@scr-web/server-interfaces";
 import { Request } from "express";
 import { AuthGuard } from "../auth/auth.guard";
 import { InstagramService } from "./instagram.service";

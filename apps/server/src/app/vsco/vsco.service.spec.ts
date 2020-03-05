@@ -1,6 +1,6 @@
 import { Test, TestingModule } from "@nestjs/testing";
 import { Browser, Page } from "puppeteer";
-import { beginScrape } from "@scr-gui/server-interfaces";
+import { beginScrape } from "@scr-web/server-interfaces";
 import { VSCOService } from "./vsco.service";
 
 describe("VSCOService", () => {

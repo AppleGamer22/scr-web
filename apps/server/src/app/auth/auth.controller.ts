@@ -1,5 +1,5 @@
 import { Controller, Patch, Body, Req, Res, HttpStatus, HttpException, UseGuards } from "@nestjs/common";
-import { ScrapeRequest } from "@scr-gui/server-interfaces";
+import { ScrapeRequest } from "@scr-web/server-interfaces";
 import { Request, Response } from "express";
 import { AuthService } from "./auth.service";
 import { AuthGuard } from "./auth.guard";

@@ -1,13 +1,13 @@
 {
-	"name": "@applegamer22/scr-gui",
-	"description": "Social media web scraper GUI for post file downloads.",
-	"version": "1.0.0-alpha.15.2",
+	"name": "@applegamer22/scr-web",
+	"description": "Social media web scraper web GUI for post file downloads.",
+	"version": "1.0.0-alpha.15.3",
 	"author": "Omri Bornstein",
 	"publisher": "AppleGamer22",
 	"private": true,
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/AppleGamer22/scr-gui.git"
+		"url": "https://github.com/AppleGamer22/scr-web.git"
 	},
 	"scripts": {
 		"start": "ng serve client & ng serve server",

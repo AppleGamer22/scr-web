@@ -2,7 +2,7 @@ import { Component, Inject } from "@angular/core";
 import { DOCUMENT } from "@angular/common";
 
 @Component({
-	selector: "scr-gui-theme-toggle",
+	selector: "scr-web-theme-toggle",
 	templateUrl: "./theme-toggle.component.html",
 	styleUrls: ["./theme-toggle.component.scss"],
 }) export class ThemeToggleComponent {

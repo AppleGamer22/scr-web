@@ -1,5 +1,5 @@
 import { Controller, Get, Param, HttpException, HttpStatus } from "@nestjs/common";
-import { beginScrape } from "@scr-gui/server-interfaces";
+import { beginScrape } from "@scr-web/server-interfaces";
 import { VSCOService } from "./vsco.service";
 import { HistoryService } from "../history/history.service";
 

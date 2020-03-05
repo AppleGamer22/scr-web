@@ -10,9 +10,9 @@ jobs:
       - name: Sign-in to Docker Hub
         run: docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
       - name: Build Docker image
-        run: docker build . --tag $DOCKER_USERNAME/scr-gui:${GITHUB_REF##*/}
+        run: docker build . --tag $DOCKER_USERNAME/scr-web:${GITHUB_REF##*/}
       - name: Push to Docker Hub
-        run: docker push $DOCKER_USERNAME/scr-gui:${GITHUB_REF##*/}
+        run: docker push $DOCKER_USERNAME/scr-web:${GITHUB_REF##*/}
     env:
       DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
       DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
