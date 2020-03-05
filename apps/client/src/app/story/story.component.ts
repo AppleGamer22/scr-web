@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { ToastService } from "../toast.service";
 
 @Component({
-	selector: "scr-gui-story",
+	selector: "scr-web-story",
 	templateUrl: "./story.component.html",
 	styleUrls: ["./story.component.scss"],
 }) export class StoryComponent {

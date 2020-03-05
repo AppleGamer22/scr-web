@@ -1,11 +1,11 @@
-import { History } from "@scr-gui/server-schemas";
+import { History } from "@scr-web/server-schemas";
 import { Component, Inject } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { ToastService } from "../toast.service";
 import { DOCUMENT } from "@angular/common";
 
 @Component({
-	selector: "scr-gui-history",
+	selector: "scr-web-history",
 	templateUrl: "./history.component.html",
 	styleUrls: ["./history.component.scss"],
 })

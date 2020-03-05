@@ -1,8 +1,8 @@
 import { Injectable } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { InjectModel } from "@nestjs/mongoose";
-import { User } from "@scr-gui/server-schemas";
-import { beginScrape } from "@scr-gui/server-interfaces";
+import { User } from "@scr-web/server-schemas";
+import { beginScrape } from "@scr-web/server-interfaces";
 import { Model, Types } from "mongoose";
 import { hash, compare } from "bcryptjs";
 import { InstagramService } from "../instagram/instagram.service";

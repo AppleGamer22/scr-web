@@ -1,24 +1,18 @@
-name: Publish Image
+name: publish-image
 on:
   release:
     types: [published]
-    branches:
-      - master
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-#       - uses: actions/setup-node@v1
-#         with:
-#           node-version: 12
+      - uses: actions/checkout@v2
       - name: Sign-in to Docker Hub
         run: docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
-
       - name: Build Docker image
-        run: docker build . --tag $DOCKER_USERNAME/scr-gui:${GITHUB_REF##*/}
+        run: docker build . --tag $DOCKER_USERNAME/scr-web:${GITHUB_REF##*/}
       - name: Push to Docker Hub
-        run: docker push $DOCKER_USERNAME/scr-gui:${GITHUB_REF##*/}
+        run: docker push $DOCKER_USERNAME/scr-web:${GITHUB_REF##*/}
     env:
       DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
       DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}

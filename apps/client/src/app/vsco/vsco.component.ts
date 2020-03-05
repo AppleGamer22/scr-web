@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { ToastService } from "../toast.service";
 
 @Component({
-	selector: "scr-gui-vsco",
+	selector: "scr-web-vsco",
 	templateUrl: "./vsco.component.html",
 	styleUrls: ["./vsco.component.scss"],
 }) export class VSCOComponent {

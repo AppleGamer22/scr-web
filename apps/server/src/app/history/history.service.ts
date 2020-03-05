@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
-import { History } from "@scr-gui/server-schemas";
+import { History } from "@scr-web/server-schemas";
 import { Model, Types } from "mongoose";
 
 @Injectable() export class HistoryService {

@@ -1,7 +1,7 @@
 import { Test, TestingModule } from "@nestjs/testing";
 import { AppController } from "./app.controller";
 import { getModelToken } from "@nestjs/mongoose";
-import { User, History } from "@scr-gui/server-schemas";
+import { User, History } from "@scr-web/server-schemas";
 
 describe("AppController", () => {
 	let controller: AppController;

@@ -4,13 +4,13 @@
 		"directive-selector": [
 			true,
 			"attribute",
-			"scrGui",
+			"scr",
 			"camelCase"
 		],
 		"component-selector": [
 			true,
 			"element",
-			"scr-gui",
+			"scr-web",
 			"kebab-case"
 		]
 	}
