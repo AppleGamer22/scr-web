@@ -1,10 +1,10 @@
-import { initEnvironment } from "@scr-gui/server-interfaces";
+import { initEnvironment } from "@scr-web/server-interfaces";
 import { Test, TestingModule } from "@nestjs/testing";
 import { getModelToken } from "@nestjs/mongoose";
 import { JwtModule } from "@nestjs/jwt";
 import { HistoryController } from "./history.controller";
 import { HistoryService } from "./history.service";
-import { User, History } from "@scr-gui/server-schemas";
+import { User, History } from "@scr-web/server-schemas";
 
 describe("History Controller", () => {
 	let controller: HistoryController;

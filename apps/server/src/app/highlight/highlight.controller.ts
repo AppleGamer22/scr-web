@@ -1,5 +1,5 @@
 import { Controller, Get, Param, Req, HttpStatus, HttpException, UseGuards } from "@nestjs/common";
-import { beginScrape, ScrapeRequest } from "@scr-gui/server-interfaces";
+import { beginScrape, ScrapeRequest } from "@scr-web/server-interfaces";
 import { Request } from "express";
 import { HighlightService } from "./highlight.service";
 import { AuthGuard } from "../auth/auth.guard";

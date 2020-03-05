@@ -1,7 +1,7 @@
 import { Controller, Get } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model, Types } from "mongoose";
-import { User } from "@scr-gui/server-schemas";
+import { User } from "@scr-web/server-schemas";
 
 @Controller() export class AppController {
 	constructor(@InjectModel("Users") private readonly userCollection: Model<User>) {}

@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { ToastService } from "../toast.service";
 
 @Component({
-	selector: "scr-gui-highlight",
+	selector: "scr-web-highlight",
 	templateUrl: "./highlight.component.html",
 	styleUrls: ["./highlight.component.scss"],
 }) export class HighlightComponent {

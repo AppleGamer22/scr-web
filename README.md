@@ -1,20 +1,21 @@
-# scr-gui
+# scr-web
 |Network|GitHub|Docker Hub|
 |-|-|-|
-|license|![GitHub](https://img.shields.io/github/license/AppleGamer22/scr-gui?logo=github)||
-|relase|![GitHub release](https://img.shields.io/github/v/release/AppleGamer22/scr-gui?logo=Github)||
-|downloads|![GitHub downloads](https://img.shields.io/github/downloads/AppleGamer22/scr-gui/total?&logo=github)|![Docker Pulls](https://img.shields.io/docker/pulls/applegamer22/scr-gui?label=downloads&logo=docker)|
-|people|![GitHub contributors](https://img.shields.io/github/contributors/AppleGamer22/scr-gui?logo=github)||
-|code size|![GitHub code size](https://img.shields.io/github/languages/code-size/AppleGamer22/scr-gui?logo=GitHub)|
-|forks|![GitHub forks](https://img.shields.io/github/forks/AppleGamer22/scr-gui?logo=github)|
-|stars|![GitHub stars](https://img.shields.io/github/stars/AppleGamer22/scr-gui?logo=github)|![Docker Stars](https://img.shields.io/docker/stars/applegamer22/scr-gui?label=stars&logo=docker)|
-|watchers|![GitHub watchers](https://img.shields.io/github/watchers/AppleGamer22/scr-gui?logo=github)|
+|license|![GitHub](https://img.shields.io/github/license/AppleGamer22/scr-web?logo=github)||
+|relase|![GitHub release](https://img.shields.io/github/v/release/AppleGamer22/scr-web?logo=Github)||
+|build status|![publish-image](https://github.com/AppleGamer22/scr-web/workflows/publish-image/badge.svg)||
+|downloads|![GitHub downloads](https://img.shields.io/github/downloads/AppleGamer22/scr-web/total?&logo=github)|![Docker Pulls](https://img.shields.io/docker/pulls/applegamer22/scr-web?label=downloads&logo=docker)|
+|people|![GitHub contributors](https://img.shields.io/github/contributors/AppleGamer22/scr-web?logo=github)||
+|code size|![GitHub code size](https://img.shields.io/github/languages/code-size/AppleGamer22/scr-web?logo=GitHub)|
+|forks|![GitHub forks](https://img.shields.io/github/forks/AppleGamer22/scr-web?logo=github)|
+|stars|![GitHub stars](https://img.shields.io/github/stars/AppleGamer22/scr-web?logo=github)|![Docker Stars](https://img.shields.io/docker/stars/applegamer22/scr-web?label=stars&logo=docker)|
+|watchers|![GitHub watchers](https://img.shields.io/github/watchers/AppleGamer22/scr-web?logo=github)|
 ## Minimum `docker-compose.yml` configuration
 	version: "3"
 	services:
 	scr:
 		container_name: scr
-		image: applegamer22/scr-gui:<version>
+		image: applegamer22/scr-web:<version>
 		environment:
 		JWT_SECRET: some_private_key
 		ports:

@@ -10,7 +10,7 @@
       },
       "root": "apps/client",
       "sourceRoot": "apps/client/src",
-      "prefix": "scr-gui",
+      "prefix": "scr-web",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",

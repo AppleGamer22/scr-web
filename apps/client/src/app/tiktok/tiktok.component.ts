@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { ToastService } from "../toast.service";
 
 @Component({
-	selector: "scr-gui-tiktok",
+	selector: "scr-web-tiktok",
 	templateUrl: "./tiktok.component.html",
 	styleUrls: ["./tiktok.component.scss"],
 })

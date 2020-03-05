@@ -1,10 +1,10 @@
 import { Component } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { User } from "@scr-gui/server-schemas";
+import { User } from "@scr-web/server-schemas";
 import { ToastService } from "../toast.service";
 
 @Component({
-	selector: "scr-gui-auth",
+	selector: "scr-web-auth",
 	templateUrl: "./auth.component.html",
 	styleUrls: ["./auth.component.scss"],
 }) export class AuthComponent {

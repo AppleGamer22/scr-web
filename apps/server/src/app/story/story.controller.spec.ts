@@ -1,8 +1,8 @@
 import { Test, TestingModule } from "@nestjs/testing";
 import { getModelToken } from "@nestjs/mongoose";
 import { JwtModule } from "@nestjs/jwt";
-import { User } from "@scr-gui/server-schemas";
-import { initEnvironment } from "@scr-gui/server-interfaces";
+import { User } from "@scr-web/server-schemas";
+import { initEnvironment } from "@scr-web/server-interfaces";
 import { StoryController } from "./story.controller";
 import { StoryService } from "./story.service";
 import { HistoryService } from "../history/history.service";
