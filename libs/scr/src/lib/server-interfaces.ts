@@ -8,7 +8,10 @@ export function initEnvironment(): {JWT_SECRET: string, DB_URL: string} {
 	const { JWT_SECRET, ENV } = process.env;
 	const DB_URL = (ENV === "docker") ? "mongodb://database:27017/scr" : "mongodb://localhost:27017/scr";
 	if (JWT_SECRET !== undefined) return { JWT_SECRET, DB_URL };
-	if (JWT_SECRET === undefined) process.exit(1);
+	if (JWT_SECRET === undefined) {
+		console.error("No JWT token was defined.");
+		process.exit(1);
+	}
 }
 
 export function chromeUserDataDirectory(U_ID: string): string {
