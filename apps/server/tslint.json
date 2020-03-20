@@ -6,5 +6,10 @@
 		"no-var-keyword": false,
 		"no-shadowed-variable": false,
 		"forin": false
+	},
+	"linterOptions": {
+		"exclude": [
+			"!**/*"
+		]
 	}
 }

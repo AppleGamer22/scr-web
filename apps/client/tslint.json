@@ -13,5 +13,10 @@
 			"scr-web",
 			"kebab-case"
 		]
+	},
+	"linterOptions": {
+		"exclude": [
+			"!**/*"
+		]
 	}
 }
