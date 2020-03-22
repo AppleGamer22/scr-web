@@ -4,6 +4,7 @@ import { RouterTestingModule } from "@angular/router/testing";
 import { HttpClientModule } from "@angular/common/http";
 import { IonicModule } from "@ionic/angular";
 import { VSCOComponent } from "./vsco.component";
+import { ToastService } from "../toast.service";
 
 describe("VSCOComponent", () => {
 	let component: VSCOComponent;
@@ -17,6 +18,7 @@ describe("VSCOComponent", () => {
 				RouterTestingModule,
 				HttpClientModule
 			],
+			providers: [ToastService],
 			declarations: [VSCOComponent],
 		}).compileComponents();
 	}));

@@ -4,6 +4,7 @@ import { IonicModule } from "@ionic/angular";
 import { HttpClientModule } from "@angular/common/http";
 import { RouterTestingModule } from "@angular/router/testing";
 import { HighlightComponent } from "./highlight.component";
+import { ToastService } from "../toast.service";
 
 describe("HighlightComponent", () => {
 	let component: HighlightComponent;
@@ -15,8 +16,9 @@ describe("HighlightComponent", () => {
 				IonicModule.forRoot({scrollAssist: true}),
 				HttpClientModule,
 				RouterTestingModule,
-				FormsModule,
+				FormsModule
 			],
+			providers: [ToastService],
 			declarations: [HighlightComponent],
 		}).compileComponents();
 	}));
