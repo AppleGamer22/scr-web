@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+// tslint:disable-next-line: nx-enforce-module-boundaries
 import { User } from "@scr-web/server-schemas";
 import { ToastService } from "../toast.service";
 

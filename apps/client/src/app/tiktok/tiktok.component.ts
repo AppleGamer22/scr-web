@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import { Component, Inject } from "@angular/core";
+import { DOCUMENT } from "@angular/common";
 import { HttpClient } from "@angular/common/http";
 import { ToastService } from "../toast.service";
 
@@ -12,7 +13,7 @@ export class TikTokComponent {
 	postID: string;
 	processing = false;
 	urls: string[];
-	constructor(private readonly http: HttpClient, readonly toast: ToastService) {}
+	constructor(private readonly http: HttpClient, @Inject(DOCUMENT) private document: Document, readonly toast: ToastService) {}
 
 	async submit(owner: string, id: string) {
 		this.processing = true;
@@ -29,5 +30,14 @@ export class TikTokComponent {
 			console.error((error as Error).message);
 			this.toast.showToast((error as Error).message, "danger");
 		}
+	}
+
+	async downloadFile(url: string) {
+		const arrayBuffer = await this.http.get(url, {responseType: "arraybuffer"}).toPromise();
+		const blob = new Blob([arrayBuffer], {type: "video/mp4"});
+		const a = this.document.createElement("a");
+		a.href = URL.createObjectURL(blob);
+		a.download = "";
+		a.click();
 	}
 }
