@@ -14,7 +14,7 @@
 	</form>
 	<ion-progress-bar *ngIf="processing" color="primary" type="indeterminate"></ion-progress-bar>
 	<ion-list>
-		<ion-item-SLIDING *ngFor="let url of urls">
+		<ion-item-sliding *ngFor="let url of urls">
 			<ion-item-options>
 				<ion-item-option slot="end" color="primary" (click)="downloadFile(url)">
 					<ion-icon name="download"></ion-icon>
@@ -31,6 +31,6 @@
 					</ion-row>
 				</ion-grid>
 			</ion-item>
-		</ion-item-SLIDING>
+		</ion-item-sliding>
 	</ion-list>
 </ion-content>
