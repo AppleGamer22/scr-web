@@ -3,6 +3,7 @@ import { IonicModule } from "@ionic/angular";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { AuthComponent } from "./auth.component";
+import { ToastService } from "../toast.service";
 
 describe("AuthComponent", () => {
 	let component: AuthComponent;
@@ -15,6 +16,7 @@ describe("AuthComponent", () => {
 				FormsModule,
 				HttpClientModule
 			],
+			providers: [ToastService],
 			declarations: [AuthComponent],
 		}).compileComponents();
 	}));

@@ -4,6 +4,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { IonicModule } from "@ionic/angular";
 import { InstagramComponent } from "./instagram.component";
 import { RouterTestingModule } from "@angular/router/testing";
+import { ToastService } from "../toast.service";
 
 describe("InstagramComponent", () => {
 	let component: InstagramComponent;
@@ -17,6 +18,7 @@ describe("InstagramComponent", () => {
 				HttpClientModule,
 				RouterTestingModule
 			],
+			providers: [ToastService],
 			declarations: [InstagramComponent],
 		}).compileComponents();
 	}));

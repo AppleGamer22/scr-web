@@ -1,3 +1,4 @@
+// tslint:disable-next-line: nx-enforce-module-boundaries
 import { History } from "@scr-web/server-schemas";
 import { Component, Inject } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
@@ -77,9 +78,15 @@ export class HistoryComponent {
 
 	async downloadFile(url: string) {
 		const arrayBuffer = await this.http.get(url, {responseType: "arraybuffer"}).toPromise();
-		const blob = new Blob([arrayBuffer], {type: "image/jpeg"});
+		let type: "image/jpeg" | "video/mp4";
+		if (url.includes(".jpg")) {
+			type = "image/jpeg"
+		} else if (url.includes(".mp4")) {
+			type = "video/mp4"
+		}
+		const blob = new Blob([arrayBuffer], { type });
 		const a = this.document.createElement("a");
-		a.href = URL.createObjectURL(blob);;
+		a.href = URL.createObjectURL(blob);
 		a.download = "";
 		a.click();
 	}

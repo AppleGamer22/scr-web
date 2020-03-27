@@ -1,5 +1,7 @@
-import { Component } from "@angular/core";
+import { Component, Inject } from "@angular/core";
+import { DOCUMENT } from "@angular/common";
 import { HttpClient } from "@angular/common/http";
+import { Router, ActivatedRoute } from "@angular/router";
 import { ToastService } from "../toast.service";
 
 @Component({
@@ -12,22 +14,44 @@ export class TikTokComponent {
 	postID: string;
 	processing = false;
 	urls: string[];
-	constructor(private readonly http: HttpClient, readonly toast: ToastService) {}
+	constructor(
+		private readonly http: HttpClient,
+		@Inject(DOCUMENT) private document: Document,
+		private router: Router,
+		route: ActivatedRoute,
+		readonly toast: ToastService
+	) {
+		const owner = route.snapshot.queryParamMap.get("owner");
+		const id = route.snapshot.queryParamMap.get("id");
+		if (id !== null) {
+			this.postOwner = owner;
+			this.postID = id;
+			this.submit(owner, id);
+		}
+	}
 
 	async submit(owner: string, id: string) {
 		this.processing = true;
+		await this.router.navigate(["/tiktok"], {queryParams: { owner, id }, queryParamsHandling: "merge"});
 		try {
 			if (owner && id) {
 				this.urls = await this.http.get<string[]>(`http://localhost:4100/api/tiktok/${owner}/${id}`).toPromise();
-				this.processing = false;
 			} else {
-				this.processing = false;
 				await this.toast.showToast("Please enter a post ownder & ID.", "danger");
 			}
 		} catch (error) {
-			this.processing = false;
 			console.error((error as Error).message);
 			this.toast.showToast((error as Error).message, "danger");
 		}
+		this.processing = false;
+	}
+
+	async downloadFile(url: string) {
+		const arrayBuffer = await this.http.get(url, {responseType: "arraybuffer"}).toPromise();
+		const blob = new Blob([arrayBuffer], {type: "video/mp4"});
+		const a = this.document.createElement("a");
+		a.href = URL.createObjectURL(blob);
+		a.download = "";
+		a.click();
 	}
 }

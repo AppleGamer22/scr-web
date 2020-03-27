@@ -4,6 +4,7 @@ import { RouterTestingModule } from "@angular/router/testing";
 import { HttpClientModule } from "@angular/common/http";
 import { IonicModule } from "@ionic/angular";
 import { TikTokComponent } from "./tiktok.component";
+import { ToastService } from "../toast.service";
 
 describe("TikTokComponent", () => {
 	let component: TikTokComponent;
@@ -17,6 +18,7 @@ describe("TikTokComponent", () => {
 				RouterTestingModule,
 				HttpClientModule
 			],
+			providers: [ToastService],
 			declarations: [TikTokComponent],
 		}).compileComponents();
 	}));

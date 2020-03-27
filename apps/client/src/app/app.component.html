@@ -18,39 +18,39 @@
 						</ion-menu-toggle>
 						<ion-menu-toggle auto-hide="false" menu="menu">
 							<ion-item routerDirection="root" routerLink="instagram">
-								<ion-icon [class.selected]="currentURL === '/instagram'" slot="start" name="logo-instagram"></ion-icon>
-								<ion-label [class.selected]="currentURL === '/instagram'">Instagram Post</ion-label>
+								<ion-icon [class.selected]="currentURL.startsWith('/instagram')" slot="start" name="logo-instagram"></ion-icon>
+								<ion-label [class.selected]="currentURL.startsWith('/instagram')">Instagram Post</ion-label>
 							</ion-item>
 						</ion-menu-toggle>
 						<ion-menu-toggle auto-hide="false" menu="menu">
 							<ion-item routerDirection="root" routerLink="highlight">
-								<ion-icon [class.selected]="currentURL === '/highlight'" slot="start" name="logo-instagram"></ion-icon>
-								<ion-label [class.selected]="currentURL === '/highlight'">Instagram Highlight
+								<ion-icon [class.selected]="currentURL.startsWith('/highlight')" slot="start" name="logo-instagram"></ion-icon>
+								<ion-label [class.selected]="currentURL.startsWith('/highlight')">Instagram Highlight
 								</ion-label>
 							</ion-item>
 						</ion-menu-toggle>
 						<ion-menu-toggle auto-hide="false" menu="menu">
 							<ion-item routerDirection="root" routerLink="story">
-								<ion-icon [class.selected]="currentURL === '/story'" slot="start" name="logo-instagram"></ion-icon>
-								<ion-label [class.selected]="currentURL === '/story'">Instagram Story</ion-label>
+								<ion-icon [class.selected]="currentURL.startsWith('/story')" slot="start" name="logo-instagram"></ion-icon>
+								<ion-label [class.selected]="currentURL.startsWith('/story')">Instagram Story</ion-label>
 							</ion-item>
 						</ion-menu-toggle>
 						<ion-menu-toggle auto-hide="false" menu="menu">
 							<ion-item routerDirection="root" routerLink="tiktok">
-								<ion-icon [class.selected]="currentURL === '/tiktok'" slot="start" name="musical-note"></ion-icon>
-								<ion-label [class.selected]="currentURL === '/tiktok'">TikTok Post</ion-label>
+								<ion-icon [class.selected]="currentURL.startsWith('/tiktok')" slot="start" name="musical-note"></ion-icon>
+								<ion-label [class.selected]="currentURL.startsWith('/tiktok')">TikTok Post</ion-label>
 							</ion-item>
 						</ion-menu-toggle>
 						<ion-menu-toggle auto-hide="false" menu="menu">
 							<ion-item routerDirection="root" routerLink="vsco">
-								<ion-icon [class.selected]="currentURL === '/vsco'" slot="start" name="aperture"></ion-icon>
-								<ion-label [class.selected]="currentURL === '/vsco'">VSCO Post</ion-label>
+								<ion-icon [class.selected]="currentURL.startsWith('/vsco')" slot="start" name="aperture"></ion-icon>
+								<ion-label [class.selected]="currentURL.startsWith('/vsco')">VSCO Post</ion-label>
 							</ion-item>
 						</ion-menu-toggle>
 						<ion-menu-toggle auto-hide="false" menu="menu">
 							<ion-item routerDirection="root" routerLink="history">
-								<ion-icon [class.selected]="currentURL === '/history'" slot="start" name="list"></ion-icon>
-								<ion-label [class.selected]="currentURL === '/history'">History</ion-label>
+								<ion-icon [class.selected]="currentURL.startsWith('/history')" slot="start" name="list"></ion-icon>
+								<ion-label [class.selected]="currentURL.startsWith('/history')">History</ion-label>
 							</ion-item>
 						</ion-menu-toggle>
 					</ion-item-group>

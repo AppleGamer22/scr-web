@@ -4,6 +4,7 @@ import { IonicModule } from "@ionic/angular";
 import { RouterTestingModule } from "@angular/router/testing";
 import { HttpClientModule } from "@angular/common/http";
 import { StoryComponent } from "./story.component";
+import { ToastService } from "../toast.service";
 
 describe("StoryComponent", () => {
 	let component: StoryComponent;
@@ -18,6 +19,7 @@ describe("StoryComponent", () => {
 				FormsModule,
 				HttpClientModule
 			],
+			providers: [ToastService],
 			declarations: [StoryComponent],
 		}).compileComponents();
 	}));

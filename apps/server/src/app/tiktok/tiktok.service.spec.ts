@@ -26,7 +26,8 @@ describe("TiktokService", () => {
 			const url = (await service.getPostFile("yaababyk/video/6768910148997090566", browser, page));
 			done();
 			console.log(url);
-			expect(url).toContain("https://v16.muscdn.com/");
+			expect(url).toContain("https://");
+			expect(url).toContain("muscdn.com")
 		} catch (error) {
 			console.error(error.message);
 		}

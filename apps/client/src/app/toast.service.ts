@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { ToastController } from "@ionic/angular";
 
-@Injectable({providedIn: "root"}) export class ToastService {
+@Injectable() export class ToastService {
 	constructor(private readonly toastController: ToastController) {}
 	async showToast(message: string, type: "danger" | "success") {
 		try {
@@ -17,8 +17,6 @@ import { ToastController } from "@ionic/angular";
 				color: type
 			});
 			toast.present();
-		} catch (error) {
-			console.error((error as Error).message);
-		}
+		} catch (error) {}
 	}
 }
