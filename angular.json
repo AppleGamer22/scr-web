@@ -1,226 +1,216 @@
 {
-  "version": 1,
-  "projects": {
-    "client": {
-      "projectType": "application",
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "scss"
-        }
-      },
-      "root": "apps/client",
-      "sourceRoot": "apps/client/src",
-      "prefix": "scr-web",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "dist/apps/client",
-            "index": "apps/client/src/index.html",
-            "main": "apps/client/src/main.ts",
-            "polyfills": "apps/client/src/polyfills.ts",
-            "tsConfig": "apps/client/tsconfig.app.json",
-            "aot": true,
-            "assets": [
-              "apps/client/src/assets",
-              "apps/client/src/manifest.json",
-              {
-                "glob": "**/*.svg",
-                "input": "node_modules/ionicons/dist/ionicons/svg",
-                "output": "./svg"
-              }
-            ],
-            "styles": [
-              "apps/client/src/styles.scss",
-              "apps/client/src/variables.scss",
-              "node_modules/@ionic/angular/css/normalize.css",
-              "node_modules/@ionic/angular/css/structure.css",
-              "node_modules/@ionic/angular/css/typography.css",
-              "node_modules/@ionic/angular/css/core.css",
-              "node_modules/@ionic/angular/css/padding.css",
-              "node_modules/@ionic/angular/css/float-elements.css",
-              "node_modules/@ionic/angular/css/text-alignment.css",
-              "node_modules/@ionic/angular/css/text-transformation.css",
-              "node_modules/@ionic/angular/css/flex-utils.css"
-            ],
-            "scripts": []
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/client/src/environments/environment.ts",
-                  "with": "apps/client/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
-                }
-              ],
-              "serviceWorker": true,
-              "ngswConfigPath": "apps/client/ngsw-config.json"
-            }
-          }
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "client:build",
-            "proxyConfig": "apps/client/proxy-config.json"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "client:build:production"
-            }
-          }
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "client:build"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "apps/client/tsconfig.app.json",
-              "apps/client/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/client/**"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "apps/client/jest.config.js",
-            "tsConfig": "apps/client/tsconfig.spec.json",
-            "setupFile": "apps/client/src/test-setup.ts",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "server": {
-      "root": "apps/server",
-      "sourceRoot": "apps/server/src",
-      "projectType": "application",
-      "prefix": "server",
-      "schematics": {},
-      "architect": {
-        "build": {
-          "builder": "@nrwl/node:build",
-          "options": {
-            "outputPath": "dist/apps/server",
-            "main": "apps/server/src/main.ts",
-            "tsConfig": "apps/server/tsconfig.app.json",
-            "assets": [
-              "apps/server/src/assets"
-            ]
-          },
-          "configurations": {
-            "production": {
-              "optimization": true,
-              "extractLicenses": true,
-              "inspect": false,
-              "fileReplacements": [
-                {
-                  "replace": "apps/server/src/environments/environment.ts",
-                  "with": "apps/server/src/environments/environment.prod.ts"
-                }
-              ]
-            }
-          }
-        },
-        "serve": {
-          "builder": "@nrwl/node:execute",
-          "options": {
-            "buildTarget": "server:build"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "apps/server/tsconfig.app.json",
-              "apps/server/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/server/**"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "apps/server/jest.config.js",
-            "tsConfig": "apps/server/tsconfig.spec.json",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "scr": {
-      "root": "libs/scr",
-      "sourceRoot": "libs/scr/src",
-      "projectType": "library",
-      "schematics": {},
-      "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/scr/tsconfig.lib.json",
-              "libs/scr/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/scr/**"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/scr/jest.config.js",
-            "tsConfig": "libs/scr/tsconfig.spec.json",
-            "passWithNoTests": true
-          }
-        }
-      }
-    }
-  },
-  "cli": {
-    "defaultCollection": "@nrwl/angular",
-    "analytics": "6ec60234-cfe6-441b-8255-c9ccf0ccef40"
-  },
-  "schematics": {
-    "@nrwl/angular:application": {
-      "unitTestRunner": "jest"
-    },
-    "@nrwl/angular:library": {
-      "unitTestRunner": "jest"
-    }
-  },
-  "defaultProject": "client"
+	"version": 1,
+	"projects": {
+		"client": {
+			"projectType": "application",
+			"schematics": {
+				"@nrwl/angular:component": {
+					"style": "scss"
+				}
+			},
+			"root": "apps/client",
+			"sourceRoot": "apps/client/src",
+			"prefix": "scr-web",
+			"architect": {
+				"build": {
+					"builder": "@angular-devkit/build-angular:browser",
+					"options": {
+						"outputPath": "dist/apps/client",
+						"index": "apps/client/src/index.html",
+						"main": "apps/client/src/main.ts",
+						"polyfills": "apps/client/src/polyfills.ts",
+						"tsConfig": "apps/client/tsconfig.app.json",
+						"aot": true,
+						"assets": [
+							"apps/client/src/assets",
+							"apps/client/src/manifest.json",
+							{
+								"glob": "**/*.svg",
+								"input": "node_modules/ionicons/dist/ionicons/svg",
+								"output": "./svg"
+							}
+						],
+						"styles": [
+							"apps/client/src/styles.scss",
+							"apps/client/src/variables.scss",
+							"node_modules/@ionic/angular/css/normalize.css",
+							"node_modules/@ionic/angular/css/structure.css",
+							"node_modules/@ionic/angular/css/typography.css",
+							"node_modules/@ionic/angular/css/core.css",
+							"node_modules/@ionic/angular/css/padding.css",
+							"node_modules/@ionic/angular/css/float-elements.css",
+							"node_modules/@ionic/angular/css/text-alignment.css",
+							"node_modules/@ionic/angular/css/text-transformation.css",
+							"node_modules/@ionic/angular/css/flex-utils.css"
+						],
+						"scripts": []
+					},
+					"configurations": {
+						"production": {
+							"fileReplacements": [
+								{
+									"replace": "apps/client/src/environments/environment.ts",
+									"with": "apps/client/src/environments/environment.prod.ts"
+								}
+							],
+							"optimization": true,
+							"outputHashing": "all",
+							"sourceMap": false,
+							"extractCss": true,
+							"namedChunks": false,
+							"extractLicenses": true,
+							"vendorChunk": false,
+							"buildOptimizer": true,
+							"budgets": [
+								{
+									"type": "initial",
+									"maximumWarning": "2mb",
+									"maximumError": "5mb"
+								},
+								{
+									"type": "anyComponentStyle",
+									"maximumWarning": "6kb",
+									"maximumError": "10kb"
+								}
+							],
+							"serviceWorker": true,
+							"ngswConfigPath": "apps/client/ngsw-config.json"
+						}
+					}
+				},
+				"serve": {
+					"builder": "@angular-devkit/build-angular:dev-server",
+					"options": {
+						"browserTarget": "client:build",
+						"proxyConfig": "apps/client/proxy-config.json"
+					},
+					"configurations": {
+						"production": {
+							"browserTarget": "client:build:production"
+						}
+					}
+				},
+				"extract-i18n": {
+					"builder": "@angular-devkit/build-angular:extract-i18n",
+					"options": {
+						"browserTarget": "client:build"
+					}
+				},
+				"lint": {
+					"builder": "@angular-devkit/build-angular:tslint",
+					"options": {
+						"tsConfig": [
+							"apps/client/tsconfig.app.json",
+							"apps/client/tsconfig.spec.json"
+						],
+						"exclude": ["**/node_modules/**", "!apps/client/**"]
+					}
+				},
+				"test": {
+					"builder": "@nrwl/jest:jest",
+					"options": {
+						"jestConfig": "apps/client/jest.config.js",
+						"tsConfig": "apps/client/tsconfig.spec.json",
+						"setupFile": "apps/client/src/test-setup.ts",
+						"passWithNoTests": true
+					}
+				}
+			}
+		},
+		"server": {
+			"root": "apps/server",
+			"sourceRoot": "apps/server/src",
+			"projectType": "application",
+			"prefix": "server",
+			"schematics": {},
+			"architect": {
+				"build": {
+					"builder": "@nrwl/node:build",
+					"options": {
+						"outputPath": "dist/apps/server",
+						"main": "apps/server/src/main.ts",
+						"tsConfig": "apps/server/tsconfig.app.json",
+						"assets": ["apps/server/src/assets"],
+						"buildLibsFromSource": true
+					},
+					"configurations": {
+						"production": {
+							"optimization": true,
+							"extractLicenses": true,
+							"inspect": false,
+							"fileReplacements": [
+								{
+									"replace": "apps/server/src/environments/environment.ts",
+									"with": "apps/server/src/environments/environment.prod.ts"
+								}
+							]
+						}
+					}
+				},
+				"serve": {
+					"builder": "@nrwl/node:execute",
+					"options": {
+						"buildTarget": "server:build"
+					}
+				},
+				"lint": {
+					"builder": "@angular-devkit/build-angular:tslint",
+					"options": {
+						"tsConfig": [
+							"apps/server/tsconfig.app.json",
+							"apps/server/tsconfig.spec.json"
+						],
+						"exclude": ["**/node_modules/**", "!apps/server/**"]
+					}
+				},
+				"test": {
+					"builder": "@nrwl/jest:jest",
+					"options": {
+						"jestConfig": "apps/server/jest.config.js",
+						"tsConfig": "apps/server/tsconfig.spec.json",
+						"passWithNoTests": true
+					}
+				}
+			}
+		},
+		"scr": {
+			"root": "libs/scr",
+			"sourceRoot": "libs/scr/src",
+			"projectType": "library",
+			"schematics": {},
+			"architect": {
+				"lint": {
+					"builder": "@angular-devkit/build-angular:tslint",
+					"options": {
+						"tsConfig": [
+							"libs/scr/tsconfig.lib.json",
+							"libs/scr/tsconfig.spec.json"
+						],
+						"exclude": ["**/node_modules/**", "!libs/scr/**"]
+					}
+				},
+				"test": {
+					"builder": "@nrwl/jest:jest",
+					"options": {
+						"jestConfig": "libs/scr/jest.config.js",
+						"tsConfig": "libs/scr/tsconfig.spec.json",
+						"passWithNoTests": true
+					}
+				}
+			}
+		}
+	},
+	"cli": {
+		"defaultCollection": "@nrwl/angular",
+		"analytics": "6ec60234-cfe6-441b-8255-c9ccf0ccef40"
+	},
+	"schematics": {
+		"@nrwl/angular:application": {
+			"unitTestRunner": "jest"
+		},
+		"@nrwl/angular:library": {
+			"unitTestRunner": "jest"
+		}
+	},
+	"defaultProject": "client"
 }
