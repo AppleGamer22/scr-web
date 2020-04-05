@@ -15,7 +15,7 @@ export function initEnvironment(): {JWT_SECRET: string, DB_URL: string} {
 }
 
 export function chromeUserDataDirectory(U_ID: string): string {
-	if (U_ID === "") return `${homedir()}/.scr-cli/`;
+	if (U_ID === "") return `${process.cwd()}/users_dev/admin/`;
 	if (process.env.ENV === "docker") return `/scr/users/${U_ID}/`;
 	return `${process.cwd()}/users_dev/${U_ID}/`;
 }

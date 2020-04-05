@@ -1,7 +1,7 @@
 {
 	"name": "@applegamer22/scr-web",
 	"description": "Social media web scraper web GUI for post file downloads.",
-	"version": "1.0.0-alpha.16.2",
+	"version": "1.0.0-alpha.17.1",
 	"author": "Omri Bornstein",
 	"publisher": "AppleGamer22",
 	"license": "MIT",
@@ -41,11 +41,11 @@
 		"@nestjs/jwt": "^7.0.0",
 		"@nestjs/mongoose": "^6.4.0",
 		"@nestjs/platform-express": "^7.0.3",
-		"@nrwl/angular": "9.1.4",
-		"@nrwl/jest": "^9.1.4",
-		"@nrwl/nest": "^9.1.4",
-		"@nrwl/node": "^9.1.4",
-		"@nrwl/workspace": "^9.1.4",
+		"@nrwl/angular": "9.2.2",
+		"@nrwl/jest": "^9.2.2",
+		"@nrwl/nest": "^9.2.2",
+		"@nrwl/node": "^9.2.2",
+		"@nrwl/workspace": "^9.2.2",
 		"bcryptjs": "^2.4.3",
 		"core-js": "^2.5.4",
 		"dotenv": "^8.2.0",
@@ -53,10 +53,10 @@
 		"mongoose": "^5.9.5",
 		"puppeteer": "^2.0.0",
 		"reflect-metadata": "^0.1.13",
-		"rxjs": "~6.5.4",
+		"rxjs": "~6.5.5",
 		"ts-node": "^8.7.0",
 		"tslib": "^1.11.1",
-		"typescript": "~3.7.5",
+		"typescript": "~3.8.3",
 		"zone.js": "~0.10.2"
 	},
 	"devDependencies": {
@@ -71,10 +71,10 @@
 		"@types/puppeteer": "^2.0.1",
 		"codelyzer": "^5.1.2",
 		"eslint": "6.8.0",
-		"jest": "^24.9.0",
+		"jest": "25.2.4",
 		"jest-preset-angular": "^8.1.2",
 		"prettier": "^1.19.1",
-		"ts-jest": "^24.2.0",
-		"tslint": "6.0.0"
+		"ts-jest": "25.2.1",
+		"tslint": "^6.1.1"
 	}
 }
