@@ -11,12 +11,14 @@ import { Browser, Page } from "puppeteer";
 				await browser.close();
 				throw new Error(`Failed to find highlight ${highlight}.`);
 			}
-			await page.waitForSelector("div._7UhW9", {visible: true});
-			await page.click("div._7UhW9");
+			// await page.waitForSelector("div._7UhW9", {visible: true});
+			// await page.click("div._7UhW9");
 			for (var i = 0; i < item - 1; i += 1) {
 				await page.waitForSelector("div.coreSpriteRightChevron", {visible: true});
 				await page.click("div.coreSpriteRightChevron");
 			}
+			if ((await page.$("div._7UhW9")) !== null) await page.click("div._7UhW9");
+			await page.keyboard.press("Space");
 			var urls: string[] = [];
 			await page.waitForSelector("div.qbCDp", {visible: true});
 			const imageURL = (await page.$$eval("div.qbCDp > img", images => images.map(image => image.getAttribute("srcset"))))[0];
