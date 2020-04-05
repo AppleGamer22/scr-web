@@ -10,6 +10,8 @@ import * as puppeteer from "puppeteer";
 				await browser.close();
 				throw new Error(`Failed to find ${user}'s story feed.`);
 			}
+			await page.waitForSelector("div._7UhW9", {visible: true});
+			await page.click("div._7UhW9");
 			for (var i = 0; i < item - 1; i += 1) {
 				await page.waitForSelector("div.coreSpriteRightChevron", {visible: true});
 				await page.click("div.coreSpriteRightChevron");

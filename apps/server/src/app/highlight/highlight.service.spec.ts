@@ -15,8 +15,8 @@ describe("HighlightService", () => {
 		browser = testConditions.browser;
 		page = testConditions.page;
 	});
-
 	afterEach(async () => await browser.close());
+
 	it("should be defined", () => expect(service).toBeDefined());
 	it("scrapes 6th 17854701943592281 and gets a private MP4", async done => {
 		try {

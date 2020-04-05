@@ -1,7 +1,7 @@
 {
 	"name": "@applegamer22/scr-web",
 	"description": "Social media web scraper web GUI for post file downloads.",
-	"version": "1.0.0-alpha.16.2",
+	"version": "1.0.0-alpha.17.1",
 	"author": "Omri Bornstein",
 	"publisher": "AppleGamer22",
 	"private": true,
@@ -74,6 +74,6 @@
 		"jest-preset-angular": "^8.1.2",
 		"prettier": "^1.19.1",
 		"ts-jest": "25.2.1",
-		"tslint": "6.0.0"
+		"tslint": "^6.1.1"
 	}
 }
