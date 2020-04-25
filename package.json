@@ -10,10 +10,10 @@
 		"url": "https://github.com/AppleGamer22/scr-web.git"
 	},
 	"scripts": {
-		"start": "ng serve client & ng serve server",
+		"start": "ng serve client --poll=2000 & ng serve server --poll=2000",
 		"start:prod": "http-server -p 4200 -c-1 dist/apps/client & node dist/apps/server/main.js",
-		"start:client": "ng serve client",
-		"start:server": "ng serve server",
+		"start:client": "ng serve client --poll=2000",
+		"start:server": "ng serve server --poll=2000",
 		"build": "ng build client --prod && ng build server",
 		"build:client": "ng build client --prod",
 		"build:server": "ng build server",
