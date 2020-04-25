@@ -3,7 +3,8 @@
 		<ion-menu menuId="menu" [swipeGesture]="true" type="overlay" when="true">
 			<ion-header>
 				<ion-toolbar>
-					<ion-title>scr.io</ion-title>
+					<ion-icon slot="start" size="large" src="assets/icons/scr-logo.svg"></ion-icon>
+					<ion-title>scr-web</ion-title>
 					<ion-buttons slot="end"><scr-web-theme-toggle></scr-web-theme-toggle></ion-buttons>
 				</ion-toolbar>
 			</ion-header>
@@ -37,13 +38,13 @@
 						</ion-menu-toggle>
 						<ion-menu-toggle auto-hide="false" menu="menu">
 							<ion-item routerDirection="root" routerLink="tiktok">
-								<ion-icon [class.selected]="currentURL.startsWith('/tiktok')" slot="start" name="musical-note"></ion-icon>
+								<ion-icon [class.selected]="currentURL.startsWith('/tiktok')" slot="start" src="assets/icons/tiktok.svg"></ion-icon>
 								<ion-label [class.selected]="currentURL.startsWith('/tiktok')">TikTok Post</ion-label>
 							</ion-item>
 						</ion-menu-toggle>
 						<ion-menu-toggle auto-hide="false" menu="menu">
 							<ion-item routerDirection="root" routerLink="vsco">
-								<ion-icon [class.selected]="currentURL.startsWith('/vsco')" slot="start" name="aperture"></ion-icon>
+								<ion-icon [class.selected]="currentURL.startsWith('/vsco')" slot="start" src="assets/icons/vsco.svg"></ion-icon>
 								<ion-label [class.selected]="currentURL.startsWith('/vsco')">VSCO Post</ion-label>
 							</ion-item>
 						</ion-menu-toggle>
@@ -69,6 +70,12 @@
 							<ion-icon slot="start" name="logo-github"></ion-icon>
 							<a href="https://github.com/AppleGamer22/scr-web.git" target="_blank">
 								<ion-label><b>GitHub</b></ion-label>
+							</a>
+						</ion-item>
+						<ion-item>
+							<ion-icon slot="start" src="assets/icons/docker.svg"></ion-icon>
+							<a href="https://hub.docker.com/r/applegamer22/scr-web" target="_blank">
+								<ion-label><b>Docker Hub</b></ion-label>
 							</a>
 						</ion-item>
 					</ion-item-group>
