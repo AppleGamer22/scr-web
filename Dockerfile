@@ -7,6 +7,7 @@ RUN apk add --no-cache chromium nss freetype freetype-dev harfbuzz ca-certificat
 RUN chown -R node:node .
 RUN npm install --production
 RUN npm run build
+RUN rm -rf apps libs tools
 USER node
 EXPOSE 4100 4200
 CMD npm run start:prod
