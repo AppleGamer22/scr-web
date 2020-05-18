@@ -24,28 +24,35 @@
 > * **(II)** using any automated system, including without limitation “robots,” “spiders,” “offline readers,” etc., to access the Service in a manner that sends more request messages to the VSCO servers than a human can reasonably produce in the same period of time by using a conventional on-line web browser (except that VSCO grants the operators of public search engines revocable permission to use spiders to copy materials from vsco.co for the sole purpose of and solely to the extent necessary for creating publicly available searchable indices of the materials but not caches or archives of such materials),
 > * **(XI)** accessing any content on the Service through any technology or means other than those provided or authorized by the Service,
 > * **(XII)** bypassing the measures we may use to prevent or restrict access to the Service, including without limitation features that prevent or restrict use or copying of any content or enforce limitations on use of the Service or the content therein.
-## Minimum `docker-compose.yml` configuration
-	version: "3"
-	services:
-	scr:
-		container_name: scr
-		image: applegamer22/scr-web:<version>
-		environment:
-		JWT_SECRET: some_private_key
-		ports:
-		- 4100:4100
-		- 4200:4200
-		- 7777:7777
-		volumes:
-		- ./some_local_directory:/scr/users
-	database:
-		container_name: database
-		image: mongo:4.2.0
-		restart: always
-		volumes:
-		- ./database:/data/db
-		ports:
-		- 27017:27017
+## Set-up
+1. Create a `docker-compose.yml` file:
+```yml
+  version: "3"
+  services:
+    scr:
+      container_name: scr
+      image: applegamer22/scr-web:<version>
+      environment:
+      JWT_SECRET: <some_private_key>
+      ports:
+        - 4100:4100
+        - 4200:4200
+        - 7777:7777
+      volumes:
+        - ./some_local_directory:/scr/users
+    database:
+      container_name: database
+      image: mongo:4.2.0
+      restart: always
+      volumes:
+        - ./database:/data/db
+      ports:
+        - 27017:27017
+```
+2. Run `docker-compose up --build` in your command prompt.
+3. Load the web interface from `http://localhost:4200/`.
+4. Sign-up with your social network credentials (To be stored in your MongoDB instance).
+5. Sign-in with your social network credentials.
 ## Generating icon assets
 1. Get [Ionicons Tool SVG File](https://ionicons.com/ionicons/svg/md-hammer.svg).
 2. Go to [online SVG editor](https://editor.method.ac):
