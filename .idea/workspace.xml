@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3e676335-c69e-4250-b646-51e47a0008ba" name="Default Changelist" comment=".idea files" />
+    <list default="true" id="3e676335-c69e-4250-b646-51e47a0008ba" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,15 +19,15 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="ToolWindowKubernetes Explorer.ShowToolbar" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/docker-compose.yml" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -104,46 +104,11 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Docker.compose" />
       <item itemvalue="Jest.test all" />
       <item itemvalue="Jest.test client" />
       <item itemvalue="Jest.test server" />
-      <item itemvalue="Docker.compose" />
     </list>
-  </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <option name="contentProportion" value="0.13475935" />
-          <treeState>
-            <expand>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="Docker" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="Docker" type="9fbbdea:ServiceModel$ServiceNode" />
-                <item name="Compose: docker-compose.yml" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="Docker" type="9fbbdea:ServiceModel$ServiceNode" />
-                <item name="Compose: docker-compose.yml" type="9fbbdea:ServiceModel$ServiceNode" />
-                <item name="database" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="Docker" type="9fbbdea:ServiceModel$ServiceNode" />
-                <item name="Compose: docker-compose.yml" type="9fbbdea:ServiceModel$ServiceNode" />
-                <item name="scr" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
-            </expand>
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration>$USER_HOME$/.subversion</configuration>
@@ -173,6 +138,8 @@
       <workItem from="1582588831651" duration="1802000" />
       <workItem from="1584687882482" duration="20000" />
       <workItem from="1584687933515" duration="317000" />
+      <workItem from="1589794157684" duration="17000" />
+      <workItem from="1589794258932" duration="141000" />
     </task>
     <task id="LOCAL-00001" summary="WebStorm config files">
       <created>1571192322206</created>
@@ -223,24 +190,30 @@
       <option name="project" value="LOCAL" />
       <updated>1584688187265</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary=".idea files">
+      <created>1589794383516</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1589794383516</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="WebStorm config files" />
@@ -251,49 +224,47 @@
     <option name="LAST_COMMIT_MESSAGE" value=".idea files" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="519" y="241" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1579683061258">
-      <screen x="64" y="23" width="1376" height="877" />
+    <state x="436" y="211" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1589794405652">
+      <screen x="36" y="27" width="1884" height="1053" />
     </state>
-    <state x="685" y="286" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/1920.23.1440.877/74.23.1846.1057@74.23.1846.1057" timestamp="1578013783409" />
-    <state x="519" y="241" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/64.23.1376.877@64.23.1376.877" timestamp="1579683061258" />
-    <state x="731" y="181" key="CommitChangelistDialog2" timestamp="1584688157506">
+    <state x="436" y="211" key="#com.intellij.execution.impl.EditConfigurationsDialog/36.27.1884.1053@36.27.1884.1053" timestamp="1589794405652" />
+    <state x="731" y="181" key="CommitChangelistDialog2" timestamp="1589794383432">
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
     <state x="708" y="158" key="CommitChangelistDialog2/1920.0.1440.900/0.0.1920.1080@0.0.1920.1080" timestamp="1582592898917" />
-    <state x="731" y="181" key="CommitChangelistDialog2/36.27.1884.1053@36.27.1884.1053" timestamp="1584688157506" />
+    <state x="731" y="181" key="CommitChangelistDialog2/36.27.1884.1053@36.27.1884.1053" timestamp="1589794383432" />
+    <state x="818" y="441" key="DockerComposeFileDialog" timestamp="1589794353247">
+      <screen x="36" y="27" width="1884" height="1053" />
+    </state>
+    <state x="818" y="441" key="DockerComposeFileDialog/36.27.1884.1053@36.27.1884.1053" timestamp="1589794353247" />
+    <state x="760" y="311" key="FileChooserDialogImpl" timestamp="1589794351569">
+      <screen x="36" y="27" width="1884" height="1053" />
+    </state>
+    <state x="760" y="311" key="FileChooserDialogImpl/36.27.1884.1053@36.27.1884.1053" timestamp="1589794351569" />
     <state width="1899" height="350" key="GridCell.Tab.0.bottom" timestamp="1582588984856">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1899" height="350" key="GridCell.Tab.0.bottom/1920.0.1440.900/0.0.1920.1080@0.0.1920.1080" timestamp="1582588984856" />
-    <state width="1358" height="312" key="GridCell.Tab.0.bottom/1920.23.1440.877/74.23.1846.1057@74.23.1846.1057" timestamp="1578013837337" />
     <state width="1899" height="350" key="GridCell.Tab.0.center" timestamp="1582588984854">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1899" height="350" key="GridCell.Tab.0.center/1920.0.1440.900/0.0.1920.1080@0.0.1920.1080" timestamp="1582588984854" />
-    <state width="1358" height="312" key="GridCell.Tab.0.center/1920.23.1440.877/74.23.1846.1057@74.23.1846.1057" timestamp="1578013837335" />
     <state width="1899" height="350" key="GridCell.Tab.0.left" timestamp="1582588984853">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1899" height="350" key="GridCell.Tab.0.left/1920.0.1440.900/0.0.1920.1080@0.0.1920.1080" timestamp="1582588984853" />
-    <state width="1358" height="312" key="GridCell.Tab.0.left/1920.23.1440.877/74.23.1846.1057@74.23.1846.1057" timestamp="1578013837334" />
     <state width="1899" height="350" key="GridCell.Tab.0.right" timestamp="1582588984855">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1899" height="350" key="GridCell.Tab.0.right/1920.0.1440.900/0.0.1920.1080@0.0.1920.1080" timestamp="1582588984855" />
-    <state width="1358" height="312" key="GridCell.Tab.0.right/1920.23.1440.877/74.23.1846.1057@74.23.1846.1057" timestamp="1578013837336" />
     <state x="331" y="85" key="SettingsEditor" timestamp="1582591729875">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="331" y="85" key="SettingsEditor/1920.0.1440.900/0.0.1920.1080@0.0.1920.1080" timestamp="1582591729875" />
-    <state x="301" y="92" key="SettingsEditor/64.23.1376.877@64.23.1376.877" timestamp="1579683142856" />
-    <state x="578" y="290" key="Vcs.Push.Dialog.v2" timestamp="1584688170493">
+    <state x="578" y="290" key="Vcs.Push.Dialog.v2" timestamp="1589794393785">
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
-    <state x="578" y="290" key="Vcs.Push.Dialog.v2/36.27.1884.1053@36.27.1884.1053" timestamp="1584688170493" />
-    <state x="662" y="255" key="run.anything.popup" timestamp="1578013834007">
-      <screen x="74" y="23" width="1846" height="1057" />
-    </state>
-    <state x="662" y="255" key="run.anything.popup/1920.23.1440.877/74.23.1846.1057@74.23.1846.1057" timestamp="1578013834007" />
+    <state x="578" y="290" key="Vcs.Push.Dialog.v2/36.27.1884.1053@36.27.1884.1053" timestamp="1589794393785" />
     <state x="625" y="241" width="670" height="676" key="search.everywhere.popup" timestamp="1582591213511">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>

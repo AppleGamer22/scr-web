@@ -65,7 +65,7 @@ describe("InstagramService", () => {
 			console.error(error.message);
 		}
 	});
-	it("scrapes BqWkJemlFJbRthDCljKnEkV70ZmaHPu3G0jJUk0 & gets a public MP4 & a public JPEG", async done => {
+	/*it("scrapes BqWkJemlFJbRthDCljKnEkV70ZmaHPu3G0jJUk0 & gets a public MP4 & a public JPEG", async done => {
 		try {
 			const urls = await service.getPostFiles("BqWkJemlFJbRthDCljKnEkV70ZmaHPu3G0jJUk0", browser, page);
 			done();
@@ -79,5 +79,5 @@ describe("InstagramService", () => {
 			expect(urls[1]).toContain(".jpg");
 			expect(urls[1].includes("cdninstagram.com") || urls[1].includes("fbcdn.net")).toBe(true);
 		} catch (error) { console.error(error.message); }
-	});
+	});*/
 });
