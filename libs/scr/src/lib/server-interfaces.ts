@@ -54,20 +54,27 @@ export function userAgent(): string {
 	}
 }
 
-export async function beginScrape(U_ID: string): Promise<{browser: puppeteer.Browser, page: puppeteer.Page}> {
+export async function beginScrape(U_ID: string, incognito: boolean = false): Promise<{browser: puppeteer.Browser, page: puppeteer.Page}> {
 	try {
+		const args = [
+			"--disable-gpu" ,
+			"--no-sandbox",
+			"--disable-dev-shm-usage",
+			"--mute-audio"
+		]
+		if (incognito) args.push("--incognito");
 		const browser = await puppeteer.launch({
 			headless: true,
 			executablePath: chromeExecutable(),
 			userDataDir: chromeUserDataDirectory(U_ID),
-			args: [
-				"--disable-gpu" ,
-				"--no-sandbox",
-				"--disable-dev-shm-usage",
-				"--mute-audio"
-			]
+			args,
+			ignoreDefaultArgs: ["--enable-automation"],
 		});
 		const page = (await browser.pages())[0];
+		await page.evaluateOnNewDocument(() => {
+			// @ts-ignore
+			delete navigator.__proto__.webdriver;
+		});
 		await page.setUserAgent(userAgent());
 		return { browser, page };
 	} catch (error) {

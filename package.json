@@ -1,7 +1,7 @@
 {
 	"name": "@applegamer22/scr-web",
 	"description": "Social media web scraper web GUI for post file downloads.",
-	"version": "1.0.0-alpha.17.5",
+	"version": "1.0.0-alpha.17.6",
 	"author": "Omri Bornstein",
 	"publisher": "AppleGamer22",
 	"private": true,
@@ -21,7 +21,7 @@
 		"postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points"
 	},
 	"dependencies": {
-		"@angular-devkit/build-angular": "^0.901.6",
+		"@angular-devkit/build-angular": "^0.901.7",
 		"@angular/animations": "^9.1.7",
 		"@angular/cli": "^9.1.6",
 		"@angular/common": "^9.1.7",

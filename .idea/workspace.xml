@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3e676335-c69e-4250-b646-51e47a0008ba" name="Default Changelist" comment=".idea files">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="3e676335-c69e-4250-b646-51e47a0008ba" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -141,7 +139,7 @@
       <workItem from="1584687882482" duration="20000" />
       <workItem from="1584687933515" duration="317000" />
       <workItem from="1589794157684" duration="17000" />
-      <workItem from="1589794258932" duration="107000" />
+      <workItem from="1589794258932" duration="141000" />
     </task>
     <task id="LOCAL-00001" summary="WebStorm config files">
       <created>1571192322206</created>
@@ -192,7 +190,14 @@
       <option name="project" value="LOCAL" />
       <updated>1584688187265</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary=".idea files">
+      <created>1589794383516</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1589794383516</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -219,15 +224,15 @@
     <option name="LAST_COMMIT_MESSAGE" value=".idea files" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="436" y="211" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1589794365778">
+    <state x="436" y="211" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1589794405652">
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
-    <state x="436" y="211" key="#com.intellij.execution.impl.EditConfigurationsDialog/36.27.1884.1053@36.27.1884.1053" timestamp="1589794365778" />
-    <state x="731" y="181" key="CommitChangelistDialog2" timestamp="1584688157506">
+    <state x="436" y="211" key="#com.intellij.execution.impl.EditConfigurationsDialog/36.27.1884.1053@36.27.1884.1053" timestamp="1589794405652" />
+    <state x="731" y="181" key="CommitChangelistDialog2" timestamp="1589794383432">
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
     <state x="708" y="158" key="CommitChangelistDialog2/1920.0.1440.900/0.0.1920.1080@0.0.1920.1080" timestamp="1582592898917" />
-    <state x="731" y="181" key="CommitChangelistDialog2/36.27.1884.1053@36.27.1884.1053" timestamp="1584688157506" />
+    <state x="731" y="181" key="CommitChangelistDialog2/36.27.1884.1053@36.27.1884.1053" timestamp="1589794383432" />
     <state x="818" y="441" key="DockerComposeFileDialog" timestamp="1589794353247">
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
@@ -256,10 +261,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="331" y="85" key="SettingsEditor/1920.0.1440.900/0.0.1920.1080@0.0.1920.1080" timestamp="1582591729875" />
-    <state x="578" y="290" key="Vcs.Push.Dialog.v2" timestamp="1584688170493">
+    <state x="578" y="290" key="Vcs.Push.Dialog.v2" timestamp="1589794393785">
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
-    <state x="578" y="290" key="Vcs.Push.Dialog.v2/36.27.1884.1053@36.27.1884.1053" timestamp="1584688170493" />
+    <state x="578" y="290" key="Vcs.Push.Dialog.v2/36.27.1884.1053@36.27.1884.1053" timestamp="1589794393785" />
     <state x="625" y="241" width="670" height="676" key="search.everywhere.popup" timestamp="1582591213511">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
