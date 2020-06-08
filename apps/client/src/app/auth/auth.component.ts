@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Router, ActivatedRoute } from "@angular/router";
 // tslint:disable-next-line: nx-enforce-module-boundaries
 import { User } from "@scr-web/server-schemas";
 import { ToastService } from "../toast.service";
@@ -9,12 +10,36 @@ import { ToastService } from "../toast.service";
 	templateUrl: "./auth.component.html",
 	styleUrls: ["./auth.component.scss"],
 }) export class AuthComponent {
-	authOption: "sign-up" | "sign-in" | "sign-out" = "sign-up";
+	authOption: "sign_up" | "sign_in" | "sign_out" = "sign_up";
 	platform = "instagram";
 	usernameField: string;
 	passwordField: string;
 	processing = false;
-	constructor(private readonly http: HttpClient, readonly toast: ToastService) {}
+	constructor(
+		private readonly http: HttpClient,
+		private router: Router,
+		route: ActivatedRoute,
+		readonly toast: ToastService
+	) {
+		switch (route.snapshot.fragment) {
+			case "sign_up":
+			case "sign_in":
+			case "sign_out":
+				this.authOption = route.snapshot.fragment;
+				break;
+		}
+	}
+
+	async selectSegment(event: CustomEvent) {
+		switch (event.detail.value) {
+			case "sign_up":
+			case "sign_in":
+			case "sign_out":
+				await this.router.navigate([], {queryParamsHandling: "merge", fragment: event.detail.value});
+				break;
+		}
+
+	}
 
 	async signUp(username: string, password: string) {
 		this.processing = true;

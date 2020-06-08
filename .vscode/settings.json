@@ -1,3 +1,6 @@
 {
-	"typescript.tsdk": "node_modules/typescript/lib"
+	"typescript.tsdk": "node_modules/typescript/lib",
+	"vsicons.presets.nestjs": false,
+	"vsicons.presets.angular": false,
+	"vsicons.presets.tsOfficial": false,
 }
