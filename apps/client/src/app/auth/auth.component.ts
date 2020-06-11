@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Router, ActivatedRoute } from "@angular/router";
 // tslint:disable-next-line: nx-enforce-module-boundaries
 import { User } from "@scr-web/server-schemas";
+import { environment } from "../../environments/environment";
 import { ToastService } from "../toast.service";
 
 @Component({
@@ -46,7 +47,7 @@ import { ToastService } from "../toast.service";
 		try {
 			if (username && password) {
 				const body = { username, password };
-				const user = await this.http.patch<User>("http://localhost:4100/api/auth/sign_up/instagram", body).toPromise();
+				const user = await this.http.patch<User>(`${environment.server}/api/auth/sign_up/instagram`, body).toPromise();
 				this.processing = false;
 				if (user !== undefined) {
 					console.log("Signed-up.");
@@ -71,7 +72,7 @@ import { ToastService } from "../toast.service";
 		try {
 			if (username && password) {
 				const body = { username, password };
-				const { token } = await this.http.patch<{token: string}>("http://localhost:4100/api/auth/sign_in/instagram", body).toPromise();
+				const { token } = await this.http.patch<{token: string}>(`${environment.server}/api/auth/sign_in/instagram`, body).toPromise();
 				if (token !== undefined) {
 					localStorage.setItem("instagram", token);
 					console.log("Authenticated successfully.");
@@ -95,7 +96,7 @@ import { ToastService } from "../toast.service";
 			const token = localStorage.getItem("instagram");
 			if (token !== undefined) {
 				const headers = new HttpHeaders({"Authorization": token});
-				const { status } = await this.http.patch<{status: boolean}>("http://localhost:4100/api/auth/sign_out/instagram", {}, { headers }).toPromise();
+				const { status } = await this.http.patch<{status: boolean}>(`${environment.server}/api/auth/sign_out/instagram`, {}, { headers }).toPromise();
 				if (!status) {
 					localStorage.removeItem("instagram");
 					this.toast.showToast("Deauthenticationed successfully.", "success");

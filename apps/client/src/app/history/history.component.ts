@@ -1,9 +1,10 @@
 // tslint:disable-next-line: nx-enforce-module-boundaries
 import { History } from "@scr-web/server-schemas";
 import { Component, Inject } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { ToastService } from "../toast.service";
 import { DOCUMENT } from "@angular/common";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { environment } from "../../environments/environment";
+import { ToastService } from "../toast.service";
 
 @Component({
 	selector: "scr-web-history",
@@ -24,7 +25,7 @@ export class HistoryComponent {
 			const token = localStorage.getItem("instagram");
 			if (token) {
 				const headers = new HttpHeaders({"Authorization": token});
-				this.histories = await this.http.get<History[]>(`http://localhost:4100/api/history/${this.type}`, { headers }).toPromise();
+				this.histories = await this.http.get<History[]>(`${environment.server}/api/history/${this.type}`, { headers }).toPromise();
 				this.processing = false;
 			} else {
 				this.processing = false;
@@ -43,8 +44,8 @@ export class HistoryComponent {
 			const token = localStorage.getItem("instagram");
 			if (token) {
 				const headers = new HttpHeaders({"Authorization": token});
-				await this.http.patch("http://localhost:4100/api/history/", { history, urlToDelete }, { headers }).toPromise();
-				this.histories = await this.http.get<History[]>(`http://localhost:4100/api/history/${this.type}`, { headers }).toPromise();
+				await this.http.patch(`${environment.server}/api/history/`, { history, urlToDelete }, { headers }).toPromise();
+				this.histories = await this.http.get<History[]>(`${environment.server}/api/history/${this.type}`, { headers }).toPromise();
 				this.processing = false;
 			} else {
 				this.processing = false;
@@ -63,7 +64,7 @@ export class HistoryComponent {
 			const token = localStorage.getItem("instagram");
 			if (token) {
 				const headers = new HttpHeaders({"Authorization": token});
-				this.histories = await this.http.get<History[]>(`http://localhost:4100/api/history/${this.type}`, { headers }).toPromise();
+				this.histories = await this.http.get<History[]>(`${environment.server}/api/history/${this.type}`, { headers }).toPromise();
 				this.processing = false;
 			} else {
 				this.processing = false;
