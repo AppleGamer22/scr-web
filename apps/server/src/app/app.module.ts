@@ -1,5 +1,6 @@
 import { Module } from "@nestjs/common";
 import { APP_FILTER, APP_INTERCEPTOR } from "@nestjs/core";
+import { ServeStaticModule } from "@nestjs/serve-static";
 import { MongooseModule, } from "@nestjs/mongoose";
 import { JwtModule } from "@nestjs/jwt";
 import { UserSchema, HistorySchema } from "@scr-web/server-schemas";
@@ -35,7 +36,8 @@ import { TikTokService } from "./tiktok/tiktok.service";
 				schema: HistorySchema
 			}
 		]),
-		JwtModule.register({secret: initEnvironment().JWT_SECRET})
+		JwtModule.register({secret: initEnvironment().JWT_SECRET}),
+		ServeStaticModule.forRoot({rootPath: `${__dirname}/../client/`})
 	],
 	controllers: [
 		AppController,

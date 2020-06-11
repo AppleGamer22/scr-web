@@ -2,6 +2,7 @@ import { Component, Inject } from "@angular/core";
 import { DOCUMENT } from "@angular/common";
 import { HttpClient } from "@angular/common/http";
 import { Router, ActivatedRoute } from "@angular/router";
+import { environment } from "../../environments/environment";
 import { ToastService } from "../toast.service";
 
 @Component({
@@ -34,7 +35,7 @@ import { ToastService } from "../toast.service";
 		await this.router.navigate(["/vsco"], {queryParams: { owner, id }, queryParamsHandling: "merge"});
 		try {
 			if (owner && id) {
-				this.urls = await this.http.get<string[]>(`http://localhost:4100/api/vsco/${owner}/${id}`).toPromise();
+				this.urls = await this.http.get<string[]>(`${environment.server}/api/vsco/${owner}/${id}`).toPromise();
 			} else {
 				await this.toast.showToast("Please enter a post ownder & ID.", "danger");
 			}

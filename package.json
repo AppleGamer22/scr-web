@@ -1,7 +1,7 @@
 {
 	"name": "@applegamer22/scr-web",
 	"description": "Social media web scraper web GUI for post file downloads.",
-	"version": "1.0.0-alpha.17.6",
+	"version": "1.0.0-alpha.18",
 	"author": "Omri Bornstein",
 	"publisher": "AppleGamer22",
 	"license": "MIT",
@@ -12,7 +12,7 @@
 	},
 	"scripts": {
 		"start": "ng serve client --poll=2000 & ng serve server",
-		"start:prod": "http-server -p 4200 -c-1 dist/apps/client & node dist/apps/server/main.js",
+		"start:prod": "node dist/apps/server/main.js",
 		"start:client": "ng serve client --poll=2000",
 		"start:server": "ng serve server",
 		"build": "ng build client --prod && ng build server",
@@ -41,6 +41,7 @@
 		"@nestjs/jwt": "^7.0.0",
 		"@nestjs/mongoose": "^7.0.1",
 		"@nestjs/platform-express": "^7.0.13",
+		"@nestjs/serve-static": "^2.1.1",
 		"@nrwl/angular": "^9.3.0",
 		"@nrwl/jest": "^9.3.0",
 		"@nrwl/nest": "^9.3.0",
@@ -49,7 +50,6 @@
 		"bcryptjs": "^2.4.3",
 		"core-js": "^2.5.4",
 		"dotenv": "^8.2.0",
-		"http-server": "^0.12.3",
 		"mongoose": "^5.9.14",
 		"puppeteer": "^2.0.0",
 		"reflect-metadata": "^0.1.13",

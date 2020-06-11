@@ -1,13 +1,13 @@
 <ion-content>
 	<form>
-		<ion-segment [(ngModel)]="authOption" name="auth-type">
-			<ion-segment-button value="sign-up">
+		<ion-segment (ionChange)="selectSegment($event)" [(ngModel)]="authOption" name="auth-type">
+			<ion-segment-button value="sign_up" id="sign_up">
 				<ion-label>sign-up</ion-label>
 			</ion-segment-button>
-			<ion-segment-button value="sign-in">
+			<ion-segment-button value="sign_in" id="sign_in">
 				<ion-label>sign-in</ion-label>
 			</ion-segment-button>
-			<ion-segment-button value="sign-out">
+			<ion-segment-button value="sign_out" id="sign_out">
 				<ion-label>sign-out</ion-label>
 			</ion-segment-button>
 		</ion-segment>
@@ -18,17 +18,22 @@
 				<ion-select-option value="vsco" [disabled]="true">VSCO</ion-select-option>
 			</ion-select>
 		</ion-item>
-		<ion-item *ngIf="authOption !== 'sign-out'">
+		<ion-item *ngIf="authOption !== 'sign_out'">
 			<ion-label>username</ion-label>
 			<ion-input type="text" [(ngModel)]="usernameField" name="username"></ion-input>
 		</ion-item>
-		<ion-item *ngIf="authOption !== 'sign-out'">
+		<ion-item *ngIf="authOption !== 'sign_out'">
 			<ion-label>password</ion-label>
 			<ion-input type="password" [(ngModel)]="passwordField" name="password"></ion-input>
 		</ion-item>
-		<ion-button *ngIf="authOption === 'sign-up'" (click)="signUp(usernameField, passwordField)">sign-up</ion-button>
-		<ion-button *ngIf="authOption === 'sign-in'" (click)="signIn(usernameField, passwordField)">sign-in</ion-button>
-		<ion-button *ngIf="authOption === 'sign-out'" (click)="signOut()">sign-out</ion-button>
+		<ion-button *ngIf="authOption === 'sign_up'" (click)="signUp(usernameField, passwordField)">sign_up</ion-button>
+		<ion-button *ngIf="authOption === 'sign_in'" (click)="signIn(usernameField, passwordField)">sign_in</ion-button>
+		<ion-button *ngIf="authOption === 'sign_out'" (click)="signOut()">sign_out</ion-button>
 	</form>
 	<ion-progress-bar *ngIf="processing" color="primary" type="indeterminate"></ion-progress-bar>
+	<h3>Getting started:</h3>
+	<ol>
+		<li><a href="#sign_up" (click)="authOption = 'sign_up'">sign_up</a> with your social network credentials.</li>
+		<li><a href="#sign_in" (click)="authOption = 'sign_in'">sign_in</a> with your social network credentials.</li>
+	</ol>
 </ion-content>

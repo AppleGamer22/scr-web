@@ -9,5 +9,5 @@ RUN npm install --production
 RUN npm run build
 RUN rm -rf apps libs tools
 USER node
-EXPOSE 4100 4200
+EXPOSE 4100
 CMD npm run start:prod
