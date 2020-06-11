@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import * as puppeteer from "puppeteer";
+import * as puppeteer from "puppeteer-core";
 
 @Injectable() export class StoryService {
 	async getStoryFile(user: string, item: number, browser: puppeteer.Browser, page: puppeteer.Page): Promise<string[]> {

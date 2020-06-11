@@ -1,6 +1,6 @@
 import { Test, TestingModule } from "@nestjs/testing";
 import { beginScrape } from "@scr-web/server-interfaces";
-import { Browser, Page } from "puppeteer";
+import { Browser, Page } from "puppeteer-core";
 import { HighlightService } from "./highlight.service";
 
 describe("HighlightService", () => {

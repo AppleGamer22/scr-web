@@ -1,6 +1,6 @@
 import { homedir } from "os";
 import { config } from "dotenv";
-import * as puppeteer from "puppeteer";
+import * as puppeteer from "puppeteer-core";
 import { Request } from "express";
 
 export function initEnvironment(): {JWT_SECRET: string, DB_URL: string} {

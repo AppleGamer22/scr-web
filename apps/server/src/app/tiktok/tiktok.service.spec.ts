@@ -1,5 +1,5 @@
 import { Test, TestingModule } from "@nestjs/testing";
-import { Browser, Page } from "puppeteer";
+import { Browser, Page } from "puppeteer-core";
 import { beginScrape } from "@scr-web/server-interfaces";
 import { TikTokService } from "./tiktok.service";
 
@@ -27,7 +27,7 @@ describe("TiktokService", () => {
 			done();
 			console.log(url);
 			expect(url).toContain("https://");
-			expect(url).toContain("muscdn.com")
+			expect(url).toContain("tiktokcdn.com")
 		} catch (error) {
 			console.error(error.message);
 		}
