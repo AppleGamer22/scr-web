@@ -1,8 +1,8 @@
 import { Injectable } from "@nestjs/common";
-import * as puppeteer from "puppeteer-core";
+import { Browser, Page } from "puppeteer-core";
 
 @Injectable() export class StoryService {
-	async getStoryFile(user: string, item: number, browser: puppeteer.Browser, page: puppeteer.Page): Promise<string[]> {
+	async getStoryFile(user: string, item: number, browser: Browser, page: Page): Promise<string[]> {
 		try {
 			await page.goto(`https://www.instagram.com/${user}`);
 			await page.goto(`https://www.instagram.com/stories/${user}`, {waitUntil: "domcontentloaded"});
@@ -10,12 +10,13 @@ import * as puppeteer from "puppeteer-core";
 				await browser.close();
 				throw new Error(`Failed to find ${user}'s story feed.`);
 			}
-			for (var i = 0; i < item - 1; i += 1) {
+			await page.waitForSelector("div.yn6BW > a", {visible: true});
+			for (var i = 0; i < item - 1; i++) {
 				await page.waitForSelector("div.coreSpriteRightChevron", {visible: true});
 				await page.click("div.coreSpriteRightChevron");
 			}
 			if ((await page.$("div._7UhW9")) !== null) await page.click("div._7UhW9");
-			await page.keyboard.press("Space");
+			// await page.keyboard.press("Space");
 			var urls: string[] = [];
 			await page.waitForSelector("div.qbCDp", {visible: true});
 			const imageURL = (await page.$$eval("div.qbCDp > img", images => images.map(image => image.getAttribute("srcset"))))[0];
