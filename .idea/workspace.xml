@@ -47,7 +47,7 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
-    <property name="settings.editor.selected.configurable" value="preferences.editor" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
   </component>
   <component name="RunAnythingCache">
@@ -145,6 +145,11 @@
       <workItem from="1590550819402" duration="15000" />
       <workItem from="1590550876415" duration="432000" />
       <workItem from="1590562549799" duration="610000" />
+      <workItem from="1592275267781" duration="65000" />
+      <workItem from="1592275355839" duration="95000" />
+      <workItem from="1592275457785" duration="43000" />
+      <workItem from="1592275507665" duration="112000" />
+      <workItem from="1592276125210" duration="39000" />
     </task>
     <task id="LOCAL-00001" summary="WebStorm config files">
       <created>1571192322206</created>
@@ -236,7 +241,6 @@
     <state x="731" y="181" width="767" height="872" key="CommitChangelistDialog2" timestamp="1590563153797">
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
-    <state x="708" y="158" key="CommitChangelistDialog2/1920.0.1440.900/0.0.1920.1080@0.0.1920.1080" timestamp="1582592898917" />
     <state x="731" y="181" width="767" height="872" key="CommitChangelistDialog2/36.27.1884.1053@36.27.1884.1053" timestamp="1590563153797" />
     <state x="818" y="441" key="DockerComposeFileDialog" timestamp="1589794353247">
       <screen x="36" y="27" width="1884" height="1053" />
@@ -246,33 +250,17 @@
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
     <state x="760" y="311" key="FileChooserDialogImpl/36.27.1884.1053@36.27.1884.1053" timestamp="1589794351569" />
-    <state width="1899" height="350" key="GridCell.Tab.0.bottom" timestamp="1582588984856">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state x="561" y="291" width="824" height="524" key="IDE.errors.dialog" timestamp="1592275554983">
+      <screen x="36" y="27" width="1884" height="1053" />
     </state>
-    <state width="1899" height="350" key="GridCell.Tab.0.bottom/1920.0.1440.900/0.0.1920.1080@0.0.1920.1080" timestamp="1582588984856" />
-    <state width="1899" height="350" key="GridCell.Tab.0.center" timestamp="1582588984854">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state x="561" y="291" width="824" height="524" key="IDE.errors.dialog/36.27.1884.1053@36.27.1884.1053" timestamp="1592275554983" />
+    <state x="487" y="189" key="SettingsEditor" timestamp="1592275617810">
+      <screen x="36" y="27" width="1884" height="1053" />
     </state>
-    <state width="1899" height="350" key="GridCell.Tab.0.center/1920.0.1440.900/0.0.1920.1080@0.0.1920.1080" timestamp="1582588984854" />
-    <state width="1899" height="350" key="GridCell.Tab.0.left" timestamp="1582588984853">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1899" height="350" key="GridCell.Tab.0.left/1920.0.1440.900/0.0.1920.1080@0.0.1920.1080" timestamp="1582588984853" />
-    <state width="1899" height="350" key="GridCell.Tab.0.right" timestamp="1582588984855">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1899" height="350" key="GridCell.Tab.0.right/1920.0.1440.900/0.0.1920.1080@0.0.1920.1080" timestamp="1582588984855" />
-    <state x="331" y="85" key="SettingsEditor" timestamp="1582591729875">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="331" y="85" key="SettingsEditor/1920.0.1440.900/0.0.1920.1080@0.0.1920.1080" timestamp="1582591729875" />
+    <state x="487" y="189" key="SettingsEditor/36.27.1884.1053@36.27.1884.1053" timestamp="1592275617810" />
     <state x="578" y="290" key="Vcs.Push.Dialog.v2" timestamp="1589794393785">
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
     <state x="578" y="290" key="Vcs.Push.Dialog.v2/36.27.1884.1053@36.27.1884.1053" timestamp="1589794393785" />
-    <state x="625" y="241" width="670" height="676" key="search.everywhere.popup" timestamp="1582591213511">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="625" y="241" width="670" height="676" key="search.everywhere.popup/1920.0.1440.900/0.0.1920.1080@0.0.1920.1080" timestamp="1582591213511" />
   </component>
 </project>
