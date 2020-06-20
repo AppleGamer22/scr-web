@@ -47,7 +47,7 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
   </component>
   <component name="RunAnythingCache">
@@ -150,6 +150,9 @@
       <workItem from="1592275457785" duration="43000" />
       <workItem from="1592275507665" duration="112000" />
       <workItem from="1592276125210" duration="39000" />
+      <workItem from="1592621190263" duration="2000" />
+      <workItem from="1592621303000" duration="46000" />
+      <workItem from="1592621373156" duration="57000" />
     </task>
     <task id="LOCAL-00001" summary="WebStorm config files">
       <created>1571192322206</created>
@@ -234,10 +237,10 @@
     <option name="LAST_COMMIT_MESSAGE" value=".idea files" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="436" y="211" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1589794405652">
+    <state x="436" y="211" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1592621416415">
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
-    <state x="436" y="211" key="#com.intellij.execution.impl.EditConfigurationsDialog/36.27.1884.1053@36.27.1884.1053" timestamp="1589794405652" />
+    <state x="436" y="211" key="#com.intellij.execution.impl.EditConfigurationsDialog/36.27.1884.1053@36.27.1884.1053" timestamp="1592621416415" />
     <state x="731" y="181" width="767" height="872" key="CommitChangelistDialog2" timestamp="1590563153797">
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
@@ -254,10 +257,10 @@
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
     <state x="561" y="291" width="824" height="524" key="IDE.errors.dialog/36.27.1884.1053@36.27.1884.1053" timestamp="1592275554983" />
-    <state x="487" y="189" key="SettingsEditor" timestamp="1592275617810">
+    <state x="507" y="205" key="SettingsEditor" timestamp="1592621350332">
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
-    <state x="487" y="189" key="SettingsEditor/36.27.1884.1053@36.27.1884.1053" timestamp="1592275617810" />
+    <state x="507" y="205" key="SettingsEditor/36.27.1884.1053@36.27.1884.1053" timestamp="1592621350332" />
     <state x="578" y="290" key="Vcs.Push.Dialog.v2" timestamp="1589794393785">
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
