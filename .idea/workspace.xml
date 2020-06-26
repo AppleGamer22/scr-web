@@ -1,7 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:GitHub" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e676335-c69e-4250-b646-51e47a0008ba" name="Default Changelist" comment="" />
+    <list default="true" id="3e676335-c69e-4250-b646-51e47a0008ba" name="Default Changelist" comment=".idea files">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,6 +34,13 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="hiddenUrls">
+      <set>
+        <option value="https://github.com/AppleGamer22/scr-gui.git" />
+      </set>
+    </option>
   </component>
   <component name="ProjectId" id="1S0SJnHF2uCLqi5jQzhx3TRP331" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -53,37 +80,7 @@
       <command value="cd .." />
     </option>
   </component>
-  <component name="RunManager" selected="Docker.compose">
-    <configuration name="test all" type="JavaScriptTestRunnerJest">
-      <config-file value="$PROJECT_DIR$/jest.config.js" />
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="ALL" />
-      <method v="2" />
-    </configuration>
-    <configuration name="test client" type="JavaScriptTestRunnerJest">
-      <config-file value="$PROJECT_DIR$/apps/client/jest.config.js" />
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="ALL" />
-      <method v="2" />
-    </configuration>
-    <configuration name="test server" type="JavaScriptTestRunnerJest">
-      <config-file value="$PROJECT_DIR$/apps/server/jest.config.js" />
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="ALL" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager">
     <configuration name="compose" type="docker-deploy" factoryName="docker-compose.yml" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
@@ -103,12 +100,6 @@
       <envs />
       <method v="2" />
     </configuration>
-    <list>
-      <item itemvalue="Docker.compose" />
-      <item itemvalue="Jest.test all" />
-      <item itemvalue="Jest.test client" />
-      <item itemvalue="Jest.test server" />
-    </list>
   </component>
   <component name="SvnConfiguration">
     <configuration>$USER_HOME$/.subversion</configuration>
@@ -242,14 +233,14 @@
     <option name="LAST_COMMIT_MESSAGE" value=".idea files" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="436" y="211" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1592621416415">
+    <state x="436" y="211" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1593165019058">
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
-    <state x="436" y="211" key="#com.intellij.execution.impl.EditConfigurationsDialog/36.27.1884.1053@36.27.1884.1053" timestamp="1592621416415" />
-    <state x="731" y="181" width="801" height="872" key="CommitChangelistDialog2" timestamp="1592621443915">
+    <state x="436" y="211" key="#com.intellij.execution.impl.EditConfigurationsDialog/36.27.1884.1053@36.27.1884.1053" timestamp="1593165019058" />
+    <state x="731" y="181" width="801" height="872" key="CommitChangelistDialog2" timestamp="1593165011751">
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
-    <state x="731" y="181" width="801" height="872" key="CommitChangelistDialog2/36.27.1884.1053@36.27.1884.1053" timestamp="1592621443915" />
+    <state x="731" y="181" width="801" height="872" key="CommitChangelistDialog2/36.27.1884.1053@36.27.1884.1053" timestamp="1593165011751" />
     <state x="818" y="441" key="DockerComposeFileDialog" timestamp="1589794353247">
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
@@ -258,6 +249,22 @@
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
     <state x="760" y="311" key="FileChooserDialogImpl/36.27.1884.1053@36.27.1884.1053" timestamp="1589794351569" />
+    <state width="1861" height="286" key="GridCell.Tab.0.bottom" timestamp="1593165005084">
+      <screen x="36" y="27" width="1884" height="1053" />
+    </state>
+    <state width="1861" height="286" key="GridCell.Tab.0.bottom/36.27.1884.1053@36.27.1884.1053" timestamp="1593165005084" />
+    <state width="1861" height="286" key="GridCell.Tab.0.center" timestamp="1593165005083">
+      <screen x="36" y="27" width="1884" height="1053" />
+    </state>
+    <state width="1861" height="286" key="GridCell.Tab.0.center/36.27.1884.1053@36.27.1884.1053" timestamp="1593165005083" />
+    <state width="1861" height="286" key="GridCell.Tab.0.left" timestamp="1593165005083">
+      <screen x="36" y="27" width="1884" height="1053" />
+    </state>
+    <state width="1861" height="286" key="GridCell.Tab.0.left/36.27.1884.1053@36.27.1884.1053" timestamp="1593165005083" />
+    <state width="1861" height="286" key="GridCell.Tab.0.right" timestamp="1593165005083">
+      <screen x="36" y="27" width="1884" height="1053" />
+    </state>
+    <state width="1861" height="286" key="GridCell.Tab.0.right/36.27.1884.1053@36.27.1884.1053" timestamp="1593165005083" />
     <state x="561" y="291" width="824" height="524" key="IDE.errors.dialog" timestamp="1592275554983">
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
@@ -270,5 +277,9 @@
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
     <state x="578" y="290" key="Vcs.Push.Dialog.v2/36.27.1884.1053@36.27.1884.1053" timestamp="1592621445261" />
+    <state x="776" y="469" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1593164980727">
+      <screen x="36" y="27" width="1884" height="1053" />
+    </state>
+    <state x="776" y="469" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/36.27.1884.1053@36.27.1884.1053" timestamp="1593164980727" />
   </component>
 </project>
