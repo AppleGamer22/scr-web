@@ -19,9 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e676335-c69e-4250-b646-51e47a0008ba" name="Default Changelist" comment=".idea files">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="3e676335-c69e-4250-b646-51e47a0008ba" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -206,7 +204,14 @@
       <option name="project" value="LOCAL" />
       <updated>1592621444008</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary=".idea files">
+      <created>1593165023581</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1593165023581</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -237,10 +242,10 @@
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
     <state x="436" y="211" key="#com.intellij.execution.impl.EditConfigurationsDialog/36.27.1884.1053@36.27.1884.1053" timestamp="1593165019058" />
-    <state x="731" y="181" width="801" height="872" key="CommitChangelistDialog2" timestamp="1593165011751">
+    <state x="731" y="181" width="801" height="872" key="CommitChangelistDialog2" timestamp="1593165023511">
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
-    <state x="731" y="181" width="801" height="872" key="CommitChangelistDialog2/36.27.1884.1053@36.27.1884.1053" timestamp="1593165011751" />
+    <state x="731" y="181" width="801" height="872" key="CommitChangelistDialog2/36.27.1884.1053@36.27.1884.1053" timestamp="1593165023511" />
     <state x="818" y="441" key="DockerComposeFileDialog" timestamp="1589794353247">
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
@@ -269,14 +274,14 @@
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
     <state x="561" y="291" width="824" height="524" key="IDE.errors.dialog/36.27.1884.1053@36.27.1884.1053" timestamp="1592275554983" />
-    <state x="507" y="205" key="SettingsEditor" timestamp="1592621350332">
+    <state x="507" y="205" key="SettingsEditor" timestamp="1593165067668">
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
-    <state x="507" y="205" key="SettingsEditor/36.27.1884.1053@36.27.1884.1053" timestamp="1592621350332" />
-    <state x="578" y="290" key="Vcs.Push.Dialog.v2" timestamp="1592621445261">
+    <state x="507" y="205" key="SettingsEditor/36.27.1884.1053@36.27.1884.1053" timestamp="1593165067668" />
+    <state x="578" y="290" key="Vcs.Push.Dialog.v2" timestamp="1593165024990">
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
-    <state x="578" y="290" key="Vcs.Push.Dialog.v2/36.27.1884.1053@36.27.1884.1053" timestamp="1592621445261" />
+    <state x="578" y="290" key="Vcs.Push.Dialog.v2/36.27.1884.1053@36.27.1884.1053" timestamp="1593165024990" />
     <state x="776" y="469" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1593164980727">
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
