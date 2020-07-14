@@ -33,7 +33,8 @@
       container_name: scr
       image: applegamer22/scr-web:<version>
       environment:
-      JWT_SECRET: <some_private_key>
+        JWT_SECRET: <some_private_key>
+        DATABASE_URL: mongodb://<some_database_location>:27017/<some_database>
       ports:
         - <available_port>:4100
       volumes:
