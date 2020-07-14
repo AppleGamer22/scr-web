@@ -26,7 +26,7 @@ import { TikTokService } from "./tiktok/tiktok.service";
 
 @Module({
 	imports: [
-		MongooseModule.forRoot(initEnvironment().DB_URL, {useNewUrlParser: true, retryAttempts: Number.MAX_VALUE}),
+		MongooseModule.forRoot(initEnvironment().DATABASE_URL, {useNewUrlParser: true, retryAttempts: Number.MAX_VALUE}),
 		MongooseModule.forFeature([
 			{
 				name: "Users",
