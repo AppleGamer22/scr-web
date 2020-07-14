@@ -103,7 +103,7 @@
 							"apps/client/tsconfig.app.json",
 							"apps/client/tsconfig.spec.json"
 						],
-						"exclude": ["**/node_modules/**", "!apps/client/**"]
+						"exclude": ["**/node_modules/**", "!apps/client/**/*"]
 					}
 				},
 				"test": {
@@ -160,7 +160,7 @@
 							"apps/server/tsconfig.app.json",
 							"apps/server/tsconfig.spec.json"
 						],
-						"exclude": ["**/node_modules/**", "!apps/server/**"]
+						"exclude": ["**/node_modules/**", "!apps/server/**/*"]
 					}
 				},
 				"test": {
@@ -186,7 +186,7 @@
 							"libs/scr/tsconfig.lib.json",
 							"libs/scr/tsconfig.spec.json"
 						],
-						"exclude": ["**/node_modules/**", "!libs/scr/**"]
+						"exclude": ["**/node_modules/**", "!libs/scr/**/*"]
 					}
 				},
 				"test": {

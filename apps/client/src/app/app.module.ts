@@ -8,13 +8,11 @@ import { IonicModule, IonicRouteStrategy } from "@ionic/angular";
 import { AppComponent } from "./app.component";
 import { environment } from "../environments/environment";
 import { AppRoutingModule } from "./app-routing.module";
-import { ThemeToggleComponent } from "./theme-toggle/theme-toggle.component";
 import { ToastService } from "./toast.service";
 
 @NgModule({
 	declarations: [
-		AppComponent,
-		ThemeToggleComponent,
+		AppComponent
 	],
 	imports: [
 		BrowserModule,

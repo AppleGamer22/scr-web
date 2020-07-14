@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { userAgent } from "@scr-web/server-interfaces";
-import { Browser, Page } from "puppeteer";
+import { Browser, Page } from "puppeteer-core";
 
 declare global {
 	interface Window {

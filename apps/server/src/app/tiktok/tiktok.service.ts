@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { Browser, Page } from "puppeteer";
+import { Browser, Page } from "puppeteer-core";
 
 @Injectable() export class TikTokService {
 	async getPostFile(id: string, browser: Browser, page: Page): Promise<string> {

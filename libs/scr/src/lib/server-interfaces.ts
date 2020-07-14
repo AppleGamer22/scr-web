@@ -1,15 +1,16 @@
 import { homedir } from "os";
 import { config } from "dotenv";
-import * as puppeteer from "puppeteer";
+import * as puppeteer from "puppeteer-core";
 import { Request } from "express";
 
-export function initEnvironment(): {JWT_SECRET: string, DB_URL: string} {
+export function initEnvironment(): {JWT_SECRET: string, DATABASE_URL: string} {
 	config({path: `${process.cwd()}/env.env`});
-	const { JWT_SECRET, ENV } = process.env;
-	const DB_URL = (ENV === "docker") ? "mongodb://database:27017/scr" : "mongodb://localhost:27017/scr";
-	if (JWT_SECRET !== undefined) return { JWT_SECRET, DB_URL };
-	if (JWT_SECRET === undefined) {
-		console.error("No JWT token was defined.");
+	const { JWT_SECRET, DATABASE_URL, ENV } = process.env;
+	// const DATABASE_URL = (ENV === "docker") ? "mongodb://database:27017/scr" : "mongodb://localhost:27017/scr";
+	if (JWT_SECRET !== undefined && DATABASE_URL !== undefined) {
+		return { JWT_SECRET, DATABASE_URL };
+	} else {
+		console.error("Some environment are not defined.");
 		process.exit(1);
 	}
 }

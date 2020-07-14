@@ -35,9 +35,7 @@
       environment:
       JWT_SECRET: <some_private_key>
       ports:
-        - 4100:4100
-        - 4200:4200
-        - 7777:7777
+        - <available_port>:4100
       volumes:
         - ./some_local_directory:/scr/users
     database:

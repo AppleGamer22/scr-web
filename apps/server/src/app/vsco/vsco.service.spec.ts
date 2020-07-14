@@ -1,5 +1,5 @@
 import { Test, TestingModule } from "@nestjs/testing";
-import { Browser, Page } from "puppeteer";
+import { Browser, Page } from "puppeteer-core";
 import { beginScrape } from "@scr-web/server-interfaces";
 import { VSCOService } from "./vsco.service";
 

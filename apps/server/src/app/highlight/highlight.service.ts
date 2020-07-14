@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { Browser, Page } from "puppeteer";
+import { Browser, Page } from "puppeteer-core";
 
 @Injectable() export class HighlightService {
 	async getHighlightFile(highlight: string, item: number, browser: Browser, page: Page): Promise<string[]> {
