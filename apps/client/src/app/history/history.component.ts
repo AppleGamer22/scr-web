@@ -46,16 +46,14 @@ export class HistoryComponent {
 				const headers = new HttpHeaders({"Authorization": token});
 				await this.http.patch(`${environment.server}/api/history/`, { history, urlToDelete }, { headers }).toPromise();
 				this.histories = await this.http.get<History[]>(`${environment.server}/api/history/${this.type}`, { headers }).toPromise();
-				this.processing = false;
 			} else {
-				this.processing = false;
 				await this.toast.showToast("You are not authenticated.", "danger");
 			}
 		} catch (error) {
-			this.processing = false;
 			console.error((error as Error).message);
 			this.toast.showToast((error as Error).message, "danger");
 		}
+		this.processing = false;
 	}
 
 	async filterHistory() {
@@ -65,16 +63,14 @@ export class HistoryComponent {
 			if (token) {
 				const headers = new HttpHeaders({"Authorization": token});
 				this.histories = await this.http.get<History[]>(`${environment.server}/api/history/${this.type}`, { headers }).toPromise();
-				this.processing = false;
 			} else {
-				this.processing = false;
 				await this.toast.showToast("You are not authenticated.", "danger");
 			}
 		} catch (error) {
-			this.processing = false;
 			console.error((error as Error).message);
 			this.toast.showToast((error as Error).message, "danger");
 		}
+		this.processing = false;
 	}
 
 	async downloadFile(url: string) {

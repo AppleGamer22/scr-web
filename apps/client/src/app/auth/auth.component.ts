@@ -48,23 +48,20 @@ import { ToastService } from "../toast.service";
 			if (username && password) {
 				const body = { username, password };
 				const user = await this.http.patch<User>(`${environment.server}/api/auth/sign_up/instagram`, body).toPromise();
-				this.processing = false;
 				if (user !== undefined) {
 					console.log("Signed-up.");
 					this.toast.showToast("Signed-up.", "success");
 					await this.signIn(username, password);
-					this.processing = false;
 				} else {
-					this.processing = false;
 					console.error("Authentication failed.");
 					this.toast.showToast("Authentication failed.", "danger");
 				}
 			}
 		} catch (error) {
-			this.processing = false;
 			console.error((error as Error).message);
 			this.toast.showToast((error as Error).message, "danger");
 		}
+		this.processing = false;
 	}
 
 	async signIn(username: string, password: string) {
@@ -77,21 +74,20 @@ import { ToastService } from "../toast.service";
 					localStorage.setItem("instagram", token);
 					console.log("Authenticated successfully.");
 					this.toast.showToast("Authenticated successfully.", "success");
-					this.processing = false;
 					location.reload();
 				} else {
-					this.processing = false;
 					console.error("Authentication failed.");
 					this.toast.showToast("Authentication failed.", "danger");
 				}
 			}
 		} catch (error) {
-			this.processing = false;
 			console.error((error as Error).message);
 			this.toast.showToast((error as Error).message, "danger");
 		}
+		this.processing = false;
 	}
 	async signOut() {
+		this.processing = true;
 		try {
 			const token = localStorage.getItem("instagram");
 			if (token !== undefined) {
@@ -102,15 +98,14 @@ import { ToastService } from "../toast.service";
 					this.toast.showToast("Deauthenticationed successfully.", "success");
 					location.reload();
 				} else {
-					this.processing = false;
 					console.error("Deauthentication failed.");
 					this.toast.showToast("Deauthentication failed.", "danger");
 				}
 			}
 		} catch (error) {
-			this.processing = false;
 			console.error((error as Error).message);
 			this.toast.showToast((error as Error).message, "danger");
 		}
+		this.processing = false;
 	}
 }
