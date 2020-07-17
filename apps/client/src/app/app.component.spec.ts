@@ -5,7 +5,6 @@ import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { IonicModule } from "@ionic/angular";
 import { AppComponent } from "./app.component";
-import { ThemeToggleComponent } from "./theme-toggle/theme-toggle.component";
 
 describe("AppComponent", () => {
 	beforeEach(async(() => {
@@ -17,8 +16,7 @@ describe("AppComponent", () => {
 				IonicModule.forRoot({scrollAssist: true})
 			],
 			declarations: [
-				AppComponent,
-				ThemeToggleComponent
+				AppComponent
 			],
 			schemas: [CUSTOM_ELEMENTS_SCHEMA]
 		}).compileComponents();

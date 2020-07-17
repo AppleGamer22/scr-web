@@ -1,7 +1,7 @@
 {
 	"name": "@applegamer22/scr-web",
 	"description": "Social media web scraper web GUI for post file downloads.",
-	"version": "1.0.0-alpha.19",
+	"version": "1.0.0-alpha.19.1",
 	"author": "Omri Bornstein",
 	"publisher": "AppleGamer22",
 	"license": "MIT",
@@ -18,7 +18,7 @@
 		"build": "ng build client --prod && ng build server",
 		"build:client": "ng build client --prod",
 		"build:server": "ng build server",
-		"test": "ng test",
+		"test": "ng test client && ng test server",
 		"postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points && node ./decorate-angular-cli.js"
 	},
 	"dependencies": {
