@@ -30,7 +30,11 @@ export class TikTokComponent {
 			this.submit(owner, id);
 		}
 	}
-
+	/**
+	 * Sends a GET request to the server for the URL(s) of the requested post
+	 * @param owner post owner
+	 * @param id post ID
+	 */
 	async submit(owner: string, id: string) {
 		this.processing = true;
 		await this.router.navigate(["/tiktok"], {queryParams: { owner, id }, queryParamsHandling: "merge"});
@@ -46,7 +50,10 @@ export class TikTokComponent {
 		}
 		this.processing = false;
 	}
-
+	/**
+	 * Initiates a download dialog for a given filew URL
+	 * @param url URL of file to download
+	 */
 	async downloadFile(url: string) {
 		const arrayBuffer = await this.http.get(url, {responseType: "arraybuffer"}).toPromise();
 		const blob = new Blob([arrayBuffer], {type: "video/mp4"});

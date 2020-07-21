@@ -29,7 +29,11 @@ import { ToastService } from "../toast.service";
 			this.submit(id, number);
 		}
 	}
-
+	/**
+	 * Sends a GET request to the server for the URL(s) of the requested story
+	 * @param id story ID
+	 * @param number story ID
+	 */
 	async submit(id: string, number: number) {
 		this.processing = true;
 		await this.router.navigate(["/story"], {queryParams: { id, number }, queryParamsHandling: "merge"});
@@ -51,7 +55,10 @@ import { ToastService } from "../toast.service";
 		}
 		this.processing = false;
 	}
-
+	/**
+	 * Initiates a download dialog for a given filew URL
+	 * @param url URL of file to download
+	 */
 	async downloadFile(url: string) {
 		const arrayBuffer = await this.http.get(url, {responseType: "arraybuffer"}).toPromise();
 		let type: "image/jpeg" | "video/mp4";

@@ -29,7 +29,11 @@ import { ToastService } from "../toast.service";
 			this.submit(id, number);
 		}
 	}
-
+	/**
+	 * Sends a GET request to the server for the URL(s) of the requested highlight
+	 * @param id highlight ID
+	 * @param number highlight number
+	 */
 	async submit(id: string, number: number) {
 		this.processing = true;
 		await this.router.navigate(["/highlight"], {queryParams: { id, number }, queryParamsHandling: "merge"});
@@ -49,9 +53,12 @@ import { ToastService } from "../toast.service";
 			console.error((error as Error).message);
 			this.toast.showToast((error as Error).message, "danger");
 		}
-		this.processing = false
+		this.processing = false;
 	}
-
+	/**
+	 * Initiates a download dialog for a given filew URL
+	 * @param url URL of file to download
+	 */
 	async downloadFile(url: string) {
 		const arrayBuffer = await this.http.get(url, {responseType: "arraybuffer"}).toPromise();
 		let type: "image/jpeg" | "video/mp4";

@@ -30,7 +30,10 @@ import { ToastService } from "../toast.service";
 				break;
 		}
 	}
-
+	/**
+	 * Updates route based on selected authentication mode
+	 * @param event segment change event
+	 */
 	async selectSegment(event: CustomEvent) {
 		switch (event.detail.value) {
 			case "sign_up":
@@ -39,9 +42,12 @@ import { ToastService } from "../toast.service";
 				await this.router.navigate([], {queryParamsHandling: "merge", fragment: event.detail.value});
 				break;
 		}
-
 	}
-
+	/**
+	 * Signs-up using credentials to chosen social network
+	 * @param username user's username
+	 * @param password user's password
+	 */
 	async signUp(username: string, password: string) {
 		this.processing = true;
 		try {
@@ -63,7 +69,11 @@ import { ToastService } from "../toast.service";
 		}
 		this.processing = false;
 	}
-
+	/**
+	 * Signs-in using credentials to chosen social network
+	 * @param username user's username
+	 * @param password user's password
+	 */
 	async signIn(username: string, password: string) {
 		this.processing = true;
 		try {
@@ -86,6 +96,9 @@ import { ToastService } from "../toast.service";
 		}
 		this.processing = false;
 	}
+	/**
+	 * Signs in from chosen social network
+	 */
 	async signOut() {
 		this.processing = true;
 		try {
