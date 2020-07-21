@@ -10,6 +10,13 @@ declare global {
 }
 
 @Injectable() export class InstagramService {
+	/**
+	 * Scrapes Instagram post files
+	 * @param id post ID
+	 * @param browser Puppeteer browser
+	 * @param page Puppeteer page
+	 * @returns URL string array
+	 */
 	async getPostFiles(id: string, browser: Browser, page: Page): Promise<string[]> {
 		try {
 			await page.goto(`https://www.instagram.com/p/${id}`, {waitUntil: "domcontentloaded"});
@@ -34,7 +41,14 @@ declare global {
 			throw new Error(`Failed to process post ${id}`);
 		}
 	}
-
+	/**
+	 * Sign's-in to Instagram's website
+	 * @param browser Puppeteer browser
+	 * @param page Puppeteer page
+	 * @param username user's username
+	 * @param password user's password
+	 * @returns success Boolean
+	 */
 	async signIn(browser: Browser, page: Page, username: string, password: string): Promise<boolean> {
 		try {
 			await page.setUserAgent(userAgent());
@@ -51,7 +65,12 @@ declare global {
 			return false;
 		}
 	}
-
+	/**
+	 * Sign's-out from Instagram's website
+	 * @param page Puppeteer page
+	 * @param username user's username
+	 * @returns success boolean
+	 */
 	async signOut(page: Page, username: string): Promise<boolean> {
 		try {
 			await page.setUserAgent(userAgent());

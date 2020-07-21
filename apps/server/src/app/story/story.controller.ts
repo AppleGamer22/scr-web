@@ -10,7 +10,13 @@ import { HistoryService } from "../history/history.service";
 		private readonly storyService: StoryService,
 		private readonly historyService: HistoryService
 	) {}
-
+	/**
+	 * handles HTTP response for story
+	 * @param story story owner
+	 * @param item story number
+	 * @param request GET HTTP request
+	 * @returns URL string array
+	 */
 	@Get(":story/:item") @UseGuards(AuthGuard) async getHighlightFile(
 		@Param("story") story: string,
 		@Param("item") item: number,

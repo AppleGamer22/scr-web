@@ -7,6 +7,12 @@ import { AuthGuard } from "../auth/auth.guard";
 
 @Controller("history") export class HistoryController {
 	constructor(private readonly historyService: HistoryService) {}
+	/**
+	 * handles HTTP response for history
+	 * @param request GET HTTP request
+	 * @param type resource type
+	 * @returns History items array
+	 */
 	@Get(":type") @UseGuards(AuthGuard) async getHistories(
 		@Req() request: Request,
 		@Param("type") type: "instagram" | "highlight" | "story" | "vsco" | "all"
@@ -23,6 +29,12 @@ import { AuthGuard } from "../auth/auth.guard";
 			HttpException("Failed to find history logs.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	/**
+	 * handles HTTP response for history editing, deletes requested URL from history
+	 * @param request PATCH HTTP request
+	 * @param body PATCH HTTP request body
+	 * @returns Edited History object
+	 */
 	@Patch("") @UseGuards(AuthGuard) editHistory(@Req() request: Request, @Body() body: {history: History, urlToDelete: string}): Promise<History> {
 		const u_id = (request as ScrapeRequest).user.U_ID;
 		const { U_ID, _id, network } = body.history;

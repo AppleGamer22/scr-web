@@ -8,6 +8,11 @@ import { Request } from "express";
 
 @Injectable() export class AuthGuard implements CanActivate {
 	constructor(private readonly jwt: JwtService, @InjectModel("Users") private readonly Users: Model<User>) {}
+	/**
+	 * decides if a request is allowed to be processed based on authentication
+	 * @param context execution context of HTTP request
+	 * @returns a Boolean of whether the request is allowed to be processed
+	 */
 	async canActivate(context: ExecutionContext): Promise<boolean> {
 		try {
 			let request = context.switchToHttp().getRequest<Request>();

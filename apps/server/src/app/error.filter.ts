@@ -2,6 +2,11 @@ import { ArgumentsHost, Catch, ExceptionFilter, HttpException, Logger, HttpStatu
 import { Request, Response } from "express";
 
 @Catch() export class ErrorFilter implements ExceptionFilter {
+	/**
+	 * Catches exception, logs them, and returns an error HTTP response
+	 * @param exception caught exception
+	 * @param host arguments host
+	 */
 	catch(exception: unknown, host: ArgumentsHost) {
 		const request = host.switchToHttp().getRequest<Request>();
 		const response = host.switchToHttp().getResponse<Response>();

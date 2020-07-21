@@ -8,6 +8,12 @@ import { HistoryService } from "../history/history.service";
 		private readonly vscoService: VSCOService,
 		private readonly historyService: HistoryService
 	) {}
+	/**
+	 * handles HTTP response for vsco
+	 * @param user post owner
+	 * @param post post ID
+	 * @returns URL string array
+	 */
 	@Get(":user/:post") async getPostFiles(@Param("user") user: string, @Param("post") post: string): Promise<string[]> {
 		const postAddress = `${user}/media/${post}`;
 		try {

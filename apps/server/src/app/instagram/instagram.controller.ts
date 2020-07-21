@@ -10,6 +10,12 @@ import { HistoryService } from "../history/history.service";
 		private readonly instagramService: InstagramService,
 		private readonly historyService: HistoryService
 	) {}
+	/**
+	 * handles HTTP response for instagram
+	 * @param post post ID
+	 * @param request GET HTTP request
+	 * @returns URL string array
+	 */
 	@Get(":post") @UseGuards(AuthGuard) async getPostFiles(
 		@Param("post") post: string,
 		@Req() request: Request
