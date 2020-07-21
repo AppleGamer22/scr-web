@@ -2,7 +2,9 @@ import { homedir } from "os";
 import { config } from "dotenv";
 import * as puppeteer from "puppeteer-core";
 import { Request } from "express";
-
+/**
+ * Initialises server environment
+ */
 export function initEnvironment(): {JWT_SECRET: string, DATABASE_URL: string} {
 	config({path: `${process.cwd()}/env.env`});
 	const { JWT_SECRET, DATABASE_URL, ENV } = process.env;
@@ -14,7 +16,11 @@ export function initEnvironment(): {JWT_SECRET: string, DATABASE_URL: string} {
 		process.exit(1);
 	}
 }
-
+/**
+ * Finds Chrome user directory path
+ * @param U_ID user's _id property
+ * @returns Chrome user directory path
+ */
 export function chromeUserDataDirectory(U_ID: string): string {
 	if (U_ID === "") return `${process.cwd()}/users_dev/admin/`;
 	if (process.env.ENV === "docker") return `/scr/users/${U_ID}/`;
@@ -27,7 +33,10 @@ export interface ScrapeRequest extends Request {
 		U_ID: string
 	}
 }
-
+/**
+ * Finds Chrome binary path
+ * @returns Chrome binary path
+ */
 function chromeExecutable(): string {
 	if (process.env.ENV === "docker") {
 		return "/usr/bin/chromium-browser";
@@ -43,18 +52,12 @@ function chromeExecutable(): string {
 		}
 	}
 }
-
-export function userAgent(): string {
-	switch (process.platform) {
-		case "darwin":
-			return "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36";
-		case "win32":
-			return "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36";
-		default:
-			return "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/71.0.3559.6 Chrome/71.0.3559.6 Safari/537.36";
-	}
-}
-
+/**
+ * Initiates Chrome for scraping
+ * @param U_ID user's _id property
+ * @param incognito private mode Boolean
+ * @returns Puppeteer browser and page
+ */
 export async function beginScrape(U_ID: string, incognito: boolean = false): Promise<{browser: puppeteer.Browser, page: puppeteer.Page}> {
 	try {
 		const args = [
@@ -76,7 +79,7 @@ export async function beginScrape(U_ID: string, incognito: boolean = false): Pro
 			// @ts-ignore
 			delete navigator.__proto__.webdriver;
 		});
-		await page.setUserAgent(userAgent());
+		// await page.setUserAgent(userAgent());
 		return { browser, page };
 	} catch (error) {
 		throw new Error(error.message as string);
