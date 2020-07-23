@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { userAgent } from "@scr-web/server-interfaces";
+// import { userAgent } from "@scr-web/server-interfaces";
 import { Browser, Page } from "puppeteer-core";
 
 declare global {
@@ -51,7 +51,7 @@ declare global {
 	 */
 	async signIn(browser: Browser, page: Page, username: string, password: string): Promise<boolean> {
 		try {
-			await page.setUserAgent(userAgent());
+			// await page.setUserAgent(userAgent());
 			await page.goto("https://www.instagram.com/accounts/login/");
 			await page.waitForSelector(`input[name="username"]`);
 			await page.type(`input[name="username"]`, username);
@@ -73,7 +73,7 @@ declare global {
 	 */
 	async signOut(page: Page, username: string): Promise<boolean> {
 		try {
-			await page.setUserAgent(userAgent());
+			// await page.setUserAgent(userAgent());
 			await page.goto(`https://www.instagram.com/${username}/`);
 			// const profileButton = "#link_profile > a";
 			// await page.waitForSelector(profileButton);

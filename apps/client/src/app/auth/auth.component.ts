@@ -57,7 +57,7 @@ import { ToastService } from "../toast.service";
 				if (user !== undefined) {
 					console.log("Signed-up.");
 					this.toast.showToast("Signed-up.", "success");
-					await this.signIn(username, password);
+					// await this.signIn(username, password);
 				} else {
 					console.error("Authentication failed.");
 					this.toast.showToast("Authentication failed.", "danger");
