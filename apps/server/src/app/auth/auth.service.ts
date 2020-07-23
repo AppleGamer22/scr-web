@@ -13,6 +13,12 @@ import { InstagramService } from "../instagram/instagram.service";
 		private readonly jwt: JwtService,
 		private readonly instagramService: InstagramService
 	) {}
+	/**
+	 * Sign's-up Instagram user based on credentials
+	 * @param username user's username
+	 * @param password user's password
+	 * @returns A User database object
+	 */
 	async signUpInstagram(username: string, password: string): Promise<User> {
 		try {
 			const possibleUser = await this.userCollection.findOne({username}).exec();
@@ -29,6 +35,12 @@ import { InstagramService } from "../instagram/instagram.service";
 			throw new Error(error.message);
 		}
 	}
+	/**
+	 * Sign's-in Instagram user based on credentials
+	 * @param username user's username
+	 * @param password user's password
+	 * @returns A JSON Web Token
+	 */
 	async signInInstagram(username: string, password: string): Promise<string | undefined> {
 		try {
 			const possibleUser = await this.userCollection.findOne({username}).exec();
@@ -50,7 +62,11 @@ import { InstagramService } from "../instagram/instagram.service";
 			throw new Error(error.message as string);
 		}
 	}
-
+	/**
+	 * Sign's-in Instagram user based on credentials
+	 * @param U_ID user's _id property
+	 * @returns success Boolean
+	 */
 	async signOutInstagram(U_ID: string): Promise<{authenticated: boolean} | undefined> {
 		try {
 			const possibleUser = await this.userCollection.findById(U_ID).exec();

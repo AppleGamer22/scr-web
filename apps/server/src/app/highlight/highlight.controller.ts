@@ -10,7 +10,13 @@ import { HistoryService } from "../history/history.service";
 		private readonly highlightService: HighlightService,
 		private readonly historyService: HistoryService
 	) {}
-
+	/**
+	 * handles HTTP response for highlight
+	 * @param highlight highlight ID
+	 * @param item highlight number
+	 * @param request PATCH request
+	 * @returns URL string array
+	 */
 	@Get(":highlight/:item") @UseGuards(AuthGuard) async getHighlightFile(
 		@Param("highlight") highlight: string,
 		@Param("item") item: number,

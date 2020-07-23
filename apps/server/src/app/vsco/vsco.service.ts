@@ -2,6 +2,13 @@ import { Injectable } from "@nestjs/common";
 import { Browser, Page } from "puppeteer-core";
 
 @Injectable() export class VSCOService {
+	/**
+	 * Scrapes VSCO post files
+	 * @param id post ID
+	 * @param browser Puppeteer browser
+	 * @param page Puppeteer page
+	 * @returns URL string URL
+	 */
 	async getPostFile(id: string, browser: Browser, page: Page): Promise<string> {
 		try {
 			await page.goto(`https://vsco.co/${id}`, {waitUntil: "domcontentloaded"});

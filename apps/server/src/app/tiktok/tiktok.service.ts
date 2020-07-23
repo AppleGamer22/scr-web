@@ -2,6 +2,13 @@ import { Injectable } from "@nestjs/common";
 import { Browser, Page } from "puppeteer-core";
 
 @Injectable() export class TikTokService {
+	/**
+	 * Scrapes TikTok post files
+	 * @param id post ID
+	 * @param browser Puppeteer browser
+	 * @param page Puppeteer page
+	 * @returns URL string array
+	 */
 	async getPostFile(id: string, browser: Browser, page: Page): Promise<string> {
 		try {
 			await page.goto(`https://tiktok.com/@${id}`, {waitUntil: "domcontentloaded"});

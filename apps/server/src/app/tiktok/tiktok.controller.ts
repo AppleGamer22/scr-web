@@ -7,7 +7,12 @@ import { TikTokService } from "./tiktok.service";
 		private readonly tiktokService: TikTokService,
 		// private readonly historyService: HistoryService
 	) {}
-
+	/**
+	 * handles HTTP response for tiktok
+	 * @param user post owner
+	 * @param post post ID
+	 * @returns URL string array
+	 */
 	@Get(":user/:post") async getPostFiles(@Param("user") user: string, @Param("post") post: string): Promise<string[]> {
 		const postAddress = `${user}/video/${post}`;
 		try {

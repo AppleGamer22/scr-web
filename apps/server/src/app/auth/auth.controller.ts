@@ -6,10 +6,16 @@ import { AuthGuard } from "./auth.guard";
 
 @Controller("auth") export class AuthController {
 	constructor(private readonly authService: AuthService) {}
+	/**
+	 * handles HTTP response for Instgram sign-up
+	 * @param body PATCH request body
+	 * @param response response PATCH request
+	 * @returns HTTP response
+	 */
 	@Patch("sign_up/instagram") async signUpInstagram(
 		@Body() body: {username: string, password: string},
 		@Res() response: Response
-	) {
+	): Promise<Response> {
 		try {
 			const user = await this.authService.signUpInstagram(body.username, body.password);
 			return response.json(user).status(HttpStatus.CREATED);
@@ -20,7 +26,12 @@ import { AuthGuard } from "./auth.guard";
 			throw new HttpException(errorMessage, errorCode);
 		}
 	}
-
+	/**
+	 * handles HTTP response for Instgram sign-in
+	 * @param body PATCH request body
+	 * @param response response PATCH request
+	 * @returns HTTP response
+	 */
 	@Patch("sign_in/instagram") async signInInstagram(
 		@Body() body: {username: string, password: string},
 		@Res() response: Response
@@ -35,6 +46,12 @@ import { AuthGuard } from "./auth.guard";
 			throw new HttpException(errorMessage, errorCode);
 		}
 	}
+	/**
+	 * handles HTTP response for Instgram sign-out
+	 * @param body PATCH request body
+	 * @param response response PATCH request
+	 * @returns HTTP response
+	 */
 	@Patch("sign_out/instagram") @UseGuards(AuthGuard) async signOutInstagram(
 		@Req() request: Request,
 		@Res() response: Response

@@ -2,6 +2,14 @@ import { Injectable } from "@nestjs/common";
 import { Browser, Page } from "puppeteer-core";
 
 @Injectable() export class StoryService {
+	/**
+	 * Scrapes Instagram story files
+	 * @param user story owner
+	 * @param item story number
+	 * @param browser Puppeteer browser
+	 * @param page Puppeteer page
+	 * @returns URL string array
+	 */
 	async getStoryFile(user: string, item: number, browser: Browser, page: Page): Promise<string[]> {
 		try {
 			await page.goto(`https://www.instagram.com/${user}`);

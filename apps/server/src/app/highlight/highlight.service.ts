@@ -2,6 +2,14 @@ import { Injectable } from "@nestjs/common";
 import { Browser, Page } from "puppeteer-core";
 
 @Injectable() export class HighlightService {
+	/**
+	 * Scrapes Instagram highlight files
+	 * @param highlight highlight ID
+	 * @param item highlight number
+	 * @param browser Puppeteer browser
+	 * @param page Puppeteer page
+	 * @returns URL string array
+	 */
 	async getHighlightFile(highlight: string, item: number, browser: Browser, page: Page): Promise<string[]> {
 		try {
 			await page.goto(`https://www.instagram.com/stories/highlights/${highlight}`, {waitUntil: "domcontentloaded"});

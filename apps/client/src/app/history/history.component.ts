@@ -18,7 +18,9 @@ export class HistoryComponent {
 	constructor(private readonly http: HttpClient, readonly toast: ToastService, @Inject(DOCUMENT) private document: Document) {
 		this.getHistories();
 	}
-
+	/**
+	 * Get all of the activity history
+	 */
 	async getHistories() {
 		this.processing = true;
 		try {
@@ -37,7 +39,11 @@ export class HistoryComponent {
 			this.toast.showToast((error as Error).message, "danger");
 		}
 	}
-
+	/**
+	 * Deletes a requested URL from a history item
+	 * @param history history item
+	 * @param urlToDelete a URL for deletion
+	 */
 	async editHistory(history: History, urlToDelete: string) {
 		this.processing = true;
 		try {
@@ -55,7 +61,9 @@ export class HistoryComponent {
 		}
 		this.processing = false;
 	}
-
+	/**
+	 * Get the history for a particular resource type
+	 */
 	async filterHistory() {
 		this.processing = true;
 		try {
@@ -72,7 +80,10 @@ export class HistoryComponent {
 		}
 		this.processing = false;
 	}
-
+	/**
+	 * Initiates a download dialog for a given filew URL
+	 * @param url URL of file to download
+	 */
 	async downloadFile(url: string) {
 		const arrayBuffer = await this.http.get(url, {responseType: "arraybuffer"}).toPromise();
 		let type: "image/jpeg" | "video/mp4";
