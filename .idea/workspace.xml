@@ -19,7 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e676335-c69e-4250-b646-51e47a0008ba" name="Default Changelist" comment="" />
+    <list default="true" id="3e676335-c69e-4250-b646-51e47a0008ba" name="Default Changelist" comment=".idea files">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -70,7 +72,7 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="preferences.editor" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
   </component>
   <component name="RunAnythingCache">
@@ -140,6 +142,8 @@
       <workItem from="1592621190263" duration="2000" />
       <workItem from="1592621303000" duration="46000" />
       <workItem from="1592621373156" duration="136000" />
+      <workItem from="1595910824096" duration="57000" />
+      <workItem from="1595910936089" duration="312000" />
     </task>
     <task id="LOCAL-00001" summary="WebStorm config files">
       <created>1571192322206</created>
@@ -242,10 +246,10 @@
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
     <state x="436" y="211" key="#com.intellij.execution.impl.EditConfigurationsDialog/36.27.1884.1053@36.27.1884.1053" timestamp="1593165019058" />
-    <state x="731" y="181" width="801" height="872" key="CommitChangelistDialog2" timestamp="1593165023511">
+    <state x="731" y="181" width="801" height="872" key="CommitChangelistDialog2" timestamp="1595911246510">
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
-    <state x="731" y="181" width="801" height="872" key="CommitChangelistDialog2/36.27.1884.1053@36.27.1884.1053" timestamp="1593165023511" />
+    <state x="731" y="181" width="801" height="872" key="CommitChangelistDialog2/36.27.1884.1053@36.27.1884.1053" timestamp="1595911246510" />
     <state x="818" y="441" key="DockerComposeFileDialog" timestamp="1589794353247">
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
@@ -274,10 +278,10 @@
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
     <state x="561" y="291" width="824" height="524" key="IDE.errors.dialog/36.27.1884.1053@36.27.1884.1053" timestamp="1592275554983" />
-    <state x="507" y="205" key="SettingsEditor" timestamp="1593165067668">
+    <state x="507" y="205" key="SettingsEditor" timestamp="1595911216929">
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
-    <state x="507" y="205" key="SettingsEditor/36.27.1884.1053@36.27.1884.1053" timestamp="1593165067668" />
+    <state x="507" y="205" key="SettingsEditor/36.27.1884.1053@36.27.1884.1053" timestamp="1595911216929" />
     <state x="578" y="290" key="Vcs.Push.Dialog.v2" timestamp="1593165024990">
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
