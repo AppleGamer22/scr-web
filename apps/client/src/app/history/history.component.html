@@ -1,5 +1,11 @@
 <ion-header>
 	<ion-toolbar>
+		<ion-menu-button slot="start"></ion-menu-button>
+		<ion-title>History</ion-title>
+	</ion-toolbar>
+</ion-header>
+<ion-header>
+	<ion-toolbar>
 		<ion-buttons>
 			<ion-label><ion-icon name="funnel"></ion-icon> Filter by: </ion-label>
 			<ion-select interface="action-sheet" placeholder="Item Type" (ionChange)="filterHistory()" [(ngModel)]="type">

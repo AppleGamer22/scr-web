@@ -75,10 +75,7 @@ export async function beginScrape(U_ID: string, incognito: boolean = false): Pro
 			ignoreDefaultArgs: ["--enable-automation"],
 		});
 		const page = (await browser.pages())[0];
-		await page.evaluateOnNewDocument(() => {
-			// @ts-ignore
-			delete navigator.__proto__.webdriver;
-		});
+		await page.evaluateOnNewDocument(() => delete Object.getPrototypeOf(navigator).webdriver);
 		// await page.setUserAgent(userAgent());
 		return { browser, page };
 	} catch (error) {
