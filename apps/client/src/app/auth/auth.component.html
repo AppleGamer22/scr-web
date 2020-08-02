@@ -1,3 +1,9 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-menu-button slot="start"></ion-menu-button>
+		<ion-title>Authentication</ion-title>
+	</ion-toolbar>
+</ion-header>
 <ion-content>
 	<form>
 		<ion-segment (ionChange)="selectSegment($event)" [(ngModel)]="authOption" name="auth-type">
@@ -24,7 +30,8 @@
 		</ion-item>
 		<ion-item *ngIf="authOption !== 'sign_out'">
 			<ion-label>password</ion-label>
-			<ion-input type="password" [(ngModel)]="passwordField" name="password"></ion-input>
+			<ion-input *ngIf="authOption === 'sign_in'" type="password" [(ngModel)]="passwordField" name="current-password" autocomplete="current-password"></ion-input>
+			<ion-input *ngIf="authOption === 'sign_up'" type="password" [(ngModel)]="passwordField" name="new-password"></ion-input>
 		</ion-item>
 		<ion-button *ngIf="authOption === 'sign_up'" (click)="signUp(usernameField, passwordField)">sign-up</ion-button>
 		<ion-button *ngIf="authOption === 'sign_in'" (click)="signIn(usernameField, passwordField)">sign-in</ion-button>
