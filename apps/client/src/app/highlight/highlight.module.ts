@@ -5,6 +5,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
 import { IonicModule } from "@ionic/angular";
 import { HighlightComponent } from "./highlight.component";
+import { URLsModule } from "../urls/urls.module";
 
 @NgModule({
 	imports: [
@@ -12,7 +13,8 @@ import { HighlightComponent } from "./highlight.component";
 		FormsModule,
 		CommonModule,
 		HttpClientModule,
-		RouterModule.forChild([{path: "", component: HighlightComponent}])
+		RouterModule.forChild([{path: "", component: HighlightComponent}]),
+		URLsModule
 	],
 	declarations: [HighlightComponent],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA]

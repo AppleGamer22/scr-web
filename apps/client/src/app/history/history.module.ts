@@ -5,6 +5,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
 import { IonicModule } from "@ionic/angular";
 import { HistoryComponent } from "./history.component";
+import { URLsModule } from "../urls/urls.module";
 
 @NgModule({
 	imports: [
@@ -12,7 +13,8 @@ import { HistoryComponent } from "./history.component";
 		FormsModule,
 		CommonModule,
 		HttpClientModule,
-		RouterModule.forChild([{path: "", component: HistoryComponent}])
+		RouterModule.forChild([{path: "", component: HistoryComponent}]),
+		URLsModule
 	],
 	declarations: [HistoryComponent],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA]

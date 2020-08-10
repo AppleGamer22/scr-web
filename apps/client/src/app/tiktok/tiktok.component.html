@@ -20,22 +20,23 @@
 	</form>
 	<ion-progress-bar *ngIf="processing" color="primary" type="indeterminate"></ion-progress-bar>
 	<ion-list>
-		<ion-item-sliding *ngFor="let url of urls">
-			<ion-item-options>
-				<ion-item-option slot="end" color="primary" (click)="downloadFile(url)">
-					<ion-icon name="download"></ion-icon>
-				</ion-item-option>
-			</ion-item-options>
-			<ion-item>
-				<ion-grid>
-					<ion-row>
-						<ion-col size="auto">
-							<ion-label>video</ion-label>
-						</ion-col>
-						<ion-col size="auto"><a [href]="url" target="_blank" rel="noopener noreferrer">{{url}}</a></ion-col>
-					</ion-row>
-				</ion-grid>
-			</ion-item>
-		</ion-item-sliding>
+		<ion-item *ngFor="let url of urls">
+			<ion-grid>
+				<ion-row>
+					<ion-col size="auto">
+						<div>
+							<ion-checkbox #show></ion-checkbox>&nbsp;&nbsp;
+							<ion-label>show video</ion-label>
+						</div>
+					</ion-col>
+					<ion-col size="auto"><a [href]="url" target="_blank" rel="noopener noreferrer">{{url}}</a></ion-col>
+				</ion-row>
+				<ion-row *ngIf="show.checked">
+					<ion-col size="auto">
+						<video [src]="url" controls loop></video>
+					</ion-col>
+				</ion-row>
+			</ion-grid>
+		</ion-item>
 	</ion-list>
 </ion-content>
