@@ -4,6 +4,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { IonicModule } from "@ionic/angular";
 import { InstagramComponent } from "./instagram.component";
 import { RouterTestingModule } from "@angular/router/testing";
+import { URLsModule } from "../urls/urls.module";
 import { ToastService } from "../toast.service";
 
 describe("InstagramComponent", () => {
@@ -13,10 +14,11 @@ describe("InstagramComponent", () => {
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
 			imports: [
-				IonicModule.forRoot({scrollAssist: true}),
+				IonicModule,
 				FormsModule,
 				HttpClientModule,
-				RouterTestingModule
+				RouterTestingModule,
+				URLsModule
 			],
 			providers: [ToastService],
 			declarations: [InstagramComponent],

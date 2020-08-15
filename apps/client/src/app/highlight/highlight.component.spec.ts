@@ -3,6 +3,7 @@ import { FormsModule } from "@angular/forms";
 import { IonicModule } from "@ionic/angular";
 import { HttpClientModule } from "@angular/common/http";
 import { RouterTestingModule } from "@angular/router/testing";
+import { URLsModule } from "../urls/urls.module";
 import { HighlightComponent } from "./highlight.component";
 import { ToastService } from "../toast.service";
 
@@ -13,10 +14,11 @@ describe("HighlightComponent", () => {
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
 			imports: [
-				IonicModule.forRoot({scrollAssist: true}),
+				IonicModule,
 				HttpClientModule,
 				RouterTestingModule,
-				FormsModule
+				FormsModule,
+				URLsModule
 			],
 			providers: [ToastService],
 			declarations: [HighlightComponent],

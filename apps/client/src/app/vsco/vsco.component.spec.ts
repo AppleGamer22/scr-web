@@ -3,6 +3,7 @@ import { FormsModule } from "@angular/forms";
 import { RouterTestingModule } from "@angular/router/testing";
 import { HttpClientModule } from "@angular/common/http";
 import { IonicModule } from "@ionic/angular";
+import { URLsModule } from "../urls/urls.module";
 import { VSCOComponent } from "./vsco.component";
 import { ToastService } from "../toast.service";
 
@@ -13,10 +14,11 @@ describe("VSCOComponent", () => {
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
 			imports: [
-				IonicModule.forRoot({scrollAssist: true}),
+				IonicModule,
 				FormsModule,
 				RouterTestingModule,
-				HttpClientModule
+				HttpClientModule,
+				URLsModule
 			],
 			providers: [ToastService],
 			declarations: [VSCOComponent],
