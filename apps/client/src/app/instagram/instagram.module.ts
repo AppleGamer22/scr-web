@@ -5,6 +5,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
 import { IonicModule } from "@ionic/angular";
 import { InstagramComponent } from "./instagram.component";
+import { URLsModule } from "../urls/urls.module";
 
 @NgModule({
 	imports: [
@@ -12,7 +13,8 @@ import { InstagramComponent } from "./instagram.component";
 		FormsModule,
 		CommonModule,
 		HttpClientModule,
-		RouterModule.forChild([{path: "", component: InstagramComponent}])
+		RouterModule.forChild([{path: "", component: InstagramComponent}]),
+		URLsModule
 	],
 	declarations: [InstagramComponent],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA]

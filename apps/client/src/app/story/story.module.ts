@@ -5,6 +5,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
 import { IonicModule } from "@ionic/angular";
 import { StoryComponent } from "./story.component";
+import { URLsModule } from "../urls/urls.module";
 
 @NgModule({
 	imports: [
@@ -12,7 +13,8 @@ import { StoryComponent } from "./story.component";
 		FormsModule,
 		CommonModule,
 		HttpClientModule,
-		RouterModule.forChild([{path: "", component: StoryComponent}])
+		RouterModule.forChild([{path: "", component: StoryComponent}]),
+		URLsModule
 	],
 	declarations: [StoryComponent],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA]

@@ -5,6 +5,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
 import { IonicModule } from "@ionic/angular";
 import { VSCOComponent } from "./vsco.component";
+import { URLsModule } from "../urls/urls.module";
 
 @NgModule({
 	imports: [
@@ -12,7 +13,8 @@ import { VSCOComponent } from "./vsco.component";
 		FormsModule,
 		CommonModule,
 		HttpClientModule,
-		RouterModule.forChild([{path: "", component: VSCOComponent}])
+		RouterModule.forChild([{path: "", component: VSCOComponent}]),
+		URLsModule
 	],
 	declarations: [VSCOComponent],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA]
