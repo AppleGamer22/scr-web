@@ -1,7 +1,7 @@
 <ion-header>
 	<ion-toolbar>
 		<ion-menu-button slot="start"></ion-menu-button>
-		<ion-title>Instagram Highlight</ion-title>
+		<ion-title>Instagram Highlight<sup>&beta;</sup></ion-title>
 	</ion-toolbar>
 </ion-header>
 <ion-content>
@@ -16,6 +16,7 @@
 			<ion-input inputmode="numeric" [clearInput]="true" placeholder="number" [required]="true"
 				[(ngModel)]="highlightNumber" name="number"></ion-input>
 		</ion-item>
+		<!-- <ion-label>If you are not getting the expected result, please try again</ion-label> -->
 		<ion-button (click)="submit(highlightID, highlightNumber)">submit</ion-button>
 	</form>
 	<ion-progress-bar *ngIf="processing" color="primary" type="indeterminate"></ion-progress-bar>
