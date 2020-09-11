@@ -19,8 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e676335-c69e-4250-b646-51e47a0008ba" name="Default Changelist" comment=".idea files">
+    <list default="true" id="3e676335-c69e-4250-b646-51e47a0008ba" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,6 +103,7 @@
       <method v="2" />
     </configuration>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration>$USER_HOME$/.subversion</configuration>
   </component>
@@ -144,6 +147,8 @@
       <workItem from="1592621373156" duration="136000" />
       <workItem from="1595910824096" duration="57000" />
       <workItem from="1595910936089" duration="312000" />
+      <workItem from="1597971923726" duration="112000" />
+      <workItem from="1597972071417" duration="209000" />
     </task>
     <task id="LOCAL-00001" summary="WebStorm config files">
       <created>1571192322206</created>
@@ -215,11 +220,18 @@
       <option name="project" value="LOCAL" />
       <updated>1593165023581</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="workspace.xml">
+      <created>1597972203856</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1597972203856</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -239,17 +251,18 @@
     <MESSAGE value="npm update dev packages" />
     <MESSAGE value="npm update nest" />
     <MESSAGE value=".idea files" />
-    <option name="LAST_COMMIT_MESSAGE" value=".idea files" />
+    <MESSAGE value="workspace.xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="workspace.xml" />
   </component>
   <component name="WindowStateProjectService">
     <state x="436" y="211" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1593165019058">
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
     <state x="436" y="211" key="#com.intellij.execution.impl.EditConfigurationsDialog/36.27.1884.1053@36.27.1884.1053" timestamp="1593165019058" />
-    <state x="731" y="181" width="801" height="872" key="CommitChangelistDialog2" timestamp="1595911246510">
+    <state x="731" y="181" width="801" height="872" key="CommitChangelistDialog2" timestamp="1597972203728">
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
-    <state x="731" y="181" width="801" height="872" key="CommitChangelistDialog2/36.27.1884.1053@36.27.1884.1053" timestamp="1595911246510" />
+    <state x="731" y="181" width="801" height="872" key="CommitChangelistDialog2/36.27.1884.1053@36.27.1884.1053" timestamp="1597972203728" />
     <state x="818" y="441" key="DockerComposeFileDialog" timestamp="1589794353247">
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
@@ -282,10 +295,10 @@
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
     <state x="507" y="205" key="SettingsEditor/36.27.1884.1053@36.27.1884.1053" timestamp="1595911216929" />
-    <state x="578" y="290" key="Vcs.Push.Dialog.v2" timestamp="1593165024990">
+    <state x="578" y="290" key="Vcs.Push.Dialog.v2" timestamp="1597972205217">
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
-    <state x="578" y="290" key="Vcs.Push.Dialog.v2/36.27.1884.1053@36.27.1884.1053" timestamp="1593165024990" />
+    <state x="578" y="290" key="Vcs.Push.Dialog.v2/36.27.1884.1053@36.27.1884.1053" timestamp="1597972205217" />
     <state x="776" y="469" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1593164980727">
       <screen x="36" y="27" width="1884" height="1053" />
     </state>

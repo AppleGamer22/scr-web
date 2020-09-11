@@ -6,7 +6,7 @@ import { URLsComponent } from "./urls.component";
 @NgModule({
 	imports: [
 		CommonModule,
-		IonicModule.forRoot({scrollAssist: true}),
+		IonicModule,
 	],
 	declarations: [URLsComponent],
 	exports: [URLsComponent]

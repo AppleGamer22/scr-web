@@ -13,7 +13,7 @@ describe("AppComponent", () => {
 				FormsModule,
 				HttpClientModule,
 				RouterTestingModule,
-				IonicModule.forRoot({scrollAssist: true})
+				IonicModule.forRoot()
 			],
 			declarations: [
 				AppComponent

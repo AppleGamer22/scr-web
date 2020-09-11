@@ -9,7 +9,9 @@ describe("URLsComponent", () => {
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
 			declarations: [URLsComponent],
-			imports: [IonicModule.forRoot()],
+			imports: [
+				IonicModule
+			],
 		}).compileComponents();
 
 		fixture = TestBed.createComponent(URLsComponent);

@@ -3,6 +3,7 @@ import { IonicModule } from "@ionic/angular";
 import { HttpClientModule } from "@angular/common/http";
 import { RouterTestingModule } from "@angular/router/testing";
 import { FormsModule } from "@angular/forms";
+import { URLsModule } from "../urls/urls.module";
 import { HistoryComponent } from "./history.component";
 import { ToastService } from "../toast.service";
 
@@ -13,10 +14,11 @@ describe("HistoryComponent", () => {
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
 			imports: [
-				IonicModule.forRoot({scrollAssist: true}),
+				IonicModule,
 				HttpClientModule,
 				RouterTestingModule,
-				FormsModule
+				FormsModule,
+				URLsModule
 			],
 			providers: [ToastService],
 			declarations: [HistoryComponent],

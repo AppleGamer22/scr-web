@@ -8,7 +8,7 @@ import { TikTokComponent } from "./tiktok.component";
 
 @NgModule({
 	imports: [
-		IonicModule.forRoot({scrollAssist: true}),
+		IonicModule,
 		FormsModule,
 		CommonModule,
 		HttpClientModule,

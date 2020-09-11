@@ -9,7 +9,7 @@ import { URLsModule } from "../urls/urls.module";
 
 @NgModule({
 	imports: [
-		IonicModule.forRoot({scrollAssist: true}),
+		IonicModule,
 		FormsModule,
 		CommonModule,
 		HttpClientModule,
