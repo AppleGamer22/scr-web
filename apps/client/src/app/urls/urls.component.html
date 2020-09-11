@@ -16,7 +16,7 @@
 			<ion-row *ngIf="show.checked">
 				<ion-col size="auto">
 					<img *ngIf="url.includes('.jpg')" [src]="url">
-					<video *ngIf="url.includes('.mp4')" [src]="url" controls muted loop></video>
+					<video *ngIf="url.includes('.mp4')" [src]="url" controls [muted]="true" loop></video>
 				</ion-col>
 			</ion-row>
 		</ion-grid>
