@@ -19,7 +19,7 @@ import { Browser, Page } from "puppeteer-core";
 			await page.waitForSelector("h2.user-username", {visible: true});
 			await page.waitForSelector("video", {visible: true});
 			const videoURL = await page.$eval("video", video => video.getAttribute("src"));
-			if (videoURL) return videoURL;
+			if (videoURL) return videoURL.replace("-web", "");
 		} catch (error) {
 			throw new Error(error.message);
 		}
