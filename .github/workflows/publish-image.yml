@@ -6,7 +6,7 @@ jobs:
   publish-image:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2.3.2
+      - uses: actions/checkout@v2.3.3
       - name: Sign-in to Docker Hub
         run: docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
       - name: Build Docker image
