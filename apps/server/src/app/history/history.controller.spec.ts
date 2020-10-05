@@ -20,13 +20,17 @@ describe("History Controller", () => {
 				{
 					provide: getModelToken("Users"),
 					useValue: (dto: User) => {
-						this.data = dto;
+						// @ts-ignore
+						dto = this.data;
+						// @ts-ignore
 						this.save  = async () => this.data;
 					}
 				},{
 					provide: getModelToken("History"),
 					useValue: (dto: History) => {
-						this.data = dto;
+						// @ts-ignore
+						dto = this.data;
+						// @ts-ignore
 						this.save  = async () => this.data;
 					}
 				}

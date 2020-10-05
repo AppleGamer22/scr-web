@@ -1,10 +1,10 @@
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
-import { History } from "@scr-web/server-schemas";
-import { Model, Types } from "mongoose";
+import { History, HistoryDocument } from "@scr-web/server-schemas";
+import { Model } from "mongoose";
 
 @Injectable() export class HistoryService {
-	constructor(@InjectModel("History") private readonly historyCollection: Model<History>) {}
+	constructor(@InjectModel("History") private readonly historyCollection: Model<HistoryDocument>) {}
 	/**
 	 * Finds user's History items in database
 	 * @param U_ID user's _id property
