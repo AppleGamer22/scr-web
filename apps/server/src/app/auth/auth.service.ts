@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { InjectModel } from "@nestjs/mongoose";
-import { User } from "@scr-web/server-schemas";
+import { User, UserDocument } from "@scr-web/server-schemas";
 import { beginScrape } from "@scr-web/server-interfaces";
 import { Model, Types } from "mongoose";
 import { hash, compare } from "bcryptjs";
@@ -9,7 +9,7 @@ import { InstagramService } from "../instagram/instagram.service";
 
 @Injectable() export class AuthService {
 	constructor(
-		@InjectModel("Users") private readonly userCollection: Model<User>,
+		@InjectModel("Users") private readonly userCollection: Model<UserDocument>,
 		private readonly jwt: JwtService,
 		private readonly instagramService: InstagramService
 	) {}

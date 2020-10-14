@@ -16,7 +16,9 @@ describe("Tiktok Controller", () => {
 				{
 					provide: getModelToken("History"),
 					useValue: (dto: History) => {
-						this.data = dto;
+						// @ts-ignore
+						dto = this.data;
+						// @ts-ignore
 						this.save  = async () => this.data;
 					}
 				}

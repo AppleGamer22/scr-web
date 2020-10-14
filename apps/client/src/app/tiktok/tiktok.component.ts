@@ -41,6 +41,7 @@ export class TikTokComponent {
 		try {
 			if (owner && id) {
 				this.urls = await this.http.get<string[]>(`${environment.server}/api/tiktok/${owner}/${id}`).toPromise();
+				await this.toast.showToast(`${this.urls.length} URL(s)`, "success");
 			} else {
 				await this.toast.showToast("Please enter a post ownder & ID.", "danger");
 			}

@@ -22,13 +22,14 @@ describe("AuthController", () => {
 				{
 					provide: getModelToken("Users"),
 					useValue: (dto: User) => {
-						this.data = dto;
+						// @ts-ignore
+						dto = this.data;
+						// @ts-ignore
 						this.save  = async () => this.data;
 					}
 				}
 			]
 		}).compile();
-
 		controller = module.get<AuthController>(AuthController);
 	});
 

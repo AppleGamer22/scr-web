@@ -36,13 +36,13 @@
 						</ion-menu-toggle>
 						<ion-menu-toggle auto-hide="false" menu="menu">
 							<ion-item routerDirection="root" routerLink="tiktok">
-								<ion-icon [class.selected]="currentURL.startsWith('/tiktok')" slot="start" src="assets/icons/tiktok.svg"></ion-icon>
-								<ion-label [class.selected]="currentURL.startsWith('/tiktok')">TikTok Post</ion-label>
+								<ion-icon [class.selected]="currentURL.startsWith('/tiktok')" slot="start" name="logo-tiktok"></ion-icon>
+								<ion-label [class.selected]="currentURL.startsWith('/tiktok')">TikTok Post<sup>&alpha;</sup></ion-label>
 							</ion-item>
 						</ion-menu-toggle>
 						<ion-menu-toggle auto-hide="false" menu="menu">
 							<ion-item routerDirection="root" routerLink="vsco">
-								<ion-icon [class.selected]="currentURL.startsWith('/vsco')" slot="start" src="assets/icons/vsco.svg"></ion-icon>
+								<ion-icon [class.selected]="currentURL.startsWith('/vsco')" slot="start" name="aperture-outline"></ion-icon>
 								<ion-label [class.selected]="currentURL.startsWith('/vsco')">VSCO Post</ion-label>
 							</ion-item>
 						</ion-menu-toggle>
@@ -71,7 +71,7 @@
 							</a>
 						</ion-item>
 						<ion-item>
-							<ion-icon slot="start" src="assets/icons/docker.svg"></ion-icon>
+							<ion-icon slot="start" name="logo-docker"></ion-icon>
 							<a href="https://hub.docker.com/r/applegamer22/scr-web" target="_blank">
 								<ion-label><b>Docker Hub</b></ion-label>
 							</a>

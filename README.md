@@ -10,6 +10,12 @@
 |forks|![GitHub forks](https://img.shields.io/github/forks/AppleGamer22/scr-web?logo=github)|
 |stars|![GitHub stars](https://img.shields.io/github/stars/AppleGamer22/scr-web?logo=github)|![Docker Stars](https://img.shields.io/docker/stars/applegamer22/scr-web?label=stars&logo=docker)|
 |watchers|![GitHub watchers](https://img.shields.io/github/watchers/AppleGamer22/scr-web?logo=github)|
+## Description
+Social media web scraper CLI for post file downloads.
+## Contributing
+* Separate Git branch to the master branch
+  * After reviewing the changes, this branch will be merged to the main branch.
+* Separate fork to this repository
 ## Usage Responsibilities
 * You should use this software with responsibility and with accordance to [Instagram's terms of use](https://help.instagram.com/581066165581870):
 > * **You can't attempt to create accounts or access or collect information in unauthorized ways.**

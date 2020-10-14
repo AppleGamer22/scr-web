@@ -34,9 +34,9 @@ describe("InstagramService", () => {
 		}
 	});
 
-	it("scrapes B3GEbBDFzng & gets 1 public MP4", async done => {
+	it("scrapes B6ZImCEFsr2 & gets 1 public MP4", async done => {
 		try {
-			const urls = await service.getPostFiles("B3GEbBDFzng", browser, page);
+			const urls = await service.getPostFiles("B6ZImCEFsr2", browser, page);
 			done();
 			expect(urls.length).toBe(1);
 			console.log(urls[0]);

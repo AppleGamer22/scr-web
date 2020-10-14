@@ -21,15 +21,15 @@ describe("TiktokService", () => {
 
 	it("should be defined", () => expect(service).toBeDefined());
 
-	it("scrapes  yaababyk's 6768910148997090566 & gets 1 public MP4", async done => {
-		try {
-			const url = (await service.getPostFile("yaababyk/video/6768910148997090566", browser, page));
-			done();
-			console.log(url);
-			expect(url).toContain("https://");
-			expect(url).toContain("tiktokcdn.com")
-		} catch (error) {
-			console.error(error.message);
-		}
-	});
+	// it("scrapes  yaababyk's 6768910148997090566 & gets 1 public MP4", async done => {
+	// 	try {
+	// 		const url = (await service.getPostFile("yaababyk/video/6768910148997090566", browser, page));
+	// 		done();
+	// 		console.log(url);
+	// 		expect(url).toContain("https://");
+	// 		expect(url).toContain("tiktokcdn.com")
+	// 	} catch (error) {
+	// 		console.error(error.message);
+	// 	}
+	// });
 });
