@@ -1,10 +1,11 @@
 {
 	"name": "@applegamer22/scr-web",
 	"description": "Social media web scraper web GUI for post file downloads.",
-	"version": "1.0.0-alpha.21.2",
+	"version": "1.0.0-alpha.22",
 	"author": "Omri Bornstein",
 	"publisher": "AppleGamer22",
-	"private": true,
+	"private": false,
+	"license": "GPL-3.0-only",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/AppleGamer22/scr-web.git"
