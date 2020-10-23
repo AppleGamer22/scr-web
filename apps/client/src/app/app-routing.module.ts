@@ -23,6 +23,9 @@ const routes: Routes = [
 	},{
 		path: "history",
 		loadChildren: () => import("./history/history.module").then(m => m.HistoryModule)
+	},{
+		path: "license",
+		loadChildren: () => import("./license/license.module").then(m => m.LicenseModule)
 	}
 ];
 

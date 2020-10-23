@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { waitForAsync, ComponentFixture, TestBed } from "@angular/core/testing";
 import { FormsModule } from "@angular/forms";
 import { IonicModule } from "@ionic/angular";
 import { HttpClientModule } from "@angular/common/http";
@@ -11,7 +11,7 @@ describe("HighlightComponent", () => {
 	let component: HighlightComponent;
 	let fixture: ComponentFixture<HighlightComponent>;
 
-	beforeEach(async(() => {
+	beforeEach(waitForAsync(() => {
 		TestBed.configureTestingModule({
 			imports: [
 				IonicModule,

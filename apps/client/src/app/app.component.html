@@ -12,7 +12,7 @@
 					<ion-item-group>
 						<ion-menu-toggle auto-hide="false" menu="menu">
 							<ion-item routerDirection="root" routerLink="">
-								<ion-icon [class.selected]="currentURL === '/'" slot="start" name="lock-closed"></ion-icon>
+								<ion-icon [class.selected]="currentURL === '/'" slot="start" name="person-circle-outline"></ion-icon>
 								<ion-label [class.selected]="currentURL === '/'">Authentication</ion-label>
 							</ion-item>
 						</ion-menu-toggle>
@@ -48,14 +48,21 @@
 						</ion-menu-toggle>
 						<ion-menu-toggle auto-hide="false" menu="menu">
 							<ion-item routerDirection="root" routerLink="history">
-								<ion-icon [class.selected]="currentURL.startsWith('/history')" slot="start" name="list"></ion-icon>
+								<ion-icon [class.selected]="currentURL.startsWith('/history')" slot="start" name="list-outline"></ion-icon>
 								<ion-label [class.selected]="currentURL.startsWith('/history')">History</ion-label>
 							</ion-item>
 						</ion-menu-toggle>
 					</ion-item-group>
-					<ion-item-divider>
-						<ion-label>authenticated with:</ion-label>
-					</ion-item-divider>
+					<ion-item-divider><ion-label>about:</ion-label></ion-item-divider>
+					<ion-item-group>
+						<ion-menu-toggle auto-hide="false" menu="menu">
+							<ion-item routerDirection="root" routerLink="license">
+								<ion-icon [class.selected]="currentURL.startsWith('/license')" slot="start" name="document-attach-outline"></ion-icon>
+								<ion-label [class.selected]="currentURL.startsWith('/license')">License</ion-label>
+							</ion-item>
+						</ion-menu-toggle>
+					</ion-item-group>
+					<ion-item-divider><ion-label>authenticated with:</ion-label></ion-item-divider>
 					<ion-item-group>
 						<ion-item>
 							<ion-checkbox [checked]="instagram" [disabled]="true"></ion-checkbox>

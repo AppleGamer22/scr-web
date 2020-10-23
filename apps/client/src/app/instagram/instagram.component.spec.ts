@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { waitForAsync, ComponentFixture, TestBed } from "@angular/core/testing";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { IonicModule } from "@ionic/angular";
@@ -11,7 +11,7 @@ describe("InstagramComponent", () => {
 	let component: InstagramComponent;
 	let fixture: ComponentFixture<InstagramComponent>;
 
-	beforeEach(async(() => {
+	beforeEach(waitForAsync(() => {
 		TestBed.configureTestingModule({
 			imports: [
 				IonicModule,
