@@ -1,4 +1,4 @@
-FROM node:12.18.3-alpine
+FROM node:14.15.0-alpine
 ENV ENV "docker"
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
 WORKDIR /scr/
