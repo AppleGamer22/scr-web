@@ -20,4 +20,4 @@ jobs:
         uses: docker/build-push-action@v2.1.0
         with:
           push: true
-          tags: ${{steps.get_version.outputs.VERSION}}
+          tags: ${{secrets.DOCKERHUB_USERNAME}}/scr-web:${{steps.get_version.outputs.VERSION}},${{secrets.DOCKERHUB_USERNAME}}/scr-web:latest
