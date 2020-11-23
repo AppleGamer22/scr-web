@@ -8,7 +8,6 @@ import { Request } from "express";
 export function initEnvironment(): {JWT_SECRET: string, DATABASE_URL: string} {
 	config({path: `${process.cwd()}/env.env`});
 	const { JWT_SECRET, DATABASE_URL, ENV } = process.env;
-	// const DATABASE_URL = (ENV === "docker") ? "mongodb://database:27017/scr" : "mongodb://localhost:27017/scr";
 	if (JWT_SECRET !== undefined && DATABASE_URL !== undefined) {
 		return { JWT_SECRET, DATABASE_URL };
 	} else {
@@ -22,7 +21,7 @@ export function initEnvironment(): {JWT_SECRET: string, DATABASE_URL: string} {
  * @returns Chrome user directory path
  */
 export function chromeUserDataDirectory(U_ID: string): string {
-	if (U_ID === "") return `${process.cwd()}/users_dev/admin/`;
+	if (U_ID === "") return `${homedir()}/.scr-cli/`;
 	if (process.env.ENV === "docker") return `/scr/users/${U_ID}/`;
 	return `${process.cwd()}/users_dev/${U_ID}/`;
 }

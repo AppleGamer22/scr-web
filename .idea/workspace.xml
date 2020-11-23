@@ -22,7 +22,6 @@
     <list default="true" id="3e676335-c69e-4250-b646-51e47a0008ba" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,8 +73,9 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
-    <property name="settings.editor.selected.configurable" value="preferences.editor" />
+    <property name="settings.editor.selected.configurable" value="preferences.general" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunAnythingCache">
     <option name="myCommands">
@@ -149,6 +149,10 @@
       <workItem from="1595910936089" duration="312000" />
       <workItem from="1597971923726" duration="112000" />
       <workItem from="1597972071417" duration="209000" />
+      <workItem from="1605962301127" duration="128000" />
+      <workItem from="1605962434411" duration="39000" />
+      <workItem from="1605962487326" duration="21000" />
+      <workItem from="1606110455790" duration="100000" />
     </task>
     <task id="LOCAL-00001" summary="WebStorm config files">
       <created>1571192322206</created>
@@ -255,53 +259,37 @@
     <option name="LAST_COMMIT_MESSAGE" value="workspace.xml" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="436" y="211" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1593165019058">
-      <screen x="36" y="27" width="1884" height="1053" />
-    </state>
-    <state x="436" y="211" key="#com.intellij.execution.impl.EditConfigurationsDialog/36.27.1884.1053@36.27.1884.1053" timestamp="1593165019058" />
     <state x="731" y="181" width="801" height="872" key="CommitChangelistDialog2" timestamp="1597972203728">
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
     <state x="731" y="181" width="801" height="872" key="CommitChangelistDialog2/36.27.1884.1053@36.27.1884.1053" timestamp="1597972203728" />
-    <state x="818" y="441" key="DockerComposeFileDialog" timestamp="1589794353247">
-      <screen x="36" y="27" width="1884" height="1053" />
+    <state width="1861" height="261" key="GridCell.Tab.0.bottom" timestamp="1606110540371">
+      <screen x="36" y="24" width="1884" height="1056" />
     </state>
-    <state x="818" y="441" key="DockerComposeFileDialog/36.27.1884.1053@36.27.1884.1053" timestamp="1589794353247" />
-    <state x="760" y="311" key="FileChooserDialogImpl" timestamp="1589794351569">
-      <screen x="36" y="27" width="1884" height="1053" />
+    <state width="1861" height="261" key="GridCell.Tab.0.bottom/36.24.1884.1056@36.24.1884.1056" timestamp="1606110540371" />
+    <state width="1861" height="261" key="GridCell.Tab.0.center" timestamp="1606110540371">
+      <screen x="36" y="24" width="1884" height="1056" />
     </state>
-    <state x="760" y="311" key="FileChooserDialogImpl/36.27.1884.1053@36.27.1884.1053" timestamp="1589794351569" />
-    <state width="1861" height="286" key="GridCell.Tab.0.bottom" timestamp="1593165005084">
-      <screen x="36" y="27" width="1884" height="1053" />
+    <state width="1861" height="261" key="GridCell.Tab.0.center/36.24.1884.1056@36.24.1884.1056" timestamp="1606110540371" />
+    <state width="1861" height="261" key="GridCell.Tab.0.left" timestamp="1606110540371">
+      <screen x="36" y="24" width="1884" height="1056" />
     </state>
-    <state width="1861" height="286" key="GridCell.Tab.0.bottom/36.27.1884.1053@36.27.1884.1053" timestamp="1593165005084" />
-    <state width="1861" height="286" key="GridCell.Tab.0.center" timestamp="1593165005083">
-      <screen x="36" y="27" width="1884" height="1053" />
+    <state width="1861" height="261" key="GridCell.Tab.0.left/36.24.1884.1056@36.24.1884.1056" timestamp="1606110540371" />
+    <state width="1861" height="261" key="GridCell.Tab.0.right" timestamp="1606110540371">
+      <screen x="36" y="24" width="1884" height="1056" />
     </state>
-    <state width="1861" height="286" key="GridCell.Tab.0.center/36.27.1884.1053@36.27.1884.1053" timestamp="1593165005083" />
-    <state width="1861" height="286" key="GridCell.Tab.0.left" timestamp="1593165005083">
-      <screen x="36" y="27" width="1884" height="1053" />
+    <state width="1861" height="261" key="GridCell.Tab.0.right/36.24.1884.1056@36.24.1884.1056" timestamp="1606110540371" />
+    <state x="479" y="187" key="SettingsEditor" timestamp="1605962503415">
+      <screen x="36" y="24" width="1884" height="1056" />
     </state>
-    <state width="1861" height="286" key="GridCell.Tab.0.left/36.27.1884.1053@36.27.1884.1053" timestamp="1593165005083" />
-    <state width="1861" height="286" key="GridCell.Tab.0.right" timestamp="1593165005083">
-      <screen x="36" y="27" width="1884" height="1053" />
-    </state>
-    <state width="1861" height="286" key="GridCell.Tab.0.right/36.27.1884.1053@36.27.1884.1053" timestamp="1593165005083" />
-    <state x="561" y="291" width="824" height="524" key="IDE.errors.dialog" timestamp="1592275554983">
-      <screen x="36" y="27" width="1884" height="1053" />
-    </state>
-    <state x="561" y="291" width="824" height="524" key="IDE.errors.dialog/36.27.1884.1053@36.27.1884.1053" timestamp="1592275554983" />
-    <state x="507" y="205" key="SettingsEditor" timestamp="1595911216929">
-      <screen x="36" y="27" width="1884" height="1053" />
-    </state>
-    <state x="507" y="205" key="SettingsEditor/36.27.1884.1053@36.27.1884.1053" timestamp="1595911216929" />
+    <state x="479" y="187" key="SettingsEditor/36.24.1884.1056@36.24.1884.1056" timestamp="1605962503415" />
     <state x="578" y="290" key="Vcs.Push.Dialog.v2" timestamp="1597972205217">
       <screen x="36" y="27" width="1884" height="1053" />
     </state>
     <state x="578" y="290" key="Vcs.Push.Dialog.v2/36.27.1884.1053@36.27.1884.1053" timestamp="1597972205217" />
-    <state x="776" y="469" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1593164980727">
-      <screen x="36" y="27" width="1884" height="1053" />
+    <state x="757" y="453" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1606110545286">
+      <screen x="36" y="24" width="1884" height="1056" />
     </state>
-    <state x="776" y="469" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/36.27.1884.1053@36.27.1884.1053" timestamp="1593164980727" />
+    <state x="757" y="453" key="git4idea.remote.GitConfigureRemotesDialog/36.24.1884.1056@36.24.1884.1056" timestamp="1606110545286" />
   </component>
 </project>

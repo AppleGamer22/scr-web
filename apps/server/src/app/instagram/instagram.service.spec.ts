@@ -20,9 +20,9 @@ describe("InstagramService", () => {
 
 	it("should be defined", () => expect(service).toBeDefined());
 
-	it("scrapes Bz2MPhPhOQu & gets 1 public JPEG", async done => {
+	it("scrapes B30gDXJnl3k & gets 1 public JPEG", async done => {
 		try {
-			const urls = await service.getPostFiles("Bz2MPhPhOQu", browser, page);
+			const urls = await service.getPostFiles("B30gDXJnl3k", browser, page);
 			done();
 			expect(urls.length).toBe(1);
 			console.log(urls[0]);
@@ -34,9 +34,9 @@ describe("InstagramService", () => {
 		}
 	});
 
-	it("scrapes B6ZImCEFsr2 & gets 1 public MP4", async done => {
+	it("scrapes CH3Axp5nkGj & gets 1 public MP4", async done => {
 		try {
-			const urls = await service.getPostFiles("B6ZImCEFsr2", browser, page);
+			const urls = await service.getPostFiles("CH3Axp5nkGj", browser, page);
 			done();
 			expect(urls.length).toBe(1);
 			console.log(urls[0]);
@@ -65,19 +65,18 @@ describe("InstagramService", () => {
 			console.error(error.message);
 		}
 	});
-	/*it("scrapes BqWkJemlFJbRthDCljKnEkV70ZmaHPu3G0jJUk0 & gets a public MP4 & a public JPEG", async done => {
+
+	it("scrapes blakepittman's CB9VU3BFwaChAx-YkjMQqGWhYjiwN0yYnrtYEc0 & gets a private JPEG", async done => {
 		try {
-			const urls = await service.getPostFiles("BqWkJemlFJbRthDCljKnEkV70ZmaHPu3G0jJUk0", browser, page);
+			const urls = await service.getPostFiles("CB9VU3BFwaChAx-YkjMQqGWhYjiwN0yYnrtYEc0", browser, page);
 			done();
-			expect(urls.length).toBe(2);
+			expect(urls.length).toBe(1);
 			console.log(urls[0]);
 			expect(urls[0]).toContain("https://");
-			expect(urls[0]).toContain(".mp4");
+			expect(urls[0]).toContain(".jpg");
 			expect(urls[0].includes("cdninstagram.com") || urls[0].includes("fbcdn.net")).toBe(true);
-			console.log(urls[1]);
-			expect(urls[1]).toContain("https://");
-			expect(urls[1]).toContain(".jpg");
-			expect(urls[1].includes("cdninstagram.com") || urls[1].includes("fbcdn.net")).toBe(true);
-		} catch (error) { console.error(error.message); }
-	});*/
+		} catch (error) {
+			console.error(error.message);
+		}
+	});
 });
