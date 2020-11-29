@@ -57,6 +57,9 @@ declare global {
 			await page.type(`input[name="username"]`, username);
 			await page.type(`input[name="password"]`, password);
 			await page.click(`button[type="submit"]`);
+			await page.waitForResponse("https://www.instagram.com/accounts/onetap/?next=%2F");
+			await page.waitForSelector("button.sqdOP")
+			await page.click("button.sqdOP");
 			await page.waitForResponse("https://www.instagram.com/");
 			return true
 		} catch (error) {
