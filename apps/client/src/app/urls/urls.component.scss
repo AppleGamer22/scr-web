@@ -2,3 +2,8 @@ div {
 	display: flex;
 	align-items: center;
 }
+
+img, video {
+	max-width: 100vw;
+	height: auto;
+}
