@@ -1,6 +1,6 @@
 import { Component, Inject } from "@angular/core";
 import { DOCUMENT } from "@angular/common";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Router, ActivatedRoute } from "@angular/router";
 import { environment } from "../../environments/environment";
 import { ToastService } from "../toast.service";
@@ -14,7 +14,8 @@ export class TikTokComponent {
 	postOwner: string;
 	postID: string;
 	processing = false;
-	urls: string[];
+	src: string;
+
 	constructor(
 		private readonly http: HttpClient,
 		@Inject(DOCUMENT) private document: Document,
@@ -39,28 +40,22 @@ export class TikTokComponent {
 		this.processing = true;
 		await this.router.navigate(["/tiktok"], {queryParams: { owner, id }, queryParamsHandling: "merge"});
 		try {
-			if (owner && id) {
-				this.urls = await this.http.get<string[]>(`${environment.server}/api/tiktok/${owner}/${id}`).toPromise();
-				await this.toast.showToast(`${this.urls.length} URL(s)`, "success");
-			} else {
-				await this.toast.showToast("Please enter a post ownder & ID.", "danger");
+			const token = localStorage.getItem("instagram");
+			if (token) {
+				const headers = new HttpHeaders({"Authorization": token});
+				if (owner && id) {
+					const { path } = await this.http.get<{path: string}>(`${environment.server}/api/tiktok/${owner}/${id}`, { headers }).toPromise();
+					await this.toast.showToast("1 URL", "success");
+					this.src = `${environment.server}/api/${path}`;
+				} else {
+					await this.toast.showToast("Please enter a post ownder & ID.", "danger");
+				}
+
 			}
 		} catch (error) {
 			console.error((error as Error).message);
 			this.toast.showToast((error as Error).message, "danger");
 		}
 		this.processing = false;
-	}
-	/**
-	 * Initiates a download dialog for a given filew URL
-	 * @param url URL of file to download
-	 */
-	async downloadFile(url: string) {
-		const arrayBuffer = await this.http.get(url, {responseType: "arraybuffer"}).toPromise();
-		const blob = new Blob([arrayBuffer], {type: "video/mp4"});
-		const a = this.document.createElement("a");
-		a.href = URL.createObjectURL(blob);
-		a.download = "";
-		a.click();
 	}
 }

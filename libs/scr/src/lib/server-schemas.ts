@@ -15,7 +15,7 @@ export const UserSchema = SchemaFactory.createForClass(User);
 	@Prop({required: true}) _id: string;
 	@Prop({required: true}) urls: string[];
 	@Prop({required: true}) U_ID: string;
-	@Prop({required: true}) network: "instagram" | "vsco";
+	@Prop({required: true}) network: "instagram" | "vsco" | "tiktok";
 }
 export type HistoryDocument = History & Document;
 export const HistorySchema = SchemaFactory.createForClass(History);

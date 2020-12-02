@@ -1,8 +1,9 @@
 import { Test, TestingModule } from "@nestjs/testing";
+import { getModelToken } from "@nestjs/mongoose";
 import { TikTokController } from "./tiktok.controller";
 import { TikTokService } from "./tiktok.service";
+import { StorageService } from "../storage/storage.service";
 import { HistoryService } from "../history/history.service";
-import { getModelToken } from "@nestjs/mongoose";
 
 describe("Tiktok Controller", () => {
 	let controller: TikTokController;
@@ -13,6 +14,7 @@ describe("Tiktok Controller", () => {
 			providers: [
 				TikTokService,
 				HistoryService,
+				StorageService,
 				{
 					provide: getModelToken("History"),
 					useValue: (dto: History) => {
@@ -28,7 +30,5 @@ describe("Tiktok Controller", () => {
 		controller = module.get<TikTokController>(TikTokController);
 	});
 
-	it("should be defined", () => {
-		expect(controller).toBeDefined();
-	});
+	it("should be defined", () => expect(controller).toBeDefined());
 });

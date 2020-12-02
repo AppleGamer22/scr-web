@@ -9,17 +9,28 @@ import { Browser, Page } from "puppeteer-core";
 	 * @param page Puppeteer page
 	 * @returns URL string array
 	 */
-	async getPostFile(id: string, browser: Browser, page: Page): Promise<string> {
+	async getPostFile(id: string, browser: Browser, page: Page): Promise<Buffer> {
 		try {
-			await page.goto(`https://tiktok.com/@${id}`, {waitUntil: "domcontentloaded"});
+			var data: Buffer | undefined;
+			page.on("response", async response => {
+				if (response.url().includes("mp4") && response.ok()) {
+					data = await response.buffer();
+				}
+			});
+			await page.goto(`https://www.tiktok.com/@${id}`, {waitUntil: "domcontentloaded"});
 			if ((await page.$("div.error-page")) !== null) {
 				await browser.close();
 				throw new Error(`Failed to find post ${id}`);
 			}
-			await page.waitForSelector("h2.user-username", {visible: true});
+			await page.waitForSelector("h3.author-uniqueId", {visible: true});
+			const username = await page.evaluate(() => {
+				const a = document.querySelectorAll("h3.author-uniqueId")[0] as HTMLHeadingElement;
+				return a.innerText;
+			});
 			await page.waitForSelector("video", {visible: true});
-			const videoURL = await page.$eval("video", video => video.getAttribute("src"));
-			if (videoURL) return videoURL.replace("-web", "");
+			await page.waitForResponse(response => response.url().includes("mp4") && response.ok());
+			await page.waitForTimeout(10000);
+			return data;
 		} catch (error) {
 			throw new Error(error.message);
 		}

@@ -1,11 +1,16 @@
-import { Controller, Get, Param, HttpException, HttpStatus } from "@nestjs/common";
-import { beginScrape } from "@scr-web/server-interfaces";
+import { Controller, Get, Param, HttpException, HttpStatus, Req, UseGuards } from "@nestjs/common";
+import { beginScrape, ScrapeRequest } from "@scr-web/server-interfaces";
+import { Request } from "express";
 import { TikTokService } from "./tiktok.service";
+import { HistoryService } from "../history/history.service";
+import { StorageService } from "../storage/storage.service";
+import { AuthGuard } from "../auth/auth.guard";
 
 @Controller("tiktok") export class TikTokController {
 	constructor(
 		private readonly tiktokService: TikTokService,
-		// private readonly historyService: HistoryService
+		private readonly storageService: StorageService,
+		private readonly historyService: HistoryService
 	) {}
 	/**
 	 * handles HTTP response for tiktok
@@ -13,14 +18,21 @@ import { TikTokService } from "./tiktok.service";
 	 * @param post post ID
 	 * @returns URL string array
 	 */
-	@Get(":user/:post") async getPostFiles(@Param("user") user: string, @Param("post") post: string): Promise<string[]> {
+	@Get(":user/:post") @UseGuards(AuthGuard) async getPostFiles(
+		@Param("user") user: string, @Param("post") post: string, @Req() request: Request
+	): Promise<{path: string}> {
 		const postAddress = `${user}/video/${post}`;
 		try {
-			const { browser, page } = await beginScrape("");
-			const url = await this.tiktokService.getPostFile(postAddress, browser, page);
+			const { U_ID } = (request as ScrapeRequest).user;
+			const history = await this.historyService.getHistoryItem(`tiktok/${user}/${post}`, U_ID);
+			if (history) return {path: history.urls[0]}
+			const { browser, page } = await beginScrape(U_ID);
+			const data = await this.tiktokService.getPostFile(postAddress, browser, page);
 			await browser.close();
-			// await this.historyService.addHistoryItem(`vsco/${user}/${post}`, "public", { urls: [url], network: "vsco" });
-			return [url];
+			this.storageService.addFile("tiktok", user, `${post}.mp4`, data);
+			const path = `storage/tiktok/${user}/${post}.mp4`;
+			await this.historyService.addHistoryItem(`tiktok/${user}/${post}`, U_ID, { urls: [path], network: "tiktok" });
+			return { path };
 		} catch (error) {
 			const errorMessage = error.message as string;
 			var errorCode: HttpStatus = HttpStatus.INTERNAL_SERVER_ERROR;

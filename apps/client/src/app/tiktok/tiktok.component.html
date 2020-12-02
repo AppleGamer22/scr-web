@@ -20,23 +20,8 @@
 	</form>
 	<ion-progress-bar *ngIf="processing" color="primary" type="indeterminate"></ion-progress-bar>
 	<ion-list>
-		<ion-item *ngFor="let url of urls">
-			<ion-grid>
-				<ion-row>
-					<ion-col size="auto">
-						<div>
-							<ion-checkbox #show></ion-checkbox>&nbsp;&nbsp;
-							<ion-label>show video</ion-label>
-						</div>
-					</ion-col>
-					<ion-col size="auto"><a [href]="url" target="_blank" rel="noopener noreferrer">{{url}}</a></ion-col>
-				</ion-row>
-				<ion-row *ngIf="show.checked">
-					<ion-col size="auto">
-						<video [src]="url" controls [muted]="true" loop></video>
-					</ion-col>
-				</ion-row>
-			</ion-grid>
+		<ion-item>
+			<video *ngIf="src" [src]="src" controls [muted]="true" loop></video>
 		</ion-item>
 	</ion-list>
 </ion-content>

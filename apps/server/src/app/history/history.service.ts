@@ -24,7 +24,7 @@ import { Model } from "mongoose";
 	 * @param item History item core properties
 	 * @returns added History item
 	 */
-	async addHistoryItem(_id: string, U_ID: string, item: { urls: string[], network: "instagram" | "vsco" }): Promise<History> {
+	async addHistoryItem(_id: string, U_ID: string, item: { urls: string[], network: "instagram" | "vsco" | "tiktok" }): Promise<History> {
 		try {
 			// https://mongoosejs.com/docs/tutorials/findoneandupdate.html
 			return this.historyCollection.findOneAndUpdate({ _id }, {
@@ -32,6 +32,13 @@ import { Model } from "mongoose";
 				urls: item.urls,
 				network: item.network
 			}, {new: true, upsert: true}).exec();
+		} catch (error) {
+			throw new Error(error.message as string);
+		}
+	}
+	async getHistoryItem(_id: string, U_ID: string): Promise<History> {
+		try {
+			return this.historyCollection.findOne({_id, U_ID});
 		} catch (error) {
 			throw new Error(error.message as string);
 		}

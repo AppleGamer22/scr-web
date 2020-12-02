@@ -23,6 +23,8 @@ import { HistoryController } from "./history/history.controller";
 import { HistoryService } from "./history/history.service";
 import { TikTokController } from "./tiktok/tiktok.controller";
 import { TikTokService } from "./tiktok/tiktok.service";
+import { StorageController } from "./storage/storage.controller";
+import { StorageService } from "./storage/storage.service";
 
 @Module({
 	imports: [
@@ -47,7 +49,8 @@ import { TikTokService } from "./tiktok/tiktok.service";
 		HighlightController,
 		AuthController,
 		HistoryController,
-		TikTokController
+		TikTokController,
+		StorageController
 	],
 	providers: [
 		{
@@ -64,6 +67,7 @@ import { TikTokService } from "./tiktok/tiktok.service";
 		AuthService,
 		AuthGuard,
 		HistoryService,
-		TikTokService
+		TikTokService,
+		StorageService
 	],
 }) export class AppModule {}
