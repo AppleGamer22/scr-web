@@ -1,4 +1,4 @@
-import { Module } from "@nestjs/common";
+import { Module, HttpModule } from "@nestjs/common";
 import { APP_FILTER, APP_INTERCEPTOR } from "@nestjs/core";
 import { ServeStaticModule } from "@nestjs/serve-static";
 import { MongooseModule, } from "@nestjs/mongoose";
@@ -39,7 +39,8 @@ import { StorageService } from "./storage/storage.service";
 			}
 		]),
 		JwtModule.register({secret: initEnvironment().JWT_SECRET}),
-		ServeStaticModule.forRoot({rootPath: `${__dirname}/../client/`})
+		ServeStaticModule.forRoot({rootPath: `${__dirname}/../client/`}),
+		HttpModule
 	],
 	controllers: [
 		AppController,

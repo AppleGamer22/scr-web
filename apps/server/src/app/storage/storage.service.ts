@@ -1,9 +1,12 @@
 import { Injectable } from "@nestjs/common";
+import { HttpService } from "@nestjs/common";
 import { existsSync, mkdirSync, writeFileSync, rmdirSync } from "fs";
 
 export type FileType = "instagram" | "highlight" | "story" | "vsco" | "tiktok";
 
 @Injectable() export class StorageService {
+	constructor(private readonly http: HttpService) {}
+
 	/**
 	 * saves file to file system
 	 * @param type file source
@@ -11,15 +14,27 @@ export type FileType = "instagram" | "highlight" | "story" | "vsco" | "tiktok";
 	 * @param file file name
 	 * @param data file contents
 	 */
-	addFile(type: FileType, directory: string, file: string, data: Buffer) {
+	addFileFromBuffer(type: FileType, directory: string, file: string, data: Buffer) {
 		const directoryPath = `${process.cwd()}/storage/${type}/${directory}`;
 		const fullPath = `${directoryPath}/${file}`;
 		try {
 			if (!existsSync(directoryPath)) mkdirSync(directoryPath, {recursive: true});
-			if (!existsSync(fullPath)) writeFileSync(fullPath, data, {encoding: "binary", flag: "w"});
+			if (!existsSync(fullPath)) writeFileSync(fullPath, data, {encoding: "binary"});
 		} catch (error) {
 			console.log(error)
-			throw new Error(`could not save file ${type}/${directory}/${file}`);
+			throw new Error(`Could not save file ${type}/${directory}/${file}`);
+		}
+	}
+	async addFileFromURL(type: FileType, directory: string, file: string, url: string) {
+		const directoryPath = `${process.cwd()}/storage/${type}/${directory}`;
+		const fullPath = `${directoryPath}/${file}`;
+		try {
+			const { data } = await this.http.get(url, {responseType: "arraybuffer"}).toPromise();
+			if (!existsSync(directoryPath)) mkdirSync(directoryPath, {recursive: true});
+			if (!existsSync(fullPath)) writeFileSync(fullPath, data, {encoding: "binary"});
+		} catch (error) {
+			console.log(error)
+			throw new Error(`Could not save file ${type}/${directory}/${file}`);
 		}
 	}
 	/**
@@ -33,7 +48,7 @@ export type FileType = "instagram" | "highlight" | "story" | "vsco" | "tiktok";
 		try {
 			if (existsSync(fullPath)) rmdirSync(fullPath);
 		} catch (error) {
-			throw new Error(`could not remove file ${type}/${directory}/${file}`);
+			throw new Error(`Could not remove file ${type}/${directory}/${file}`);
 		}
 	}
 }

@@ -5,6 +5,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
 import { IonicModule } from "@ionic/angular";
 import { TikTokComponent } from "./tiktok.component";
+import { URLsModule } from "../urls/urls.module";
 
 @NgModule({
 	imports: [
@@ -12,7 +13,8 @@ import { TikTokComponent } from "./tiktok.component";
 		FormsModule,
 		CommonModule,
 		HttpClientModule,
-		RouterModule.forChild([{path: "", component: TikTokComponent}])
+		RouterModule.forChild([{path: "", component: TikTokComponent}]),
+		URLsModule
 	],
 	declarations: [TikTokComponent],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA]

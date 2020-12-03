@@ -14,7 +14,7 @@ export class TikTokComponent {
 	postOwner: string;
 	postID: string;
 	processing = false;
-	src: string;
+	urls: string[];
 
 	constructor(
 		private readonly http: HttpClient,
@@ -44,9 +44,9 @@ export class TikTokComponent {
 			if (token) {
 				const headers = new HttpHeaders({"Authorization": token});
 				if (owner && id) {
-					const { path } = await this.http.get<{path: string}>(`${environment.server}/api/tiktok/${owner}/${id}`, { headers }).toPromise();
-					await this.toast.showToast("1 URL", "success");
-					this.src = `${environment.server}/api/${path}`;
+					const [ path ] = await this.http.get<string[]>(`${environment.server}/api/tiktok/${owner}/${id}`, { headers }).toPromise();
+					await this.toast.showToast("1 File", "success");
+					this.urls = [`${environment.server}/api/${path}`];
 				} else {
 					await this.toast.showToast("Please enter a post ownder & ID.", "danger");
 				}

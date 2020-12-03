@@ -1,11 +1,16 @@
-import { Controller, Get, Param, HttpException, HttpStatus } from "@nestjs/common";
-import { beginScrape } from "@scr-web/server-interfaces";
-import { VSCOService } from "./vsco.service";
+import { Controller, Get, Param, HttpException, HttpStatus, Req, UseGuards } from "@nestjs/common";
+import { beginScrape, ScrapeRequest } from "@scr-web/server-interfaces";
+import { Request } from "express";
+import { basename } from "path";
 import { HistoryService } from "../history/history.service";
+import { StorageService } from "../storage/storage.service";
+import { VSCOService } from "./vsco.service";
+import { AuthGuard } from "../auth/auth.guard";
 
 @Controller("vsco") export class VSCOController {
 	constructor(
 		private readonly vscoService: VSCOService,
+		private readonly storageService: StorageService,
 		private readonly historyService: HistoryService
 	) {}
 	/**
@@ -14,14 +19,24 @@ import { HistoryService } from "../history/history.service";
 	 * @param post post ID
 	 * @returns URL string array
 	 */
-	@Get(":user/:post") async getPostFiles(@Param("user") user: string, @Param("post") post: string): Promise<string[]> {
+	@Get(":user/:post") @UseGuards(AuthGuard) async getPostFiles(
+		@Param("user") user: string,
+		@Param("post") post: string,
+		@Req() request: Request
+	): Promise<string[]> {
 		const postAddress = `${user}/media/${post}`;
 		try {
-			const { browser, page } = await beginScrape("");
+			const { U_ID } = (request as ScrapeRequest).user;
+			const { browser, page } = await beginScrape(U_ID);
+			const history = await this.historyService.getHistoryItem(`vsco/${user}/${post}`, U_ID);
+			if (history) return history.urls;
 			const url = await this.vscoService.getPostFile(postAddress, browser, page);
 			await browser.close();
-			await this.historyService.addHistoryItem(`vsco/${user}/${post}`, "public", { urls: [url], network: "vsco" });
-			return [url];
+			const filename = `${post}_${basename(url)}`;
+			await this.storageService.addFileFromURL("vsco", user, filename, url);
+			const path = `storage/vsco/${user}/${filename}`;
+			await this.historyService.addHistoryItem(`vsco/${user}/${post}`, U_ID, { urls: [path], network: "vsco" });
+			return [path];
 		} catch (error) {
 			const errorMessage = error.message as string;
 			var errorCode: HttpStatus = HttpStatus.INTERNAL_SERVER_ERROR;

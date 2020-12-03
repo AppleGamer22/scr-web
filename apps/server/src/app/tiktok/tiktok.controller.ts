@@ -19,20 +19,22 @@ import { AuthGuard } from "../auth/auth.guard";
 	 * @returns URL string array
 	 */
 	@Get(":user/:post") @UseGuards(AuthGuard) async getPostFiles(
-		@Param("user") user: string, @Param("post") post: string, @Req() request: Request
-	): Promise<{path: string}> {
+		@Param("user") user: string,
+		@Param("post") post: string,
+		@Req() request: Request
+	): Promise<string[]> {
 		const postAddress = `${user}/video/${post}`;
 		try {
 			const { U_ID } = (request as ScrapeRequest).user;
 			const history = await this.historyService.getHistoryItem(`tiktok/${user}/${post}`, U_ID);
-			if (history) return {path: history.urls[0]}
+			if (history) return history.urls;
 			const { browser, page } = await beginScrape(U_ID);
 			const data = await this.tiktokService.getPostFile(postAddress, browser, page);
 			await browser.close();
-			this.storageService.addFile("tiktok", user, `${post}.mp4`, data);
+			this.storageService.addFileFromBuffer("tiktok", user, `${post}.mp4`, data);
 			const path = `storage/tiktok/${user}/${post}.mp4`;
 			await this.historyService.addHistoryItem(`tiktok/${user}/${post}`, U_ID, { urls: [path], network: "tiktok" });
-			return { path };
+			return [path];
 		} catch (error) {
 			const errorMessage = error.message as string;
 			var errorCode: HttpStatus = HttpStatus.INTERNAL_SERVER_ERROR;

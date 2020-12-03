@@ -19,9 +19,5 @@
 		<ion-button (click)="submit(postOwner, postID)">submit</ion-button>
 	</form>
 	<ion-progress-bar *ngIf="processing" color="primary" type="indeterminate"></ion-progress-bar>
-	<ion-list>
-		<ion-item>
-			<video *ngIf="src" [src]="src" controls [muted]="true" loop></video>
-		</ion-item>
-	</ion-list>
+	<scr-web-urls [urls]="urls"></scr-web-urls>
 </ion-content>
