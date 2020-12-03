@@ -18,17 +18,16 @@ import { Browser, Page } from "puppeteer-core";
 				await browser.close();
 				throw new Error(`Failed to find ${user}'s story feed.`);
 			}
-			await page.waitForSelector("div.yn6BW > a", {visible: true});
+			if (await page.waitForSelector("button._42FBe")) {
+				await page.click("button._42FBe");
+			}
 			for (var i = 0; i < item - 1; i++) {
 				await page.waitForSelector("div.coreSpriteRightChevron", {visible: true});
 				await page.click("div.coreSpriteRightChevron");
 			}
+			await page.waitForSelector("svg[aria-label='Pause']", {visible: true});
 			await page.waitForTimeout(50);
-			if ((await page.$(/*"div._7UhW9.xLCgt.MMzan.h_zdq.uL8Hv"*/"button._42FBe")) !== null) {
-				await page.click(/*"div._7UhW9.xLCgt.MMzan.h_zdq.uL8Hv"*/"button._42FBe");
-			}
-			await page.waitForTimeout(50);
-			// await page.keyboard.press("Space");
+			await page.click("svg[aria-label='Pause']");
 			var urls: string[] = [];
 			await page.waitForSelector("div.qbCDp", {visible: true});
 			const imageURL = (await page.$$eval("div.qbCDp > img", images => images.map(image => image.getAttribute("src"))))[0];
