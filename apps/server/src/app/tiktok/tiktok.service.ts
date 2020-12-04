@@ -27,9 +27,14 @@ import { Browser, Page } from "puppeteer-core";
 				const a = document.querySelectorAll("h3.author-uniqueId")[0] as HTMLHeadingElement;
 				return a.innerText;
 			});
-			await page.waitForSelector("video", {visible: true});
 			await page.waitForResponse(response => response.url().includes("mp4") && response.ok());
-			await page.waitForTimeout(10000);
+			await page.waitForSelector("video", {visible: true});
+			await page.waitForTimeout(100);
+			const duration = await page.evaluate(() => {
+				const htmlVideo = document.querySelector("video") as HTMLVideoElement;
+				return htmlVideo.duration * 1000;
+			});
+			await page.waitForTimeout(duration);
 			return data;
 		} catch (error) {
 			throw new Error(error.message);
