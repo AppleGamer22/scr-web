@@ -42,8 +42,9 @@ import { ToastService } from "../toast.service";
 			if (token) {
 				const headers = new HttpHeaders({"Authorization": token});
 				if (id && number) {
-					this.urls = await this.http.get<string[]>(`${environment.server}/api/story/${id}/${number}`, { headers }).toPromise();
-					await this.toast.showToast(`${this.urls.length} URL(s)`, "success");
+					const paths = await this.http.get<string[]>(`${environment.server}/api/story/${id}/${number}`, { headers }).toPromise();
+					await this.toast.showToast(`${paths.length} URL(s)`, "success");
+					for (const path of paths) this.urls.push(`${environment.server}/api/${path}`);
 				} else {
 					await this.toast.showToast("Please enter a post ID.", "danger");
 				}
