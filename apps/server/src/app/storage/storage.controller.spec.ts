@@ -1,4 +1,5 @@
 import { Test, TestingModule } from "@nestjs/testing";
+import { HttpModule } from "@nestjs/common";
 import { StorageController } from "./storage.controller";
 import { StorageService } from "./storage.service";
 
@@ -7,6 +8,9 @@ describe("StorageController", () => {
 
 	beforeEach(async () => {
 		const module: TestingModule = await Test.createTestingModule({
+			imports: [
+				HttpModule
+			],
 			controllers: [StorageController],
 			providers: [
 				StorageService

@@ -1,6 +1,7 @@
 import { Test, TestingModule } from "@nestjs/testing";
 import { getModelToken } from "@nestjs/mongoose";
 import { JwtModule } from "@nestjs/jwt";
+import { HttpModule } from "@nestjs/common";
 import { User, History } from "@scr-web/server-schemas";
 import { initEnvironment } from "@scr-web/server-interfaces";
 import { TikTokController } from "./tiktok.controller";
@@ -15,6 +16,7 @@ describe("Tiktok Controller", () => {
 		const module: TestingModule = await Test.createTestingModule({
 			imports: [
 				JwtModule.register({secret: initEnvironment().JWT_SECRET}),
+				HttpModule
 			],
 			controllers: [TikTokController],
 			providers: [

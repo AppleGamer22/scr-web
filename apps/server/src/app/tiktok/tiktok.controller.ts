@@ -29,11 +29,11 @@ import { AuthGuard } from "../auth/auth.guard";
 			const history = await this.historyService.getHistoryItem(`tiktok/${user}/${post}`, U_ID);
 			if (history) return history.urls;
 			const { browser, page } = await beginScrape(U_ID);
-			const data = await this.tiktokService.getPostFile(postAddress, browser, page);
+			const { data, username } = await this.tiktokService.getPostFile(postAddress, browser, page);
 			await browser.close();
 			this.storageService.addFileFromBuffer("tiktok", user, `${post}.mp4`, data);
-			const path = `storage/tiktok/${user}/${post}.mp4`;
-			await this.historyService.addHistoryItem(`tiktok/${user}/${post}`, U_ID, { urls: [path], network: "tiktok" });
+			const path = `storage/tiktok/${username}/${post}.mp4`;
+			await this.historyService.addHistoryItem(`tiktok/${username}/${post}`, U_ID, { urls: [path], network: "tiktok" });
 			return [path];
 		} catch (error) {
 			const errorMessage = error.message as string;

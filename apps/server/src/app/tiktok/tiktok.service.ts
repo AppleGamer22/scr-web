@@ -9,7 +9,7 @@ import { Browser, Page } from "puppeteer-core";
 	 * @param page Puppeteer page
 	 * @returns URL string array
 	 */
-	async getPostFile(id: string, browser: Browser, page: Page): Promise<Buffer> {
+	async getPostFile(id: string, browser: Browser, page: Page): Promise<{data: Buffer, username: string}> {
 		try {
 			var data: Buffer | undefined;
 			page.on("response", async response => {
@@ -35,7 +35,7 @@ import { Browser, Page } from "puppeteer-core";
 				return htmlVideo.duration * 1000;
 			});
 			await page.waitForTimeout(duration);
-			return data;
+			return { data, username };
 		} catch (error) {
 			throw new Error(error.message);
 		}

@@ -1,6 +1,6 @@
 import { Test, TestingModule } from "@nestjs/testing";
-import { Browser, Page } from "puppeteer-core";
 import { beginScrape } from "@scr-web/server-interfaces";
+import { Browser, Page } from "puppeteer-core";
 import { TikTokService } from "./tiktok.service";
 
 describe("TiktokService", () => {

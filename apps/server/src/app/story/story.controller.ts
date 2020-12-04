@@ -1,13 +1,16 @@
 import { Controller, Get, UseGuards, Param, Req, HttpStatus, HttpException } from "@nestjs/common";
 import { beginScrape, ScrapeRequest } from "@scr-web/server-interfaces";
 import { Request } from "express";
+import { basename } from "path";
 import { StoryService } from "./story.service";
 import { AuthGuard } from "../auth/auth.guard";
 import { HistoryService } from "../history/history.service";
+import { StorageService } from "../storage/storage.service";
 
 @Controller("story") export class StoryController {
 	constructor(
 		private readonly storyService: StoryService,
+		private readonly storageService: StorageService,
 		private readonly historyService: HistoryService
 	) {}
 	/**
@@ -27,8 +30,14 @@ import { HistoryService } from "../history/history.service";
 			const { browser, page } = await beginScrape(U_ID);
 			const urls = await this.storyService.getStoryFile(story, item, browser, page);
 			await browser.close();
-			await this.historyService.addHistoryItem(`story/${story}/${item}`, U_ID, { urls, network: "instagram" });
-			return urls;
+			var paths: string[] = [];
+			for (let url of urls) {
+				const filename = `${story}_${basename(url)}`;
+				await this.storageService.addFileFromURL("highlight", story, filename, url);
+				paths.push(`storage/highlight/${story}/${filename}`)
+			}
+			await this.historyService.addHistoryItem(`story/${story}/${item}`, U_ID, {urls: paths, network: "instagram"});
+			return paths;
 		} catch (error) {
 			const errorMessage = error.message as string;
 			var errorCode: HttpStatus;

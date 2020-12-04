@@ -15,27 +15,28 @@ declare global {
 	 * @param id post ID
 	 * @param browser Puppeteer browser
 	 * @param page Puppeteer page
-	 * @returns URL string array
+	 * @returns URL string array and username
 	 */
-	async getPostFiles(id: string, browser: Browser, page: Page): Promise<string[]> {
+	async getPostFiles(id: string, browser: Browser, page: Page): Promise<{urls: string[], username: string}> {
 		try {
 			await page.goto(`https://www.instagram.com/p/${id}`, {waitUntil: "domcontentloaded"});
 			if ((await page.$("div.error-container")) !== null) {
 				await browser.close();
 				throw new Error(`Failed to find post ${id}`);
 			}
-			const sources = (await page.evaluate(() => window.__additionalData))[`/p/${id}/`].data.graphql.shortcode_media;
+			const data = (await page.evaluate(() => window.__additionalData))[`/p/${id}/`].data.graphql.shortcode_media;
+			const username = data.owner.username;
 			var urls: string[] = [];
-			if (sources.edge_sidecar_to_children) {
-				for (let edge of sources.edge_sidecar_to_children.edges) {
+			if (data.edge_sidecar_to_children) {
+				for (let edge of data.edge_sidecar_to_children.edges) {
 					if (!edge.node.is_video) urls.push(edge.node.display_url);
 					if (edge.node.is_video) urls.push(edge.node.video_url);
 				}
 			} else {
-				if (!sources.is_video) urls.push(sources.display_url);
-				if (sources.is_video) urls.push(sources.video_url);
+				if (!data.is_video) urls.push(data.display_url);
+				if (data.is_video) urls.push(data.video_url);
 			}
-			return urls;
+			return { urls, username };
 		} catch (error) {
 			console.error(error.message);
 			throw new Error(`Failed to process post ${id}`);

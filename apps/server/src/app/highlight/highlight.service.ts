@@ -10,7 +10,7 @@ import { Browser, Page } from "puppeteer-core";
 	 * @param page Puppeteer page
 	 * @returns URL string array
 	 */
-	async getHighlightFile(highlight: string, item: number, browser: Browser, page: Page): Promise<string[]> {
+	async getHighlightFile(highlight: string, item: number, browser: Browser, page: Page): Promise<{urls: string[], username: string}> {
 		try {
 			await page.goto(`https://www.instagram.com/stories/highlights/${highlight}`, {waitUntil: "domcontentloaded"});
 			await page.waitForSelector("body", {visible: true});
@@ -22,6 +22,11 @@ import { Browser, Page } from "puppeteer-core";
 			if (await page.waitForSelector("button._42FBe")) {
 				await page.click("button._42FBe")
 			}
+			await page.waitForSelector("a.FPmhX", {visible: true});
+			const username = await page.evaluate(() => {
+				const a = document.querySelector("a.FPmhX") as HTMLAnchorElement;
+				return a.innerText;
+			});
 			for (var i = 0; i < item - 1; i += 1) {
 				await page.waitForSelector("div.coreSpriteRightChevron", {visible: true});
 				await page.click("div.coreSpriteRightChevron");
@@ -35,7 +40,7 @@ import { Browser, Page } from "puppeteer-core";
 			if (imageURL) urls.push(imageURL);
 			const videoURL = (await page.$$eval("div.qbCDp > video > source", sources => sources.map(source => source.getAttribute("src"))))[0];
 			if (videoURL) urls.push(videoURL);
-			return urls;
+			return { urls, username };
 		} catch (error) {
 			throw new Error(error.message as string);
 		}

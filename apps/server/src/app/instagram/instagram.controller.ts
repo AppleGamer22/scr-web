@@ -1,13 +1,16 @@
 import { Controller, Get, Param, HttpException, HttpStatus, Req, UseGuards } from "@nestjs/common";
 import { beginScrape, ScrapeRequest } from "@scr-web/server-interfaces";
 import { Request } from "express";
+import { basename } from "path";
 import { AuthGuard } from "../auth/auth.guard";
 import { InstagramService } from "./instagram.service";
 import { HistoryService } from "../history/history.service";
+import { StorageService } from "../storage/storage.service";
 
 @Controller("instagram") export class InstagramController {
 	constructor(
 		private readonly instagramService: InstagramService,
+		private readonly storageService: StorageService,
 		private readonly historyService: HistoryService
 	) {}
 	/**
@@ -23,10 +26,16 @@ import { HistoryService } from "../history/history.service";
 		try {
 			const { U_ID } = (request as ScrapeRequest).user;
 			const { browser, page } = await beginScrape(U_ID);
-			const urls = await this.instagramService.getPostFiles(post, browser, page);
+			const { urls, username } = await this.instagramService.getPostFiles(post, browser, page);
 			await browser.close();
-			await this.historyService.addHistoryItem(`instagram/${post}`, U_ID, { urls, network: "instagram" });
-			return urls;
+			var paths: string[] = [];
+			for (let url of urls) {
+				const filename = `${post}_${basename(url)}`;
+				await this.storageService.addFileFromURL("instagram", username, filename, url);
+				paths.push(`storage/instagram/${username}/${filename}`)
+			}
+			await this.historyService.addHistoryItem(`instagram/${username}/${post}`, U_ID, {urls: paths, network: "instagram"});
+			return paths;
 		} catch (error) {
 			const errorMessage = error.message as string;
 			var errorCode: HttpStatus = HttpStatus.INTERNAL_SERVER_ERROR;

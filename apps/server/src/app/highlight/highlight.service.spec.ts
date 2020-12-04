@@ -20,7 +20,7 @@ describe("HighlightService", () => {
 	it("should be defined", () => expect(service).toBeDefined());
 	it("scrapes 16th 17844578911664043 and gets a private MP4", async done => {
 		try {
-			const urls = await service.getHighlightFile("17844578911664043", 16, browser, page);
+			const { urls } = await service.getHighlightFile("17844578911664043", 16, browser, page);
 			done();
 			expect(urls.length).toBe(2);
 			console.log(urls[0]);
@@ -37,7 +37,7 @@ describe("HighlightService", () => {
 	});
 	it("scrapes 16th 17887560724381853 and gets a public JPEG", async done => {
 		try {
-			const urls = await service.getHighlightFile("17887560724381853", 16, browser, page);
+			const { urls } = await service.getHighlightFile("17887560724381853", 16, browser, page);
 			done();
 			expect(urls.length).toBe(2);
 			console.log(urls[0]);

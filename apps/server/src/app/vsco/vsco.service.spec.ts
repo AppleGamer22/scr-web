@@ -23,7 +23,7 @@ describe("VSCOService", () => {
 
 	it("scrapes darianvoisard/media/5a988983ec256c540d17960a & gets 1 MP4", async done => {
 		try {
-			const url = await service.getPostFile("darianvoisard/media/5a988983ec256c540d17960a", browser, page);
+			const { url } = await service.getPostFile("darianvoisard/media/5a988983ec256c540d17960a", browser, page);
 			// await browser.close();
 			done();
 			console.log(url);
@@ -38,7 +38,7 @@ describe("VSCOService", () => {
 
 	it("scrapes sarahm36/media/5d727b9dc7fe090749a25cad & gets 1 JPEG", async done => {
 		try {
-			const url = await service.getPostFile("sarahm36/media/5d727b9dc7fe090749a25cad", browser, page);
+			const { url } = await service.getPostFile("sarahm36/media/5d727b9dc7fe090749a25cad", browser, page);
 			// await browser.close();
 			done();
 			console.log(url);
