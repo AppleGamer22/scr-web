@@ -12,7 +12,7 @@ import { ToastService } from "../toast.service";
 }) export class InstagramComponent {
 	postID: string;
 	processing = false;
-	urls: string[];
+	urls: string[] = [];
 	constructor(
 		private readonly http: HttpClient,
 		@Inject(DOCUMENT) private document: Document,
@@ -31,6 +31,7 @@ import { ToastService } from "../toast.service";
 	 * @param id post ID
 	 */
 	async submit(id: string) {
+		this.urls = [];
 		this.processing = true;
 		await this.router.navigate(["/instagram"], {queryParams: { id }, queryParamsHandling: "merge"});
 		try {

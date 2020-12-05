@@ -36,7 +36,12 @@ import { StorageService } from "../storage/storage.service";
 				await this.storageService.addFileFromURL("highlight", username, filename, url);
 				paths.push(`storage/highlight/${username}/${filename}`)
 			}
-			await this.historyService.addHistoryItem(`highlight/${highlight}/${item}`, U_ID, {urls: paths, network: "instagram"});
+			await this.historyService.addHistoryItem(`highlight/${highlight}/${item}`, U_ID, {
+				urls: paths,
+				type: "highlight",
+				owner: username,
+				post: `$${highlight}/${item}`
+			});
 			return paths;
 		} catch (error) {
 			const errorMessage = error.message as string;

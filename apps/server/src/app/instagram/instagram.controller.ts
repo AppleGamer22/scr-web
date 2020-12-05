@@ -25,16 +25,23 @@ import { StorageService } from "../storage/storage.service";
 	): Promise<string[]> {
 		try {
 			const { U_ID } = (request as ScrapeRequest).user;
+			const history = await this.historyService.getHistoryItemByPost(post, U_ID);
+			if (history) return history.urls;
 			const { browser, page } = await beginScrape(U_ID);
 			const { urls, username } = await this.instagramService.getPostFiles(post, browser, page);
 			await browser.close();
 			var paths: string[] = [];
 			for (let url of urls) {
-				const filename = `${post}_${basename(url)}`;
+				const filename = `${post}_${basename(url).split("?")[0]}`;
 				await this.storageService.addFileFromURL("instagram", username, filename, url);
-				paths.push(`storage/instagram/${username}/${filename}`)
+				paths.push(`storage/instagram/${username}/${filename}`);
 			}
-			await this.historyService.addHistoryItem(`instagram/${username}/${post}`, U_ID, {urls: paths, network: "instagram"});
+			await this.historyService.addHistoryItem(`instagram/${username}/${post}`, U_ID, {
+				urls: paths,
+				type: "instagram",
+				owner: username,
+				post
+			});
 			return paths;
 		} catch (error) {
 			const errorMessage = error.message as string;

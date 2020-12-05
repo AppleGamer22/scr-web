@@ -28,14 +28,19 @@ import { AuthGuard } from "../auth/auth.guard";
 		try {
 			const { U_ID } = (request as ScrapeRequest).user;
 			const { browser, page } = await beginScrape(U_ID);
-			const history = await this.historyService.getHistoryItem(`vsco/${user}/${post}`, U_ID);
+			const history = await this.historyService.getHistoryItemBy_ID(`vsco/${user}/${post}`, U_ID);
 			if (history) return history.urls;
 			const { url, username } = await this.vscoService.getPostFile(postAddress, browser, page);
 			await browser.close();
 			const filename = `${post}_${basename(url)}`;
 			await this.storageService.addFileFromURL("vsco", user, filename, url);
 			const path = `storage/vsco/${username}/${filename}`;
-			await this.historyService.addHistoryItem(`vsco/${username}/${post}`, U_ID, { urls: [path], network: "vsco" });
+			await this.historyService.addHistoryItem(`vsco/${username}/${post}`, U_ID, {
+				urls: [path],
+				type: "vsco",
+				owner: username,
+				post
+			});
 			return [path];
 		} catch (error) {
 			const errorMessage = error.message as string;

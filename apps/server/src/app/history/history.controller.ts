@@ -37,14 +37,14 @@ import { AuthGuard } from "../auth/auth.guard";
 	 */
 	@Patch("") @UseGuards(AuthGuard) editHistory(@Req() request: Request, @Body() body: {history: History, urlToDelete: string}): Promise<History> {
 		const u_id = (request as ScrapeRequest).user.U_ID;
-		const { U_ID, _id, network } = body.history;
+		const { U_ID, _id, type, owner, post } = body.history;
 		var { urls } = body.history;
 		if (u_id === U_ID) {
 			urls = urls.filter(url => url !== body.urlToDelete);
 			if (urls.length === 0) {
 				return this.historyService.deleteHistoryItem(_id);
 			} else if (urls.length > 0) {
-				return this.historyService.addHistoryItem(_id, U_ID, { urls, network });
+				return this.historyService.addHistoryItem(_id, U_ID, { urls, type, owner, post });
 			}
 		}
 	}
