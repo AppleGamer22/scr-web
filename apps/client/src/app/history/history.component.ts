@@ -28,6 +28,10 @@ export class HistoryComponent {
 			if (token) {
 				const headers = new HttpHeaders({"Authorization": token});
 				this.histories = await this.http.get<History[]>(`${environment.server}/api/history/${this.type}`, { headers }).toPromise();
+				this.histories = this.histories.map(history => {
+					history.urls = history.urls.map(url => `${environment.server}/api/${url}`);
+					return history;
+				});
 				this.processing = false;
 			} else {
 				this.processing = false;
