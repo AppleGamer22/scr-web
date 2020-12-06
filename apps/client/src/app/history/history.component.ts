@@ -24,33 +24,32 @@ export class HistoryComponent {
 		route: ActivatedRoute,
 		private router: Router,
 	) {
-		this.type = route.snapshot.queryParamMap.get("type") as FileType | "all";
-		this.filterHistories();
+		this.type = (route.snapshot.queryParamMap.get("type") as FileType | "all") || "all";
+		this.filterHistories(this.type);
 	}
 	/**
-	 * Get all of the activity history
+	 * Get the history for a particular resource type
 	 */
-	async getHistories() {
+	async filterHistories(type: FileType | "all") {
 		this.processing = true;
 		try {
 			const token = localStorage.getItem("instagram");
 			if (token) {
+				await this.router.navigate(["/history"], {queryParams: { type }, queryParamsHandling: "merge"});
 				const headers = new HttpHeaders({"Authorization": token});
-				this.histories = await this.http.get<History[]>(`${environment.server}/api/history/all`, { headers }).toPromise();
+				this.histories = await this.http.get<History[]>(`${environment.server}/api/history/${type}`, { headers }).toPromise();
 				this.histories = this.histories.map(history => {
 					history.urls = history.urls.map(url => `${environment.server}/api/${url}`);
 					return history;
 				});
-				this.processing = false;
 			} else {
-				this.processing = false;
 				await this.toast.showToast("You are not authenticated.", "danger");
 			}
 		} catch (error) {
-			this.processing = false;
 			console.error((error as Error).message);
 			this.toast.showToast((error as Error).message, "danger");
 		}
+		this.processing = false;
 	}
 	/**
 	 * Deletes a requested URL from a history item
@@ -68,30 +67,6 @@ export class HistoryComponent {
 				this.histories = this.histories.map(history2 => {
 					history2.urls = history2.urls.map(url => `${environment.server}/api/${url}`);
 					return history2;
-				});
-			} else {
-				await this.toast.showToast("You are not authenticated.", "danger");
-			}
-		} catch (error) {
-			console.error((error as Error).message);
-			this.toast.showToast((error as Error).message, "danger");
-		}
-		this.processing = false;
-	}
-	/**
-	 * Get the history for a particular resource type
-	 */
-	async filterHistories() {
-		this.processing = true;
-		try {
-			const token = localStorage.getItem("instagram");
-			if (token) {
-				await this.router.navigate(["/history"], {queryParams: {type: this.type}, queryParamsHandling: "merge"});
-				const headers = new HttpHeaders({"Authorization": token});
-				this.histories = await this.http.get<History[]>(`${environment.server}/api/history/${this.type}`, { headers }).toPromise();
-				this.histories = this.histories.map(history => {
-					history.urls = history.urls.map(url => `${environment.server}/api/${url}`);
-					return history;
 				});
 			} else {
 				await this.toast.showToast("You are not authenticated.", "danger");

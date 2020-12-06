@@ -8,7 +8,7 @@
 	<ion-toolbar>
 		<ion-buttons>
 			<ion-label><ion-icon name="funnel"></ion-icon> Filter by: </ion-label>
-			<ion-select interface="action-sheet" placeholder="Item Type" (ionChange)="filterHistories()" [(ngModel)]="type">
+			<ion-select interface="action-sheet" placeholder="Item Type" (ionChange)="filterHistories(type)" [(ngModel)]="type">
 				<ion-select-option value="all">All Items</ion-select-option>
 				<ion-select-option value="instagram">Instagram Post</ion-select-option>
 				<ion-select-option value="highlight">Instagram Highlight</ion-select-option>
