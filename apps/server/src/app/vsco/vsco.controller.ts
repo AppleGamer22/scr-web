@@ -33,7 +33,7 @@ import { AuthGuard } from "../auth/auth.guard";
 			const { url, username } = await this.vscoService.getPostFile(postAddress, browser, page);
 			await browser.close();
 			const filename = `${post}_${basename(url)}`;
-			await this.storageService.addFileFromURL("vsco", user, filename, url);
+			await this.storageService.addFileFromURL("vsco", username, filename, url);
 			const path = `storage/vsco/${username}/${filename}`;
 			await this.historyService.addHistoryItem(U_ID, [path], "vsco", username, post);
 			return [path];

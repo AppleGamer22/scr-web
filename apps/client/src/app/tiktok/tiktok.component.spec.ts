@@ -5,6 +5,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { IonicModule } from "@ionic/angular";
 import { TikTokComponent } from "./tiktok.component";
 import { ToastService } from "../toast.service";
+import { URLsModule } from "../urls/urls.module";
 
 describe("TikTokComponent", () => {
 	let component: TikTokComponent;
@@ -16,7 +17,8 @@ describe("TikTokComponent", () => {
 				IonicModule.forRoot({scrollAssist: true}),
 				FormsModule,
 				RouterTestingModule,
-				HttpClientModule
+				HttpClientModule,
+				URLsModule
 			],
 			providers: [ToastService],
 			declarations: [TikTokComponent],

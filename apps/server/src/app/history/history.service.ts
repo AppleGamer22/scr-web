@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
-import { History, HistoryDocument } from "@scr-web/server-schemas";
+import { History, HistoryDocument, FileType } from "@scr-web/server-schemas";
 import { Model } from "mongoose";
 
 @Injectable() export class HistoryService {
@@ -27,7 +27,7 @@ import { Model } from "mongoose";
 	async addHistoryItem(
 		U_ID: string,
 		urls: string[],
-		type: "instagram" | "highlight" | "story" | "vsco" | "tiktok",
+		type: FileType,
 		owner: string,
 		post: string
 	): Promise<History> {

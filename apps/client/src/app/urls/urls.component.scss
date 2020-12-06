@@ -1,9 +1,8 @@
-div {
+div, ion-col {
 	display: flex;
 	align-items: center;
 }
 
-img, video {
+img, video, a {
 	max-width: 100vw;
-	height: auto;
 }

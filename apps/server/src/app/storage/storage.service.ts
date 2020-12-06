@@ -1,8 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { HttpService } from "@nestjs/common";
+import { FileType } from "@scr-web/server-schemas";
 import { existsSync, mkdirSync, writeFileSync, rmdirSync } from "fs";
-
-export type FileType = "instagram" | "highlight" | "story" | "vsco" | "tiktok";
 
 @Injectable() export class StorageService {
 	constructor(private readonly http: HttpService) {}

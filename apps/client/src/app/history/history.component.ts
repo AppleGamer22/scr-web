@@ -3,6 +3,8 @@ import { History } from "@scr-web/server-schemas";
 import { Component, Inject } from "@angular/core";
 import { DOCUMENT } from "@angular/common";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { ActivatedRoute, Router } from "@angular/router";
+import { FileType } from "@scr-web/server-schemas";
 import { environment } from "../../environments/environment";
 import { ToastService } from "../toast.service";
 
@@ -13,10 +15,17 @@ import { ToastService } from "../toast.service";
 })
 export class HistoryComponent {
 	processing = false;
-	type: "instagram" | "highlight" | "story" | "vsco" | "all" = "all";
+	type: FileType | "all" = "all";
 	histories: History[];
-	constructor(private readonly http: HttpClient, readonly toast: ToastService, @Inject(DOCUMENT) private document: Document) {
-		this.getHistories();
+	constructor(
+		private readonly http: HttpClient,
+		readonly toast: ToastService,
+		@Inject(DOCUMENT) private document: Document,
+		route: ActivatedRoute,
+		private router: Router,
+	) {
+		this.type = route.snapshot.queryParamMap.get("type") as FileType | "all";
+		this.filterHistories();
 	}
 	/**
 	 * Get all of the activity history
@@ -27,7 +36,7 @@ export class HistoryComponent {
 			const token = localStorage.getItem("instagram");
 			if (token) {
 				const headers = new HttpHeaders({"Authorization": token});
-				this.histories = await this.http.get<History[]>(`${environment.server}/api/history/${this.type}`, { headers }).toPromise();
+				this.histories = await this.http.get<History[]>(`${environment.server}/api/history/all`, { headers }).toPromise();
 				this.histories = this.histories.map(history => {
 					history.urls = history.urls.map(url => `${environment.server}/api/${url}`);
 					return history;
@@ -56,6 +65,10 @@ export class HistoryComponent {
 				const headers = new HttpHeaders({"Authorization": token});
 				await this.http.patch(`${environment.server}/api/history/`, { history, urlToDelete }, { headers }).toPromise();
 				this.histories = await this.http.get<History[]>(`${environment.server}/api/history/${this.type}`, { headers }).toPromise();
+				this.histories = this.histories.map(history2 => {
+					history2.urls = history2.urls.map(url => `${environment.server}/api/${url}`);
+					return history2;
+				});
 			} else {
 				await this.toast.showToast("You are not authenticated.", "danger");
 			}
@@ -68,13 +81,18 @@ export class HistoryComponent {
 	/**
 	 * Get the history for a particular resource type
 	 */
-	async filterHistory() {
+	async filterHistories() {
 		this.processing = true;
 		try {
 			const token = localStorage.getItem("instagram");
 			if (token) {
+				await this.router.navigate(["/history"], {queryParams: {type: this.type}, queryParamsHandling: "merge"});
 				const headers = new HttpHeaders({"Authorization": token});
 				this.histories = await this.http.get<History[]>(`${environment.server}/api/history/${this.type}`, { headers }).toPromise();
+				this.histories = this.histories.map(history => {
+					history.urls = history.urls.map(url => `${environment.server}/api/${url}`);
+					return history;
+				});
 			} else {
 				await this.toast.showToast("You are not authenticated.", "danger");
 			}
@@ -83,23 +101,5 @@ export class HistoryComponent {
 			this.toast.showToast((error as Error).message, "danger");
 		}
 		this.processing = false;
-	}
-	/**
-	 * Initiates a download dialog for a given filew URL
-	 * @param url URL of file to download
-	 */
-	async downloadFile(url: string) {
-		const arrayBuffer = await this.http.get(url, {responseType: "arraybuffer"}).toPromise();
-		let type: "image/jpeg" | "video/mp4";
-		if (url.includes(".jpg")) {
-			type = "image/jpeg"
-		} else if (url.includes(".mp4")) {
-			type = "video/mp4"
-		}
-		const blob = new Blob([arrayBuffer], { type });
-		const a = this.document.createElement("a");
-		a.href = URL.createObjectURL(blob);
-		a.download = "";
-		a.click();
 	}
 }

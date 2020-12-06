@@ -1,5 +1,5 @@
 import { ScrapeRequest } from "@scr-web/server-interfaces";
-import { History } from "@scr-web/server-schemas";
+import { History, FileType } from "@scr-web/server-schemas";
 import { Controller, Get, UseGuards, Req, HttpException, HttpStatus, Patch, Body, Param } from "@nestjs/common";
 import { Request } from "express";
 import { HistoryService } from "./history.service";
@@ -15,7 +15,7 @@ import { AuthGuard } from "../auth/auth.guard";
 	 */
 	@Get(":type") @UseGuards(AuthGuard) async getHistories(
 		@Req() request: Request,
-		@Param("type") type: "instagram" | "highlight" | "story" | "vsco" | "all"
+		@Param("type") type: FileType | "all"
 	): Promise<History[]> {
 		try {
 			const U_ID = (request as ScrapeRequest).user.U_ID;

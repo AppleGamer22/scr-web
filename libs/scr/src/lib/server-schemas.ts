@@ -11,11 +11,12 @@ import { Document } from "mongoose";
 export type UserDocument = User & Document;
 export const UserSchema = SchemaFactory.createForClass(User);
 
+export type FileType = "instagram" | "highlight" | "story" | "vsco" | "tiktok";
 @Schema() export class History  {
 	@Prop({required: true}) _id: string;
 	@Prop({required: true}) urls: string[];
 	@Prop({required: true}) U_ID: string;
-	@Prop({required: true}) type: "instagram" | "highlight" | "story" | "vsco" | "tiktok";
+	@Prop({required: true}) type: FileType;
 	@Prop({required: true}) owner: string;
 	@Prop({required: true}) post: string;
 	@Prop({required: true}) date: Date;
