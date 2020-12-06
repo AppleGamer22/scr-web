@@ -18,35 +18,30 @@ import { Model } from "mongoose";
 		}
 	}
 	/**
-	 *
+	 * Adds/updates history item to database (according to https://mongoosejs.com/docs/tutorials/findoneandupdate.html)
 	 * @param _id History item ID
-	 * @param U_ID user's _id property
+	 * @param U_ID user ID
 	 * @param item History item core properties
 	 * @returns added History item
 	 */
 	async addHistoryItem(
-		_id: string,
 		U_ID: string,
-		item: {
-			urls: string[],
-			type: "instagram" | "highlight" | "story" | "vsco" | "tiktok",
-			owner: string
-			post: string
-		}
+		urls: string[],
+		type: "instagram" | "highlight" | "story" | "vsco" | "tiktok",
+		owner: string,
+		post: string
 	): Promise<History> {
 		try {
-			// https://mongoosejs.com/docs/tutorials/findoneandupdate.html
-			return this.historyCollection.findOneAndUpdate({ _id }, {
-				U_ID,
-				urls: item.urls,
-				type: item.type,
-				owner: item.owner,
-				post: item.post
-			}, {new: true, upsert: true}).exec();
+			return this.historyCollection.findOneAndUpdate({_id: `${type}/${owner}/${post}`, U_ID}, {urls, type, owner, post, date: new Date()}, {new: true, upsert: true}).exec();
 		} catch (error) {
 			throw new Error(error.message as string);
 		}
 	}
+	/**
+	 * Gets History item by ID
+	 * @param _id History item ID
+	 * @param U_ID user ID
+	 */
 	async getHistoryItemBy_ID(_id: string, U_ID: string): Promise<History> {
 		try {
 			return this.historyCollection.findOne({_id, U_ID});
@@ -54,6 +49,11 @@ import { Model } from "mongoose";
 			throw new Error(error.message as string);
 		}
 	}
+	/**
+	 * Gets History item by ID
+	 * @param post History item's post property
+	 * @param U_ID user ID
+	 */
 	async getHistoryItemByPost(post: string, U_ID: string): Promise<History> {
 		try {
 			return this.historyCollection.findOne({post, U_ID});

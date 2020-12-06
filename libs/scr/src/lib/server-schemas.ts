@@ -18,6 +18,7 @@ export const UserSchema = SchemaFactory.createForClass(User);
 	@Prop({required: true}) type: "instagram" | "highlight" | "story" | "vsco" | "tiktok";
 	@Prop({required: true}) owner: string;
 	@Prop({required: true}) post: string;
+	@Prop({required: true}) date: Date;
 }
 export type HistoryDocument = History & Document;
 export const HistorySchema = SchemaFactory.createForClass(History);

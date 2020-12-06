@@ -44,7 +44,7 @@ import { AuthGuard } from "../auth/auth.guard";
 			if (urls.length === 0) {
 				return this.historyService.deleteHistoryItem(_id);
 			} else if (urls.length > 0) {
-				return this.historyService.addHistoryItem(_id, U_ID, { urls, type, owner, post });
+				return this.historyService.addHistoryItem(U_ID, urls, type, owner, post);
 			}
 		}
 	}

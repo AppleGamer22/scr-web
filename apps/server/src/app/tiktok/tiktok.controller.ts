@@ -33,12 +33,7 @@ import { AuthGuard } from "../auth/auth.guard";
 			await browser.close();
 			this.storageService.addFileFromBuffer("tiktok", user, `${post}.mp4`, data);
 			const path = `storage/tiktok/${username}/${post}.mp4`;
-			await this.historyService.addHistoryItem(`tiktok/${username}/${post}`, U_ID, {
-				urls: [path],
-				type: "tiktok",
-				owner: username,
-				post
-			});
+			await this.historyService.addHistoryItem(U_ID, [path], "tiktok", username, post);
 			return [path];
 		} catch (error) {
 			const errorMessage = error.message as string;

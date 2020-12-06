@@ -36,12 +36,7 @@ import { StorageService } from "../storage/storage.service";
 				await this.storageService.addFileFromURL("instagram", username, filename, url);
 				paths.push(`storage/instagram/${username}/${filename}`);
 			}
-			await this.historyService.addHistoryItem(`instagram/${username}/${post}`, U_ID, {
-				urls: paths,
-				type: "instagram",
-				owner: username,
-				post
-			});
+			await this.historyService.addHistoryItem(U_ID, paths, "instagram", username, post);
 			return paths;
 		} catch (error) {
 			const errorMessage = error.message as string;
