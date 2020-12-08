@@ -5,3 +5,7 @@ a {
 	color: inherit;
 	text-decoration: inherit;
 }
+ion-split-pane {
+	// reduced menu maximum width
+	--side-max-width: 10%;
+}

@@ -12,10 +12,10 @@ import { ToastService } from "../toast.service";
 	selector: "scr-web-history",
 	templateUrl: "./history.component.html",
 	styleUrls: ["./history.component.scss"],
-})
-export class HistoryComponent {
+}) export class HistoryComponent {
 	processing = false;
 	type: FileType | "all" = "all";
+	search = "";
 	histories: History[];
 	constructor(
 		private readonly http: HttpClient,
@@ -25,12 +25,12 @@ export class HistoryComponent {
 		private router: Router,
 	) {
 		this.type = (route.snapshot.queryParamMap.get("type") as FileType | "all") || "all";
-		this.filterHistories(this.type);
+		this.filterHistoriesByType(this.type);
 	}
 	/**
 	 * Get the history for a particular resource type
 	 */
-	async filterHistories(type: FileType | "all") {
+	async filterHistoriesByType(type: FileType | "all") {
 		this.processing = true;
 		try {
 			const token = localStorage.getItem("instagram");
@@ -50,6 +50,13 @@ export class HistoryComponent {
 			this.toast.showToast((error as Error).message, "danger");
 		}
 		this.processing = false;
+	}
+	/**
+	 * @param search owner search query
+	 * @returns a filtered list of history items with owner substring
+	 */
+	filterHistoryByOwner(search: string): History[] {
+		return this.histories.filter(history => history.owner.includes(search));
 	}
 	/**
 	 * Deletes a requested URL from a history item
