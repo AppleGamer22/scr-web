@@ -27,9 +27,9 @@ import { AuthGuard } from "../auth/auth.guard";
 		const postAddress = `${user}/media/${post}`;
 		try {
 			const { U_ID } = (request as ScrapeRequest).user;
-			const { browser, page } = await beginScrape(U_ID);
-			const history = await this.historyService.getHistoryItemBy_ID(`vsco/${user}/${post}`, U_ID);
+			const history = await this.historyService.getHistoryItemByPost(post, U_ID);
 			if (history) return history.urls;
+			const { browser, page } = await beginScrape(U_ID);
 			const { url, username } = await this.vscoService.getPostFile(postAddress, browser, page);
 			await browser.close();
 			const filename = `${post}_${basename(url)}`;

@@ -44,7 +44,7 @@ import { Model } from "mongoose";
 	 */
 	async getHistoryItemBy_ID(_id: string, U_ID: string): Promise<History> {
 		try {
-			return this.historyCollection.findOne({_id, U_ID});
+			return this.historyCollection.findOne({ _id, U_ID });
 		} catch (error) {
 			throw new Error(error.message as string);
 		}
@@ -56,7 +56,7 @@ import { Model } from "mongoose";
 	 */
 	async getHistoryItemByPost(post: string, U_ID: string): Promise<History> {
 		try {
-			return this.historyCollection.findOne({post, U_ID});
+			return this.historyCollection.findOne({ post, U_ID });
 		} catch (error) {
 			throw new Error(error.message as string);
 		}
