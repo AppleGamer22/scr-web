@@ -2,7 +2,7 @@
 |Network|GitHub|Docker Hub|
 |-|-|-|
 |license|![GitHub](https://img.shields.io/github/license/AppleGamer22/scr-web?logo=github)||
-|relase|![GitHub release](https://img.shields.io/github/v/release/AppleGamer22/scr-web?logo=Github)||
+|relase|![GitHub release](https://img.shields.io/github/v/release/AppleGamer22/scr-web?logo=Github)|![Docker Image Version (latest semver)](https://img.shields.io/docker/v/applegamer22/scr-web?logo=docker)|
 |build status|![publish-image](https://github.com/AppleGamer22/scr-web/workflows/publish-image/badge.svg)||
 |downloads|![GitHub downloads](https://img.shields.io/github/downloads/AppleGamer22/scr-web/total?&logo=github)|![Docker Pulls](https://img.shields.io/docker/pulls/applegamer22/scr-web?label=downloads&logo=docker)|
 |people|![GitHub contributors](https://img.shields.io/github/contributors/AppleGamer22/scr-web?logo=github)||
@@ -13,7 +13,7 @@
 ## Description
 Social media web scraper CLI for post file downloads.
 ## Contributing
-* Separate Git branch to the master branch
+* Separate Git branch to the master branch (after being approved as a contributor by the repositorie's owner).
   * After reviewing the changes, this branch will be merged to the main branch.
 * Separate fork to this repository
 ## Usage Responsibilities
@@ -44,7 +44,8 @@ Social media web scraper CLI for post file downloads.
       ports:
         - <available_port>:4100
       volumes:
-        - ./some_local_directory:/scr/users
+        - ./<some_local_directory>:/scr/users
+        - ./<some_local_directory>:/scr/storage
     database:
       container_name: database
       image: mongo:4.2.0
