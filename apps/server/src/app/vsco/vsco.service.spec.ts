@@ -36,9 +36,9 @@ describe("VSCOService", () => {
 	}
 	});
 
-	it("scrapes sarahm36/media/5d727b9dc7fe090749a25cad & gets 1 JPEG", async done => {
+	it("scrapes oliviamaxx/media/5fd3bed97cd68e4635abb619 & gets 1 JPEG", async done => {
 		try {
-			const { url } = await service.getPostFile("sarahm36/media/5d727b9dc7fe090749a25cad", browser, page);
+			const { url } = await service.getPostFile("oliviamaxx/media/5fd3bed97cd68e4635abb619", browser, page);
 			// await browser.close();
 			done();
 			console.log(url);
