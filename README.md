@@ -13,7 +13,7 @@
 ## Description
 Social media web scraper CLI for post file downloads.
 ## Contributing
-* Separate Git branch to the master branch (after being approved as a contributor by the repositorie's owner).
+* Separate Git branch to the master branch (after being approved as a contributor by the repository's owner).
   * After reviewing the changes, this branch will be merged to the main branch.
 * Separate fork to this repository
 ## Usage Responsibilities
