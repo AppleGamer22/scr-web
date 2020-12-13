@@ -31,7 +31,12 @@ import { StorageService } from "../storage/storage.service";
 	): Promise<History> {
 		try {
 			this.storageService.removeFile(type, directory, file);
-			return this.historyService.deleteHistoryURL(`${type}/${directory}/${file}`);
+			const history = await this.historyService.deleteHistoryURL(`${type}/${directory}/${file}`);
+			if (history.urls.length === 0) {
+				return await this.historyService.deleteHistoryItem(history._id);
+			} else {
+				return history;
+			}
 		} catch (error) {
 			throw new HttpException(`could not delete file ${type}/${directory}/${file}`, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
