@@ -25,11 +25,9 @@
 			<ion-grid>
 				<ion-row>
 					<ion-col  size="auto">
-						<ion-label *ngIf="history._id.includes('instagram')">Instagram Post ({{history._id}})</ion-label>
-						<ion-label *ngIf="history._id.includes('highlight')">Instagram Highlight ({{history._id}})</ion-label>
-						<ion-label *ngIf="history._id.includes('story')">Instagram Story ({{history._id}})</ion-label>
-						<ion-label *ngIf="history._id.includes('tiktok')">TikTok Post ({{history._id}})</ion-label>
-						<ion-label *ngIf="history._id.includes('vsco')">VSCO Post ({{history._id}})</ion-label>
+						<a [routerLink]="'/' + history.type" [queryParams]="{id: history.post, owner: history.owner}">
+							<b>{{history._id}}</b>
+						</a>
 					</ion-col>
 					<ion-col size="auto">
 						<scr-web-urls [urls]="history.urls"></scr-web-urls>
