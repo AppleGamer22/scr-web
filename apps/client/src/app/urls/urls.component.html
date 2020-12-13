@@ -12,6 +12,11 @@
 				<ion-col size="auto">
 					<a [href]="url" target="_blank" rel="noopener noreferrer">{{url}}</a>
 				</ion-col>
+				<ion-col>
+					<ion-button color="danger" (click)="deleteFile(url)">
+						<ion-icon name="trash-outline"></ion-icon>
+					</ion-button>
+				</ion-col>
 			</ion-row>
 			<ion-row *ngIf="show.checked">
 				<ion-col size="auto">

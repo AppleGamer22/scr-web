@@ -1,4 +1,6 @@
 import { waitForAsync, ComponentFixture, TestBed } from "@angular/core/testing";
+import { CommonModule } from "@angular/common";
+import { HttpClientModule } from "@angular/common/http";
 import { IonicModule } from "@ionic/angular";
 import { URLsComponent } from "./urls.component";
 
@@ -10,6 +12,8 @@ describe("URLsComponent", () => {
 		TestBed.configureTestingModule({
 			declarations: [URLsComponent],
 			imports: [
+				CommonModule,
+				HttpClientModule,
 				IonicModule
 			],
 		}).compileComponents();

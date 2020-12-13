@@ -1,4 +1,6 @@
 import { Component, Input } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { History } from "@scr-web/server-schemas";
 
 @Component({
 	selector: "scr-web-urls",
@@ -6,4 +8,13 @@ import { Component, Input } from "@angular/core";
 	styleUrls: ["./urls.component.scss"],
 }) export class URLsComponent {
 	@Input() urls: string[];
+	constructor(private readonly http: HttpClient) {}
+
+	async deleteFile(url: string) {
+		try {
+			this.urls = (await this.http.delete<History>(url).toPromise()).urls;
+		} catch (error) {
+			console.error(error);
+		}
+	}
 }

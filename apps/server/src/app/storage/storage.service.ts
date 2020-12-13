@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { HttpService } from "@nestjs/common";
 import { FileType } from "@scr-web/server-schemas";
-import { existsSync, mkdirSync, writeFileSync, rmdirSync } from "fs";
+import { existsSync, mkdirSync, writeFileSync, rmSync } from "fs";
 
 @Injectable() export class StorageService {
 	constructor(private readonly http: HttpService) {}
@@ -45,8 +45,9 @@ import { existsSync, mkdirSync, writeFileSync, rmdirSync } from "fs";
 	removeFile(type: FileType, directory: string, file: string) {
 		const fullPath = `${process.cwd()}/storage/${type}/${directory}/${file}`;
 		try {
-			if (existsSync(fullPath)) rmdirSync(fullPath);
+			if (existsSync(fullPath)) rmSync(fullPath);
 		} catch (error) {
+			console.error(error);
 			throw new Error(`Could not remove file ${type}/${directory}/${file}`);
 		}
 	}

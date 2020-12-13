@@ -73,4 +73,15 @@ import { Model } from "mongoose";
 			throw new Error(error.message as string);
 		}
 	}
+	/**
+	 * Removes URL from History urls field
+	 * @param url file URL from History urls field
+	 */
+	async deleteHistoryURL(url: string): Promise<History> {
+		try {
+			return this.historyCollection.findOneAndUpdate({urls: `storage/${url}`}, {$pull: {urls: `storage/${url}`}}, {new: true});
+		} catch (error) {
+			throw new Error(error.message as string);
+		}
+	}
 }
