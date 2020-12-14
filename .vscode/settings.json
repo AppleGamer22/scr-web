@@ -4,6 +4,10 @@
 	"vsicons.presets.angular": false,
 	"vsicons.presets.tsOfficial": false,
 	"files.watcherExclude": {
+		"./.idea/**": true,
+		"./dist/**": true,
+		"./storage/**": true,
+		"./users*/**": true,
 		"**/.git/objects/**": true,
 		"**/.git/subtree-cache/**": true,
 		"**/node_modules/*/**": true
