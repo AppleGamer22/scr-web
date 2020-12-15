@@ -11,7 +11,13 @@ import { Document } from "mongoose";
 export type UserDocument = User & Document;
 export const UserSchema = SchemaFactory.createForClass(User);
 
-export type FileType = "instagram" | "highlight" | "story" | "vsco" | "tiktok";
+export enum FileType {
+	Instagram = "instagram",
+	Highlight = "highlight",
+	Story = "story",
+	VSCO = "vsco",
+	TikTok = "tiktok"
+}
 @Schema() export class History  {
 	@Prop({required: true}) _id: string;
 	@Prop({required: true}) urls: string[];

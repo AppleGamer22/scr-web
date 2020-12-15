@@ -5,6 +5,7 @@ import { TikTokService } from "./tiktok.service";
 import { HistoryService } from "../history/history.service";
 import { StorageService } from "../storage/storage.service";
 import { AuthGuard } from "../auth/auth.guard";
+import { FileType } from "@scr-web/server-schemas";
 
 @Controller("tiktok") export class TikTokController {
 	constructor(
@@ -31,9 +32,9 @@ import { AuthGuard } from "../auth/auth.guard";
 			const { browser, page } = await beginScrape(U_ID);
 			const { data, username } = await this.tiktokService.getPostFile(postAddress, browser, page);
 			await browser.close();
-			this.storageService.addFileFromBuffer("tiktok", user, `${post}.mp4`, data);
+			this.storageService.addFileFromBuffer(FileType.TikTok, user, `${post}.mp4`, data);
 			const path = `storage/tiktok/${username}/${post}.mp4`;
-			await this.historyService.addHistoryItem(U_ID, [path], "tiktok", username, post);
+			await this.historyService.addHistoryItem(U_ID, [path], FileType.TikTok, username, post);
 			return [path];
 		} catch (error) {
 			const errorMessage = error.message as string;

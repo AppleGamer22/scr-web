@@ -29,7 +29,7 @@
 					<img *ngIf="url.includes('.jpg')" [src]="url">
 					<video *ngIf="url.includes('.mp4')" [src]="url" controls [muted]="true" loop></video>
 				</ion-col>
-				<ion-col *ngIf="segment.value === 'crop'">
+				<!-- <ion-col *ngIf="segment.value === 'crop'">
 					<ion-grid>
 						<ion-row>
 							<ion-col size="auto">
@@ -53,7 +53,7 @@
 							</ion-col>
 						</ion-row>
 					</ion-grid>
-				</ion-col>
+				</ion-col> -->
 			</ion-row>
 		</ion-grid>
 	</ion-item>

@@ -51,7 +51,6 @@
 		"core-js": "^2.5.4",
 		"dotenv": "^8.2.0",
 		"mongoose": "^5.11.7",
-		"ngx-image-cropper": "^3.3.2",
 		"puppeteer-core": "^5.4.0",
 		"reflect-metadata": "^0.1.13",
 		"rxjs": "~6.6.3",

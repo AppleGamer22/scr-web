@@ -6,6 +6,7 @@ import { HistoryService } from "../history/history.service";
 import { StorageService } from "../storage/storage.service";
 import { VSCOService } from "./vsco.service";
 import { AuthGuard } from "../auth/auth.guard";
+import { FileType } from "@scr-web/server-schemas";
 
 @Controller("vsco") export class VSCOController {
 	constructor(
@@ -33,9 +34,9 @@ import { AuthGuard } from "../auth/auth.guard";
 			const { url, username } = await this.vscoService.getPostFile(postAddress, browser, page);
 			await browser.close();
 			const filename = `${post}_${basename(url)}`;
-			await this.storageService.addFileFromURL("vsco", username, filename, url);
+			await this.storageService.addFileFromURL(FileType.VSCO, username, filename, url);
 			const path = `storage/vsco/${username}/${filename}`;
-			await this.historyService.addHistoryItem(U_ID, [path], "vsco", username, post);
+			await this.historyService.addHistoryItem(U_ID, [path], FileType.VSCO, username, post);
 			return [path];
 		} catch (error) {
 			const errorMessage = error.message as string;

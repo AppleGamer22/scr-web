@@ -6,6 +6,7 @@ import { AuthGuard } from "../auth/auth.guard";
 import { InstagramService } from "./instagram.service";
 import { HistoryService } from "../history/history.service";
 import { StorageService } from "../storage/storage.service";
+import { FileType } from "@scr-web/server-schemas";
 
 @Controller("instagram") export class InstagramController {
 	constructor(
@@ -33,10 +34,10 @@ import { StorageService } from "../storage/storage.service";
 			var paths: string[] = [];
 			for (let url of urls) {
 				const filename = `${post}_${basename(url).split("?")[0]}`;
-				await this.storageService.addFileFromURL("instagram", username, filename, url);
+				await this.storageService.addFileFromURL(FileType.Instagram, username, filename, url);
 				paths.push(`storage/instagram/${username}/${filename}`);
 			}
-			await this.historyService.addHistoryItem(U_ID, paths, "instagram", username, post);
+			await this.historyService.addHistoryItem(U_ID, paths, FileType.Instagram, username, post);
 			return paths;
 		} catch (error) {
 			const errorMessage = error.message as string;

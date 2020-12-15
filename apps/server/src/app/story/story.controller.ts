@@ -6,6 +6,7 @@ import { StoryService } from "./story.service";
 import { AuthGuard } from "../auth/auth.guard";
 import { HistoryService } from "../history/history.service";
 import { StorageService } from "../storage/storage.service";
+import { FileType } from "@scr-web/server-schemas";
 
 @Controller("story") export class StoryController {
 	constructor(
@@ -33,10 +34,10 @@ import { StorageService } from "../storage/storage.service";
 			var paths: string[] = [];
 			for (let url of urls) {
 				const filename = `${story}_${basename(url)}`;
-				await this.storageService.addFileFromURL("highlight", story, filename, url);
+				await this.storageService.addFileFromURL(FileType.Story, story, filename, url);
 				paths.push(`storage/highlight/${story}/${filename}`)
 			}
-			await this.historyService.addHistoryItem(U_ID, paths, "story", story, `${story}/${new Date().toISOString()}/${item}`);
+			await this.historyService.addHistoryItem(U_ID, paths, FileType.Story, story, `${story}/${new Date().toISOString()}/${item}`);
 			return paths;
 		} catch (error) {
 			const errorMessage = error.message as string;

@@ -6,6 +6,7 @@ import { HighlightService } from "./highlight.service";
 import { AuthGuard } from "../auth/auth.guard";
 import { HistoryService } from "../history/history.service";
 import { StorageService } from "../storage/storage.service";
+import { FileType } from "@scr-web/server-schemas";
 
 @Controller("highlight") export class HighlightController {
 	constructor(
@@ -33,10 +34,10 @@ import { StorageService } from "../storage/storage.service";
 			var paths: string[] = [];
 			for (let url of urls) {
 				const filename = `${highlight}_${basename(url)}`;
-				await this.storageService.addFileFromURL("highlight", username, filename, url);
+				await this.storageService.addFileFromURL(FileType.Highlight, username, filename, url);
 				paths.push(`storage/highlight/${username}/${filename}`)
 			}
-			await this.historyService.addHistoryItem(U_ID, paths, "highlight", username, `${highlight}/${item}`);
+			await this.historyService.addHistoryItem(U_ID, paths, FileType.Highlight, username, `${highlight}/${item}`);
 			return paths;
 		} catch (error) {
 			const errorMessage = error.message as string;
