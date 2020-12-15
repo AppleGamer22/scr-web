@@ -165,15 +165,10 @@
 					}
 				},
 				"lint": {
-					"builder": "@angular-devkit/build-angular:tslint",
+					"builder": "@nrwl/linter:eslint",
 					"options": {
-						"tsConfig": [
-							"apps/server/tsconfig.app.json",
-							"apps/server/tsconfig.spec.json"
-						],
-						"exclude": [
-							"**/node_modules/**",
-							"!apps/server/**/*"
+						"lintFilePatterns": [
+							"apps/api/**/*.ts"
 						]
 					}
 				},
@@ -196,15 +191,10 @@
 			"schematics": {},
 			"architect": {
 				"lint": {
-					"builder": "@angular-devkit/build-angular:tslint",
+					"builder": "@nrwl/linter:eslint",
 					"options": {
-						"tsConfig": [
-							"libs/scr/tsconfig.lib.json",
-							"libs/scr/tsconfig.spec.json"
-						],
-						"exclude": [
-							"**/node_modules/**",
-							"!libs/scr/**/*"
+						"lintFilePatterns": [
+							"libs/api-interfaces/**/*.ts"
 						]
 					}
 				},
@@ -226,6 +216,17 @@
 		"analytics": "6ec60234-cfe6-441b-8255-c9ccf0ccef40"
 	},
 	"schematics": {
+		"@nrwl/angular": {
+			"application": {
+				"linter": "eslint"
+			},
+			"library": {
+				"linter": "eslint"
+			},
+			"storybook-configuration": {
+				"linter": "eslint"
+			}
+		},
 		"@nrwl/angular:application": {
 			"unitTestRunner": "jest"
 		},
