@@ -26,11 +26,13 @@ describe("HighlightService", () => {
 			console.log(urls[0]);
 			expect(urls[0]).toContain("https://");
 			expect(urls[0]).toContain(".jpg");
-			expect(urls[0].includes("cdninstagram.com") || urls[0].includes("fbcdn.net")).toBe(true);
+			const hostname1 = new URL(urls[0]).hostname;
+			expect(hostname1.endsWith("cdninstagram.com") || hostname1.endsWith("fbcdn.net")).toBe(true);
 			console.log(urls[1]);
 			expect(urls[1]).toContain("https://");
 			expect(urls[1]).toContain(".mp4");
-			expect(urls[1].includes("cdninstagram.com") || urls[1].includes("fbcdn.net")).toBe(true);
+			const hostname2 = new URL(urls[1]).hostname;
+			expect(hostname2.endsWith("cdninstagram.com") || hostname2.endsWith("fbcdn.net")).toBe(true);
 		} catch (error) {
 			console.error(error.message);
 		}
@@ -43,11 +45,13 @@ describe("HighlightService", () => {
 			console.log(urls[0]);
 			expect(urls[0]).toContain("https://");
 			expect(urls[0]).toContain(".jpg");
-			expect(urls[0].includes("cdninstagram.com") || urls[0].includes("fbcdn.net")).toBe(true);
+			const hostname1 = new URL(urls[0]).hostname;
+			expect(hostname1.endsWith("cdninstagram.com") || hostname1.endsWith("fbcdn.net")).toBe(true);
 			console.log(urls[1]);
 			expect(urls[1]).toContain("https://");
 			expect(urls[1]).toContain(".mp4");
-			expect(urls[1].includes("cdninstagram.com") || urls[1].includes("fbcdn.net")).toBe(true);
+			const hostname2 = new URL(urls[1]).hostname;
+			expect(hostname2.endsWith("cdninstagram.com") || hostname2.endsWith("fbcdn.net")).toBe(true);
 		} catch (error) {
 			console.error(error.message);
 		}
