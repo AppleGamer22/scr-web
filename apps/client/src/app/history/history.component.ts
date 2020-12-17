@@ -26,6 +26,8 @@ import { ToastService } from "../toast.service";
 	) {
 		this.type = (route.snapshot.queryParamMap.get("type") as FileType | "all") || "all";
 		this.filterHistoriesByType(this.type);
+		// this.search = route.snapshot.queryParamMap.get("search") || "";
+		// this.filterHistoryByOwner(this.search);
 	}
 	/**
 	 * Get the history for a particular resource type

@@ -5,7 +5,8 @@
 				<ion-col size="auto">
 					<ion-segment #segment>
 						<ion-segment-button value="show"	>
-							<ion-icon name="image-outline"></ion-icon>
+							<ion-icon name="image-outline" *ngIf="url.includes('.jpg')"></ion-icon>
+							<ion-icon name="film-outline" *ngIf="url.includes('.mp4')"></ion-icon>
 						</ion-segment-button>
 						<ion-segment-button value="none">
 							<ion-label>None</ion-label>

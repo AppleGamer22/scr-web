@@ -36,5 +36,5 @@ users_dev
 users_prod
 *.env
 docker-compose.yml
-kubernetes-database.yml
-kubernetes-scr-web.yml
+k8s-database.yml
+k8s-scr-web.yml
