@@ -13,17 +13,14 @@ import { AuthGuard } from "../auth/auth.guard";
 	 * @param type resource type
 	 * @returns History items array
 	 */
-	@Get(":type") @UseGuards(AuthGuard) async getHistories(
+	@Get(":type/:owner") @UseGuards(AuthGuard) async getHistories(
 		@Req() request: Request,
-		@Param("type") type: FileType | "all"
+		@Param("type") type: FileType | "all",
+		@Param("owner") owner: string
 	): Promise<History[]> {
 		try {
-			const U_ID = (request as ScrapeRequest).user.U_ID;
-			if (type !== "all") {
-				return (await this.historyService.getHistory(U_ID)).filter(history => history._id.includes(type));
-			} else {
-				return this.historyService.getHistory(U_ID);
-			}
+			const { U_ID } = (request as ScrapeRequest).user;
+			return this.historyService.getFilteredHistory(U_ID, type, owner);
 		} catch (error) {
 			throw new
 			HttpException("Failed to find history logs.", HttpStatus.INTERNAL_SERVER_ERROR);

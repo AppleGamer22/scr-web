@@ -44,7 +44,7 @@ import { ToastService } from "../toast.service";
 			if (token) {
 				await this.router.navigate(["/history"], {queryParams: { type }, queryParamsHandling: "merge"});
 				const headers = new HttpHeaders({"Authorization": token});
-				this.response = await this.http.get<History[]>(`${environment.server}/api/history/${type}`, { headers }).toPromise();
+				this.response = await this.http.get<History[]>(`${environment.server}/api/history/${type}/all`, { headers }).toPromise();
 				this.response = this.response.map(history => {
 					history.urls = history.urls.map(url => `${environment.server}/api/${url}`);
 					return history;
@@ -70,11 +70,11 @@ import { ToastService } from "../toast.service";
 			if (token) {
 				await this.router.navigate(["/history"], {queryParams: {type: this.type, search}, queryParamsHandling: "merge"});
 				const headers = new HttpHeaders({"Authorization": token})
-				this.response = await this.http.get<History[]>(`${environment.server}/api/history/${this.type}`, { headers }).toPromise();
+				this.response = await this.http.get<History[]>(`${environment.server}/api/history/${this.type}/${search}`, { headers }).toPromise();
 				this.response = this.response.map(history => {
 					history.urls = history.urls.map(url => `${environment.server}/api/${url}`);
 					return history;
-				}).filter(history => history.owner.includes(search));
+				});
 				this.range = 0;
 				this.histories = [];
 				this.histories.push(...this.response.slice(this.range, this.range + 10));

@@ -6,13 +6,18 @@ import { Model } from "mongoose";
 @Injectable() export class HistoryService {
 	constructor(@InjectModel("History") private readonly historyCollection: Model<HistoryDocument>) {}
 	/**
-	 * Finds user's History items in database
+	 * Finds user's History items in database (filtered by FileType and owner)
 	 * @param U_ID user's _id property
+	 * @param owner post owner
+	 * @param type post type
 	 * @returns History items array
 	 */
-	async getHistory(U_ID: string): Promise<History[]> {
+	async getFilteredHistory(U_ID: string, type: FileType | "all", owner: string): Promise<History[]> {
 		try {
-			return await this.historyCollection.find({ U_ID }).exec();
+			var filter: object = { U_ID };
+			if (type !== "all") filter = {...filter, type};
+			if (owner !== "all") filter = {...filter, owner: new RegExp(owner, "i")};
+			return await this.historyCollection.find(filter).exec();
 		} catch (error) {
 			throw new Error(error.message as string);
 		}
