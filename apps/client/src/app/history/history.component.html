@@ -21,7 +21,7 @@
 <ion-content>
 	<ion-progress-bar *ngIf="processing" color="primary" type="indeterminate"></ion-progress-bar>
 	<ion-list *ngIf="!processing">
-		<ion-item *ngFor="let history of filterHistoryByOwner(search)">
+		<ion-item *ngFor="let history of histories">
 			<ion-grid>
 				<ion-row>
 					<ion-col  size="auto">
@@ -36,4 +36,7 @@
 			</ion-grid>
 		</ion-item>
 	</ion-list>
+	<ion-infinite-scroll (ionInfinite)="sliceHistory($event)">
+		<ion-infinite-scroll-content loadingText="Loading" loadingSpinner="bubbles"></ion-infinite-scroll-content>
+	</ion-infinite-scroll>
 </ion-content>

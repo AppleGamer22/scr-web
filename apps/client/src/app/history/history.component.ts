@@ -16,6 +16,8 @@ import { ToastService } from "../toast.service";
 	processing = false;
 	type: FileType | "all" = "all";
 	search = "";
+	range = 0;
+	response: History[];
 	histories: History[];
 	constructor(
 		private readonly http: HttpClient,
@@ -25,9 +27,12 @@ import { ToastService } from "../toast.service";
 		private router: Router,
 	) {
 		this.type = (route.snapshot.queryParamMap.get("type") as FileType | "all") || "all";
-		this.filterHistoriesByType(this.type);
-		// this.search = route.snapshot.queryParamMap.get("search") || "";
-		// this.filterHistoryByOwner(this.search);
+		this.search = route.snapshot.queryParamMap.get("search") || "";
+		if (this.search === "") {
+			this.filterHistoriesByType(this.type);
+		} else {
+			this.filterHistoryByOwner(this.search);
+		}
 	}
 	/**
 	 * Get the history for a particular resource type
@@ -39,11 +44,13 @@ import { ToastService } from "../toast.service";
 			if (token) {
 				await this.router.navigate(["/history"], {queryParams: { type }, queryParamsHandling: "merge"});
 				const headers = new HttpHeaders({"Authorization": token});
-				this.histories = await this.http.get<History[]>(`${environment.server}/api/history/${type}`, { headers }).toPromise();
-				this.histories = this.histories.map(history => {
+				this.response = await this.http.get<History[]>(`${environment.server}/api/history/${type}`, { headers }).toPromise();
+				this.response = this.response.map(history => {
 					history.urls = history.urls.map(url => `${environment.server}/api/${url}`);
 					return history;
 				});
+				this.histories = this.response.slice(this.range, this.range + 10);
+				this.range += 10;
 			} else {
 				await this.toast.showToast("You are not authenticated.", "danger");
 			}
@@ -57,33 +64,31 @@ import { ToastService } from "../toast.service";
 	 * @param search owner search query
 	 * @returns a filtered list of history items with owner substring
 	 */
-	filterHistoryByOwner(search: string): History[] {
-		return this.histories.filter(history => history.owner.includes(search));
-	}
-	/**
-	 * Deletes a requested URL from a history item
-	 * @param history history item
-	 * @param urlToDelete a URL for deletion
-	 */
-	async editHistory(history: History, urlToDelete: string) {
-		this.processing = true;
+	async filterHistoryByOwner(search: string) {
 		try {
 			const token = localStorage.getItem("instagram");
 			if (token) {
-				const headers = new HttpHeaders({"Authorization": token});
-				await this.http.patch(`${environment.server}/api/history/`, { history, urlToDelete }, { headers }).toPromise();
-				this.histories = await this.http.get<History[]>(`${environment.server}/api/history/${this.type}`, { headers }).toPromise();
-				this.histories = this.histories.map(history2 => {
-					history2.urls = history2.urls.map(url => `${environment.server}/api/${url}`);
-					return history2;
-				});
-			} else {
-				await this.toast.showToast("You are not authenticated.", "danger");
+				await this.router.navigate(["/history"], {queryParams: {type: this.type, search}, queryParamsHandling: "merge"});
+				const headers = new HttpHeaders({"Authorization": token})
+				this.response = await this.http.get<History[]>(`${environment.server}/api/history/${this.type}`, { headers }).toPromise();
+				this.response = this.response.map(history => {
+					history.urls = history.urls.map(url => `${environment.server}/api/${url}`);
+					return history;
+				}).filter(history => history.owner.includes(search));
+				this.range = 0;
+				this.histories = [];
+				this.histories.push(...this.response.slice(this.range, this.range + 10));
+				console.log(this.histories);
 			}
 		} catch (error) {
 			console.error((error as Error).message);
 			this.toast.showToast((error as Error).message, "danger");
 		}
-		this.processing = false;
+	}
+	sliceHistory(event) {
+		this.histories.push(...this.response.slice(this.range, this.range + 10));
+		this.range += 10;
+		event.target.complete();
+		if (this.range >= this.response.length) event.target.disabled = true;
 	}
 }
