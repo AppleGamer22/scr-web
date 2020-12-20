@@ -13,7 +13,7 @@ import { ToastService } from "../toast.service";
 	storyID: string
 	storyNumber: number;
 	processing = false;
-	urls: string[];
+	urls: string[] = [];
 	constructor(
 		private readonly http: HttpClient,
 		@Inject(DOCUMENT) private document: Document,
@@ -35,6 +35,7 @@ import { ToastService } from "../toast.service";
 	 * @param number story ID
 	 */
 	async submit(id: string, number: number) {
+		this.urls = [];
 		this.processing = true;
 		await this.router.navigate(["/story"], {queryParams: { id, number }, queryParamsHandling: "merge"});
 		try {

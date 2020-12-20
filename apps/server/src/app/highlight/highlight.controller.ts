@@ -35,7 +35,7 @@ import { FileType } from "@scr-web/server-schemas";
 			for (let url of urls) {
 				const filename = `${highlight}_${basename(url)}`;
 				await this.storageService.addFileFromURL(FileType.Highlight, username, filename, url);
-				paths.push(`storage/highlight/${username}/${filename}`)
+				paths.push(`storage/${FileType.Highlight}/${username}/${filename}`)
 			}
 			await this.historyService.addHistoryItem(U_ID, paths, FileType.Highlight, username, `${highlight}/${item}`);
 			return paths;

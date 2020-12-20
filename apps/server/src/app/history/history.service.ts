@@ -37,7 +37,20 @@ import { Model } from "mongoose";
 		post: string
 	): Promise<History> {
 		try {
-			return this.historyCollection.findOneAndUpdate({_id: `${type}/${owner}/${post}`, U_ID}, {urls, type, owner, post, date: new Date()}, {new: true, upsert: true}).exec();
+			return this.historyCollection.findOneAndUpdate({
+				_id: `${type}/${owner}/${post}`,
+				U_ID
+			},{
+				urls,
+				type,
+				owner,
+				post,
+				date: new Date()
+			},{
+				new: true,
+				upsert: true,
+				useFindAndModify: false
+			}).exec();
 		} catch (error) {
 			throw new Error(error.message as string);
 		}
@@ -67,6 +80,18 @@ import { Model } from "mongoose";
 		}
 	}
 	/**
+	 * Gets History item by ID
+	 * @param url History item's post file URL
+	 * @param U_ID user ID
+	 */
+	async getHistoryItemByURL(url: string, U_ID: string): Promise<History> {
+		try {
+			return await this.historyCollection.findOne({ urls: url, U_ID });
+		} catch (error) {
+			throw new Error(error.message as string);
+		}
+	}
+	/**
 	 * Deletes a History item from database
 	 * @param _id  History item ID to delete
 	 * @returns Deleted History item
@@ -84,7 +109,16 @@ import { Model } from "mongoose";
 	 */
 	async deleteHistoryURL(url: string): Promise<History> {
 		try {
-			return this.historyCollection.findOneAndUpdate({urls: `storage/${url}`}, {$pull: {urls: `storage/${url}`}}, {new: true});
+			return this.historyCollection.findOneAndUpdate({
+				urls: `storage/${url}`
+			}, {
+				$pull: {
+					urls: `storage/${url}`
+				}
+			},{
+				new: true,
+				useFindAndModify: false
+			});
 		} catch (error) {
 			throw new Error(error.message as string);
 		}

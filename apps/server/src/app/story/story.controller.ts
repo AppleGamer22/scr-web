@@ -33,9 +33,12 @@ import { FileType } from "@scr-web/server-schemas";
 			await browser.close();
 			var paths: string[] = [];
 			for (let url of urls) {
-				const filename = `${story}_${basename(url)}`;
+				const filename = `${story}_${basename(url).split("?")[0]}`;
 				await this.storageService.addFileFromURL(FileType.Story, story, filename, url);
-				paths.push(`storage/highlight/${story}/${filename}`)
+				const path = `storage/${FileType.Story}/${story}/${filename}`;
+				const history = await this.historyService.getHistoryItemByURL(path, U_ID);
+				if (history && history.urls.length > 0) return history.urls;
+				paths.push(path);
 			}
 			await this.historyService.addHistoryItem(U_ID, paths, FileType.Story, story, `${story}/${new Date().toISOString()}/${item}`);
 			return paths;

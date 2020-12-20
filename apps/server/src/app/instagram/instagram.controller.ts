@@ -35,7 +35,7 @@ import { FileType } from "@scr-web/server-schemas";
 			for (let url of urls) {
 				const filename = `${post}_${basename(url).split("?")[0]}`;
 				await this.storageService.addFileFromURL(FileType.Instagram, username, filename, url);
-				paths.push(`storage/instagram/${username}/${filename}`);
+				paths.push(`storage/${FileType.Instagram}/${username}/${filename}`);
 			}
 			await this.historyService.addHistoryItem(U_ID, paths, FileType.Instagram, username, post);
 			return paths;

@@ -10,8 +10,11 @@
 		},{
 			"type": "node",
 			"request": "attach",
+			"protocol": "inspector",
 			"name": "debug server",
-			"port": 7777
+			"port": 7777,
+			"sourceMaps": true,
+			"trace": true
 		},{
 			"type": "node",
 			"request": "launch",

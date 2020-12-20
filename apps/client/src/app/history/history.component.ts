@@ -49,6 +49,8 @@ import { ToastService } from "../toast.service";
 					history.urls = history.urls.map(url => `${environment.server}/api/${url}`);
 					return history;
 				});
+				this.range = 0;
+				this.histories = [];
 				this.histories = this.response.slice(this.range, this.range + 10);
 				this.range += 10;
 			} else {
@@ -78,7 +80,7 @@ import { ToastService } from "../toast.service";
 				this.range = 0;
 				this.histories = [];
 				this.histories.push(...this.response.slice(this.range, this.range + 10));
-				console.log(this.histories);
+				this.range += 10;
 			}
 		} catch (error) {
 			console.error((error as Error).message);
@@ -86,9 +88,12 @@ import { ToastService } from "../toast.service";
 		}
 	}
 	sliceHistory(event) {
+		if (this.range >= this.response.length) {
+			event.target.disabled = true;
+			return;
+		}
 		this.histories.push(...this.response.slice(this.range, this.range + 10));
 		this.range += 10;
 		event.target.complete();
-		if (this.range >= this.response.length) event.target.disabled = true;
 	}
 }
