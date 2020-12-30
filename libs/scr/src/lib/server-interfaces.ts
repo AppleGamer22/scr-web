@@ -7,7 +7,7 @@ import { Request } from "express";
  */
 export function initEnvironment(): {JWT_SECRET: string, DATABASE_URL: string} {
 	config({path: `${process.cwd()}/env.env`});
-	const { JWT_SECRET, DATABASE_URL, ENV } = process.env;
+	const { JWT_SECRET, DATABASE_URL } = process.env;
 	if (JWT_SECRET !== undefined && DATABASE_URL !== undefined) {
 		return { JWT_SECRET, DATABASE_URL };
 	} else {
@@ -44,7 +44,7 @@ function chromeExecutable(): string {
 			case "darwin":
 				return "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 			case "win32":
-				return "C:/Program\ Files\ (x86)/Google/Chrome/Application/chrome.exe";
+				return "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe";
 			default:
 				return "/opt/google/chrome/google-chrome";
 				// or /usr/bin/google-chrome or /usr/lib/google-chrome
@@ -57,7 +57,7 @@ function chromeExecutable(): string {
  * @param incognito private mode Boolean
  * @returns Puppeteer browser and page
  */
-export async function beginScrape(U_ID: string, incognito: boolean = false): Promise<{browser: puppeteer.Browser, page: puppeteer.Page}> {
+export async function beginScrape(U_ID: string, incognito = false): Promise<{browser: puppeteer.Browser, page: puppeteer.Page}> {
 	try {
 		const args = [
 			"--disable-gpu" ,
@@ -68,6 +68,7 @@ export async function beginScrape(U_ID: string, incognito: boolean = false): Pro
 		if (incognito) args.push("--incognito");
 		const browser = await puppeteer.launch({
 			headless: true,
+			defaultViewport: null,
 			executablePath: chromeExecutable(),
 			userDataDir: chromeUserDataDirectory(U_ID),
 			args,

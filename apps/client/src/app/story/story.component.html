@@ -8,15 +8,13 @@
 	<form>
 		<ion-item>
 			<ion-label>story owner</ion-label>
-			<ion-input type="text" [clearInput]="true" placeholder="https://www.instagram.com/stories/OWNER"
-				[required]="true" [(ngModel)]="storyID" name="id"></ion-input>
+			<ion-input type="text" [disabled]="processing" [clearInput]="true" placeholder="https://www.instagram.com/stories/OWNER" [required]="true" [(ngModel)]="storyID" name="id"></ion-input>
 		</ion-item>
 		<ion-item>
 			<ion-label>story number</ion-label>
-			<ion-input type="number" [clearInput]="true" placeholder="number" [required]="true"
-				[(ngModel)]="storyNumber" name="number"></ion-input>
+			<ion-input type="number" [disabled]="processing" [clearInput]="true" placeholder="number" [required]="true" [(ngModel)]="storyNumber" name="number"></ion-input>
 		</ion-item>
-		<ion-button (click)="submit(storyID, storyNumber)">submit</ion-button>
+		<ion-button [disabled]="processing" (click)="submit(storyID, storyNumber)">submit</ion-button>
 	</form>
 	<ion-progress-bar *ngIf="processing" color="primary" type="indeterminate"></ion-progress-bar>
 	<scr-web-urls [urls]="urls"></scr-web-urls>

@@ -8,9 +8,9 @@
 	<form>
 		<ion-item>
 			<ion-label>Post ID</ion-label>
-			<ion-input type="text" [clearInput]="true" placeholder="https://instagram.com/p/ID" [(ngModel)]="postID" name="postID" [required]="true"></ion-input>
+			<ion-input type="text" [disabled]="processing" [clearInput]="true" placeholder="https://instagram.com/p/ID" [(ngModel)]="postID" name="postID" [required]="true"></ion-input>
 		</ion-item>
-		<ion-button (click)="submit(postID)">submit</ion-button>
+		<ion-button [disabled]="processing" (click)="submit(postID)">submit</ion-button>
 	</form>
 	<ion-progress-bar *ngIf="processing" color="primary" type="indeterminate"></ion-progress-bar>
 	<scr-web-urls [urls]="urls"></scr-web-urls>

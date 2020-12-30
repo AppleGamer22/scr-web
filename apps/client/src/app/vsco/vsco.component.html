@@ -8,15 +8,15 @@
 	<form>
 		<ion-item>
 			<ion-label>post owner</ion-label>
-			<ion-input type="text" [clearInput]="true" placeholder="https://vsco.co/OWNER/media/id" [required]="true"
+			<ion-input type="text" [disabled]="processing" [clearInput]="true" placeholder="https://vsco.co/OWNER/media/id" [required]="true"
 				[(ngModel)]="postOwner" name="owner"></ion-input>
 		</ion-item>
 		<ion-item>
 			<ion-label>post ID</ion-label>
-			<ion-input type="text" [clearInput]="true" placeholder="https://vsco.co/owner/media/ID" [required]="true"
+			<ion-input type="text" [disabled]="processing" [clearInput]="true" placeholder="https://vsco.co/owner/media/ID" [required]="true"
 				[(ngModel)]="postID" name="id"></ion-input>
 		</ion-item>
-		<ion-button (click)="submit(postOwner, postID)">submit</ion-button>
+		<ion-button [disabled]="processing" (click)="submit(postOwner, postID)">submit</ion-button>
 	</form>
 	<ion-progress-bar *ngIf="processing" color="primary" type="indeterminate"></ion-progress-bar>
 	<scr-web-urls [urls]="urls"></scr-web-urls>

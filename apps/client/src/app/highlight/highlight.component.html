@@ -8,16 +8,13 @@
 	<form>
 		<ion-item>
 			<ion-label>highlight ID</ion-label>
-			<ion-input type="text" [clearInput]="true" placeholder="https://instagram.com/stories/highlights/ID"
-				[required]="true" [(ngModel)]="highlightID" name="highlight"></ion-input>
+			<ion-input type="text" [disabled]="processing" [clearInput]="true" placeholder="https://instagram.com/stories/highlights/ID" [required]="true" [(ngModel)]="highlightID" name="highlight"></ion-input>
 		</ion-item>
 		<ion-item>
 			<ion-label>highlight number</ion-label>
-			<ion-input inputmode="numeric" [clearInput]="true" placeholder="number" [required]="true"
-				[(ngModel)]="highlightNumber" name="number"></ion-input>
+			<ion-input inputmode="numeric" [disabled]="processing" [clearInput]="true" placeholder="number" [required]="true" [(ngModel)]="highlightNumber" name="number"></ion-input>
 		</ion-item>
-		<!-- <ion-label>If you are not getting the expected result, please try again</ion-label> -->
-		<ion-button (click)="submit(highlightID, highlightNumber)">submit</ion-button>
+		<ion-button [disabled]="processing" (click)="submit(highlightID, highlightNumber)">submit</ion-button>
 	</form>
 	<ion-progress-bar *ngIf="processing" color="primary" type="indeterminate"></ion-progress-bar>
 	<scr-web-urls [urls]="urls"></scr-web-urls>
