@@ -30,6 +30,8 @@ import { Browser, Page } from "puppeteer-core";
 			if (videoURL[0]) return {url: videoURL[0], username};
 			if (imageURL[0]) return {url: imageURL[0].split("?")[0], username};
 		} catch (error) {
+			console.error(error.message);
+			await browser.close();
 			throw new Error(error.message);
 		}
 	}

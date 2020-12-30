@@ -42,6 +42,8 @@ import { Browser, Page } from "puppeteer-core";
 			if (videoURL) urls.push(videoURL);
 			return { urls, username };
 		} catch (error) {
+			console.error(error.message);
+			await browser.close();
 			throw new Error(error.message as string);
 		}
 	}

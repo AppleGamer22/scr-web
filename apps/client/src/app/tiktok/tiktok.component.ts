@@ -37,6 +37,7 @@ export class TikTokComponent {
 	 * @param id post ID
 	 */
 	async submit(owner: string, id: string) {
+		this.urls = [];
 		this.processing = true;
 		await this.router.navigate(["/tiktok"], {queryParams: { owner, id }, queryParamsHandling: "merge"});
 		try {

@@ -37,6 +37,8 @@ import { Browser, Page } from "puppeteer-core";
 			await page.waitForTimeout(duration);
 			return { data, username };
 		} catch (error) {
+			console.error(error.message);
+			await browser.close();
 			throw new Error(error.message);
 		}
 	}

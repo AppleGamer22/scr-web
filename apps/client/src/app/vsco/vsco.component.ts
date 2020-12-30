@@ -35,6 +35,7 @@ import { ToastService } from "../toast.service";
 	 * @param id post ID
 	 */
 	async submit(owner: string, id: string) {
+		this.urls = [];
 		this.processing = true;
 		await this.router.navigate(["/vsco"], {queryParams: { owner, id }, queryParamsHandling: "merge"});
 		try {
@@ -55,8 +56,4 @@ import { ToastService } from "../toast.service";
 		}
 		this.processing = false;
 	}
-	/**
-	 * Initiates a download dialog for a given filew URL
-	 * @param url URL of file to download
-	 */
 }

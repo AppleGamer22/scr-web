@@ -37,6 +37,7 @@ import { Browser, Page } from "puppeteer-core";
 			return urls;
 		} catch (error) {
 			console.error(error.message);
+			await browser.close();
 			throw new Error("Failed to process requested story file.");
 		}
 	}

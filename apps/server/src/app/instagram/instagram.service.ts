@@ -39,6 +39,7 @@ declare global {
 			return { urls, username };
 		} catch (error) {
 			console.error(error.message);
+			await browser.close();
 			throw new Error(`Failed to process post ${id}`);
 		}
 	}
