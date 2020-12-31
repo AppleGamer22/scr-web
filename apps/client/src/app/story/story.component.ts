@@ -52,28 +52,10 @@ import { ToastService } from "../toast.service";
 			} else {
 				await this.toast.showToast("You are not authenticated.", "danger");
 			}
-		} catch (error) {
-			console.error((error as Error).message);
-			this.toast.showToast((error as Error).message, "danger");
+		} catch ({ error }) {
+			console.error(error);
+			this.toast.showToast(error, "danger");
 		}
 		this.processing = false;
-	}
-	/**
-	 * Initiates a download dialog for a given filew URL
-	 * @param url URL of file to download
-	 */
-	async downloadFile(url: string) {
-		const arrayBuffer = await this.http.get(url, {responseType: "arraybuffer"}).toPromise();
-		let type: "image/jpeg" | "video/mp4";
-		if (url.includes(".jpg")) {
-			type = "image/jpeg"
-		} else if (url.includes(".mp4")) {
-			type = "video/mp4"
-		}
-		const blob = new Blob([arrayBuffer], { type });
-		const a = this.document.createElement("a");
-		a.href = URL.createObjectURL(blob);
-		a.download = "";
-		a.click();
 	}
 }

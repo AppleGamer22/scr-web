@@ -63,9 +63,9 @@ import { ToastService } from "../toast.service";
 					this.toast.showToast("Authentication failed.", "danger");
 				}
 			}
-		} catch (error) {
-			console.error((error as Error).message);
-			this.toast.showToast((error as Error).message, "danger");
+		} catch ({ error }) {
+			console.error(error);
+			this.toast.showToast(error, "danger");
 		}
 		this.processing = false;
 	}
@@ -90,9 +90,9 @@ import { ToastService } from "../toast.service";
 					this.toast.showToast("Authentication failed.", "danger");
 				}
 			}
-		} catch (error) {
-			console.error((error as Error).message);
-			this.toast.showToast((error as Error).message, "danger");
+		} catch ({ error }) {
+			console.error(error);
+			this.toast.showToast(error, "danger");
 		}
 		this.processing = false;
 	}
@@ -115,9 +115,9 @@ import { ToastService } from "../toast.service";
 					this.toast.showToast("Deauthentication failed.", "danger");
 				}
 			}
-		} catch (error) {
-			console.error((error as Error).message);
-			this.toast.showToast((error as Error).message, "danger");
+		} catch ({ error }) {
+			console.error(error);
+			this.toast.showToast(error, "danger");
 		}
 		this.processing = false;
 	}

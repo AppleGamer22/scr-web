@@ -13,8 +13,7 @@
 		</ion-item>
 		<ion-item>
 			<ion-label>post ID</ion-label>
-			<ion-input inputmode="numeric" [disabled]="processing" [clearInput]="true" placeholder="https://tiktok.com/@owner/video/ID" [required]="true"
-				[(ngModel)]="postID" name="id"></ion-input>
+			<ion-input inputmode="numeric" [disabled]="processing" [clearInput]="true" placeholder="https://tiktok.com/@owner/video/ID" [required]="true" [(ngModel)]="postID" name="id"></ion-input>
 		</ion-item>
 		<ion-button [disabled]="processing" (click)="submit(postOwner, postID)">submit</ion-button>
 	</form>
