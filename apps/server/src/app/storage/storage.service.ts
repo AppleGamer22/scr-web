@@ -5,7 +5,6 @@ import { existsSync, mkdirSync, writeFileSync, rmSync } from "fs";
 
 @Injectable() export class StorageService {
 	constructor(private readonly http: HttpService) {}
-
 	/**
 	 * saves file to file system
 	 * @param type file source
@@ -20,7 +19,7 @@ import { existsSync, mkdirSync, writeFileSync, rmSync } from "fs";
 			if (!existsSync(directoryPath)) mkdirSync(directoryPath, {recursive: true});
 			if (!existsSync(fullPath)) writeFileSync(fullPath, data, {encoding: "binary"});
 		} catch (error) {
-			console.log(error)
+			console.error(error);
 			throw new Error(`Could not save file ${type}/${directory}/${file}`);
 		}
 	}
@@ -32,7 +31,7 @@ import { existsSync, mkdirSync, writeFileSync, rmSync } from "fs";
 			if (!existsSync(directoryPath)) mkdirSync(directoryPath, {recursive: true});
 			if (!existsSync(fullPath)) writeFileSync(fullPath, data, {encoding: "binary"});
 		} catch (error) {
-			console.log(error)
+			console.error(error);
 			throw new Error(`Could not save file ${type}/${directory}/${file}`);
 		}
 	}
