@@ -11,7 +11,7 @@
 			<ion-input type="text" [disabled]="processing" [clearInput]="true" placeholder="https://instagram.com/stories/highlights/ID" [required]="true" [(ngModel)]="highlightID" name="highlight"></ion-input>
 		</ion-item>
 		<ion-item>
-			<ion-label>highlight number</ion-label>
+			<ion-label>highlight #</ion-label>
 			<ion-input inputmode="numeric" [disabled]="processing" [clearInput]="true" placeholder="number" [required]="true" [(ngModel)]="highlightNumber" name="number"></ion-input>
 		</ion-item>
 		<ion-button [disabled]="processing" (click)="submit(highlightID, highlightNumber)">submit</ion-button>

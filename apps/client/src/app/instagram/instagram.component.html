@@ -7,7 +7,7 @@
 <ion-content>
 	<form>
 		<ion-item>
-			<ion-label>Post ID</ion-label>
+			<ion-label>post ID</ion-label>
 			<ion-input type="text" [disabled]="processing" [clearInput]="true" placeholder="https://instagram.com/p/ID" [(ngModel)]="postID" name="postID" [required]="true"></ion-input>
 		</ion-item>
 		<ion-button [disabled]="processing" (click)="submit(postID)">submit</ion-button>
