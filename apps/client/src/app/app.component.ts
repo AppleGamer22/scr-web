@@ -1,18 +1,18 @@
 import { Component } from "@angular/core";
-import { Router, NavigationEnd } from "@angular/router";
+import { Router, NavigationEnd, NavigationStart } from "@angular/router";
 
 @Component({
 	selector: "scr-web-root",
 	templateUrl: "./app.component.html",
 	styleUrls: ["./app.component.scss"],
 }) export class AppComponent {
-	currentURL = "";
 	instagram = false;
-	constructor(private readonly router: Router) {
+	constructor(readonly router: Router) {
 		router.events.subscribe(event => {
-			if (event instanceof NavigationEnd) {
-				this.currentURL = router.url;
-				if (localStorage.getItem("instagram")) this.instagram = true;
+			if (event instanceof NavigationEnd || event instanceof NavigationStart) {
+				if (localStorage.getItem("instagram")) {
+					this.instagram = true;
+				}
 			}
 		});
 	}
