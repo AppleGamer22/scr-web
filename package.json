@@ -19,6 +19,8 @@
 		"build:client": "ng build client --prod",
 		"build:server": "ng build server",
 		"test": "ng test client && ng test server",
+		"test:client": "ng test client",
+		"test:server": "ng test server",
 		"postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points && node ./decorate-angular-cli.js"
 	},
 	"dependencies": {
