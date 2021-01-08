@@ -3,6 +3,7 @@ import { CommonModule } from "@angular/common";
 import { HttpClientModule } from "@angular/common/http";
 import { IonicModule } from "@ionic/angular";
 import { URLsComponent } from "./urls.component";
+import { ToastService } from "../toast.service";
 
 describe("URLsComponent", () => {
 	let component: URLsComponent;
@@ -16,6 +17,7 @@ describe("URLsComponent", () => {
 				HttpClientModule,
 				IonicModule
 			],
+			providers: [ToastService]
 		}).compileComponents();
 
 		fixture = TestBed.createComponent(URLsComponent);

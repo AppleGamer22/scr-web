@@ -4,6 +4,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { IonicModule } from "@ionic/angular";
 // import { ImageCropperModule } from "ngx-image-cropper";
 import { URLsComponent } from "./urls.component";
+import { ToastService } from "../toast.service";
 
 @NgModule({
 	imports: [
@@ -12,7 +13,7 @@ import { URLsComponent } from "./urls.component";
 		IonicModule,
 		// ImageCropperModule
 	],
+	providers: [ToastService],
 	declarations: [URLsComponent],
 	exports: [URLsComponent]
-})
-export class URLsModule {}
+}) export class URLsModule {}
