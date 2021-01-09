@@ -32,7 +32,7 @@ import { FileType } from "@scr-web/server-schemas";
 			const { urls, username } = await this.highlightService.getHighlightFile(highlight, item, browser, page);
 			await browser.close();
 			var paths: string[] = [];
-			for (let url of urls) {
+			for (const url of urls) {
 				const filename = `${highlight}_${basename(url)}`;
 				await this.storageService.addFileFromURL(FileType.Highlight, username, filename, url);
 				paths.push(`storage/${FileType.Highlight}/${username}/${filename}`)

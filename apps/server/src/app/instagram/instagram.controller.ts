@@ -26,13 +26,13 @@ import { FileType } from "@scr-web/server-schemas";
 	): Promise<string[]> {
 		try {
 			const { U_ID } = (request as ScrapeRequest).user;
-			const history = await this.historyService.getHistoryItemByPost(post, U_ID);
+			const history = await this.historyService.getHistoryItemByPost(FileType.Instagram, post, U_ID);
 			if (history) return history.urls;
 			const { browser, page } = await beginScrape(U_ID);
 			const { urls, username } = await this.instagramService.getPostFiles(post, browser, page);
 			await browser.close();
 			var paths: string[] = [];
-			for (let url of urls) {
+			for (const url of urls) {
 				const filename = `${post}_${basename(url).split("?")[0]}`;
 				await this.storageService.addFileFromURL(FileType.Instagram, username, filename, url);
 				paths.push(`storage/${FileType.Instagram}/${username}/${filename}`);

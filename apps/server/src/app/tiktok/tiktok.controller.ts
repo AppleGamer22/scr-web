@@ -27,7 +27,7 @@ import { FileType } from "@scr-web/server-schemas";
 		const postAddress = `${user}/video/${post}`;
 		try {
 			const { U_ID } = (request as ScrapeRequest).user;
-			const history = await this.historyService.getHistoryItemByPost(post, U_ID);
+			const history = await this.historyService.getHistoryItemByPost(FileType.TikTok, post, U_ID);
 			if (history) return history.urls;
 			const { browser, page } = await beginScrape(U_ID);
 			const { data, username } = await this.tiktokService.getPostFile(postAddress, browser, page);

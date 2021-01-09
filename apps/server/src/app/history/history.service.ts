@@ -69,12 +69,13 @@ import { Model } from "mongoose";
 	}
 	/**
 	 * Gets History item by ID
+	 * @param type post type
 	 * @param post History item's post property
 	 * @param U_ID user ID
 	 */
-	async getHistoryItemByPost(post: string, U_ID: string): Promise<History> {
+	async getHistoryItemByPost(type: FileType, post: string, U_ID: string): Promise<History> {
 		try {
-			return this.historyCollection.findOne({ post, U_ID });
+			return this.historyCollection.findOne({ type, post, U_ID });
 		} catch (error) {
 			throw new Error(error.message as string);
 		}

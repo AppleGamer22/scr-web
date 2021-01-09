@@ -31,8 +31,7 @@
 					}
 				]
 			}
-		},
-		{
+		},{
 			"files": [
 				"*.ts",
 				"*.tsx"
@@ -44,8 +43,7 @@
 				"project": "./tsconfig.*?.json"
 			},
 			"rules": {}
-		},
-		{
+		},{
 			"files": [
 				"*.js",
 				"*.jsx"
