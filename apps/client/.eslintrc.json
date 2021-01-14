@@ -20,6 +20,9 @@
 				]
 			},
 			"rules": {
+				"quotes": ["error", "double"],
+				"semi": ["error", "always"],
+				"indent": ["error", "tab"],
 				"@angular-eslint/directive-selector": [
 					"error",
 					{

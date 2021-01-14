@@ -1,7 +1,7 @@
 import { Component, Input, DoCheck } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { History } from "@scr-web/server-schemas";
-// import { ImageCroppedEvent, ImageTransform } from "ngx-image-cropper";
+import { ImageCropperSetting } from "angular-cropperjs";
 import { environment } from "../../environments/environment";
 import { ToastService } from "../toast.service";
 

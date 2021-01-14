@@ -12,7 +12,7 @@
 							<ion-label>None</ion-label>
 						</ion-segment-button>
 						<ion-segment-button value="crop">
-							<ion-icon name="crop-outline"></ion-icon>
+							<ion-icon name="crop-outline"></ion-icon><sup style="text-transform: lowercase;">&alpha;</sup>
 						</ion-segment-button>
 					</ion-segment>
 				</ion-col>
@@ -30,31 +30,29 @@
 					<img *ngIf="url.includes('.jpg')" [src]="url">
 					<video *ngIf="url.includes('.mp4')" [src]="url" controls [muted]="true" loop></video>
 				</ion-col>
-				<!-- <ion-col *ngIf="segment.value === 'crop'">
+				<ion-col *ngIf="segment.value === 'crop'">
 					<ion-grid>
 						<ion-row>
 							<ion-col size="auto">
-								<ion-button fill="clear" (click)="finishEdit(cropper.crop())">Done</ion-button>
+								<ion-button fill="clear">Done</ion-button>
 							</ion-col>
 							<ion-col size="auto">
-								<ion-button fill="clear" (click)="rotateRight(i)">
-									<ion-icon name="refresh-outline"></ion-icon>
-								</ion-button>
+								<ion-button fill="clear" (click)="cropper.cropper.rotate(90)">Rotate Clockwise</ion-button>
+							</ion-col>
+							<ion-col size="auto">
+								<ion-button fill="clear" (click)="cropper.cropper.rotate(-90)">Rotate Anti-clockwise</ion-button>
+							</ion-col>
+							<ion-col size="auto">
+								<ion-button fill="clear" (click)="cropper.cropper.scaleY(-1)">Flip Horizontally</ion-button>
 							</ion-col>
 						</ion-row>
 						<ion-row>
 							<ion-col>
-								<image-cropper
-									#cropper
-									[maintainAspectRatio]="false"
-									[imageURL]="url"
-									[transform]="transforms[i]"
-									format="jpeg"
-								></image-cropper>
+								<angular-cropper #cropper [imageUrl]="url" [cropperOptions]="{autoCropArea: 1}"></angular-cropper>
 							</ion-col>
 						</ion-row>
 					</ion-grid>
-				</ion-col> -->
+				</ion-col>
 			</ion-row>
 		</ion-grid>
 	</ion-item>
