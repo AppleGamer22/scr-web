@@ -6,11 +6,11 @@ import { existsSync, mkdirSync, writeFileSync, rmSync } from "fs";
 @Injectable() export class StorageService {
 	constructor(private readonly http: HttpService) {}
 	/**
-	 * saves file to file system
+	 * saves file to file system from Buffer
 	 * @param type file source
 	 * @param directory directory name
 	 * @param file file name
-	 * @param data file contents
+	 * @param data file contents (Buffer)
 	 */
 	addFileFromBuffer(type: FileType, directory: string, file: string, data: Buffer) {
 		const directoryPath = `${process.cwd()}/storage/${type}/${directory}`;
@@ -23,6 +23,13 @@ import { existsSync, mkdirSync, writeFileSync, rmSync } from "fs";
 			throw new Error(`Could not save file ${type}/${directory}/${file}`);
 		}
 	}
+	/**
+	 * saves file to file system from URL
+	 * @param type file source
+	 * @param directory directory name
+	 * @param file file name
+	 * @param url file contents' URL
+	 */
 	async addFileFromURL(type: FileType, directory: string, file: string, url: string) {
 		const directoryPath = `${process.cwd()}/storage/${type}/${directory}`;
 		const fullPath = `${directoryPath}/${file}`;
