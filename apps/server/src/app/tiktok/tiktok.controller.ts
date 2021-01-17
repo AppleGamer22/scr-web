@@ -32,7 +32,7 @@ import { FileType } from "@scr-web/server-schemas";
 			const { browser, page } = await beginScrape(U_ID);
 			const { data, username } = await this.tiktokService.getPostFile(postAddress, browser, page);
 			await browser.close();
-			this.storageService.addFileFromBuffer(FileType.TikTok, user, `${post}.mp4`, data);
+			this.storageService.addFileFromBuffer(FileType.TikTok, username, `${post}.mp4`, data);
 			const path = `storage/tiktok/${username}/${post}.mp4`;
 			await this.historyService.addHistoryItem(U_ID, [path], FileType.TikTok, username, post);
 			return [path];
