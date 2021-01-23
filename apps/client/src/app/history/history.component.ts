@@ -22,29 +22,27 @@ import { ToastService } from "../toast.service";
 	constructor(
 		private readonly http: HttpClient,
 		readonly toast: ToastService,
-		@Inject(DOCUMENT) private document: Document,
+		// @Inject(DOCUMENT) private document: Document,
 		route: ActivatedRoute,
 		private router: Router,
 	) {
 		this.type = (route.snapshot.queryParamMap.get("type") as FileType | "all") || "all";
-		this.search = route.snapshot.queryParamMap.get("search") || "";
-		if (this.search === "") {
-			this.filterHistoriesByType(this.type);
-		} else {
-			this.filterHistoryByOwner(this.search);
-		}
+		this.search = route.snapshot.queryParamMap.get("search");
+		this.filterHistories(this.type, this.search || "all");
 	}
 	/**
 	 * Get the history for a particular resource type
+	 * @param type post type
+	 * @param search post owner
 	 */
-	async filterHistoriesByType(type: FileType | "all") {
+	async filterHistories(type: FileType | "all", search: string) {
 		this.processing = true;
 		try {
 			const token = localStorage.getItem("instagram");
 			if (token) {
-				await this.router.navigate(["/history"], {queryParams: { type }, queryParamsHandling: "merge"});
+				await this.router.navigate(["/history"], {queryParams: { type, search }, queryParamsHandling: "merge"});
 				const headers = new HttpHeaders({"Authorization": token});
-				this.response = await this.http.get<History[]>(`${environment.server}/api/history/${type}/all`, { headers }).toPromise();
+				this.response = await this.http.get<History[]>(`${environment.server}/api/history/${type}/${search}`, { headers }).toPromise();
 				this.response = this.response.map(history => {
 					history.urls = history.urls.map(url => `${environment.server}/api/${url}`);
 					return history;
@@ -62,31 +60,7 @@ import { ToastService } from "../toast.service";
 		}
 		this.processing = false;
 	}
-	/**
-	 * @param search owner search query
-	 * @returns a filtered list of history items with owner substring
-	 */
-	async filterHistoryByOwner(search: string) {
-		try {
-			const token = localStorage.getItem("instagram");
-			if (token) {
-				await this.router.navigate(["/history"], {queryParams: {type: this.type, search}, queryParamsHandling: "merge"});
-				const headers = new HttpHeaders({"Authorization": token})
-				this.response = await this.http.get<History[]>(`${environment.server}/api/history/${this.type}/${search}`, { headers }).toPromise();
-				this.response = this.response.map(history => {
-					history.urls = history.urls.map(url => `${environment.server}/api/${url}`);
-					return history;
-				});
-				this.range = 0;
-				this.histories = [];
-				this.histories.push(...this.response.slice(this.range, this.range + 10));
-				this.range += 10;
-			}
-		} catch ({ error }) {
-			console.error(error);
-			this.toast.showToast(error, "danger");
-		}
-	}
+
 	sliceHistory(event) {
 		if (this.range >= this.response.length) {
 			event.target.disabled = true;

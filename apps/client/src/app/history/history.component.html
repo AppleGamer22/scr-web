@@ -4,7 +4,7 @@
 		<ion-title slot="secondary">History</ion-title>
 		<ion-buttons slot="end">
 			<ion-icon name="funnel"></ion-icon>
-			<ion-select interface="action-sheet" placeholder="Item Type" (ionChange)="filterHistoriesByType(type)" [(ngModel)]="type">
+			<ion-select interface="action-sheet" placeholder="Item Type" (ionChange)="filterHistories(type, search)" [(ngModel)]="type">
 				<ion-select-option value="all">All Items</ion-select-option>
 				<ion-select-option value="instagram">Instagram Post</ion-select-option>
 				<ion-select-option value="highlight">Instagram Highlight</ion-select-option>
@@ -16,7 +16,7 @@
 	</ion-toolbar>
 </ion-header>
 <ion-header>
-	<ion-searchbar placeholder="Post Owner" (ionChange)="filterHistoryByOwner(search)" [(ngModel)]="search"></ion-searchbar>
+	<ion-searchbar placeholder="Post Owner" (ionChange)="filterHistories(type, search)" [(ngModel)]="search"></ion-searchbar>
 </ion-header>
 <ion-content>
 	<ion-progress-bar *ngIf="processing" color="primary" type="indeterminate"></ion-progress-bar>
