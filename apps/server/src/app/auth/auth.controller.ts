@@ -1,4 +1,5 @@
 import { Controller, Patch, Body, Req, Res, HttpStatus, HttpException, UseGuards } from "@nestjs/common";
+import { ApiHeader } from "@nestjs/swagger";
 import { ScrapeRequest } from "@scr-web/server-interfaces";
 import { Request, Response } from "express";
 import { AuthService } from "./auth.service";
@@ -13,11 +14,12 @@ import { AuthGuard } from "./auth.guard";
 	 * @returns HTTP response
 	 */
 	@Patch("sign_up/instagram") async signUpInstagram(
-		@Body() body: {username: string, password: string},
+		@Body("username") username: string,
+		@Body("password") password: string,
 		@Res() response: Response
 	): Promise<Response> {
 		try {
-			const user = await this.authService.signUpInstagram(body.username, body.password);
+			const user = await this.authService.signUpInstagram(username, password);
 			return response.json(user).status(HttpStatus.CREATED);
 		} catch (error) {
 			const errorMessage = (error as Error).message;
@@ -33,11 +35,12 @@ import { AuthGuard } from "./auth.guard";
 	 * @returns HTTP response
 	 */
 	@Patch("sign_in/instagram") async signInInstagram(
-		@Body() body: {username: string, password: string},
+		@Body("username") username: string,
+		@Body("password") password: string,
 		@Res() response: Response
 	): Promise<Response> {
 		try {
-			const token = await this.authService.signInInstagram(body.username, body.password);
+			const token = await this.authService.signInInstagram(username, password);
 			return response.json({token}).status(HttpStatus.OK);
 		} catch (error) {
 			const errorMessage = (error as Error).message;
@@ -52,7 +55,10 @@ import { AuthGuard } from "./auth.guard";
 	 * @param response response PATCH request
 	 * @returns HTTP response
 	 */
-	@Patch("sign_out/instagram") @UseGuards(AuthGuard) async signOutInstagram(
+	@ApiHeader({
+		name: "Authorization",
+		allowEmptyValue: false
+	}) @Patch("sign_out/instagram") @UseGuards(AuthGuard) async signOutInstagram(
 		@Req() request: Request,
 		@Res() response: Response
 	): Promise<Response> {

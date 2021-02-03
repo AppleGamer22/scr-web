@@ -1,4 +1,5 @@
 import { Controller, Get, Param, HttpException, HttpStatus, Req, UseGuards } from "@nestjs/common";
+import { ApiHeader } from "@nestjs/swagger";
 import { beginScrape, ScrapeRequest } from "@scr-web/server-interfaces";
 import { Request } from "express";
 import { basename } from "path";
@@ -20,7 +21,10 @@ import { FileType } from "@scr-web/server-schemas";
 	 * @param post post ID
 	 * @returns URL string array
 	 */
-	@Get(":user/:post") @UseGuards(AuthGuard) async getPostFiles(
+	@ApiHeader({
+		name: "Authorization",
+		allowEmptyValue: false
+	}) @Get(":user/:post") @UseGuards(AuthGuard) async getPostFiles(
 		@Param("user") user: string,
 		@Param("post") post: string,
 		@Req() request: Request

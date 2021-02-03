@@ -4,6 +4,9 @@
 		"!**/*"
 	],
 	"rules": {
-		"no-var": "off"
+		"no-var": "off",
+		"quotes": ["error", "double"],
+		"semi": ["error", "always"],
+		"indent": ["error", "tab"]
 	}
 }
