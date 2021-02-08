@@ -1,6 +1,6 @@
 {
-	"name": "scr.io",
-	"short_name": "scr",
+	"name": "scr-web",
+	"short_name": "scr-web",
 	"theme_color": "#0cd1e8",
 	"background_color": "#fafafa",
 	"display": "standalone",
