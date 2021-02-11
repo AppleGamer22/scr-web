@@ -2,7 +2,7 @@ import { waitForAsync, ComponentFixture, TestBed } from "@angular/core/testing";
 import { CommonModule } from "@angular/common";
 import { HttpClientModule } from "@angular/common/http";
 import { IonicModule } from "@ionic/angular";
-import { AngularCropperjsModule } from "angular-cropperjs";
+// import { AngularCropperjsModule } from "angular-cropperjs";
 import { URLsComponent } from "./urls.component";
 import { ToastService } from "../toast.service";
 
@@ -17,7 +17,7 @@ describe("URLsComponent", () => {
 				CommonModule,
 				HttpClientModule,
 				IonicModule,
-				AngularCropperjsModule
+				// AngularCropperjsModule
 			],
 			providers: [ToastService]
 		}).compileComponents();
