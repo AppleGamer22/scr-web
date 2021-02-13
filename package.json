@@ -24,7 +24,7 @@
 		"postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points && node ./decorate-angular-cli.js"
 	},
 	"dependencies": {
-		"@angular-devkit/build-angular": "^0.1100.4",
+		"@angular-devkit/build-angular": "^0.1102.0",
 		"@angular/animations": "^11.0.4",
 		"@angular/cli": "^11.0.4",
 		"@angular/common": "^11.0.4",
@@ -37,7 +37,7 @@
 		"@angular/router": "^11.0.4",
 		"@angular/service-worker": "^11.0.4",
 		"@ionic/angular": "^5.5.4",
-		"@ionic/angular-toolkit": "^3.0.0",
+		"@ionic/angular-toolkit": "^3.1.0",
 		"@nestjs/common": "^7.6.12",
 		"@nestjs/core": "^7.6.12",
 		"@nestjs/jwt": "^7.2.0",
@@ -55,7 +55,7 @@
 		"cropperjs": "^1.5.9",
 		"dotenv": "^8.2.0",
 		"mongoose": "^5.11.10",
-		"puppeteer-core": "^7.0.4",
+		"puppeteer-core": "^7.1.0",
 		"reflect-metadata": "^0.1.13",
 		"rxjs": "~6.6.3",
 		"swagger-ui-express": "^4.1.6",
