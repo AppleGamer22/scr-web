@@ -67,7 +67,7 @@ declare global {
 		} catch (error) {
 			console.error(error.message);
 			await browser.close();
-			return false;
+			throw new Error(error.message);
 		}
 	}
 	/**
