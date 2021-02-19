@@ -54,14 +54,14 @@ declare global {
 	async signIn(browser: Browser, page: Page, username: string, password: string): Promise<boolean> {
 		try {
 			// await page.setUserAgent(userAgent());
-			await page.goto("https://www.instagram.com/accounts/login/");
-			await page.waitForSelector(`input[name="username"]`);
+			await page.goto("https://www.instagram.com/accounts/login/", {waitUntil: "domcontentloaded"});
+			await page.waitForSelector(`input[name="username"]`, {visible: true});
 			await page.type(`input[name="username"]`, username);
 			await page.type(`input[name="password"]`, password);
 			await page.click(`button[type="submit"]`);
-			// await page.waitForResponse("https://www.instagram.com/accounts/onetap/?next=%2F");
-			// await page.waitForSelector("button.sqdOP")
-			// await page.click("button.sqdOP");
+			await page.waitForResponse("https://www.instagram.com/accounts/onetap/?next=%2F");
+			await page.waitForSelector("button.sqdOP")
+			await page.click("button.sqdOP");
 			await page.waitForResponse("https://www.instagram.com/");
 			return true
 		} catch (error) {

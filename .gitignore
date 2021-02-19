@@ -34,6 +34,7 @@ Thumbs.db
 database
 users_dev
 users_prod
+users
 *.env
 docker-compose.yml
 k8s-database.yml
