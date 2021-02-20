@@ -53,10 +53,6 @@ declare global {
 	 */
 	async signIn(browser: Browser, page: Page, username: string, password: string): Promise<boolean> {
 		try {
-			// await page.setUserAgent(userAgent());
-			page.on('console', msg => {
-				for (let i = 0; i < msg.args().length; ++i) console.log(`${i}: ${msg.args()[i]}`);
-			});
 			await page.goto("https://www.instagram.com/accounts/login/", {waitUntil: "domcontentloaded"});
 			await page.waitForSelector(`input[name="username"]`, {visible: true});
 			await page.type(`input[name="username"]`, username);

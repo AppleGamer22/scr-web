@@ -5,9 +5,7 @@ WORKDIR /scr/
 COPY . .
 RUN apk add --no-cache chromium nss freetype freetype-dev harfbuzz ca-certificates ttf-freefont
 RUN chown -R node:node .
-RUN npm install --production
-RUN npm run build
-RUN rm -rf apps libs tools
+RUN npm install
 USER node
-EXPOSE 4100
-CMD npm run start:prod
+EXPOSE 4100 4200
+CMD npm run start:docker

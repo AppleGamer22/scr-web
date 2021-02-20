@@ -12,6 +12,7 @@
 	},
 	"scripts": {
 		"start": "ng serve client --poll=2000 & ng serve server",
+		"start:docker": "ng serve client --poll=2000 --host=0.0.0.0 & ng serve server",
 		"start:prod": "node dist/apps/server/main.js",
 		"start:client": "ng serve client --poll=2000",
 		"start:server": "ng serve server",
