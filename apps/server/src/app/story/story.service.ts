@@ -18,8 +18,9 @@ import { Browser, Page } from "puppeteer-core";
 				await browser.close();
 				throw new Error(`Failed to find ${user}'s story feed.`);
 			}
-			if (await page.waitForSelector("button._42FBe")) {
-				await page.click("button._42FBe");
+			await page.waitForSelector("header")
+			if ((await page.$("button.sqdOP.L3NKy.y1rQx.cB_4K")) !== null) {
+				await page.click("button.sqdOP.L3NKy.y1rQx.cB_4K");
 			}
 			for (var i = 0; i < item - 1; i++) {
 				await page.waitForSelector("div.coreSpriteRightChevron", {visible: true});
