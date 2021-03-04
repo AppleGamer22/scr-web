@@ -57,7 +57,7 @@
 		"cropperjs": "^1.5.9",
 		"dotenv": "^8.2.0",
 		"mongoose": "^5.11.10",
-		"puppeteer-core": "^7.1.0",
+		"puppeteer-core": "^8.0.0",
 		"reflect-metadata": "^0.1.13",
 		"rxjs": "~6.6.3",
 		"swagger-ui-express": "^4.1.6",
