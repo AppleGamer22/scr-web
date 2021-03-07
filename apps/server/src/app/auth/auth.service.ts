@@ -14,7 +14,7 @@ import { InstagramService } from "../instagram/instagram.service";
 		private readonly instagramService: InstagramService
 	) {}
 	/**
-	 * Sign's-up Instagram user based on credentials
+	 * Signs-up Instagram user based on credentials
 	 * @param username user's username
 	 * @param password user's password
 	 * @returns A User database object
@@ -36,7 +36,7 @@ import { InstagramService } from "../instagram/instagram.service";
 		}
 	}
 	/**
-	 * Sign's-in Instagram user based on credentials
+	 * Signs-in Instagram user based on credentials
 	 * @param username user's username
 	 * @param password user's password
 	 * @returns A JSON Web Token
@@ -63,7 +63,7 @@ import { InstagramService } from "../instagram/instagram.service";
 		}
 	}
 	/**
-	 * Sign's-in Instagram user based on credentials
+	 * Signs-out Instagram user based on credentials
 	 * @param U_ID user's _id property
 	 * @returns success Boolean
 	 */
