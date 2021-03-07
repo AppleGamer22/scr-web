@@ -81,11 +81,30 @@ import { InstagramService } from "../instagram/instagram.service";
 			throw new Error(error.message as string);
 		}
 	}
-
+	/**
+	 * Edits user's category list
+	 * @param U_ID user's _id property
+	 * @param categories an array of categories
+	 * @returns a new array of categories
+	 */
 	async editCategories(U_ID: string, categories: string[]): Promise<string[]> {
 		try {
 			await this.userCollection.findOneAndUpdate({_id: U_ID}, { categories });
-			return categories
+			return categories;
+		} catch (error) {
+			throw new Error(error.message as string);
+		}
+	}
+	/**
+	 * Retrieves user's category list
+	 * @param U_ID user's _id property
+	 * @param categories an array of categories
+	 * @returns a new array of categories
+	 */
+	async getCategories(U_ID: string): Promise<string[]> {
+		try {
+			const { categories } = await this.userCollection.findById(U_ID);
+			return categories;
 		} catch (error) {
 			throw new Error(error.message as string);
 		}
