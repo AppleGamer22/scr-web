@@ -81,4 +81,13 @@ import { InstagramService } from "../instagram/instagram.service";
 			throw new Error(error.message as string);
 		}
 	}
+
+	async editCategories(U_ID: string, categories: string[]): Promise<string[]> {
+		try {
+			await this.userCollection.findOneAndUpdate({_id: U_ID}, { categories });
+			return categories
+		} catch (error) {
+			throw new Error(error.message as string);
+		}
+	}
 }

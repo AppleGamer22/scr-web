@@ -7,6 +7,7 @@ import { Document } from "mongoose";
 	@Prop({required: true}) joined: Date;
 	@Prop({required: true}) network: "instagram" | "vsco" | "tiktok";
 	@Prop({required: true}) instagram: boolean;
+	@Prop({required: false}) categories: string[];
 }
 export type UserDocument = User & Document;
 export const UserSchema = SchemaFactory.createForClass(User);
@@ -26,6 +27,7 @@ export enum FileType {
 	@Prop({required: true}) owner: string;
 	@Prop({required: true}) post: string;
 	@Prop({required: true}) date: Date;
+	@Prop({required: false}) categories: string[];
 }
 export type HistoryDocument = History & Document;
 export const HistorySchema = SchemaFactory.createForClass(History);

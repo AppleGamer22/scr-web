@@ -73,4 +73,24 @@ import { AuthGuard } from "./auth.guard";
 			throw new HttpException(errorMessage, errorCode);
 		}
 	}
+
+	@ApiHeader({
+		name: "Authorization",
+		allowEmptyValue: false
+	}) @Patch("categories") @UseGuards(AuthGuard) async editCategories(
+		@Req() request: Request,
+		@Body("categories") categories: string[],
+		@Res() response: Response
+	): Promise<Response> {
+		try {
+			const U_ID = (request as ScrapeRequest).user.U_ID;
+			await this.authService.editCategories(U_ID, categories);
+			return response.json(categories).status(HttpStatus.ACCEPTED);
+		} catch (error) {
+			const errorMessage = (error as Error).message;
+			var errorCode = HttpStatus.INTERNAL_SERVER_ERROR;
+			if (errorMessage.includes("failed.")) errorCode = HttpStatus.UNAUTHORIZED;
+			throw new HttpException(errorMessage, errorCode);
+		}
+	}
 }
