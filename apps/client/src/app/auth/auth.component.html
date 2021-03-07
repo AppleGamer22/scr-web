@@ -43,4 +43,19 @@
 		<li><a href="#sign_up" (click)="authOption = 'sign_up'">sign-up</a> with your social network credentials.</li>
 		<li><a href="#sign_in" (click)="authOption = 'sign_in'">sign-in</a> with your social network credentials.</li>
 	</ol>
+	<form *ngIf="token !== null">
+		<h3>Categories</h3>
+		<ion-list>
+			<ion-item *ngFor="let category of categories">
+				<ion-button color="danger" (click)="deletecategory(category)">
+					<ion-icon name="trash-outline"></ion-icon>
+				</ion-button>
+				<ion-label>&nbsp;{{category}}</ion-label>
+			</ion-item>
+			<ion-item>
+				<ion-label>category</ion-label>
+				<ion-input type="text" [(ngModel)]="categoryField" name="category" (keyup.enter)="addcategory()"></ion-input>
+			</ion-item>
+		</ion-list>
+	</form>
 </ion-content>

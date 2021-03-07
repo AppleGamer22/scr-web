@@ -10,6 +10,7 @@ import { ToastService } from "../toast.service";
 	styleUrls: ["./urls.component.scss"],
 }) export class URLsComponent {
 	@Input() urls: string[];
+	@Input() categories: string[] = ["a", "b"];
 	checked = false;
 	constructor(private readonly http: HttpClient, readonly toast: ToastService) {}
 

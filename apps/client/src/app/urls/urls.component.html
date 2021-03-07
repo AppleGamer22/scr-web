@@ -1,10 +1,20 @@
 <ion-list>
+	<ion-item>
+		<ion-label>Categories</ion-label>
+		<ion-select interface="action-sheet" multiple="true" placeholder="Select Category" [value]="categories">
+			<ion-select-option *ngFor="let item of categories" [value]="item">
+				<ion-chip>
+					<ion-label>{{item}}</ion-label>
+				</ion-chip>
+			</ion-select-option>
+		</ion-select>
+	</ion-item>
 	<ion-item *ngFor="let url of urls">
 		<ion-grid>
 			<ion-row>
 				<ion-col size="auto">
 					<ion-segment #segment value="none">
-						<ion-segment-button value="show"	>
+						<ion-segment-button value="show">
 							<ion-icon name="image-outline" *ngIf="url.includes('.jpg')"></ion-icon>
 							<ion-icon name="film-outline" *ngIf="url.includes('.mp4')"></ion-icon>
 						</ion-segment-button>

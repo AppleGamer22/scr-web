@@ -16,6 +16,9 @@ import { ToastService } from "../toast.service";
 	usernameField: string;
 	passwordField: string;
 	processing = false;
+	token = localStorage.getItem(this.platform);
+	categories: Array<string> = [];
+	categoryField: string;
 	constructor(
 		private readonly http: HttpClient,
 		private router: Router,
@@ -120,5 +123,28 @@ import { ToastService } from "../toast.service";
 			this.toast.showToast(error, "danger");
 		}
 		this.processing = false;
+	}
+
+	addcategory() {
+		try {
+			if (!this.categories.includes(this.categoryField)) {
+				this.categories.push(this.categoryField);
+				this.categoryField = "";
+			}
+		} catch ({ error }) {
+			console.error(error);
+			this.toast.showToast(error, "danger");
+		}
+	}
+
+	deletecategory(category: string) {
+		try {
+			if (this.categories.includes(category)) {
+				this.categories = this.categories.filter(category2 => category2 !== category);
+			}
+		} catch ({ error }) {
+			console.error(error);
+			this.toast.showToast(error, "danger");
+		}
 	}
 }
