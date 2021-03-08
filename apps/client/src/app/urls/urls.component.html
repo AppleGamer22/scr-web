@@ -1,5 +1,5 @@
 <ion-list>
-	<ion-item>
+	<ion-item *ngIf="urls !== undefined && urls.length > 0">
 		<ion-label>Categories</ion-label>
 		<ion-select interface="action-sheet" multiple="true" placeholder="Select Category" [value]="categories">
 			<ion-select-option *ngFor="let item of categories" [value]="item">
