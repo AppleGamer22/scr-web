@@ -1,4 +1,4 @@
-import { Controller, Patch, Body, Req, Res, HttpStatus, HttpException, UseGuards } from "@nestjs/common";
+import { Controller, Get, Patch, Body, Req, Res, HttpStatus, HttpException, UseGuards } from "@nestjs/common";
 import { ApiHeader } from "@nestjs/swagger";
 import { ScrapeRequest } from "@scr-web/server-interfaces";
 import { Request, Response } from "express";
@@ -109,7 +109,7 @@ import { AuthGuard } from "./auth.guard";
 	@ApiHeader({
 		name: "Authorization",
 		allowEmptyValue: false
-	}) @Patch("categories") @UseGuards(AuthGuard) async getCategories(
+	}) @Get("categories") @UseGuards(AuthGuard) async getCategories(
 		@Req() request: Request,
 		@Res() response: Response
 	): Promise<Response> {

@@ -32,6 +32,7 @@ import { ToastService } from "../toast.service";
 				this.authOption = route.snapshot.fragment;
 				break;
 		}
+		this.getCategories();
 	}
 	/**
 	 * Updates route based on selected authentication mode
@@ -125,10 +126,26 @@ import { ToastService } from "../toast.service";
 		this.processing = false;
 	}
 
-	addcategory() {
+	async getCategories() {
 		try {
-			if (!this.categories.includes(this.categoryField)) {
-				this.categories.push(this.categoryField);
+			const token = localStorage.getItem("instagram");
+			if (token !== undefined && !this.categories.includes(this.categoryField)) {
+				const headers = new HttpHeaders({"Authorization": token});
+				this.categories = await this.http.get<string[]>(`${environment.server}/api/auth/categories`, { headers }).toPromise();
+			}
+		} catch ({ error }) {
+			console.error(error);
+			this.toast.showToast(error, "danger");
+		}
+	}
+
+	async addCategory() {
+		try {
+			const token = localStorage.getItem("instagram");
+			if (token !== undefined && !this.categories.includes(this.categoryField)) {
+				const headers = new HttpHeaders({"Authorization": token});
+				const body = {categories: this.categories.concat(this.categoryField)};
+				this.categories = await this.http.patch<string[]>(`${environment.server}/api/auth/categories`, body, { headers }).toPromise();
 				this.categoryField = "";
 			}
 		} catch ({ error }) {
@@ -137,10 +154,13 @@ import { ToastService } from "../toast.service";
 		}
 	}
 
-	deletecategory(category: string) {
+	async deleteCategory(category: string) {
 		try {
-			if (this.categories.includes(category)) {
-				this.categories = this.categories.filter(category2 => category2 !== category);
+			const token = localStorage.getItem("instagram");
+			if (token !== undefined && this.categories.includes(category)) {
+				const headers = new HttpHeaders({"Authorization": token});
+				const body = {categories: this.categories.filter(category2 => category2 !== category)};
+				this.categories = await this.http.patch<string[]>(`${environment.server}/api/auth/categories`, body, { headers }).toPromise();
 			}
 		} catch ({ error }) {
 			console.error(error);
