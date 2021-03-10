@@ -18,5 +18,5 @@
 		<ion-button [disabled]="processing" (click)="submit(postOwner, postID)">submit</ion-button>
 	</form>
 	<ion-progress-bar *ngIf="processing" color="primary" type="indeterminate"></ion-progress-bar>
-	<scr-web-urls [urls]="urls"></scr-web-urls>
+	<scr-web-urls [history]="history"></scr-web-urls>
 </ion-content>

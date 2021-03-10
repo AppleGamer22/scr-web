@@ -1,12 +1,12 @@
 import { Controller, Get, UseGuards, Param, Req, HttpStatus, HttpException } from "@nestjs/common";
 import { beginScrape, ScrapeRequest } from "@scr-web/server-interfaces";
+import { FileType, History } from "@scr-web/server-schemas";
 import { Request } from "express";
 import { basename } from "path";
 import { StoryService } from "./story.service";
 import { AuthGuard } from "../auth/auth.guard";
 import { HistoryService } from "../history/history.service";
 import { StorageService } from "../storage/storage.service";
-import { FileType } from "@scr-web/server-schemas";
 
 @Controller("story") export class StoryController {
 	constructor(
@@ -25,7 +25,7 @@ import { FileType } from "@scr-web/server-schemas";
 		@Param("story") story: string,
 		@Param("item") item: number,
 		@Req() request: Request
-	): Promise<string[]> {
+	): Promise<History> {
 		try {
 			const { U_ID } = (request as ScrapeRequest).user;
 			const { browser, page } = await beginScrape(U_ID);
@@ -37,11 +37,10 @@ import { FileType } from "@scr-web/server-schemas";
 				await this.storageService.addFileFromURL(FileType.Story, story, filename, url);
 				const path = `storage/${FileType.Story}/${story}/${filename}`;
 				const history = await this.historyService.getHistoryItemByURL(path, U_ID);
-				if (history && history.urls.length > 0) return history.urls;
+				if (history && history.urls.length > 0) return history;
 				paths.push(path);
 			}
-			await this.historyService.addHistoryItem(U_ID, paths, FileType.Story, story, `${story}/${new Date().toISOString()}/${item}`);
-			return paths;
+			return await this.historyService.addHistoryItem(U_ID, paths, FileType.Story, story, `${story}/${new Date().toISOString()}/${item}`);
 		} catch (error) {
 			const errorMessage = error.message as string;
 			var errorCode: HttpStatus;

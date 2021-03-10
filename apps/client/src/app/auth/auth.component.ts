@@ -129,7 +129,7 @@ import { ToastService } from "../toast.service";
 	async getCategories() {
 		try {
 			const token = localStorage.getItem("instagram");
-			if (token !== undefined && !this.categories.includes(this.categoryField)) {
+			if (token !== undefined) {
 				const headers = new HttpHeaders({"Authorization": token});
 				this.categories = await this.http.get<string[]>(`${environment.server}/api/auth/categories`, { headers }).toPromise();
 			}

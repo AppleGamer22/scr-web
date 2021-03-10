@@ -1,12 +1,12 @@
 import { Controller, Get, Param, HttpException, HttpStatus, Req, UseGuards } from "@nestjs/common";
 import { beginScrape, ScrapeRequest } from "@scr-web/server-interfaces";
+import { FileType, History } from "@scr-web/server-schemas";
 import { Request } from "express";
 import { basename } from "path";
 import { AuthGuard } from "../auth/auth.guard";
 import { InstagramService } from "./instagram.service";
 import { HistoryService } from "../history/history.service";
 import { StorageService } from "../storage/storage.service";
-import { FileType } from "@scr-web/server-schemas";
 
 @Controller("instagram") export class InstagramController {
 	constructor(
@@ -23,11 +23,11 @@ import { FileType } from "@scr-web/server-schemas";
 	@Get(":post") @UseGuards(AuthGuard) async getPostFiles(
 		@Param("post") post: string,
 		@Req() request: Request
-	): Promise<string[]> {
+	): Promise<History> {
 		try {
 			const { U_ID } = (request as ScrapeRequest).user;
 			const history = await this.historyService.getHistoryItemByPost(FileType.Instagram, post, U_ID);
-			if (history) return history.urls;
+			if (history) return history;
 			const { browser, page } = await beginScrape(U_ID);
 			const { urls, username } = await this.instagramService.getPostFiles(post, browser, page);
 			await browser.close();
@@ -37,8 +37,7 @@ import { FileType } from "@scr-web/server-schemas";
 				await this.storageService.addFileFromURL(FileType.Instagram, username, filename, url);
 				paths.push(`storage/${FileType.Instagram}/${username}/${filename}`);
 			}
-			await this.historyService.addHistoryItem(U_ID, paths, FileType.Instagram, username, post);
-			return paths;
+			return await this.historyService.addHistoryItem(U_ID, paths, FileType.Instagram, username, post);;
 		} catch (error) {
 			const errorMessage = error.message as string;
 			var errorCode: HttpStatus = HttpStatus.INTERNAL_SERVER_ERROR;

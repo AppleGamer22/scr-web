@@ -1,15 +1,15 @@
 <ion-list>
-	<ion-item *ngIf="urls !== undefined && urls.length > 0">
+	<ion-item *ngIf="history !== undefined && history.urls.length > 0">
 		<ion-label>Categories</ion-label>
-		<ion-select interface="action-sheet" multiple="true" placeholder="Select Category" [value]="categories">
-			<ion-select-option *ngFor="let item of categories" [value]="item">
+		<ion-select interface="action-sheet" multiple="true" placeholder="Select Category" [value]="history.categories">
+			<ion-select-option *ngFor="let option of options" [value]="option">
 				<ion-chip>
-					<ion-label>{{item}}</ion-label>
+					<ion-label>{{option}}</ion-label>
 				</ion-chip>
 			</ion-select-option>
 		</ion-select>
 	</ion-item>
-	<ion-item *ngFor="let url of urls">
+	<ion-item *ngFor="let url of history.urls">
 		<ion-grid>
 			<ion-row>
 				<ion-col size="auto">

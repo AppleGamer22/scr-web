@@ -2,6 +2,7 @@ import { Component, Inject } from "@angular/core";
 import { DOCUMENT } from "@angular/common";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Router, ActivatedRoute } from "@angular/router";
+import { History } from "@scr-web/server-schemas";
 import { environment } from "../../environments/environment";
 import { ToastService } from "../toast.service";
 
@@ -12,7 +13,7 @@ import { ToastService } from "../toast.service";
 }) export class InstagramComponent {
 	postID: string;
 	processing = false;
-	urls: string[] = [];
+	history: History;
 	constructor(
 		private readonly http: HttpClient,
 		@Inject(DOCUMENT) private document: Document,
@@ -31,7 +32,7 @@ import { ToastService } from "../toast.service";
 	 * @param id post ID
 	 */
 	async submit(id: string) {
-		this.urls = [];
+		this.history.urls = [];
 		this.processing = true;
 		await this.router.navigate(["/instagram"], {queryParams: { id }, queryParamsHandling: "merge"});
 		try {
@@ -39,9 +40,9 @@ import { ToastService } from "../toast.service";
 			if (token) {
 				const headers = new HttpHeaders({"Authorization": token});
 				if (id) {
-					const paths = await this.http.get<string[]>(`${environment.server}/api/instagram/${id}`, { headers }).toPromise();
-					await this.toast.showToast(`${paths.length} URL(s)`, "success");
-					for (const path of paths) this.urls.push(`${environment.server}/api/${path}`);
+					this.history = await this.http.get<History>(`${environment.server}/api/instagram/${id}`, { headers }).toPromise();
+					await this.toast.showToast(`${this.history.urls.length} URL(s)`, "success");
+					// for (const path of paths) this.urls.push(`${environment.server}/api/${path}`);
 				} else {
 					await this.toast.showToast("Please enter a post ID.", "danger");
 				}

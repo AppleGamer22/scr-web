@@ -1,12 +1,12 @@
 import { Controller, Get, Param, Req, HttpStatus, HttpException, UseGuards } from "@nestjs/common";
 import { beginScrape, ScrapeRequest } from "@scr-web/server-interfaces";
+import { FileType, History } from "@scr-web/server-schemas";
 import { Request } from "express";
 import { basename } from "path";
 import { HighlightService } from "./highlight.service";
 import { AuthGuard } from "../auth/auth.guard";
 import { HistoryService } from "../history/history.service";
 import { StorageService } from "../storage/storage.service";
-import { FileType } from "@scr-web/server-schemas";
 
 @Controller("highlight") export class HighlightController {
 	constructor(
@@ -25,7 +25,7 @@ import { FileType } from "@scr-web/server-schemas";
 		@Param("highlight") highlight: string,
 		@Param("item") item: number,
 		@Req() request: Request
-	): Promise<string[]> {
+	): Promise<History> {
 		try {
 			const U_ID = (request as ScrapeRequest).user.U_ID;
 			const { browser, page } = await beginScrape(U_ID);
@@ -37,8 +37,7 @@ import { FileType } from "@scr-web/server-schemas";
 				await this.storageService.addFileFromURL(FileType.Highlight, username, filename, url);
 				paths.push(`storage/${FileType.Highlight}/${username}/${filename}`)
 			}
-			await this.historyService.addHistoryItem(U_ID, paths, FileType.Highlight, username, `${highlight}/${item}`);
-			return paths;
+			return await this.historyService.addHistoryItem(U_ID, paths, FileType.Highlight, username, `${highlight}/${item}`);
 		} catch (error) {
 			const errorMessage = error.message as string;
 			var errorCode: HttpStatus = HttpStatus.INTERNAL_SERVER_ERROR;

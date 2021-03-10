@@ -2,6 +2,7 @@ import { Component, Inject } from "@angular/core";
 import { DOCUMENT } from "@angular/common";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Router, ActivatedRoute } from "@angular/router";
+import { History } from "@scr-web/server-schemas";
 import { environment } from "../../environments/environment";
 import { ToastService } from "../toast.service";
 
@@ -14,7 +15,7 @@ export class TikTokComponent {
 	postOwner: string;
 	postID: string;
 	processing = false;
-	urls: string[];
+	history: History;
 
 	constructor(
 		private readonly http: HttpClient,
@@ -37,7 +38,7 @@ export class TikTokComponent {
 	 * @param id post ID
 	 */
 	async submit(owner: string, id: string) {
-		this.urls = [];
+		this.history.urls = [];
 		this.processing = true;
 		await this.router.navigate(["/tiktok"], {queryParams: { owner, id }, queryParamsHandling: "merge"});
 		try {
@@ -45,9 +46,9 @@ export class TikTokComponent {
 			if (token) {
 				const headers = new HttpHeaders({"Authorization": token});
 				if (owner && id) {
-					const [ path ] = await this.http.get<string[]>(`${environment.server}/api/tiktok/${owner}/${id}`, { headers }).toPromise();
+					this.history = await this.http.get<History>(`${environment.server}/api/tiktok/${owner}/${id}`, { headers }).toPromise();
 					await this.toast.showToast("1 File", "success");
-					this.urls = [`${environment.server}/api/${path}`];
+					// this.urls = [`${environment.server}/api/${path}`];
 				} else {
 					await this.toast.showToast("Please enter a post ownder & ID.", "danger");
 				}
