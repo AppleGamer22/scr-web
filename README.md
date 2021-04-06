@@ -1,5 +1,5 @@
 # scr-web
-|Network|GitHub|Docker Hub|
+||GitHub|Docker Hub|
 |-|-|-|
 |license|![GitHub](https://img.shields.io/github/license/AppleGamer22/scr-web?logo=github)||
 |relase|![GitHub release](https://img.shields.io/github/v/release/AppleGamer22/scr-web?logo=Github)|![Docker Image Version (latest semver)](https://img.shields.io/docker/v/applegamer22/scr-web?logo=docker)|

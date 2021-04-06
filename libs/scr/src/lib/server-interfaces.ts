@@ -3,7 +3,7 @@ import { config } from "dotenv";
 import * as puppeteer from "puppeteer-core";
 import { Request } from "express";
 /**
- * Initialises server environment
+ * Initializes server environment
  */
 export function initEnvironment(): {JWT_SECRET: string, DATABASE_URL: string} {
 	config({path: `${process.cwd()}/env.env`});
@@ -77,6 +77,11 @@ export async function beginScrape(U_ID: string, incognito = false): Promise<{bro
 		});
 		const page = (await browser.pages())[0];
 		await page.evaluateOnNewDocument(() => delete Object.getPrototypeOf(navigator).webdriver);
+		// @ts-ignore
+		await page._client.send("Network.enable", {
+			maxResourceBufferSize: 1024 * 1204 * 100,
+			maxTotalBufferSize: 1024 * 1204 * 200,
+		});
 		// await page.setUserAgent(userAgent());
 		return { browser, page };
 	} catch (error) {
