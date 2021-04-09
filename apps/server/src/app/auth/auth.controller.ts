@@ -8,7 +8,7 @@ import { AuthGuard } from "./auth.guard";
 @Controller("auth") export class AuthController {
 	constructor(private readonly authService: AuthService) {}
 	/**
-	 * handles HTTP response for Instgram sign-up
+	 * handles HTTP response for Instagram sign-up
 	 * @param body PATCH request body
 	 * @param response response PATCH request
 	 * @returns HTTP response
@@ -29,7 +29,7 @@ import { AuthGuard } from "./auth.guard";
 		}
 	}
 	/**
-	 * handles HTTP response for Instgram sign-in
+	 * handles HTTP response for Instagram sign-in
 	 * @param body PATCH request body
 	 * @param response response PATCH request
 	 * @returns HTTP response
@@ -50,7 +50,7 @@ import { AuthGuard } from "./auth.guard";
 		}
 	}
 	/**
-	 * handles HTTP response for Instgram sign-out
+	 * handles HTTP response for Instagram sign-out
 	 * @param body PATCH request body
 	 * @param response response PATCH request
 	 * @returns HTTP response

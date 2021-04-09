@@ -23,8 +23,7 @@ import { AuthGuard } from "../auth/auth.guard";
 			const { U_ID } = (request as ScrapeRequest).user;
 			return this.historyService.getFilteredHistory(U_ID, type, owner);
 		} catch (error) {
-			throw new
-			HttpException("Failed to find history logs.", HttpStatus.INTERNAL_SERVER_ERROR);
+			throw new HttpException("Failed to find history logs.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	/**
@@ -44,6 +43,21 @@ import { AuthGuard } from "../auth/auth.guard";
 			} else if (urls.length > 0) {
 				return this.historyService.addHistoryItem(U_ID, urls, type, owner, post);
 			}
+		}
+	}
+
+	@Patch(":type/:owner/:post") @UseGuards(AuthGuard) async editHistoryCategory(
+		@Req() request: Request,
+		@Param("type") type: FileType,
+		@Param("owner") owner: string,
+		@Param("post") post: string,
+		@Body("categories") categories: string[]
+	): Promise<History> {
+		// const { U_ID } = (request as ScrapeRequest).user;
+		try {
+			return await this.historyService.editHistoryCategories(`${type}/${owner}/${post}`, categories);
+		} catch (error) {
+			throw new HttpException(`Failed to edit post's ${post} categories.`, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 }

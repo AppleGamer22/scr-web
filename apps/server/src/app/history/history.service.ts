@@ -125,4 +125,15 @@ import { Model } from "mongoose";
 			throw new Error(error.message as string);
 		}
 	}
+
+	async editHistoryCategories(_id: string, categories: string[]): Promise<History> {
+		try {
+			var history = await this.historyCollection.findById(_id);
+			history.categories = categories;
+			await history.save();
+			return history;
+		} catch (error) {
+			throw new Error(error.message as string);
+		}
+	}
 }

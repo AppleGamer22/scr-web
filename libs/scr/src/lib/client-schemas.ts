@@ -16,7 +16,7 @@ export interface User {
 	categories: string[];
 }
 
-export interface History  {
+export interface History {
 	_id: string;
 	urls: string[];
 	U_ID: string;

@@ -24,7 +24,9 @@
 	"cSpell.words": [
 		"nestjs",
 		"ngrx",
+		"nrwl",
 		"vsco",
-		"tiktok"
+		"tiktok",
+		"ngcc"
 	]
 }
