@@ -36,7 +36,7 @@ import { ToastService } from "../toast.service";
 	 * @param number highlight number
 	 */
 	async submit(id: string, number: number) {
-		this.history.urls = [];
+		if (this.history !== undefined) this.history.urls = [];
 		this.processing = true;
 		await this.router.navigate(["/highlight"], {queryParams: { id, number }, queryParamsHandling: "merge"});
 		try {

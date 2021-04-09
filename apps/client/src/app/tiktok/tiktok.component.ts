@@ -38,7 +38,7 @@ export class TikTokComponent {
 	 * @param id post ID
 	 */
 	async submit(owner: string, id: string) {
-		this.history.urls = [];
+		if (this.history !== undefined) this.history.urls = [];
 		this.processing = true;
 		await this.router.navigate(["/tiktok"], {queryParams: { owner, id }, queryParamsHandling: "merge"});
 		try {
@@ -50,7 +50,7 @@ export class TikTokComponent {
 					await this.toast.showToast("1 File", "success");
 					// this.urls = [`${environment.server}/api/${path}`];
 				} else {
-					await this.toast.showToast("Please enter a post ownder & ID.", "danger");
+					await this.toast.showToast("Please enter a post owner & ID.", "danger");
 				}
 
 			}

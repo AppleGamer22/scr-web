@@ -32,9 +32,7 @@ import { ToastService } from "../toast.service";
 	 * @param id post ID
 	 */
 	async submit(id: string) {
-		if (this.history !== undefined) {
-			this.history.urls = [];
-		}
+		if (this.history !== undefined) this.history.urls = [];
 		this.processing = true;
 		await this.router.navigate(["/instagram"], {queryParams: { id }, queryParamsHandling: "merge"});
 		try {
