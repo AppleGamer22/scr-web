@@ -1,10 +1,10 @@
 // tslint:disable-next-line: nx-enforce-module-boundaries
-import { History } from "@scr-web/server-schemas";
+import { History } from "@scr-web/client-schemas";
 import { Component, Inject } from "@angular/core";
 import { DOCUMENT } from "@angular/common";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { ActivatedRoute, Router } from "@angular/router";
-import { FileType } from "@scr-web/server-schemas";
+import { FileType } from "@scr-web/client-schemas";
 import { environment } from "../../environments/environment";
 import { ToastService } from "../toast.service";
 
@@ -43,10 +43,6 @@ import { ToastService } from "../toast.service";
 				await this.router.navigate(["/history"], {queryParams: { type, search }, queryParamsHandling: "merge"});
 				const headers = new HttpHeaders({"Authorization": token});
 				this.response = await this.http.get<History[]>(`${environment.server}/api/history/${type}/${search}`, { headers }).toPromise();
-				this.response = this.response.map(history => {
-					history.urls = history.urls.map(url => `${environment.server}/api/${url}`);
-					return history;
-				});
 				this.range = 0;
 				this.histories = [];
 				this.histories = this.response.slice(this.range, this.range + 10);

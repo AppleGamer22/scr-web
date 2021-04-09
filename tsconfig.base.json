@@ -18,7 +18,8 @@
 		"resolveJsonModule": true,
 		"paths": {
 			"@scr-web/server-interfaces": ["libs/scr/src/lib/server-interfaces.ts"],
-			"@scr-web/server-schemas": ["libs/scr/src/lib/server-schemas.ts"]
+			"@scr-web/server-schemas": ["libs/scr/src/lib/server-schemas.ts"],
+			"@scr-web/client-schemas": ["libs/scr/src/lib/client-schemas.ts"]
 		}
 	},
 	"exclude": ["node_modules", "tmp"]

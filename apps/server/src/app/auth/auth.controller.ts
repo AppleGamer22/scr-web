@@ -1,5 +1,5 @@
 import { Controller, Get, Patch, Body, Req, Res, HttpStatus, HttpException, UseGuards } from "@nestjs/common";
-import { ApiHeader } from "@nestjs/swagger";
+// import { ApiHeader } from "@nestjs/swagger";
 import { ScrapeRequest } from "@scr-web/server-interfaces";
 import { Request, Response } from "express";
 import { AuthService } from "./auth.service";
@@ -55,10 +55,11 @@ import { AuthGuard } from "./auth.guard";
 	 * @param response response PATCH request
 	 * @returns HTTP response
 	 */
-	@ApiHeader({
-		name: "Authorization",
-		allowEmptyValue: false
-	}) @Patch("sign_out/instagram") @UseGuards(AuthGuard) async signOutInstagram(
+	// @ApiHeader({
+	// 	name: "Authorization",
+	// 	allowEmptyValue: false
+	// })
+	@Patch("sign_out/instagram") @UseGuards(AuthGuard) async signOutInstagram(
 		@Req() request: Request,
 		@Res() response: Response
 	): Promise<Response> {
@@ -80,10 +81,11 @@ import { AuthGuard } from "./auth.guard";
 	 * @param response
 	 * @returns
 	 */
-	@ApiHeader({
-		name: "Authorization",
-		allowEmptyValue: false
-	}) @Patch("categories") @UseGuards(AuthGuard) async editCategories(
+	// @ApiHeader({
+	// 	name: "Authorization",
+	// 	allowEmptyValue: false
+	// })
+	@Patch("categories") @UseGuards(AuthGuard) async editCategories(
 		@Req() request: Request,
 		@Body("categories") categories: string[],
 		@Res() response: Response
@@ -106,10 +108,11 @@ import { AuthGuard } from "./auth.guard";
 	 * @param response
 	 * @returns
 	 */
-	@ApiHeader({
-		name: "Authorization",
-		allowEmptyValue: false
-	}) @Get("categories") @UseGuards(AuthGuard) async getCategories(
+	// @ApiHeader({
+	// 	name: "Authorization",
+	// 	allowEmptyValue: false
+	// })
+	@Get("categories") @UseGuards(AuthGuard) async getCategories(
 		@Req() request: Request,
 		@Res() response: Response
 	): Promise<Response> {

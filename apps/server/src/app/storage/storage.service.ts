@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { HttpService } from "@nestjs/common";
-import { FileType } from "@scr-web/server-schemas";
+import { FileType } from "@scr-web/client-schemas";
 import { existsSync, mkdirSync, writeFileSync, rmSync } from "fs";
 
 @Injectable() export class StorageService {

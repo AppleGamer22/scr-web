@@ -1,6 +1,7 @@
 import { Controller, Get, Param, HttpException, HttpStatus, Req, UseGuards } from "@nestjs/common";
 import { beginScrape, ScrapeRequest } from "@scr-web/server-interfaces";
-import { FileType, History } from "@scr-web/server-schemas";
+import { History } from "@scr-web/server-schemas";
+import { FileType } from "@scr-web/client-schemas";
 import { Request } from "express";
 import { TikTokService } from "./tiktok.service";
 import { HistoryService } from "../history/history.service";

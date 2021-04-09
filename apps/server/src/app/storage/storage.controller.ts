@@ -1,5 +1,6 @@
 import { Controller, Get, Delete, Param, HttpException, HttpStatus, Res } from "@nestjs/common";
-import { FileType, History } from "@scr-web/server-schemas";
+import { History } from "@scr-web/server-schemas";
+import { FileType } from "@scr-web/client-schemas";
 import { Response } from "express";
 import { HistoryService } from "../history/history.service";
 import { StorageService } from "../storage/storage.service";

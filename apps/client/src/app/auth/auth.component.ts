@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Router, ActivatedRoute } from "@angular/router";
 // tslint:disable-next-line: nx-enforce-module-boundaries
-import { User } from "@scr-web/server-schemas";
+import { User } from "@scr-web/client-schemas";
 import { environment } from "../../environments/environment";
 import { ToastService } from "../toast.service";
 

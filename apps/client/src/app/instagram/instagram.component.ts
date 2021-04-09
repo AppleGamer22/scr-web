@@ -2,7 +2,7 @@ import { Component, Inject } from "@angular/core";
 import { DOCUMENT } from "@angular/common";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Router, ActivatedRoute } from "@angular/router";
-import { History } from "@scr-web/server-schemas";
+import { History } from "@scr-web/client-schemas";
 import { environment } from "../../environments/environment";
 import { ToastService } from "../toast.service";
 
@@ -32,7 +32,9 @@ import { ToastService } from "../toast.service";
 	 * @param id post ID
 	 */
 	async submit(id: string) {
-		this.history.urls = [];
+		if (this.history !== undefined) {
+			this.history.urls = [];
+		}
 		this.processing = true;
 		await this.router.navigate(["/instagram"], {queryParams: { id }, queryParamsHandling: "merge"});
 		try {

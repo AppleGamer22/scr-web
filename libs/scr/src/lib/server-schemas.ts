@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Document } from "mongoose";
+import { FileType } from "./client-schemas";
 
 @Schema() export class User {
 	@Prop({unique: true, required: true}) username: string;
@@ -12,22 +13,15 @@ import { Document } from "mongoose";
 export type UserDocument = User & Document;
 export const UserSchema = SchemaFactory.createForClass(User);
 
-export enum FileType {
-	Instagram = "instagram",
-	Highlight = "highlight",
-	Story = "story",
-	VSCO = "vsco",
-	TikTok = "tiktok"
-}
 @Schema() export class History  {
-	@Prop({required: true}) _id: string;
-	@Prop({required: true}) urls: string[];
-	@Prop({required: true}) U_ID: string;
-	@Prop({required: true}) type: FileType;
-	@Prop({required: true}) owner: string;
-	@Prop({required: true}) post: string;
-	@Prop({required: true}) date: Date;
-	@Prop({required: false}) categories: string[];
+	@Prop({unique: true, required: true, type: String}) _id: string;
+	@Prop({required: true, type: [String]}) urls: string[];
+	@Prop({required: true, type: String}) U_ID: string;
+	@Prop({required: true, type: FileType}) type: FileType;
+	@Prop({required: true, type: String}) owner: string;
+	@Prop({required: true, type: String}) post: string;
+	@Prop({required: true, type: Date}) date: Date;
+	@Prop({required: false, type: [String]}) categories: string[];
 }
 export type HistoryDocument = History & Document;
 export const HistorySchema = SchemaFactory.createForClass(History);

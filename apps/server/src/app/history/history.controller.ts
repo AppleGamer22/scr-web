@@ -1,5 +1,6 @@
 import { ScrapeRequest } from "@scr-web/server-interfaces";
-import { History, FileType } from "@scr-web/server-schemas";
+import { History } from "@scr-web/server-schemas";
+import { FileType } from "@scr-web/client-schemas";
 import { Controller, Get, UseGuards, Req, HttpException, HttpStatus, Patch, Body, Param } from "@nestjs/common";
 import { Request } from "express";
 import { HistoryService } from "./history.service";

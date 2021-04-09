@@ -1,6 +1,6 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, OnChanges, SimpleChanges } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { History } from "@scr-web/server-schemas";
+import { History } from "@scr-web/client-schemas";
 import { environment } from "../../environments/environment";
 import { ToastService } from "../toast.service";
 
@@ -8,7 +8,7 @@ import { ToastService } from "../toast.service";
 	selector: "scr-web-urls",
 	templateUrl: "./urls.component.html",
 	styleUrls: ["./urls.component.scss"],
-}) export class URLsComponent {
+}) export class URLsComponent implements OnChanges {
 	// @Input() urls: string[];
 	// @Input() categories: string[];
 	@Input() history: History;
@@ -16,8 +16,14 @@ import { ToastService } from "../toast.service";
 	checked = false;
 
 	constructor(private readonly http: HttpClient, readonly toast: ToastService) {
-		this.history.urls = this.history.urls.map(url => `${environment.server}/api/${url}`);
-		this.getCategories();
+		this.ngOnChanges()
+	}
+
+	ngOnChanges() {
+		if (this.history !== undefined) {
+			this.history.urls = this.history.urls.map(url => `${environment.server}/api/${url}`);
+			this.getCategories();
+		}
 	}
 
 	async deleteFile(url: string) {
