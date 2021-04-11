@@ -46,7 +46,7 @@
 	<form *ngIf="token !== null">
 		<h3>Categories</h3>
 		<ion-list>
-			<ion-item *ngFor="let category of categories">
+			<ion-item *ngFor="let category of categories.sort()">
 				<ion-button color="danger" (click)="deleteCategory(category)">
 					<ion-icon name="trash-outline"></ion-icon>
 				</ion-button>

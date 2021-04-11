@@ -2,7 +2,7 @@
 	<ion-item *ngIf="history !== undefined && history.urls.length > 0">
 		<ion-label>Categories</ion-label>
 		<ion-select interface="action-sheet" multiple="true" placeholder="Select Category" [value]="history.categories" (ionChange)="onCategoryChange($event)">
-			<ion-select-option *ngFor="let option of options" [value]="option">
+			<ion-select-option *ngFor="let option of options.sort()" [value]="option">
 				<ion-chip>
 					<ion-label>{{option}}</ion-label>
 				</ion-chip>
