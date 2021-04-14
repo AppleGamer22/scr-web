@@ -12,6 +12,7 @@ import { ToastService } from "../toast.service";
 	// @Input() urls: string[];
 	// @Input() categories: string[];
 	private _history: History;
+	options: string[];
 	get history(): History {
 		return this._history;
 	}
@@ -27,7 +28,6 @@ import { ToastService } from "../toast.service";
 		}
 	}
 
-	options: string[];
 
 	constructor(private readonly http: HttpClient, readonly toast: ToastService) {
 		this.getCategories();
