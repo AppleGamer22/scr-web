@@ -23,10 +23,12 @@
 	"search.useGlobalIgnoreFiles": true,
 	"cSpell.words": [
 		"nestjs",
+		"ngcc",
 		"ngrx",
 		"nrwl",
-		"vsco",
+		"searchbar",
 		"tiktok",
-		"ngcc"
+		"upsert",
+		"vsco"
 	]
 }

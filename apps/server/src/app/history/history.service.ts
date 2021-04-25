@@ -10,13 +10,15 @@ import { Model } from "mongoose";
 	 * Finds user's History items in database (filtered by FileType and owner)
 	 * @param U_ID user's _id property
 	 * @param owner post owner
+	 * @param category post category
 	 * @param type post type
 	 * @returns History items array
 	 */
-	async getFilteredHistory(U_ID: string, type: FileType | "all", owner: string): Promise<History[]> {
+	async getFilteredHistory(U_ID: string, type: FileType | "all", category: string, owner: string): Promise<History[]> {
 		try {
 			var filter: object = { U_ID };
 			if (type !== "all") filter = {...filter, type};
+			if (category !== "all") filter = {...filter, categories: category}
 			if (owner !== "all") filter = {...filter, owner: new RegExp(owner, "i")};
 			return await this.historyCollection.find(filter).exec();
 		} catch (error) {
@@ -46,7 +48,8 @@ import { Model } from "mongoose";
 				type,
 				owner,
 				post,
-				date: new Date()
+				date: new Date(),
+				categories: []
 			},{
 				new: true,
 				upsert: true,

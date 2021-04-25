@@ -11,17 +11,20 @@ import { AuthGuard } from "../auth/auth.guard";
 	/**
 	 * handles HTTP response for history
 	 * @param request GET HTTP request
-	 * @param type resource type
+	 * @param type HTTP type parameter
+	 * @param category HTTP category parameter
+	 * @param owner HTTP owner parameter
 	 * @returns History items array
 	 */
-	@Get(":type/:owner") @UseGuards(AuthGuard) async getHistories(
+	@Get(":type/:category/:owner") @UseGuards(AuthGuard) async getHistories(
 		@Req() request: Request,
 		@Param("type") type: FileType | "all",
+		@Param("category") category: string,
 		@Param("owner") owner: string
 	): Promise<History[]> {
 		try {
 			const { U_ID } = (request as ScrapeRequest).user;
-			return this.historyService.getFilteredHistory(U_ID, type, owner);
+			return this.historyService.getFilteredHistory(U_ID, type, category, owner);
 		} catch (error) {
 			throw new HttpException("Failed to find history logs.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
