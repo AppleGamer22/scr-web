@@ -48,7 +48,7 @@
 							</ion-item>
 						</ion-menu-toggle>
 						<ion-menu-toggle autoHide="false" menu="menu">
-							<ion-item routerDirection="root" routerLink="history" [queryParams]="{type: 'all'}">
+							<ion-item routerDirection="root" routerLink="history" [queryParams]="{type: 'all', category: 'all'}">
 								<ion-icon [class.selected]="router.url.startsWith('/history')" slot="start" name="list-outline"></ion-icon>
 								<ion-label [class.selected]="router.url.startsWith('/history')">History</ion-label>
 							</ion-item>

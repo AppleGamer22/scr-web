@@ -32,7 +32,7 @@ import { ToastService } from "../toast.service";
 		this.search = route.snapshot.queryParamMap.get("search");
 		this.getCategories();
 		this.selectedCategory = route.snapshot.queryParamMap.get("category");
-		this.filterHistories(this.type, this.selectedCategory, this.search || "all");
+		this.filterHistories(this.type, this.selectedCategory || "all", this.search || "all");
 	}
 	/**
 	 * Get the history for a particular resource type
@@ -44,6 +44,10 @@ import { ToastService } from "../toast.service";
 	async filterHistories(type: FileType | "all", category: string, search: string) {
 		this.processing = true;
 		if (search === "") search = "all";
+		if (category === null) {
+			this.selectedCategory = "all";
+			category = "all";
+		}
 		try {
 			const token = localStorage.getItem("instagram");
 			if (token) {
