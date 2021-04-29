@@ -14,13 +14,14 @@
 			</ion-select>
 			<ion-select interface="action-sheet" placeholder="Categories" (ionChange)="filterHistories(type, selectedCategory, search)" [(ngModel)]="selectedCategory">
 				<ion-select-option value="all">All Categories</ion-select-option>
+				<ion-select-option value="none">No Category</ion-select-option>
 				<ion-select-option *ngFor="let category of categories" [value]="category">{{category}}</ion-select-option>
 			</ion-select>
 		</ion-buttons>
 	</ion-toolbar>
 </ion-header>
 <ion-header>
-	<ion-searchbar placeholder="Post Owner" (ionChange)="filterHistories(type, selectedCategory, search)" [(ngModel)]="search === 'all' ? '' : search"></ion-searchbar>
+	<ion-searchbar placeholder="Post Owner" (ionChange)="filterHistories(type, selectedCategory, search)" [(ngModel)]="search"></ion-searchbar>
 </ion-header>
 <ion-content>
 	<ion-progress-bar *ngIf="processing" color="primary" type="indeterminate"></ion-progress-bar>
@@ -28,12 +29,14 @@
 		<ion-item *ngFor="let history of histories">
 			<ion-grid>
 				<ion-row>
-					<ion-col  size="auto">
+					<ion-col>
 						<a [routerLink]="'/' + history.type" [queryParams]="{id: history.post, owner: history.owner}">
 							<b>{{history._id}}</b>
 						</a>
 					</ion-col>
-					<ion-col size="auto">
+				</ion-row>
+				<ion-row>
+					<ion-col>
 						<scr-web-urls [history]="history" *ngIf="history !== undefined"></scr-web-urls>
 					</ion-col>
 				</ion-row>
