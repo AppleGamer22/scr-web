@@ -29,7 +29,7 @@ import { ToastService } from "../toast.service";
 		private router: Router,
 	) {
 		this.type = (route.snapshot.queryParamMap.get("type") as FileType | "all") || "all";
-		this.search = route.snapshot.queryParamMap.get("search");
+		this.search = route.snapshot.queryParamMap.get("search") === "all" ? "" : route.snapshot.queryParamMap.get("search");
 		this.getCategories();
 		this.selectedCategory = route.snapshot.queryParamMap.get("category");
 		this.filterHistories(this.type, this.selectedCategory || "all", this.search);

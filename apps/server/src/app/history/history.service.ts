@@ -18,7 +18,16 @@ import { Model } from "mongoose";
 		try {
 			var filter: object = { U_ID };
 			if (type !== "all") filter = {...filter, type};
-			if (category !== "all") filter = {...filter, categories: category}
+			if (category !== "all" && category !== "none") {
+				filter = {...filter, categories: category}
+			} else if (category === "none") {
+				filter = {
+					...filter,
+					categories: {
+						$in: [undefined, []]
+					}
+				}
+			}
 			if (owner !== "all") filter = {...filter, owner: new RegExp(owner, "i")};
 			return await this.historyCollection.find(filter).exec();
 		} catch (error) {
