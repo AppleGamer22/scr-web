@@ -30,7 +30,7 @@
 			<ion-grid>
 				<ion-row>
 					<ion-col>
-						<a [routerLink]="'/' + history.type" [queryParams]="{id: history.post, owner: history.owner}">
+						<a *ngIf="history.type !== 'story'" [routerLink]="'/' + history.type" [queryParams]="{id: history.post, owner: history.owner}">
 							<b>{{history._id}}</b>
 						</a>
 					</ion-col>

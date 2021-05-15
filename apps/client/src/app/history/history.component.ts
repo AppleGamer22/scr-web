@@ -68,7 +68,7 @@ import { ToastService } from "../toast.service";
 		this.processing = false;
 	}
 
-	sliceHistory(event: CustomEvent) {
+	sliceHistory(event: Event) {
 		// @ts-ignore
 		var target = event.target as IonInfiniteScroll
 		if (this.range >= this.response.length) {

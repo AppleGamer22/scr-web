@@ -34,14 +34,14 @@ import { StorageService } from "../storage/storage.service";
 			await browser.close();
 			var paths: string[] = [];
 			for (let url of urls) {
-				const filename = `${story}_${basename(url).split("?")[0]}`;
+				const filename = `${basename(url).split("?")[0]}`;
 				await this.storageService.addFileFromURL(FileType.Story, story, filename, url);
 				const path = `storage/${FileType.Story}/${story}/${filename}`;
 				const history = await this.historyService.getHistoryItemByURL(path, U_ID);
 				if (history && history.urls.length > 0) return history;
 				paths.push(path);
 			}
-			return await this.historyService.addHistoryItem(U_ID, paths, FileType.Story, story, `${story}/${new Date().toISOString()}/${item}`);
+			return await this.historyService.addHistoryItem(U_ID, paths, FileType.Story, story, `${new Date().toISOString()}_${item}`);
 		} catch (error) {
 			const errorMessage = error.message as string;
 			var errorCode: HttpStatus;

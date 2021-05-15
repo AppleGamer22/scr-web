@@ -138,9 +138,9 @@ import { Model } from "mongoose";
 		}
 	}
 
-	async editHistoryCategories(_id: string, categories: string[]): Promise<History> {
+	async editHistoryCategories(type: FileType, owner: string, post: string, categories: string[]): Promise<History> {
 		try {
-			var history = await this.historyCollection.findById(_id);
+			var history = await this.historyCollection.findOne({ type, owner, post });
 			history.categories = categories;
 			await history.save();
 			return history;

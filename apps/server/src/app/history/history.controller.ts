@@ -58,7 +58,7 @@ import { AuthGuard } from "../auth/auth.guard";
 	): Promise<History> {
 		// const { U_ID } = (request as ScrapeRequest).user;
 		try {
-			return await this.historyService.editHistoryCategories(`${type}/${owner}/${post}`, categories);
+			return await this.historyService.editHistoryCategories(type, owner, post, categories);
 		} catch (error) {
 			throw new HttpException(`Failed to edit post's ${post} categories.`, HttpStatus.INTERNAL_SERVER_ERROR);
 		}

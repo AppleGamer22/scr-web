@@ -55,13 +55,16 @@ import { ToastService } from "../toast.service";
 		}
 	}
 
-	async onCategoryChange(event: CustomEvent) {
+	async onCategoryChange(event: Event) {
 		try {
 			const token = localStorage.getItem("instagram");
-			const categories: string[] = event.detail.value;
+			const categories: string[] = (event as CustomEvent).detail.value;
 			if (token !== undefined && history !== undefined && this.history.categories !== categories) {
 				const headers = new HttpHeaders({"Authorization": token});
 				const url = `${environment.server}/api/history/${this.history.type}/${this.history.owner}/${this.history.post}`;
+				if (this.history.type === "story") {
+					const url = `${environment.server}/api/history/${this.history.type}/${this.history._id}`;
+				}
 				this.history = await this.http.patch<History>(url, { categories }, { headers }).toPromise();
 			}
 		} catch ({ error }) {
