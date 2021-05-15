@@ -38,12 +38,12 @@ import { ToastService } from "../toast.service";
 	 * Updates route based on selected authentication mode
 	 * @param event segment change event
 	 */
-	async selectSegment(event: CustomEvent) {
-		switch (event.detail.value) {
+	async selectSegment(event: Event) {
+		switch ((event as CustomEvent).detail.value) {
 			case "sign_up":
 			case "sign_in":
 			case "sign_out":
-				await this.router.navigate([], {queryParamsHandling: "merge", fragment: event.detail.value});
+				await this.router.navigate([], {queryParamsHandling: "merge", fragment: (event as CustomEvent).detail.value});
 				break;
 		}
 	}
