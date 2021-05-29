@@ -69,6 +69,7 @@ export async function beginScrape(U_ID: string, incognito = false): Promise<{bro
 		if (incognito) args.push("--incognito");
 		const browser = await puppeteer.launch({
 			headless: true,
+			devtools: false,
 			defaultViewport: null,
 			executablePath: chromeExecutable(),
 			userDataDir: chromeUserDataDirectory(U_ID),

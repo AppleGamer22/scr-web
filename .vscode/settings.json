@@ -30,5 +30,6 @@
 		"tiktok",
 		"upsert",
 		"vsco"
-	]
+	],
+	"discord.enabled": true
 }

@@ -2,10 +2,27 @@ import { Injectable } from "@nestjs/common";
 // import { userAgent } from "@scr-web/server-interfaces";
 import { Browser, Page } from "puppeteer-core";
 
-declare global {
-	interface Window {
-		_sharedData: any
-		__additionalData: any
+interface InstagramPostItem {
+	node: {
+		display_url: string,
+		video_url?: string,
+		is_video: boolean,
+	}
+}
+
+interface InstagramPost {
+	graphql: {
+		shortcode_media: {
+			display_url: string,
+			video_url?: string,
+			is_video: boolean,
+			edge_sidecar_to_children?: {
+				edges: InstagramPostItem[]
+			},
+			owner: {
+				username: string
+			}
+		}
 	}
 }
 
@@ -19,22 +36,24 @@ declare global {
 	 */
 	async getPostFiles(id: string, browser: Browser, page: Page): Promise<{urls: string[], username: string}> {
 		try {
-			await page.goto(`https://www.instagram.com/p/${id}`, {waitUntil: "domcontentloaded"});
+			await page.goto(`https://www.instagram.com/p/${id}`);
 			if ((await page.$("div.error-container")) !== null) {
 				await browser.close();
 				throw new Error(`Failed to find post ${id}`);
 			}
-			const data = (await page.evaluate(() => window.__additionalData))[`/p/${id}/`].data.graphql.shortcode_media;
-			const username = data.owner.username;
+			await page.waitForSelector("script:nth-child(16)");
+			const script = (await page.evaluate(() => (document.querySelector("script:nth-child(16)") as HTMLScriptElement).text));
+			const json: InstagramPost = JSON.parse(script.slice("window.__additionalDataLoaded(/p/".length + id.length + 4, -2));
+			const username = json.graphql.shortcode_media.owner.username;
 			var urls: string[] = [];
-			if (data.edge_sidecar_to_children) {
-				for (let edge of data.edge_sidecar_to_children.edges) {
+			if (json.graphql.shortcode_media.edge_sidecar_to_children) {
+				for (let edge of json.graphql.shortcode_media.edge_sidecar_to_children.edges) {
 					if (!edge.node.is_video) urls.push(edge.node.display_url);
 					if (edge.node.is_video) urls.push(edge.node.video_url);
 				}
 			} else {
-				if (!data.is_video) urls.push(data.display_url);
-				if (data.is_video) urls.push(data.video_url);
+				if (!json.graphql.shortcode_media.is_video) urls.push(json.graphql.shortcode_media.display_url);
+				if (json.graphql.shortcode_media.is_video) urls.push(json.graphql.shortcode_media.video_url);
 			}
 			return { urls, username };
 		} catch (error) {
