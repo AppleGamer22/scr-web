@@ -2,14 +2,6 @@ import { Injectable } from "@nestjs/common";
 // import { userAgent } from "@scr-web/server-interfaces";
 import { Browser, Page } from "puppeteer-core";
 
-interface InstagramPostItem {
-	node: {
-		display_url: string,
-		video_url?: string,
-		is_video: boolean,
-	}
-}
-
 interface InstagramPost {
 	graphql: {
 		shortcode_media: {
@@ -17,7 +9,13 @@ interface InstagramPost {
 			video_url?: string,
 			is_video: boolean,
 			edge_sidecar_to_children?: {
-				edges: InstagramPostItem[]
+				edges: {
+					node: {
+						display_url: string,
+						video_url?: string,
+						is_video: boolean,
+					}
+				}[]
 			},
 			owner: {
 				username: string
