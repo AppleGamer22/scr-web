@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { Router, NavigationEnd, NavigationStart } from "@angular/router";
-import { version } from "../environments/environment";
+// import { version } from "../environments/environment";
 
 @Component({
 	selector: "scr-web-root",
@@ -8,7 +8,7 @@ import { version } from "../environments/environment";
 	styleUrls: ["./app.component.scss"],
 }) export class AppComponent {
 	instagram = false;
-	readonly version = version
+	readonly version = "";
 
 	constructor(readonly router: Router) {
 		router.events.subscribe(event => {
