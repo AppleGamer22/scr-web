@@ -29,7 +29,7 @@ import { Model } from "mongoose";
 				}
 			}
 			if (owner !== "all") filter = {...filter, owner: new RegExp(owner, "i")};
-			return await this.historyCollection.find(filter).exec();
+			return (await this.historyCollection.find(filter).exec()).reverse();
 		} catch (error) {
 			throw new Error(error.message as string);
 		}
