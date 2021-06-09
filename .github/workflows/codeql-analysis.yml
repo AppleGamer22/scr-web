@@ -25,7 +25,7 @@ jobs:
           check-latest: true
           registry-url: https://registry.npmjs.org/
       - name: Install NPM Dependency Packages
-        run: npm ci
+        run: npm install
       - name: Build TypeScript
         run: npm run build
       - name: Perform CodeQL Analysis
