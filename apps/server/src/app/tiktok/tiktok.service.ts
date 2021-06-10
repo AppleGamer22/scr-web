@@ -1,5 +1,22 @@
 import { Injectable } from "@nestjs/common";
-import { Browser, Page } from "puppeteer-core";
+import { Browser, Page, Protocol } from "puppeteer-core";
+
+interface TikTokPost {
+	props: {
+		pageProps: {
+			itemInfo: {
+				itemStruct: {
+					author: {
+						uniqueId: string
+					},
+					video: {
+						downloadAddr: string
+					}
+				}
+			}
+		}
+	}
+}
 
 @Injectable() export class TikTokService {
 	/**
@@ -9,33 +26,22 @@ import { Browser, Page } from "puppeteer-core";
 	 * @param page Puppeteer page
 	 * @returns URL string array
 	 */
-	async getPostFile(id: string, browser: Browser, page: Page): Promise<{data: Buffer, username: string}> {
+	async getPostFile(id: string, browser: Browser, page: Page): Promise<{urls: string[], username: string, cookies: string}> {
 		try {
-			var data: Buffer | undefined;
-			page.on("response", async response => {
-				if (response.url().includes("mp4") && response.ok()) {
-					data = await response.buffer();
-				}
-			});
 			await page.goto(`https://www.tiktok.com/@${id}`, {waitUntil: "domcontentloaded"});
 			if ((await page.$("div.error-page")) !== null) {
 				await browser.close();
 				throw new Error(`Failed to find post ${id}`);
 			}
-			await page.waitForSelector("h3.author-uniqueId", {visible: true});
-			const username = await page.evaluate(() => {
-				const a = document.querySelectorAll("h3.author-uniqueId")[0] as HTMLHeadingElement;
-				return a.innerText;
-			});
-			await page.waitForResponse(response => response.url().includes("mp4") && response.ok());
-			await page.waitForSelector("video", {visible: true});
-			await page.waitForTimeout(100);
-			const duration = await page.evaluate(() => {
-				const htmlVideo = document.querySelector("video") as HTMLVideoElement;
-				return htmlVideo.duration * 1000;
-			});
-			await page.waitForTimeout(duration);
-			return { data, username };
+			const script = await page.evaluate(() => (document.getElementById("__NEXT_DATA__") as HTMLScriptElement).text);
+			const json: TikTokPost = JSON.parse(script);
+			// @ts-ignore
+			const { cookies } = await page._client.send("Network.getAllCookies") as {cookies: Protocol.Network.Cookie[]};
+			return {
+				urls: [json.props.pageProps.itemInfo.itemStruct.video.downloadAddr],
+				username: json.props.pageProps.itemInfo.itemStruct.author.uniqueId,
+				cookies: cookies.filter(cookie => cookie.domain.includes("tiktok.com")).map(cookie => `${cookie.name}=${cookie.value}`).join("; ")
+			};
 		} catch (error) {
 			console.error(error.message);
 			await browser.close();

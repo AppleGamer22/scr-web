@@ -1,6 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { HttpService } from "@nestjs/common";
 import { FileType } from "@scr-web/client-schemas";
+import { AxiosRequestConfig } from "axios";
 import { existsSync, mkdirSync, writeFileSync, rmSync } from "fs";
 
 @Injectable() export class StorageService {
@@ -30,11 +31,20 @@ import { existsSync, mkdirSync, writeFileSync, rmSync } from "fs";
 	 * @param file file name
 	 * @param url file contents' URL
 	 */
-	async addFileFromURL(type: FileType, directory: string, file: string, url: string) {
+	async addFileFromURL(type: FileType, directory: string, file: string, url: string, tiktok = false, cookies?: string) {
 		const directoryPath = `${process.cwd()}/storage/${type}/${directory}`;
 		const fullPath = `${directoryPath}/${file}`;
 		try {
-			const { data } = await this.http.get(url, {responseType: "arraybuffer"}).toPromise();
+			var config: AxiosRequestConfig = {responseType: "arraybuffer"}
+			if (tiktok && cookies !== undefined) {
+				config.headers = {
+					Cookie: cookies,
+					Host: new URL(url).host,
+					Range: "bytes=0-",
+					Referer: "https://www.tiktok.com/"
+				};
+			}
+			const { data } = await this.http.get(url, config).toPromise();
 			if (!existsSync(directoryPath)) mkdirSync(directoryPath, {recursive: true});
 			if (!existsSync(fullPath)) writeFileSync(fullPath, data, {encoding: "binary"});
 		} catch (error) {

@@ -31,11 +31,11 @@ import { AuthGuard } from "../auth/auth.guard";
 			const history = await this.historyService.getHistoryItemByPost(FileType.TikTok, post, U_ID);
 			if (history) return history;
 			const { browser, page } = await beginScrape(U_ID);
-			const { data, username } = await this.tiktokService.getPostFile(postAddress, browser, page);
+			const { urls, username, cookies } = await this.tiktokService.getPostFile(postAddress, browser, page);
 			await browser.close();
-			this.storageService.addFileFromBuffer(FileType.TikTok, username, `${post}.mp4`, data);
+			this.storageService.addFileFromURL(FileType.TikTok, username, `${post}.mp4`, urls[0], true, cookies);
 			const path = `storage/tiktok/${username}/${post}.mp4`;
-			return await this.historyService.addHistoryItem(U_ID, [path], FileType.TikTok, username, post);;
+			return await this.historyService.addHistoryItem(U_ID, [path], FileType.TikTok, username, post);
 		} catch (error) {
 			const errorMessage = error.message as string;
 			var errorCode: HttpStatus = HttpStatus.INTERNAL_SERVER_ERROR;

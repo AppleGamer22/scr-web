@@ -83,7 +83,6 @@ export async function beginScrape(U_ID: string, incognito = false): Promise<{bro
 			maxResourceBufferSize: 1024 * 1204 * 100,
 			maxTotalBufferSize: 1024 * 1204 * 200,
 		});
-		// await page.setUserAgent(userAgent());
 		return { browser, page };
 	} catch (error) {
 		throw new Error(error.message as string);
