@@ -40,7 +40,7 @@ interface InstagramPost {
 				throw new Error(`Failed to find post ${id}`);
 			}
 			await page.waitForSelector("script:nth-child(16)");
-			const script = (await page.evaluate(() => (document.querySelector("script:nth-child(16)") as HTMLScriptElement).text));
+			const script = await page.evaluate(() => (document.querySelector("script:nth-child(16)") as HTMLScriptElement).text);
 			const json: InstagramPost = JSON.parse(script.slice("window.__additionalDataLoaded(/p/".length + id.length + 4, -2));
 			const username = json.graphql.shortcode_media.owner.username;
 			var urls: string[] = [];
