@@ -13,8 +13,8 @@ import { FileType } from "./client-schemas";
 export type UserDocument = User & Document;
 export const UserSchema = SchemaFactory.createForClass(User);
 
-@Schema() export class History  {
-	@Prop({unique: true, required: true, type: String}) _id: string;
+@Schema() export class History {
+	@Prop({type: String}) _id: string;
 	@Prop({required: true, type: [String]}) urls: string[];
 	@Prop({required: true, type: String}) U_ID: string;
 	@Prop({required: true, type: FileType}) type: FileType;
