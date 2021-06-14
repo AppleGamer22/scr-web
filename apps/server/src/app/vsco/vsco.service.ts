@@ -6,7 +6,7 @@ interface VSCOPost {
 		byId: {
 			[post: string]: {
 				media: {
-					gridName: string,
+					permaSubdomain: string,
 					responsiveUrl: string,
 					isVideo: boolean,
 					videoUrl?: string
@@ -35,7 +35,7 @@ interface VSCOPost {
 			const script = await page.evaluate(() => (document.querySelector("body > script:nth-child(3)") as HTMLScriptElement).text);
 			const json: VSCOPost = JSON.parse(script.slice("window.__PRELOADED_STATE__ = ".length));
 			const { media } = json.medias.byId[id.split("/")[2]];
-			const username = media.gridName;
+			const username = media.permaSubdomain;
 			var url = `https://${media.responsiveUrl}`;
 			if (media.isVideo) {
 				url = `https://${media.videoUrl}`;
