@@ -30,6 +30,10 @@
 			<ion-grid>
 				<ion-row>
 					<ion-col>
+						<ion-icon name="logo-instagram" *ngIf="history !== undefined && ['instagram', 'highlight', 'story'].includes(history.type)"></ion-icon>
+						<ion-icon name="logo-tiktok" *ngIf="history !== undefined && history.type === 'tiktok'"></ion-icon>
+						<ion-icon name="aperture-outline" *ngIf="history !== undefined && history.type === 'vsco'"></ion-icon>
+						&nbsp;
 						<a *ngIf="history.type !== 'story'" [routerLink]="'/' + history.type" [queryParams]="{id: history.post, owner: history.owner}">
 							<b>{{history._id}}</b>
 						</a>
