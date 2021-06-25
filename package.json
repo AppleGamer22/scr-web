@@ -37,7 +37,7 @@
 		"@angular/platform-browser-dynamic": "12.0.3",
 		"@angular/router": "12.0.3",
 		"@angular/service-worker": "12.0.3",
-		"@ionic/angular": "^5.6.9",
+		"@ionic/angular": "^5.6.10",
 		"@ionic/angular-toolkit": "^4.0.0",
 		"@nestjs/common": "^7.6.18",
 		"@nestjs/core": "^7.6.18",
