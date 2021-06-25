@@ -11,7 +11,7 @@ import { ToastService } from "../toast.service";
 	templateUrl: "./story.component.html",
 	styleUrls: ["./story.component.scss"],
 }) export class StoryComponent {
-	storyID: string
+	storyOwner: string
 	storyNumber: number;
 	processing = false;
 	history: History;
@@ -25,28 +25,29 @@ import { ToastService } from "../toast.service";
 		const id = route.snapshot.queryParamMap.get("id");
 		const number = Number(route.snapshot.queryParamMap.get("number"));
 		if (id !== null) {
-			this.storyID = id;
+			this.storyOwner = id;
 			this.storyNumber = number
 			this.submit(id, number);
 		}
 	}
 	/**
 	 * Sends a GET request to the server for the URL(s) of the requested story
-	 * @param id story ID
+	 * @param owner story ID
 	 * @param number story ID
 	 */
-	async submit(id: string, number: number) {
+	async submit(owner: string, number: number) {
 		if (this.history !== undefined) this.history.urls = [];
 		this.processing = true;
-		await this.router.navigate(["/story"], {queryParams: { id, number }, queryParamsHandling: "merge"});
+		await this.router.navigate(["/story"], {queryParams: { id: owner, number }, queryParamsHandling: "merge"});
 		try {
 			const token = localStorage.getItem("instagram")
 			if (token) {
 				const headers = new HttpHeaders({"Authorization": token});
-				if (id && number) {
-					this.history = await this.http.get<History>(`${environment.server}/api/story/${id}/${number}`, { headers }).toPromise();
+				if (owner && number) {
+					this.history = await this.http.get<History>(`${environment.server}/api/story/${owner}/${number}`, { headers }).toPromise();
+					this.storyOwner = this.history.owner;
+					await this.router.navigate(["/tiktok"], {queryParams: {owner: this.storyOwner, id: owner}, queryParamsHandling: "merge"});
 					await this.toast.showToast(`${this.history.urls.length} URL(s)`, "success");
-					// for (const path of paths) this.urls.push(`${environment.server}/api/${path}`);
 				} else {
 					await this.toast.showToast("Please enter a post ID.", "danger");
 				}

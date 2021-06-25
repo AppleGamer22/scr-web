@@ -47,8 +47,9 @@ export class TikTokComponent {
 				const headers = new HttpHeaders({"Authorization": token});
 				if (owner && id) {
 					this.history = await this.http.get<History>(`${environment.server}/api/tiktok/${owner}/${id}`, { headers }).toPromise();
+					this.postOwner = this.history.owner;
+					await this.router.navigate(["/tiktok"], {queryParams: {owner: this.postOwner, id}, queryParamsHandling: "merge"});
 					await this.toast.showToast("1 File", "success");
-					// this.urls = [`${environment.server}/api/${path}`];
 				} else {
 					await this.toast.showToast("Please enter a post owner & ID.", "danger");
 				}
