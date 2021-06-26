@@ -45,6 +45,10 @@ import { ToastService } from "../toast.service";
 				const headers = new HttpHeaders({"Authorization": token});
 				if (owner && id) {
 					this.history = await this.http.get<History>(`${environment.server}/api/vsco/${owner}/${id}`, { headers }).toPromise();
+					if (this.postOwner !== this.history.owner) {
+						this.postOwner = this.history.owner;
+						await this.router.navigate(["/vsco"], {queryParams: {owner: this.postOwner, id}, queryParamsHandling: "merge"});
+					}
 					await this.toast.showToast("1 URL", "success");
 					// this.urls = [`${environment.server}/api/${path}`];
 				} else {

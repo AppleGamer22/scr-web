@@ -41,7 +41,7 @@ import { ToastService } from "../toast.service";
 				const headers = new HttpHeaders({"Authorization": token});
 				if (id) {
 					this.history = await this.http.get<History>(`${environment.server}/api/instagram/${id}`, { headers }).toPromise();
-					await this.router.navigate(["/tiktok"], {queryParams: {owner: this.history.owner, id}, queryParamsHandling: "merge"});
+					await this.router.navigate(["/instagram"], {queryParams: {owner: this.history.owner, id}, queryParamsHandling: "merge"});
 					await this.toast.showToast(`${this.history.urls.length} URL(s)`, "success");
 					// for (const path of paths) this.urls.push(`${environment.server}/api/${path}`);
 				} else {

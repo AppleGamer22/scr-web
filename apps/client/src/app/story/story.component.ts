@@ -45,8 +45,6 @@ import { ToastService } from "../toast.service";
 				const headers = new HttpHeaders({"Authorization": token});
 				if (owner && number) {
 					this.history = await this.http.get<History>(`${environment.server}/api/story/${owner}/${number}`, { headers }).toPromise();
-					this.storyOwner = this.history.owner;
-					await this.router.navigate(["/tiktok"], {queryParams: {owner: this.storyOwner, id: owner}, queryParamsHandling: "merge"});
 					await this.toast.showToast(`${this.history.urls.length} URL(s)`, "success");
 				} else {
 					await this.toast.showToast("Please enter a post ID.", "danger");
