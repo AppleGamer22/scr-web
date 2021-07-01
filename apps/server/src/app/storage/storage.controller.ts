@@ -18,6 +18,9 @@ import { StorageService } from "../storage/storage.service";
 		@Res() response: Response
 	) {
 		const fullPath = `${process.cwd()}/storage/${type}/${directory}/${file}`;
+		if (fullPath.includes("..")) {
+			throw new HttpException(`File at path ${fullPath} is out of scope.`, HttpStatus.FORBIDDEN);
+		}
 		try {
 			return response.status(HttpStatus.OK).sendFile(fullPath);
 		} catch (error) {
@@ -30,6 +33,10 @@ import { StorageService } from "../storage/storage.service";
 		@Param("directory") directory: string,
 		@Param("file") file: string,
 	): Promise<History> {
+		const fullPath = `${process.cwd()}/storage/${type}/${directory}/${file}`;
+		if (fullPath.includes("..")) {
+			throw new HttpException(`File at path ${fullPath} is out of scope.`, HttpStatus.FORBIDDEN);
+		}
 		try {
 			this.storageService.removeFile(type, directory, file);
 			const history = await this.historyService.deleteHistoryURL(`${type}/${directory}/${file}`);
@@ -39,7 +46,7 @@ import { StorageService } from "../storage/storage.service";
 				return history;
 			}
 		} catch (error) {
-			throw new HttpException(`could not delete file ${type}/${directory}/${file}`, HttpStatus.INTERNAL_SERVER_ERROR);
+			throw new HttpException(`Could not delete file ${type}/${directory}/${file}`, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 }

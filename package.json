@@ -2,7 +2,7 @@
 	"name": "@applegamer22/scr-web",
 	"description": "Social media web scraper web GUI for post file downloads.",
 	"version": "1.0.0-alpha.24.3",
-	"author": "Omri Bornstein",
+	"author": "Omri Bornstein <omribor@gmail.com> (https://applegamer22.hashnode.dev/)",
 	"publisher": "AppleGamer22",
 	"private": false,
 	"license": "GPL-3.0-only",
