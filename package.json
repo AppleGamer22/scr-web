@@ -22,6 +22,7 @@
 			"url": "https://applegamer22.hashnode.dev/"
 		}
 	],
+
 	"scripts": {
 		"start": "ng serve client --poll=2000 & ng serve server",
 		"start:docker": "ng serve client --poll=2000 --host=0.0.0.0 & ng serve server",
@@ -66,7 +67,7 @@
 		"bcryptjs": "^2.4.3",
 		"dotenv": "8.2.0",
 		"mongoose": "^5.11.10",
-		"puppeteer-core": "^8.0.0",
+		"puppeteer-core": "^10.1.0",
 		"reflect-metadata": "^0.1.13",
 		"rxjs": "~6.6.3",
 		"ts-node": "9.1.1",
