@@ -25,6 +25,7 @@ import { TikTokController } from "./tiktok/tiktok.controller";
 import { TikTokService } from "./tiktok/tiktok.service";
 import { StorageController } from "./storage/storage.controller";
 import { StorageService } from "./storage/storage.service";
+import { VersionController } from "./version/version.controller";
 
 @Module({
 	imports: [
@@ -51,7 +52,8 @@ import { StorageService } from "./storage/storage.service";
 		AuthController,
 		HistoryController,
 		TikTokController,
-		StorageController
+		StorageController,
+		VersionController
 	],
 	providers: [
 		{
