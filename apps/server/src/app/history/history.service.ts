@@ -61,8 +61,7 @@ import { Model } from "mongoose";
 				categories: []
 			},{
 				new: true,
-				upsert: true,
-				useFindAndModify: false
+				upsert: true
 			}).exec();
 		} catch (error) {
 			throw new Error(error.message as string);
@@ -130,8 +129,7 @@ import { Model } from "mongoose";
 					urls: `storage/${url}`
 				}
 			},{
-				new: true,
-				useFindAndModify: false
+				new: true
 			});
 		} catch (error) {
 			throw new Error(error.message as string);

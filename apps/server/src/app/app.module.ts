@@ -29,7 +29,13 @@ import { VersionController } from "./version/version.controller";
 
 @Module({
 	imports: [
-		MongooseModule.forRoot(initEnvironment().DATABASE_URL, {useNewUrlParser: true, retryAttempts: Number.MAX_VALUE}),
+		MongooseModule.forRoot(initEnvironment().DATABASE_URL, {
+			useNewUrlParser: true,
+			useFindAndModify: false,
+			useCreateIndex: true,
+			useUnifiedTopology: true,
+			retryAttempts: Number.MAX_VALUE,
+		}),
 		MongooseModule.forFeature([
 			{
 				name: "Users",
