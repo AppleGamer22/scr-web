@@ -12,7 +12,7 @@
 |watchers|![GitHub watchers](https://img.shields.io/github/watchers/AppleGamer22/scr-web?logo=github)|
 ## Description
 Social media web scraper CLI for post file downloads.
-## Contributing
+## Contributing [![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/AppleGamer22/scr-web)
 * Separate Git branch to the master branch (after being approved as a contributor by the repository's owner).
   * After reviewing the changes, this branch will be merged to the main branch.
 * Separate fork to this repository
