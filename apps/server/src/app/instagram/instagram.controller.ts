@@ -1,4 +1,4 @@
-import { Controller, Get, Param, HttpException, HttpStatus, Req, UseGuards } from "@nestjs/common";
+import { Controller, Get, Param, HttpException, HttpStatus, Req, Header, UseGuards } from "@nestjs/common";
 import { beginScrape, ScrapeRequest } from "@scr-web/server-interfaces";
 import { History } from "@scr-web/server-schemas";
 import { FileType } from "@scr-web/client-schemas";
@@ -26,11 +26,14 @@ import { StorageService } from "../storage/storage.service";
 		@Req() request: Request
 	): Promise<History> {
 		try {
+			const { incognito } = request.query;
 			const { U_ID } = (request as ScrapeRequest).user;
 			const history = await this.historyService.getHistoryItemByPost(FileType.Instagram, post, U_ID);
 			if (history) return history;
-			const { browser, page } = await beginScrape(U_ID);
-			const { urls, username } = await this.instagramService.getPostFiles(post, browser, page);
+			const { browser, context, page } = await beginScrape(U_ID, incognito === "true");
+			const chromePayload = incognito === "true" ? context : browser;
+			const { urls, username } = await this.instagramService.getPostFiles(post, chromePayload, page, incognito === "true");
+			if (context) await context.close();
 			await browser.close();
 			var paths: string[] = [];
 			for (const url of urls) {

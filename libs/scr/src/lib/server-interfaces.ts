@@ -57,7 +57,7 @@ function chromeExecutable(): string {
  * @param incognito private mode Boolean
  * @returns Puppeteer browser and page
  */
-export async function beginScrape(U_ID: string, incognito = false): Promise<{browser: puppeteer.Browser, page: puppeteer.Page}> {
+export async function beginScrape(U_ID: string, incognito = false): Promise<{browser: puppeteer.Browser, context: puppeteer.BrowserContext, page: puppeteer.Page}> {
 	try {
 		const args = [
 			"--disable-gpu" ,
@@ -66,7 +66,7 @@ export async function beginScrape(U_ID: string, incognito = false): Promise<{bro
 			"--mute-audio",
 			"--disable-blink-features=AutomationControlled"
 		]
-		if (incognito) args.push("--incognito");
+		// if (incognito) args.push("--incognito");
 		const browser = await puppeteer.launch({
 			headless: true,
 			devtools: false,
@@ -76,14 +76,20 @@ export async function beginScrape(U_ID: string, incognito = false): Promise<{bro
 			args,
 			ignoreDefaultArgs: ["--enable-automation"],
 		});
-		const page = (await browser.pages())[0];
-		await page.evaluateOnNewDocument(() => delete Object.getPrototypeOf(navigator).webdriver);
-		// @ts-ignore
-		await page._client.send("Network.enable", {
-			maxResourceBufferSize: 1024 * 1204 * 100,
-			maxTotalBufferSize: 1024 * 1204 * 200,
-		});
-		return { browser, page };
+		if (!incognito) {
+			const [ page ] = await browser.pages();
+			await page.evaluateOnNewDocument(() => delete Object.getPrototypeOf(navigator).webdriver);
+			// @ts-ignore
+			await page._client.send("Network.enable", {
+				maxResourceBufferSize: 1024 * 1204 * 100,
+				maxTotalBufferSize: 1024 * 1204 * 200,
+			});
+			return {browser, page, context: null};
+		} else {
+			const context = await browser.createIncognitoBrowserContext();
+			const page = await context.newPage();
+			return { browser, context, page };
+		}
 	} catch (error) {
 		throw new Error(error.message as string);
 	}

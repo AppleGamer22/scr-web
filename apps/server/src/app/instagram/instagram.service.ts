@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 // import { userAgent } from "@scr-web/server-interfaces";
-import { Browser, Page } from "puppeteer-core";
+import { Browser, BrowserContext, Page } from "puppeteer-core";
 
 interface InstagramPost {
 	graphql: {
@@ -24,6 +24,16 @@ interface InstagramPost {
 	}
 }
 
+declare global {
+	interface Window {
+		_sharedData: {
+			entry_data: {
+				PostPage: InstagramPost[]
+			}
+		}
+	}
+}
+
 @Injectable() export class InstagramService {
 	/**
 	 * Scrapes Instagram post files
@@ -32,16 +42,21 @@ interface InstagramPost {
 	 * @param page Puppeteer page
 	 * @returns URL string array and username
 	 */
-	async getPostFiles(id: string, browser: Browser, page: Page): Promise<{urls: string[], username: string}> {
+	async getPostFiles(id: string, browser: Browser | BrowserContext, page: Page, incognito: boolean): Promise<{urls: string[], username: string}> {
 		try {
 			await page.goto(`https://www.instagram.com/p/${id}`);
 			if ((await page.$("div.error-container")) !== null) {
 				await browser.close();
 				throw new Error(`Failed to find post ${id}`);
 			}
-			await page.waitForSelector("script:nth-child(16)");
-			const script = await page.evaluate(() => (document.querySelector("script:nth-child(16)") as HTMLScriptElement).text);
-			const json: InstagramPost = JSON.parse(script.slice("window.__additionalDataLoaded(/p/".length + id.length + 4, -2));
+			let json: InstagramPost;
+			if (!incognito) {
+				const script = await page.evaluate(() => (document.querySelector("script:nth-child(16)") as HTMLScriptElement).text);
+				json = JSON.parse(script.slice("window.__additionalDataLoaded(/p/".length + id.length + 4, -2)) as InstagramPost;
+			} else {
+				const sharedData = await page.evaluate(() => window._sharedData);
+				json = sharedData.entry_data.PostPage[0];
+			}
 			const username = json.graphql.shortcode_media.owner.username;
 			var urls: string[] = [];
 			if (json.graphql.shortcode_media.edge_sidecar_to_children) {
@@ -60,6 +75,7 @@ interface InstagramPost {
 			throw new Error(`Failed to process post ${id}`);
 		}
 	}
+
 	/**
 	 * Sign's-in to Instagram's website
 	 * @param browser Puppeteer browser
@@ -68,7 +84,7 @@ interface InstagramPost {
 	 * @param password user's password
 	 * @returns success Boolean
 	 */
-	async signIn(browser: Browser, page: Page, username: string, password: string): Promise<boolean> {
+	async signIn(browser: Browser | BrowserContext, page: Page, username: string, password: string): Promise<boolean> {
 		try {
 			await page.goto("https://www.instagram.com/accounts/login/", {waitUntil: "domcontentloaded"});
 			await page.waitForSelector(`input[name="username"]`, {visible: true});

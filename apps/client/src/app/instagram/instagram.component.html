@@ -10,6 +10,10 @@
 			<ion-label>post ID</ion-label>
 			<ion-input type="text" [disabled]="processing" [clearInput]="true" placeholder="https://instagram.com/p/ID" [(ngModel)]="postID" name="postID" [required]="true"></ion-input>
 		</ion-item>
+		<ion-item>
+			<ion-label>incognito mode (will not work if post is private)</ion-label>
+			<ion-toggle [disabled]="processing" [(ngModel)]="incognito"></ion-toggle>
+		</ion-item>
 		<ion-button [disabled]="processing" (click)="submit(postID)">submit</ion-button>
 	</form>
 	<ion-progress-bar *ngIf="processing" color="primary" type="indeterminate"></ion-progress-bar>
