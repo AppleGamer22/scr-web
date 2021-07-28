@@ -58,7 +58,7 @@ declare global {
 				json = sharedData.entry_data.PostPage[0];
 			}
 			const username = json.graphql.shortcode_media.owner.username;
-			var urls: string[] = [];
+			let urls: string[] = [];
 			if (json.graphql.shortcode_media.edge_sidecar_to_children) {
 				for (let edge of json.graphql.shortcode_media.edge_sidecar_to_children.edges) {
 					if (!edge.node.is_video) urls.push(edge.node.display_url);

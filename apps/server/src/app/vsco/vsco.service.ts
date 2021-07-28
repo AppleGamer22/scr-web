@@ -36,7 +36,7 @@ interface VSCOPost {
 			const json: VSCOPost = JSON.parse(script.slice("window.__PRELOADED_STATE__ = ".length));
 			const { media } = json.medias.byId[id.split("/")[2]];
 			const username = media.permaSubdomain;
-			var url = `https://${media.responsiveUrl}`;
+			let url = `https://${media.responsiveUrl}`;
 			if (media.isVideo) {
 				url = `https://${media.videoUrl}`;
 			}

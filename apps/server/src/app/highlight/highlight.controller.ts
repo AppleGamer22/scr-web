@@ -32,7 +32,7 @@ import { StorageService } from "../storage/storage.service";
 			const { browser, page } = await beginScrape(U_ID);
 			const { urls, username } = await this.highlightService.getHighlightFile(highlight, item, browser, page);
 			await browser.close();
-			var paths: string[] = [];
+			let paths: string[] = [];
 			for (const url of urls) {
 				const filename = `${highlight}_${basename(url)}`;
 				await this.storageService.addFileFromURL(FileType.Highlight, username, filename, url);
@@ -41,7 +41,7 @@ import { StorageService } from "../storage/storage.service";
 			return await this.historyService.addHistoryItem(U_ID, paths, FileType.Highlight, username, `${highlight}/${item}`);
 		} catch (error) {
 			const errorMessage = error.message as string;
-			var errorCode: HttpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+			let errorCode: HttpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
 			if (errorMessage.includes("to find")) errorCode = HttpStatus.NOT_FOUND;
 			if (errorMessage.includes("to process")) errorCode = HttpStatus.INTERNAL_SERVER_ERROR;
 			throw new HttpException(error.message, errorCode);

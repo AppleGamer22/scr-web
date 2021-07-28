@@ -27,14 +27,14 @@ import { Browser, Page } from "puppeteer-core";
 				const a = document.querySelector("a.FPmhX") as HTMLAnchorElement;
 				return a.innerText;
 			});
-			for (var i = 0; i < item - 1; i += 1) {
+			for (let i = 0; i < item - 1; i += 1) {
 				await page.waitForSelector("div.coreSpriteRightChevron", {visible: true});
 				await page.click("div.coreSpriteRightChevron");
 			}
 			await page.waitForSelector("svg[aria-label='Pause']", {visible: true});
 			await page.waitForTimeout(50);
 			await page.click("svg[aria-label='Pause']");
-			var urls: string[] = [];
+			let urls: string[] = [];
 			await page.waitForSelector("div.qbCDp", {visible: true});
 			const imageURL = (await page.$$eval("img.y-yJ5", images => images.map(image => image.getAttribute("srcset"))))[0];
 			if (imageURL) urls.push(imageURL.split(" ")[0]);

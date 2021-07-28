@@ -35,7 +35,7 @@ import { StorageService } from "../storage/storage.service";
 			const { urls, username } = await this.instagramService.getPostFiles(post, chromePayload, page, incognito === "true");
 			if (context) await context.close();
 			await browser.close();
-			var paths: string[] = [];
+			let paths: string[] = [];
 			for (const url of urls) {
 				const filename = `${post}_${basename(url).split("?")[0]}`;
 				await this.storageService.addFileFromURL(FileType.Instagram, username, filename, url);
@@ -44,7 +44,7 @@ import { StorageService } from "../storage/storage.service";
 			return await this.historyService.addHistoryItem(U_ID, paths, FileType.Instagram, username, post);;
 		} catch (error) {
 			const errorMessage = error.message as string;
-			var errorCode: HttpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+			let errorCode: HttpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
 			if (errorMessage.includes("to find")) errorCode = HttpStatus.NOT_FOUND;
 			if (errorMessage.includes("to process")) errorCode = HttpStatus.INTERNAL_SERVER_ERROR;
 			throw new HttpException(error.message, errorCode);

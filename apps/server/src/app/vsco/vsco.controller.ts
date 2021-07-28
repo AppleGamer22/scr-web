@@ -45,7 +45,7 @@ import { AuthGuard } from "../auth/auth.guard";
 			return await this.historyService.addHistoryItem(U_ID, [path], FileType.VSCO, username, post);;
 		} catch (error) {
 			const errorMessage = error.message as string;
-			var errorCode: HttpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+			let errorCode: HttpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
 			if (errorMessage.includes("to find")) errorCode = HttpStatus.NOT_FOUND;
 			if (errorMessage.includes("to process")) errorCode = HttpStatus.INTERNAL_SERVER_ERROR;
 			throw new HttpException(error.message, errorCode);

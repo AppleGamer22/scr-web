@@ -35,7 +35,7 @@ import { existsSync, mkdirSync, writeFileSync, rmSync } from "fs";
 		const directoryPath = `${process.cwd()}/storage/${type}/${directory}`;
 		const fullPath = `${directoryPath}/${file}`;
 		try {
-			var config: AxiosRequestConfig = {responseType: "arraybuffer"}
+			let config: AxiosRequestConfig = {responseType: "arraybuffer"}
 			if (tiktok && cookies !== undefined) {
 				config.headers = {
 					Cookie: cookies,

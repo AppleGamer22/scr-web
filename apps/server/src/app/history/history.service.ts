@@ -16,7 +16,7 @@ import { Model } from "mongoose";
 	 */
 	async getFilteredHistory(U_ID: string, type: FileType | "all", category: string, owner: string): Promise<History[]> {
 		try {
-			var filter: object = { U_ID };
+			let filter: object = { U_ID };
 			if (type !== "all") filter = {...filter, type};
 			if (category !== "all" && category !== "none") {
 				filter = {...filter, categories: category}
@@ -138,7 +138,7 @@ import { Model } from "mongoose";
 
 	async editHistoryCategories(type: FileType, owner: string, post: string, categories: string[]): Promise<History> {
 		try {
-			var history = await this.historyCollection.findOne({ type, owner, post });
+			let history = await this.historyCollection.findOne({ type, owner, post });
 			history.categories = categories;
 			await history.save();
 			return history;

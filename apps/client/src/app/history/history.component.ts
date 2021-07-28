@@ -70,7 +70,7 @@ import { ToastService } from "../toast.service";
 
 	sliceHistory(event: Event) {
 		// @ts-ignore
-		var target = event.target as IonInfiniteScroll
+		let target = event.target as IonInfiniteScroll
 		if (this.range >= this.response.length) {
 			target.disabled = true;
 			return;
