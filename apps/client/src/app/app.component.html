@@ -12,43 +12,43 @@
 				<ion-list>
 					<ion-item-group>
 						<ion-menu-toggle autoHide="false" menu="menu">
-							<ion-item routerDirection="root" routerLink="">
+							<ion-item routerDirection="root" routerLink="" [disabled]="router.url === '/'">
 								<ion-icon [class.selected]="router.url === '/'" slot="start" name="person-circle-outline"></ion-icon>
 								<ion-label [class.selected]="router.url === '/'">Authentication</ion-label>
 							</ion-item>
 						</ion-menu-toggle>
 						<ion-menu-toggle autoHide="false" menu="menu">
-							<ion-item routerDirection="root" routerLink="instagram">
+							<ion-item routerDirection="root" routerLink="instagram" [disabled]="router.url.startsWith('/instagram')">
 								<ion-icon [class.selected]="router.url.startsWith('/instagram')" slot="start" name="logo-instagram"></ion-icon>
 								<ion-label [class.selected]="router.url.startsWith('/instagram')">Instagram Post</ion-label>
 							</ion-item>
 						</ion-menu-toggle>
 						<ion-menu-toggle autoHide="false" menu="menu">
-							<ion-item routerDirection="root" routerLink="highlight">
+							<ion-item routerDirection="root" routerLink="highlight" [disabled]="router.url.startsWith('/highlight')">
 								<ion-icon [class.selected]="router.url.startsWith('/highlight')" slot="start" name="logo-instagram"></ion-icon>
 								<ion-label [class.selected]="router.url.startsWith('/highlight')">Instagram Highlight<sup>&beta;</sup></ion-label>
 							</ion-item>
 						</ion-menu-toggle>
 						<ion-menu-toggle autoHide="false" menu="menu">
-							<ion-item routerDirection="root" routerLink="story">
+							<ion-item routerDirection="root" routerLink="story" [disabled]="router.url.startsWith('/story')">
 								<ion-icon [class.selected]="router.url.startsWith('/story')" slot="start" name="logo-instagram"></ion-icon>
 								<ion-label [class.selected]="router.url.startsWith('/story')">Instagram Story<sup>&beta;</sup></ion-label>
 							</ion-item>
 						</ion-menu-toggle>
 						<ion-menu-toggle autoHide="false" menu="menu">
-							<ion-item routerDirection="root" routerLink="tiktok">
+							<ion-item routerDirection="root" routerLink="tiktok" [disabled]="router.url.startsWith('/tiktok')">
 								<ion-icon [class.selected]="router.url.startsWith('/tiktok')" slot="start" name="logo-tiktok"></ion-icon>
 								<ion-label [class.selected]="router.url.startsWith('/tiktok')">TikTok Post</ion-label>
 							</ion-item>
 						</ion-menu-toggle>
 						<ion-menu-toggle autoHide="false" menu="menu">
-							<ion-item routerDirection="root" routerLink="vsco">
+							<ion-item routerDirection="root" routerLink="vsco" [disabled]="router.url.startsWith('/vsco')">
 								<ion-icon [class.selected]="router.url.startsWith('/vsco')" slot="start" name="aperture-outline"></ion-icon>
 								<ion-label [class.selected]="router.url.startsWith('/vsco')">VSCO Post</ion-label>
 							</ion-item>
 						</ion-menu-toggle>
 						<ion-menu-toggle autoHide="false" menu="menu">
-							<ion-item routerDirection="root" routerLink="history" [queryParams]="{type: 'all', category: 'all'}">
+							<ion-item routerDirection="root" routerLink="history" [queryParams]="{type: 'all', category: 'all'}" [disabled]="router.url.startsWith('/history')">
 								<ion-icon [class.selected]="router.url.startsWith('/history')" slot="start" name="list-outline"></ion-icon>
 								<ion-label [class.selected]="router.url.startsWith('/history')">History</ion-label>
 							</ion-item>
@@ -57,7 +57,7 @@
 					<ion-item-divider><ion-label>about:</ion-label></ion-item-divider>
 					<ion-item-group>
 						<ion-menu-toggle autoHide="false" menu="menu">
-							<ion-item routerDirection="root" routerLink="license">
+							<ion-item routerDirection="root" routerLink="license" [disabled]="router.url.startsWith('/license')">
 								<ion-icon [class.selected]="router.url.startsWith('/license')" slot="start" name="document-attach-outline"></ion-icon>
 								<ion-label [class.selected]="router.url.startsWith('/license')">License</ion-label>
 							</ion-item>
