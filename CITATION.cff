@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: Bornstein
+    given-names: Omri
+title: scr-web
+version: 1.0.0-alpha.24.4
+date-released: 2019-10-02
+url: https://github.com/AppleGamer22/scr-web

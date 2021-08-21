@@ -31,5 +31,8 @@
 		"upsert",
 		"vsco"
 	],
-	"discord.enabled": true
+	"discord.enabled": true,
+	"files.associations": {
+		"*.cff": "yaml"
+	}
 }
