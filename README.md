@@ -11,7 +11,7 @@
 |stars|![GitHub stars](https://img.shields.io/github/stars/AppleGamer22/scr-web?logo=github)|![Docker Stars](https://img.shields.io/docker/stars/applegamer22/scr-web?label=stars&logo=docker)|
 |watchers|![GitHub watchers](https://img.shields.io/github/watchers/AppleGamer22/scr-web?logo=github)|
 ## Description
-Social media web scraper CLI for post file downloads.
+Social media web scraper GUI for post file downloads.
 ## Contributing [![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/AppleGamer22/scr-web)
 * Separate Git branch to the master branch (after being approved as a contributor by the repository's owner).
   * After reviewing the changes, this branch will be merged to the main branch.
