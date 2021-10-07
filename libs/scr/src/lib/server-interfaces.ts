@@ -79,6 +79,8 @@ export async function beginScrape(U_ID: string, incognito = false): Promise<{bro
 		if (!incognito) {
 			const [ page ] = await browser.pages();
 			await page.evaluateOnNewDocument(() => delete Object.getPrototypeOf(navigator).webdriver);
+			const userAgent = (await browser.userAgent()).replace("Headless", "");
+			await page.setUserAgent(userAgent);
 			// @ts-ignore
 			await page._client.send("Network.enable", {
 				maxResourceBufferSize: 1024 * 1204 * 100,
