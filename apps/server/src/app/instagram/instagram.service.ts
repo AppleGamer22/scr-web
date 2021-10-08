@@ -51,7 +51,13 @@ declare global {
 			}
 			let json: InstagramPost;
 			if (!incognito) {
-				const script = await page.evaluate(() => (document.querySelector("script:nth-child(16)") as HTMLScriptElement).text);
+				const script = await page.evaluate(() => {
+					let scriptText = (document.querySelector("script:nth-child(15)") as HTMLScriptElement).text;
+					if (!scriptText.startsWith("window.__additionalDataLoaded")) {
+						scriptText = (document.querySelector("script:nth-child(16)") as HTMLScriptElement).text;
+					}
+					return scriptText;
+				});
 				json = JSON.parse(script.slice("window.__additionalDataLoaded(/p/".length + id.length + 4, -2)) as InstagramPost;
 			} else {
 				const sharedData = await page.evaluate(() => window._sharedData);
