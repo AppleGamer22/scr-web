@@ -31,7 +31,7 @@ import { existsSync, mkdirSync, writeFileSync, rmSync } from "fs";
 	 * @param file file name
 	 * @param url file contents' URL
 	 */
-	async addFileFromURL(type: FileType, directory: string, file: string, url: string, tiktok = false, cookies?: string) {
+	async addFileFromURL(type: FileType, directory: string, file: string, url: string, tiktok = false, cookies?: string, userAgent?: string) {
 		const directoryPath = `${process.cwd()}/storage/${type}/${directory}`;
 		const fullPath = `${directoryPath}/${file}`;
 		try {
@@ -44,6 +44,12 @@ import { existsSync, mkdirSync, writeFileSync, rmSync } from "fs";
 					Referer: "https://www.tiktok.com/"
 				};
 			}
+			// if (userAgent !== undefined) {
+			// 	config.headers = {
+			// 		...config.headers,
+			// 		"User-Agent": userAgent
+			// 	}
+			// }
 			const { data } = await this.http.get(url, config).toPromise();
 			if (!existsSync(directoryPath)) mkdirSync(directoryPath, {recursive: true});
 			if (!existsSync(fullPath)) writeFileSync(fullPath, data, {encoding: "binary"});

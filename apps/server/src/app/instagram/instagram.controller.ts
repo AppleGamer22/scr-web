@@ -33,12 +33,16 @@ import { StorageService } from "../storage/storage.service";
 			const { browser, context, page } = await beginScrape(U_ID, incognito === "true");
 			const chromePayload = incognito === "true" ? context : browser;
 			const { urls, username } = await this.instagramService.getPostFiles(post, chromePayload, page, incognito === "true");
-			if (context) await context.close();
-			await browser.close();
+			const userAgent = await page.evaluate(() => navigator.userAgent);
+			if (context) {
+				await context.close();
+			} else {
+				await browser.close();
+			}
 			let paths: string[] = [];
 			for (const url of urls) {
 				const filename = `${post}_${basename(url).split("?")[0]}`;
-				await this.storageService.addFileFromURL(FileType.Instagram, username, filename, url);
+				await this.storageService.addFileFromURL(FileType.Instagram, username, filename, url, false, undefined, userAgent);
 				paths.push(`storage/${FileType.Instagram}/${username}/${filename}`);
 			}
 			return await this.historyService.addHistoryItem(U_ID, paths, FileType.Instagram, username, post);;

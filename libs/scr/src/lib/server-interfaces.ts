@@ -82,10 +82,10 @@ export async function beginScrape(U_ID: string, incognito = false): Promise<{bro
 			const userAgent = (await browser.userAgent()).replace("Headless", "");
 			await page.setUserAgent(userAgent);
 			// @ts-ignore
-			await page._client.send("Network.enable", {
-				maxResourceBufferSize: 1024 * 1204 * 100,
-				maxTotalBufferSize: 1024 * 1204 * 200,
-			});
+			// await page._client.send("Network.enable", {
+			// 	maxResourceBufferSize: 1024 * 1204 * 100,
+			// 	maxTotalBufferSize: 1024 * 1204 * 200,
+			// });
 			return {browser, page, context: null};
 		} else {
 			const context = await browser.createIncognitoBrowserContext();

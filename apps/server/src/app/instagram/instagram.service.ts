@@ -45,11 +45,13 @@ declare global {
 	async getPostFiles(id: string, browser: Browser | BrowserContext, page: Page, incognito: boolean): Promise<{urls: string[], username: string}> {
 		try {
 			await page.goto(`https://www.instagram.com/p/${id}`);
-			if ((await page.$("div.error-container")) !== null) {
+			if ((await page.$("div.error-container")) !== null || (await page.content()).includes("Oops, an error occurred.")) {
 				await browser.close();
 				throw new Error(`Failed to find post ${id}`);
 			}
 			let json: InstagramPost;
+			await page.waitForSelector("script:nth-child(15)");
+			// await page.waitForTimeout(10000000)
 			if (!incognito) {
 				const script = await page.evaluate(() => {
 					let scriptText = (document.querySelector("script:nth-child(15)") as HTMLScriptElement).text;
