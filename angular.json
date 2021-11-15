@@ -1,9 +1,5 @@
 {
 	"version": 1,
-	"cli": {
-		"defaultCollection": "@nrwl/angular"
-	},
-	"defaultProject": "client",
 	"schematics": {
 		"@nrwl/angular": {
 			"application": {
@@ -74,9 +70,7 @@
 							"node_modules/@ionic/angular/css/flex-utils.css"
 						],
 						"scripts": [],
-						"allowedCommonJsDependencies": [
-							"@nestjs/mongoose"
-						]
+						"allowedCommonJsDependencies": ["@nestjs/mongoose"]
 					},
 					"configurations": {
 						"production": {
@@ -109,9 +103,7 @@
 							"ngswConfigPath": "apps/client/ngsw-config.json"
 						}
 					},
-					"outputs": [
-						"{options.outputPath}"
-					]
+					"outputs": ["{options.outputPath}"]
 				},
 				"serve": {
 					"builder": "@angular-devkit/build-angular:dev-server",
@@ -138,10 +130,7 @@
 							"apps/client/tsconfig.app.json",
 							"apps/client/tsconfig.spec.json"
 						],
-						"exclude": [
-							"**/node_modules/**",
-							"!apps/client/**/*"
-						]
+						"exclude": ["**/node_modules/**", "!apps/client/**/*"]
 					}
 				},
 				"test": {
@@ -150,11 +139,33 @@
 						"jestConfig": "apps/client/jest.config.js",
 						"passWithNoTests": true
 					},
-					"outputs": [
-						"coverage/apps/client"
-					]
+					"outputs": ["coverage/apps/client"]
 				}
-			}
+			},
+			"tags": []
+		},
+		"scr": {
+			"root": "libs/scr",
+			"sourceRoot": "libs/scr/src",
+			"projectType": "library",
+			"schematics": {},
+			"architect": {
+				"lint": {
+					"builder": "@nrwl/linter:eslint",
+					"options": {
+						"lintFilePatterns": ["libs/api-interfaces/**/*.ts"]
+					}
+				},
+				"test": {
+					"builder": "@nrwl/jest:jest",
+					"options": {
+						"jestConfig": "libs/scr/jest.config.js",
+						"passWithNoTests": true
+					},
+					"outputs": ["coverage/libs/scr"]
+				}
+			},
+			"tags": []
 		},
 		"server": {
 			"root": "apps/server",
@@ -169,9 +180,7 @@
 						"outputPath": "dist/apps/server",
 						"main": "apps/server/src/main.ts",
 						"tsConfig": "apps/server/tsconfig.app.json",
-						"assets": [
-							"apps/server/src/assets"
-						],
+						"assets": ["apps/server/src/assets"],
 						"buildLibsFromSource": true
 					},
 					"configurations": {
@@ -187,9 +196,7 @@
 							]
 						}
 					},
-					"outputs": [
-						"{options.outputPath}"
-					]
+					"outputs": ["{options.outputPath}"]
 				},
 				"serve": {
 					"builder": "@nrwl/node:execute",
@@ -202,9 +209,7 @@
 				"lint": {
 					"builder": "@nrwl/linter:eslint",
 					"options": {
-						"lintFilePatterns": [
-							"apps/api/**/*.ts"
-						]
+						"lintFilePatterns": ["apps/api/**/*.ts"]
 					}
 				},
 				"test": {
@@ -213,37 +218,10 @@
 						"jestConfig": "apps/server/jest.config.js",
 						"passWithNoTests": true
 					},
-					"outputs": [
-						"coverage/apps/server"
-					]
+					"outputs": ["coverage/apps/server"]
 				}
-			}
-		},
-		"scr": {
-			"root": "libs/scr",
-			"sourceRoot": "libs/scr/src",
-			"projectType": "library",
-			"schematics": {},
-			"architect": {
-				"lint": {
-					"builder": "@nrwl/linter:eslint",
-					"options": {
-						"lintFilePatterns": [
-							"libs/api-interfaces/**/*.ts"
-						]
-					}
-				},
-				"test": {
-					"builder": "@nrwl/jest:jest",
-					"options": {
-						"jestConfig": "libs/scr/jest.config.js",
-						"passWithNoTests": true
-					},
-					"outputs": [
-						"coverage/libs/scr"
-					]
-				}
-			}
+			},
+			"tags": []
 		}
 	}
 }

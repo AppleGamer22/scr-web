@@ -17,7 +17,7 @@
 		"**/node_modules/*/**": true
 	},
 	//https://code.visualstudio.com/docs/setup/linux#_visual-studio-code-is-unable-to-watch-for-file-changes-in-this-large-workspace-error-enospc
-	"search.exclude":{
+	"search.exclude": {
 		"**/node_modules": false
 	},
 	"search.useGlobalIgnoreFiles": true,
