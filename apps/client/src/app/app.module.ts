@@ -23,7 +23,7 @@ import { ToastService } from "./toast.service";
 			enabled: environment.production,
 			registrationStrategy: "registerImmediately"
 		}),
-		IonicModule.forRoot({scrollAssist: true}),
+		IonicModule.forRoot({scrollAssist: true, mode: "md"}),
 		AppRoutingModule,
 	],
 	providers: [

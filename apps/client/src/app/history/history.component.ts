@@ -1,7 +1,6 @@
 // tslint:disable-next-line: nx-enforce-module-boundaries
 import { History, FileType } from "@scr-web/client-schemas";
-import { Component, Inject } from "@angular/core";
-import { DOCUMENT } from "@angular/common";
+import { Component } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { ActivatedRoute, Router } from "@angular/router";
 import { IonInfiniteScroll } from "@ionic/angular";
@@ -16,9 +15,8 @@ import { ToastService } from "../toast.service";
 	processing = false;
 	type: FileType | "all" = "all";
 	search = "";
-	range = 0;
 	response: History[];
-	histories: History[];
+	histories: History[][];
 	categories: string[];
 	selectedCategory = "all";
 	constructor(
@@ -54,10 +52,13 @@ import { ToastService } from "../toast.service";
 				await this.router.navigate(["/history"], {queryParams: { type, category, search }, queryParamsHandling: "merge"});
 				const headers = new HttpHeaders({"Authorization": token});
 				this.response = await this.http.get<History[]>(`${environment.server}/api/history/${type}/${category}/${search}`, { headers }).toPromise();
-				this.range = 0;
 				this.histories = [];
-				this.histories = this.response.slice(this.range, this.range + 10);
-				this.range += 10;
+				for (let i = 0; i < 3 && this.response.length; i++) {
+					this.histories.push(this.response.splice(0, 3).map(history => {
+						history.urls = history.urls.map(url => `${environment.server}/api/${url}`);
+						return history;
+					}));
+				}
 			} else {
 				await this.toast.showToast("You are not authenticated.", "danger");
 			}
@@ -70,13 +71,17 @@ import { ToastService } from "../toast.service";
 
 	sliceHistory(event: Event) {
 		// @ts-ignore
-		let target = event.target as IonInfiniteScroll
-		if (this.range >= this.response.length) {
+		let target = event.target as IonInfiniteScroll;
+		if (!this.response.length) {
 			target.disabled = true;
 			return;
 		}
-		this.histories.push(...this.response.slice(this.range, this.range + 10));
-		this.range += 10;
+		for (let i = 0; i < 3 && this.response.length; i++) {
+			this.histories.push(this.response.splice(0, 3).map(history => {
+				history.urls = history.urls.map(url => `${environment.server}/api/${url}`);
+				return history;
+			}));
+		}
 		target.complete();
 	}
 

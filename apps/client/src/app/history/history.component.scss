@@ -9,5 +9,14 @@ ion-label {
 }
 
 ion-col {
-	width: 100%;
+	width: 33%;
+}
+
+ion-row {
+	height: 33%;
+}
+
+img, video {
+	max-width: 95%;
+	max-height: 95%;
 }

@@ -26,7 +26,24 @@
 <ion-content>
 	<ion-progress-bar *ngIf="processing" color="primary" type="indeterminate"></ion-progress-bar>
 	<ion-list *ngIf="!processing">
-		<ion-item *ngFor="let history of histories">
+		<ion-grid>
+			<ion-row *ngFor="let group of histories">
+				<ion-col *ngFor="let history of group">
+					<ion-icon name="logo-instagram" *ngIf="history !== undefined && ['instagram', 'highlight', 'story'].includes(history.type)"></ion-icon>
+					<ion-icon name="logo-tiktok" *ngIf="history !== undefined && history.type === 'tiktok'"></ion-icon>
+					<ion-icon name="aperture-outline" *ngIf="history !== undefined && history.type === 'vsco'"></ion-icon>
+					<ion-icon name="copy-outline" *ngIf="history.urls.length > 1"></ion-icon>
+					&nbsp;
+					<a *ngIf="history.type !== 'story'" [routerLink]="'/' + history.type" [queryParams]="{id: history.post, owner: history.owner}">
+						<b>{{history._id}}</b>
+					</a>
+					<br>
+					<img *ngIf="history.urls[0].includes('.jpg')" [src]="history.urls[0]">
+					<video *ngIf="history.urls[0].includes('.mp4')" [src]="history.urls[0]" [muted]="true" controls loop></video>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+		<!-- <ion-item *ngFor="let history of histories">
 			<ion-grid>
 				<ion-row>
 					<ion-col>
@@ -48,7 +65,7 @@
 					</ion-col>
 				</ion-row>
 			</ion-grid>
-		</ion-item>
+		</ion-item> -->
 	</ion-list>
 	<ion-infinite-scroll (ionInfinite)="sliceHistory($event)">
 		<ion-infinite-scroll-content loadingText="Loading" loadingSpinner="bubbles"></ion-infinite-scroll-content>
