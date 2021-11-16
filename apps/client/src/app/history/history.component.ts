@@ -47,20 +47,14 @@ import { ToastService } from "../toast.service";
 			category = "all";
 		}
 		try {
-			const token = localStorage.getItem("instagram");
-			if (token) {
-				await this.router.navigate(["/history"], {queryParams: { type, category, search }, queryParamsHandling: "merge"});
-				const headers = new HttpHeaders({"Authorization": token});
-				this.response = await this.http.get<History[]>(`${environment.server}/api/history/${type}/${category}/${search}`, { headers }).toPromise();
-				this.histories = [];
-				for (let i = 0; i < 3 && this.response.length; i++) {
-					this.histories.push(this.response.splice(0, 3).map(history => {
-						history.urls = history.urls.map(url => `${environment.server}/api/${url}`);
-						return history;
-					}));
-				}
-			} else {
-				await this.toast.showToast("You are not authenticated.", "danger");
+			await this.router.navigate(["/history"], {queryParams: { type, category, search }, queryParamsHandling: "merge"});
+			this.response = await this.http.get<History[]>(`${environment.server}/api/history/${type}/${category}/${search}`).toPromise();
+			this.histories = [];
+			for (let i = 0; i < 3 && this.response.length; i++) {
+				this.histories.push(this.response.splice(0, 3).map(history => {
+					history.urls = history.urls.map(url => `${environment.server}/api/${url}`);
+					return history;
+				}));
 			}
 		} catch ({ error }) {
 			console.error(error);
@@ -88,11 +82,7 @@ import { ToastService } from "../toast.service";
 	/** gets user-assigned post categories from server */
 	async getCategories() {
 		try {
-			const token = localStorage.getItem("instagram");
-			if (token !== undefined) {
-				const headers = new HttpHeaders({"Authorization": token});
-				this.categories = await this.http.get<string[]>(`${environment.server}/api/auth/categories`, { headers }).toPromise();
-			}
+			this.categories = await this.http.get<string[]>(`${environment.server}/api/auth/categories`).toPromise();
 		} catch ({ error }) {
 			console.error(error);
 			this.toast.showToast(error, "danger");

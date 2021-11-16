@@ -128,11 +128,7 @@ import { ToastService } from "../toast.service";
 
 	async getCategories() {
 		try {
-			const token = localStorage.getItem("instagram");
-			if (token !== undefined) {
-				const headers = new HttpHeaders({"Authorization": token});
-				this.categories = await this.http.get<string[]>(`${environment.server}/api/auth/categories`, { headers }).toPromise();
-			}
+			this.categories = await this.http.get<string[]>(`${environment.server}/api/auth/categories`).toPromise();
 		} catch ({ error }) {
 			console.error(error);
 			this.toast.showToast(error, "danger");
@@ -141,11 +137,9 @@ import { ToastService } from "../toast.service";
 
 	async addCategory() {
 		try {
-			const token = localStorage.getItem("instagram");
-			if (token !== undefined && !this.categories.includes(this.categoryField)) {
-				const headers = new HttpHeaders({"Authorization": token});
+			if (!this.categories.includes(this.categoryField)) {
 				const body = {categories: this.categories.concat(this.categoryField)};
-				this.categories = await this.http.patch<string[]>(`${environment.server}/api/auth/categories`, body, { headers }).toPromise();
+				this.categories = await this.http.patch<string[]>(`${environment.server}/api/auth/categories`, body).toPromise();
 				this.categoryField = "";
 			}
 		} catch ({ error }) {
@@ -156,11 +150,9 @@ import { ToastService } from "../toast.service";
 
 	async deleteCategory(category: string) {
 		try {
-			const token = localStorage.getItem("instagram");
-			if (token !== undefined && this.categories.includes(category)) {
-				const headers = new HttpHeaders({"Authorization": token});
+			if (this.categories.includes(category)) {
 				const body = {categories: this.categories.filter(category2 => category2 !== category)};
-				this.categories = await this.http.patch<string[]>(`${environment.server}/api/auth/categories`, body, { headers }).toPromise();
+				this.categories = await this.http.patch<string[]>(`${environment.server}/api/auth/categories`, body).toPromise();
 			}
 		} catch ({ error }) {
 			console.error(error);

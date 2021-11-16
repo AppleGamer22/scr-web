@@ -44,11 +44,7 @@ import { ToastService } from "../toast.service";
 
 	async getCategories() {
 		try {
-			const token = localStorage.getItem("instagram");
-			if (token !== undefined) {
-				const headers = new HttpHeaders({"Authorization": token});
-				this.options = await this.http.get<string[]>(`${environment.server}/api/auth/categories`, { headers }).toPromise();
-			}
+			this.options = await this.http.get<string[]>(`${environment.server}/api/auth/categories`).toPromise();
 		} catch ({ error }) {
 			console.error(error);
 			this.toast.showToast(error, "danger");
@@ -57,15 +53,13 @@ import { ToastService } from "../toast.service";
 
 	async onCategoryChange(event: Event) {
 		try {
-			const token = localStorage.getItem("instagram");
 			const categories: string[] = (event as CustomEvent).detail.value;
-			if (token !== undefined && history !== undefined && this.history.categories !== categories) {
-				const headers = new HttpHeaders({"Authorization": token});
+			if (history !== undefined && this.history.categories !== categories) {
 				const url = `${environment.server}/api/history/${this.history.type}/${this.history.owner}/${this.history.post}`;
 				if (this.history.type === "story") {
 					const url = `${environment.server}/api/history/${this.history.type}/${this.history._id}`;
 				}
-				this.history = await this.http.patch<History>(url, { categories }, { headers }).toPromise();
+				this.history = await this.http.patch<History>(url, { categories }).toPromise();
 			}
 		} catch ({ error }) {
 			console.error(error);

@@ -42,20 +42,15 @@ export class TikTokComponent {
 		this.processing = true;
 		await this.router.navigate(["/tiktok"], {queryParams: { owner, id }, queryParamsHandling: "merge"});
 		try {
-			const token = localStorage.getItem("instagram");
-			if (token) {
-				const headers = new HttpHeaders({"Authorization": token});
-				if (owner && id) {
-					this.history = await this.http.get<History>(`${environment.server}/api/tiktok/${owner}/${id}`, { headers }).toPromise();
-					if (this.postOwner !== this.history.owner) {
-						this.postOwner = this.history.owner;
-						await this.router.navigate(["/tiktok"], {queryParams: {owner: this.postOwner, id}, queryParamsHandling: "merge"});
-					}
-					await this.toast.showToast("1 File", "success");
-				} else {
-					await this.toast.showToast("Please enter a post owner & ID.", "danger");
+			if (owner && id) {
+				this.history = await this.http.get<History>(`${environment.server}/api/tiktok/${owner}/${id}`).toPromise();
+				if (this.postOwner !== this.history.owner) {
+					this.postOwner = this.history.owner;
+					await this.router.navigate(["/tiktok"], {queryParams: {owner: this.postOwner, id}, queryParamsHandling: "merge"});
 				}
-
+				await this.toast.showToast("1 File", "success");
+			} else {
+				await this.toast.showToast("Please enter a post owner & ID.", "danger");
 			}
 		} catch ({ error }) {
 			console.error(error);

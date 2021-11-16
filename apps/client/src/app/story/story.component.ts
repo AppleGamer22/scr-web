@@ -40,17 +40,11 @@ import { ToastService } from "../toast.service";
 		this.processing = true;
 		await this.router.navigate(["/story"], {queryParams: { id: owner, number }, queryParamsHandling: "merge"});
 		try {
-			const token = localStorage.getItem("instagram")
-			if (token) {
-				const headers = new HttpHeaders({"Authorization": token});
-				if (owner && number) {
-					this.history = await this.http.get<History>(`${environment.server}/api/story/${owner}/${number}`, { headers }).toPromise();
-					await this.toast.showToast(`${this.history.urls.length} URL(s)`, "success");
-				} else {
-					await this.toast.showToast("Please enter a post ID.", "danger");
-				}
+			if (owner && number) {
+				this.history = await this.http.get<History>(`${environment.server}/api/story/${owner}/${number}`).toPromise();
+				await this.toast.showToast(`${this.history.urls.length} URL(s)`, "success");
 			} else {
-				await this.toast.showToast("You are not authenticated.", "danger");
+				await this.toast.showToast("Please enter a post ID.", "danger");
 			}
 		} catch ({ error }) {
 			console.error(error);

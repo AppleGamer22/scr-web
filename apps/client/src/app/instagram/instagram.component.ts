@@ -37,24 +37,17 @@ import { ToastService } from "../toast.service";
 		this.processing = true;
 		await this.router.navigate(["/instagram"], {queryParams: { id }, queryParamsHandling: "merge"});
 		try {
-			const token = localStorage.getItem("instagram");
-			if (token) {
-				const headers = new HttpHeaders({"Authorization": token});
-				if (id) {
-					this.history = await this.http.get<History>(`${environment.server}/api/instagram/${id}`, {
-						headers,
-						params: {
-							incognito: this.incognito
-						}
-					}).toPromise();
-					await this.router.navigate(["/instagram"], {queryParams: {owner: this.history.owner, id}, queryParamsHandling: "merge"});
-					await this.toast.showToast(`${this.history.urls.length} URL(s)`, "success");
-					// for (const path of paths) this.urls.push(`${environment.server}/api/${path}`);
-				} else {
-					await this.toast.showToast("Please enter a post ID.", "danger");
+			if (id) {
+			this.history = await this.http.get<History>(`${environment.server}/api/instagram/${id}`, {
+				params: {
+					incognito: this.incognito
 				}
+			}).toPromise();
+			await this.router.navigate(["/instagram"], {queryParams: {owner: this.history.owner, id}, queryParamsHandling: "merge"});
+			await this.toast.showToast(`${this.history.urls.length} URL(s)`, "success");
+			// for (const path of paths) this.urls.push(`${environment.server}/api/${path}`);
 			} else {
-				await this.toast.showToast("You are not authenticated.", "danger");
+				await this.toast.showToast("Please enter a post ID.", "danger");
 			}
 		} catch ({ error }) {
 			console.error(error);
