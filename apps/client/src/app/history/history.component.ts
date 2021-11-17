@@ -1,7 +1,7 @@
 // tslint:disable-next-line: nx-enforce-module-boundaries
 import { History, FileType } from "@scr-web/client-schemas";
 import { Component } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { ActivatedRoute, Router } from "@angular/router";
 import { IonInfiniteScroll } from "@ionic/angular";
 import { environment } from "../../environments/environment";
@@ -83,6 +83,22 @@ import { ToastService } from "../toast.service";
 	async getCategories() {
 		try {
 			this.categories = await this.http.get<string[]>(`${environment.server}/api/auth/categories`).toPromise();
+		} catch ({ error }) {
+			console.error(error);
+			this.toast.showToast(error, "danger");
+		}
+	}
+
+	async onCategoryChange(event: Event, history: History) {
+		try {
+			const categories: string[] = (event as CustomEvent).detail.value;
+			if (history !== undefined && history.categories !== categories) {
+				const url = `${environment.server}/api/history/${history.type}/${history.owner}/${history.post}`;
+				if (history.type === "story") {
+					const url = `${environment.server}/api/history/${history.type}/${history._id}`;
+				}
+				history = await this.http.patch<History>(url, { categories }).toPromise();
+			}
 		} catch ({ error }) {
 			console.error(error);
 			this.toast.showToast(error, "danger");

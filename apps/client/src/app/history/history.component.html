@@ -38,6 +38,16 @@
 						<b>{{history._id}}</b>
 					</a>
 					<br>
+					<ion-item>
+						<ion-label>Categories</ion-label>
+						<ion-select interface="action-sheet" [multiple]="true" placeholder="Select Category" [value]="history.categories" (ionChange)="onCategoryChange($event, history)">
+							<ion-select-option *ngFor="let category of categories.sort()" [value]="category">
+								<ion-chip>
+									<ion-label>{{category}}</ion-label>
+								</ion-chip>
+							</ion-select-option>
+						</ion-select>
+					</ion-item>
 					<img *ngIf="history.urls[0].includes('.jpg')" [src]="history.urls[0]">
 					<video *ngIf="history.urls[0].includes('.mp4')" [src]="history.urls[0]" [muted]="true" controls loop></video>
 				</ion-col>
