@@ -12,7 +12,7 @@ import { Browser, Page } from "puppeteer-core";
 	 */
 	async getStoryFile(user: string, item: number, browser: Browser, page: Page): Promise<string[]> {
 		try {
-			await page.goto(`https://www.instagram.com/${user}`);
+			await page.goto("https://www.instagram.com/", {waitUntil: "load"});
 			await page.goto(`https://www.instagram.com/stories/${user}`, {waitUntil: "domcontentloaded"});
 			if ((await page.$("div.error-container")) !== null) {
 				await browser.close();
