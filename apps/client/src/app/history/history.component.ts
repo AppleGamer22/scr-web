@@ -3,6 +3,7 @@ import { History, FileType } from "@scr-web/client-schemas";
 import { Component } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { ActivatedRoute, Router } from "@angular/router";
+import { Title } from "@angular/platform-browser";
 import { IonInfiniteScroll } from "@ionic/angular";
 import { environment } from "../../environments/environment";
 import { ToastService } from "../toast.service";
@@ -25,7 +26,9 @@ import { ToastService } from "../toast.service";
 		// @Inject(DOCUMENT) private document: Document,
 		route: ActivatedRoute,
 		private router: Router,
+		private titleService: Title
 	) {
+		this.titleService.setTitle("scr-web/history");
 		this.type = (route.snapshot.queryParamMap.get("type") as FileType | "all") || "all";
 		this.search = route.snapshot.queryParamMap.get("search") === "all" ? "" : route.snapshot.queryParamMap.get("search");
 		this.getCategories();

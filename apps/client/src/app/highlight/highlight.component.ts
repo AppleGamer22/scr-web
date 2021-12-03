@@ -2,6 +2,7 @@ import { Component, Inject } from "@angular/core";
 import { DOCUMENT } from "@angular/common";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Router, ActivatedRoute } from "@angular/router";
+import { Title } from "@angular/platform-browser";
 import { History } from "@scr-web/client-schemas";
 import { environment } from "../../environments/environment";
 import { ToastService } from "../toast.service";
@@ -20,8 +21,10 @@ import { ToastService } from "../toast.service";
 		@Inject(DOCUMENT) private document: Document,
 		private router: Router,
 		route: ActivatedRoute,
-		readonly toast: ToastService
+		readonly toast: ToastService,
+		private titleService: Title
 	) {
+		titleService.setTitle("scr-web/highlight");
 		const id = route.snapshot.queryParamMap.get("id");
 		const number = Number(route.snapshot.queryParamMap.get("number"));
 		if (id !== null) {
@@ -42,6 +45,7 @@ import { ToastService } from "../toast.service";
 		try {
 			if (id && number) {
 				this.history = await this.http.get<History>(`${environment.server}/api/highlight/${id}/${number}`).toPromise();
+				this.titleService.setTitle(`scr-web/${this.history._id}`);
 				await this.toast.showToast(`${this.history.urls.length} URL(s)`, "success");
 				// for (const path of this.history.urls) this.urls.push(`${environment.server}/api/${path}`);
 			} else {
@@ -49,6 +53,7 @@ import { ToastService } from "../toast.service";
 			}
 		} catch ({ error }) {
 			console.error(error);
+			this.titleService.setTitle("scr-web/highlight");
 			this.toast.showToast(error, "danger");
 		}
 		this.processing = false;

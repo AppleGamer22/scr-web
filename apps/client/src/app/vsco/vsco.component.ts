@@ -2,6 +2,7 @@ import { Component, Inject } from "@angular/core";
 import { DOCUMENT } from "@angular/common";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Router, ActivatedRoute } from "@angular/router";
+import { Title } from "@angular/platform-browser";
 import { History } from "@scr-web/client-schemas";
 import { environment } from "../../environments/environment";
 import { ToastService } from "../toast.service";
@@ -20,8 +21,10 @@ import { ToastService } from "../toast.service";
 		@Inject(DOCUMENT) private document: Document,
 		private router: Router,
 		route: ActivatedRoute,
-		readonly toast: ToastService
+		readonly toast: ToastService,
+		private titleService: Title
 	) {
+		titleService.setTitle("scr-web/vsco");
 		const owner = route.snapshot.queryParamMap.get("owner");
 		const id = route.snapshot.queryParamMap.get("id");
 		if (id !== null) {
@@ -46,6 +49,7 @@ import { ToastService } from "../toast.service";
 					this.postOwner = this.history.owner;
 					await this.router.navigate(["/vsco"], {queryParams: {owner: this.postOwner, id}, queryParamsHandling: "merge"});
 				}
+				this.titleService.setTitle(`scr-web/${this.history._id}`);
 				await this.toast.showToast("1 URL", "success");
 				// this.urls = [`${environment.server}/api/${path}`];
 			} else {
@@ -53,6 +57,7 @@ import { ToastService } from "../toast.service";
 			}
 		} catch ({ error }) {
 			console.error(error);
+			this.titleService.setTitle("scr-web/vsco");
 			this.toast.showToast(error, "danger");
 		}
 		this.processing = false;

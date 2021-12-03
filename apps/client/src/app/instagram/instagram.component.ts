@@ -2,6 +2,7 @@ import { Component, Inject } from "@angular/core";
 import { DOCUMENT } from "@angular/common";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Router, ActivatedRoute } from "@angular/router";
+import { Title } from "@angular/platform-browser";
 import { History } from "@scr-web/client-schemas";
 import { environment } from "../../environments/environment";
 import { ToastService } from "../toast.service";
@@ -20,8 +21,10 @@ import { ToastService } from "../toast.service";
 		@Inject(DOCUMENT) private document: Document,
 		private router: Router,
 		route: ActivatedRoute,
-		readonly toast: ToastService
+		readonly toast: ToastService,
+		private titleService: Title
 	) {
+		titleService.setTitle("scr-web/instagram");
 		const id = route.snapshot.queryParamMap.get("id");
 		if (id !== null) {
 			this.postID = id;
@@ -44,6 +47,7 @@ import { ToastService } from "../toast.service";
 				}
 			}).toPromise();
 			await this.router.navigate(["/instagram"], {queryParams: {owner: this.history.owner, id}, queryParamsHandling: "merge"});
+			this.titleService.setTitle(`scr-web/${this.history._id}`);
 			await this.toast.showToast(`${this.history.urls.length} URL(s)`, "success");
 			// for (const path of paths) this.urls.push(`${environment.server}/api/${path}`);
 			} else {
@@ -51,6 +55,7 @@ import { ToastService } from "../toast.service";
 			}
 		} catch ({ error }) {
 			console.error(error);
+			this.titleService.setTitle("scr-web/instagram");
 			this.toast.showToast(error, "danger");
 		}
 		this.processing = false;

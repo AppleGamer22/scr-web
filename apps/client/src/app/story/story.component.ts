@@ -2,6 +2,7 @@ import { Component, Inject } from "@angular/core";
 import { DOCUMENT } from "@angular/common";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { ActivatedRoute, Router } from "@angular/router";
+import { Title } from "@angular/platform-browser";
 import { History } from "@scr-web/client-schemas";
 import { environment } from "../../environments/environment";
 import { ToastService } from "../toast.service";
@@ -20,8 +21,10 @@ import { ToastService } from "../toast.service";
 		@Inject(DOCUMENT) private document: Document,
 		private router: Router,
 		route: ActivatedRoute,
-		readonly toast: ToastService
+		readonly toast: ToastService,
+		private titleService: Title
 	) {
+		titleService.setTitle("scr-web/story");
 		const id = route.snapshot.queryParamMap.get("id");
 		const number = Number(route.snapshot.queryParamMap.get("number"));
 		if (id !== null) {
@@ -42,12 +45,14 @@ import { ToastService } from "../toast.service";
 		try {
 			if (owner && number) {
 				this.history = await this.http.get<History>(`${environment.server}/api/story/${owner}/${number}`).toPromise();
+				this.titleService.setTitle(`scr-web/${this.history._id}`);
 				await this.toast.showToast(`${this.history.urls.length} URL(s)`, "success");
 			} else {
 				await this.toast.showToast("Please enter a post ID.", "danger");
 			}
 		} catch ({ error }) {
 			console.error(error);
+			this.titleService.setTitle("scr-web/story");
 			this.toast.showToast(error, "danger");
 		}
 		this.processing = false;

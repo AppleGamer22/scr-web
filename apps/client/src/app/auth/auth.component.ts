@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { User } from "@scr-web/client-schemas";
 import { environment } from "../../environments/environment";
 import { ToastService } from "../toast.service";
+import { Title } from "@angular/platform-browser";
 
 @Component({
 	selector: "scr-web-auth",
@@ -23,8 +24,10 @@ import { ToastService } from "../toast.service";
 		private readonly http: HttpClient,
 		private router: Router,
 		route: ActivatedRoute,
-		readonly toast: ToastService
+		readonly toast: ToastService,
+		private titleService: Title
 	) {
+		this.titleService.setTitle("scr-web/auth");
 		switch (route.snapshot.fragment) {
 			case "sign_up":
 			case "sign_in":
