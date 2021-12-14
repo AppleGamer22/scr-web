@@ -123,16 +123,6 @@
 						"browserTarget": "client:build"
 					}
 				},
-				"lint": {
-					"builder": "@angular-devkit/build-angular:tslint",
-					"options": {
-						"tsConfig": [
-							"apps/client/tsconfig.app.json",
-							"apps/client/tsconfig.spec.json"
-						],
-						"exclude": ["**/node_modules/**", "!apps/client/**/*"]
-					}
-				},
 				"test": {
 					"builder": "@nrwl/jest:jest",
 					"options": {
