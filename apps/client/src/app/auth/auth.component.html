@@ -5,7 +5,7 @@
 	</ion-toolbar>
 </ion-header>
 <ion-content>
-	<form>
+	<ion-list>
 		<ion-segment (ionChange)="selectSegment($event)" [(ngModel)]="authOption" name="auth-type">
 			<ion-segment-button value="sign_up" id="sign_up">
 				<ion-label>sign-up</ion-label>
@@ -36,7 +36,7 @@
 		<ion-button *ngIf="authOption === 'sign_up'" (click)="signUp(usernameField, passwordField)">sign-up</ion-button>
 		<ion-button *ngIf="authOption === 'sign_in'" (click)="signIn(usernameField, passwordField)">sign-in</ion-button>
 		<ion-button *ngIf="authOption === 'sign_out'" (click)="signOut()">sign-out</ion-button>
-	</form>
+	</ion-list>
 	<ion-progress-bar *ngIf="processing" color="primary" type="indeterminate"></ion-progress-bar>
 	<h3>Getting started:</h3>
 	<ol>
