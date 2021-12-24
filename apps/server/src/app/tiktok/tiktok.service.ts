@@ -16,19 +16,16 @@ interface TikTokPost {
 				}
 			}
 		}
+	},
+	ItemModule: {
+		[post: string]: {
+			author: string,
+			video: {
+				downloadAddr: string
+			}
+		}
 	}
 }
-
-// interface TikTokPost {
-// 	ItemModule: {
-// 		[post: string]: {
-// 			author: string,
-// 			video: {
-// 				downloadAddr: string
-// 			}
-// 		}
-// 	}
-// }
 
 @Injectable() export class TikTokService {
 	/**
@@ -50,15 +47,33 @@ interface TikTokPost {
 			// 	await browser.close();
 			// 	throw new Error(`Failed to find post ${id}`);
 			// }
-			const script = await page.evaluate(() => (document.getElementById("__NEXT_DATA__") as HTMLScriptElement).text);
-			const json: TikTokPost = JSON.parse(script);
+			const { sigi, data } = await page.evaluate(() => {
+				const script = document.getElementById("__NEXT_DATA__");
+				if (script != null) {
+					const data = (document.getElementById("__NEXT_DATA__") as HTMLScriptElement).text;
+					return {sigi: false, data};
+				} else {
+					return {sigi: true, data: JSON.stringify(window["SIGI_STATE"])};
+				}
+			});
+			const json: TikTokPost = JSON.parse(data);
 			// @ts-ignore
 			const { cookies } = await page._client.send("Network.getAllCookies") as {cookies: Protocol.Network.Cookie[]};
 			return {
-				urls: [json.props.pageProps.itemInfo.itemStruct.video.downloadAddr],
-				username: json.props.pageProps.itemInfo.itemStruct.author.uniqueId,
-				// urls: [data.ItemModule[id.split("/")[2]].video.downloadAddr],
-				// username: data.ItemModule[id.split("/")[2]].author,
+				urls: ((): string[] => {
+					if (!sigi) {
+						return [json.props.pageProps.itemInfo.itemStruct.video.downloadAddr];
+					} else {
+						return [json.ItemModule[id.split("/")[2]].video.downloadAddr];
+					}
+				})(),
+				username: ((): string => {
+					if (!sigi) {
+						return json.props.pageProps.itemInfo.itemStruct.author.uniqueId;
+					} else {
+						return json.ItemModule[id.split("/")[2]].author;
+					}
+				})(),
 				cookies: cookies.filter(cookie => cookie.domain.includes("tiktok.com")).map(cookie => `${cookie.name}=${cookie.value}`).join("; ")
 			};
 		} catch (error) {
