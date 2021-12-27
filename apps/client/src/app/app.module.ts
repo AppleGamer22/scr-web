@@ -10,6 +10,7 @@ import { environment } from "../environments/environment";
 import { AppRoutingModule } from "./app-routing.module";
 import { ToastService } from "./toast.service";
 import { AuthInterceptor } from "./auth/auth.interceptor";
+import { PreviewComponent } from './preview/preview.component';
 
 @NgModule({
 	declarations: [

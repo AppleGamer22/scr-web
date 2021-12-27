@@ -1,0 +1,29 @@
+<ion-icon name="logo-instagram" *ngIf="history !== undefined && ['instagram', 'highlight', 'story'].includes(history.type)"></ion-icon>
+<ion-icon name="logo-tiktok" *ngIf="history !== undefined && history.type === 'tiktok'"></ion-icon>
+<ion-icon name="aperture-outline" *ngIf="history !== undefined && history.type === 'vsco'"></ion-icon>
+<b *ngIf="history.urls.length > 1"><ion-icon name="copy-outline"></ion-icon> {{history.urls.length}}</b>
+&nbsp;
+<a *ngIf="history.type !== 'story'" [routerLink]="'/' + history.type" [queryParams]="{id: history.post, owner: history.owner}">
+	<b>{{history._id}}</b>
+</a>
+<br>
+<ion-item>
+	<ion-label>Categories</ion-label>
+	<ion-select interface="action-sheet" [multiple]="true" placeholder="Select Category" [value]="history.categories"
+		(ionChange)="onCategoryChange($event, history)">
+		<ion-select-option *ngFor="let category of categories.sort()" [value]="category">
+			<ion-chip>
+				<ion-label>{{category}}</ion-label>
+			</ion-chip>
+		</ion-select-option>
+	</ion-select>
+</ion-item>
+<ion-button id="previous" *ngIf="history.urls.length > 1 && i > 0" (click)="i = i - 1">
+	<ion-icon name="arrow-back-outline"></ion-icon>
+</ion-button>
+<ion-button id="next" *ngIf="history.urls.length > 1 && i < history.urls.length - 1" (click)="i = i + 1">
+	<ion-icon name="arrow-forward-outline"></ion-icon>
+</ion-button>
+<br>
+<img *ngIf="history.urls[i] && history.urls[i].endsWith('.jpg')" [src]="history.urls[i]">
+<video *ngIf="history.urls[i] && history.urls[i].endsWith('.mp4')" [src]="history.urls[i]" [muted]="true" controls loop></video>

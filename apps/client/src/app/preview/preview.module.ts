@@ -1,18 +1,18 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { RouterModule } from "@angular/router";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { IonicModule } from "@ionic/angular";
-// import { AngularCropperjsModule } from "angular-cropperjs";
-import { URLsComponent } from "./urls.component";
 import { ToastService } from "../toast.service";
+import { PreviewComponent } from "./preview.component";
 import { AuthInterceptor } from "../auth/auth.interceptor";
 
 @NgModule({
 	imports: [
 		CommonModule,
+		RouterModule,
 		HttpClientModule,
 		IonicModule,
-		// AngularCropperjsModule,
 	],
 	providers: [
 		ToastService,
@@ -22,6 +22,6 @@ import { AuthInterceptor } from "../auth/auth.interceptor";
 			multi: true
 		}
 	],
-	declarations: [URLsComponent],
-	exports: [URLsComponent]
-}) export class URLsModule {}
+	declarations: [PreviewComponent],
+	exports: [PreviewComponent]
+}) export class PreviewModule {}

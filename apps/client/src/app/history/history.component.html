@@ -29,53 +29,10 @@
 		<ion-grid>
 			<ion-row *ngFor="let group of histories">
 				<ion-col *ngFor="let history of group">
-					<ion-icon name="logo-instagram" *ngIf="history !== undefined && ['instagram', 'highlight', 'story'].includes(history.type)"></ion-icon>
-					<ion-icon name="logo-tiktok" *ngIf="history !== undefined && history.type === 'tiktok'"></ion-icon>
-					<ion-icon name="aperture-outline" *ngIf="history !== undefined && history.type === 'vsco'"></ion-icon>
-					<b *ngIf="history.urls.length > 1"><ion-icon name="copy-outline"></ion-icon> {{history.urls.length}}</b>
-					&nbsp;
-					<a *ngIf="history.type !== 'story'" [routerLink]="'/' + history.type" [queryParams]="{id: history.post, owner: history.owner}">
-						<b>{{history._id}}</b>
-					</a>
-					<br>
-					<ion-item>
-						<ion-label>Categories</ion-label>
-						<ion-select interface="action-sheet" [multiple]="true" placeholder="Select Category" [value]="history.categories" (ionChange)="onCategoryChange($event, history)">
-							<ion-select-option *ngFor="let category of categories.sort()" [value]="category">
-								<ion-chip>
-									<ion-label>{{category}}</ion-label>
-								</ion-chip>
-							</ion-select-option>
-						</ion-select>
-					</ion-item>
-					<img *ngIf="history.urls[0].includes('.jpg')" [src]="history.urls[0]">
-					<video *ngIf="history.urls[0].includes('.mp4')" [src]="history.urls[0]" [muted]="true" controls loop></video>
+					<scr-web-preview [history]="history" [categories]="categories"></scr-web-preview>
 				</ion-col>
 			</ion-row>
 		</ion-grid>
-		<!-- <ion-item *ngFor="let history of histories">
-			<ion-grid>
-				<ion-row>
-					<ion-col>
-						<ion-icon name="logo-instagram" *ngIf="history !== undefined && ['instagram', 'highlight', 'story'].includes(history.type)"></ion-icon>
-						<ion-icon name="logo-tiktok" *ngIf="history !== undefined && history.type === 'tiktok'"></ion-icon>
-						<ion-icon name="aperture-outline" *ngIf="history !== undefined && history.type === 'vsco'"></ion-icon>
-						&nbsp;
-						<a *ngIf="history.type !== 'story'" [routerLink]="'/' + history.type" [queryParams]="{id: history.post, owner: history.owner}">
-							<b>{{history._id}}</b>
-						</a>
-					</ion-col>
-					<ion-col>
-						<ion-label>{{history.date | date: "full"}}</ion-label>
-					</ion-col>
-				</ion-row>
-				<ion-row>
-					<ion-col>
-						<scr-web-urls [history]="history" *ngIf="history !== undefined"></scr-web-urls>
-					</ion-col>
-				</ion-row>
-			</ion-grid>
-		</ion-item> -->
 	</ion-list>
 	<ion-infinite-scroll (ionInfinite)="sliceHistory($event)">
 		<ion-infinite-scroll-content loadingText="Loading" loadingSpinner="bubbles"></ion-infinite-scroll-content>

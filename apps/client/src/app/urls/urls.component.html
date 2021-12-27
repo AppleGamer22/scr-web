@@ -18,8 +18,8 @@
 				<ion-col size="auto">
 					<ion-segment #segment value="none">
 						<ion-segment-button value="show">
-							<ion-icon name="image-outline" *ngIf="url.includes('.jpg')"></ion-icon>
-							<ion-icon name="film-outline" *ngIf="url.includes('.mp4')"></ion-icon>
+							<ion-icon name="image-outline" *ngIf="url.endsWith('.jpg')"></ion-icon>
+							<ion-icon name="film-outline" *ngIf="url.endsWith('.mp4')"></ion-icon>
 						</ion-segment-button>
 						<ion-segment-button value="none">
 							<ion-label>None</ion-label>
@@ -40,8 +40,8 @@
 			</ion-row>
 			<ion-row>
 				<ion-col size="auto" *ngIf="segment.value === 'show'">
-					<img *ngIf="url.includes('.jpg')" [src]="url">
-					<video *ngIf="url.includes('.mp4')" [src]="url" [muted]="true" controls loop></video>
+					<img *ngIf="url.endsWith('.jpg')" [src]="url">
+					<video *ngIf="url.endsWith('.mp4')" [src]="url" [muted]="true" controls loop></video>
 				</ion-col>
 				<!-- <ion-col *ngIf="segment.value === 'crop'">
 					<ion-grid>

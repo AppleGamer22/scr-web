@@ -5,8 +5,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
 import { IonicModule } from "@ionic/angular";
 import { HistoryComponent } from "./history.component";
-import { URLsModule } from "../urls/urls.module";
+// import { URLsModule } from "../urls/urls.module";
 import { AuthInterceptor } from "../auth/auth.interceptor";
+import { PreviewModule } from "../preview/preview.module";
 
 @NgModule({
 	imports: [
@@ -15,12 +16,13 @@ import { AuthInterceptor } from "../auth/auth.interceptor";
 		CommonModule,
 		HttpClientModule,
 		RouterModule.forChild([{path: "", component: HistoryComponent}]),
-		URLsModule
+		// URLsModule,
+		PreviewModule
 	],
 	providers: [
 		{
 			provide: HTTP_INTERCEPTORS,
-			useClass:AuthInterceptor,
+			useClass: AuthInterceptor,
 			multi: true
 		}
 	],

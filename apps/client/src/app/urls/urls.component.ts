@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { History } from "@scr-web/client-schemas";
 import { environment } from "../../environments/environment";
 import { ToastService } from "../toast.service";
