@@ -12,9 +12,7 @@
 	<ion-select interface="action-sheet" [multiple]="true" placeholder="Select Category" [value]="history.categories"
 		(ionChange)="onCategoryChange($event, history)">
 		<ion-select-option *ngFor="let category of categories.sort()" [value]="category">
-			<ion-chip>
-				<ion-label>{{category}}</ion-label>
-			</ion-chip>
+			<ion-label>{{category}}</ion-label>
 		</ion-select-option>
 	</ion-select>
 </ion-item>
