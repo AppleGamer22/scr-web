@@ -3,7 +3,7 @@
 		<ion-menu-button slot="start"></ion-menu-button>
 		<ion-title slot="secondary">History</ion-title>
 		<ion-buttons slot="end">
-			<ion-icon name="funnel"></ion-icon>
+			<!-- <ion-icon name="funnel"></ion-icon> -->
 			<ion-select interface="action-sheet" placeholder="Item Type" (ionChange)="filterHistories(type, selectedCategory, search)" [(ngModel)]="type">
 				<ion-select-option value="all">All Types</ion-select-option>
 				<ion-select-option value="instagram">Instagram Post</ion-select-option>
@@ -17,6 +17,16 @@
 				<ion-select-option value="none">No Category</ion-select-option>
 				<ion-select-option *ngFor="let category of categories.sort()" [value]="category">{{category}}</ion-select-option>
 			</ion-select>
+			<ion-button id="open-modal">
+				<ion-icon name="calendar-outline"></ion-icon>
+			</ion-button>
+			<ion-modal trigger="open-modal">
+				<ng-template>
+					<ion-content>
+						<ion-datetime presentation="date"></ion-datetime>
+					</ion-content>
+				</ng-template>
+			</ion-modal>
 		</ion-buttons>
 	</ion-toolbar>
 </ion-header>
