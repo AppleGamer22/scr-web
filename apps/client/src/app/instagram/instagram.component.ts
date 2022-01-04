@@ -41,15 +41,15 @@ import { ToastService } from "../toast.service";
 		await this.router.navigate(["/instagram"], {queryParams: { id }, queryParamsHandling: "merge"});
 		try {
 			if (id) {
-			this.history = await this.http.get<History>(`${environment.server}/api/instagram/${id}`, {
-				params: {
-					incognito: this.incognito
-				}
-			}).toPromise();
-			await this.router.navigate(["/instagram"], {queryParams: {owner: this.history.owner, id}, queryParamsHandling: "merge"});
-			this.titleService.setTitle(`scr-web/${this.history._id}`);
-			await this.toast.showToast(`${this.history.urls.length} URL(s)`, "success");
-			// for (const path of paths) this.urls.push(`${environment.server}/api/${path}`);
+				this.history = await this.http.get<History>(`${environment.server}/api/instagram/${id}`, {
+					params: {
+						incognito: this.incognito
+					}
+				}).toPromise();
+				await this.router.navigate(["/instagram"], {queryParams: {owner: this.history.owner, id}, queryParamsHandling: "merge"});
+				this.titleService.setTitle(`scr-web/${this.history._id}`);
+				await this.toast.showToast(`${this.history.urls.length} URL(s)`, "success");
+				// for (const path of paths) this.urls.push(`${environment.server}/api/${path}`);
 			} else {
 				await this.toast.showToast("Please enter a post ID.", "danger");
 			}
