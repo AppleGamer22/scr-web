@@ -1,12 +1,12 @@
 {
 	"migrations": [
 		{
-			"version": "13.4.4-beta.0",
 			"cli": "nx",
-			"description": "Create a root babel config file if it doesn't exist and using babel-jest in jest.config.js and add @nrwl/web as needed",
-			"factory": "./src/migrations/update-13-4-4/add-missing-root-babel-config",
-			"package": "@nrwl/jest",
-			"name": "add-missing-root-babel-config"
+			"version": "13.4.5-beta.7",
+			"description": "Remove the default for the invalid 'style' option for the library generator if configured.",
+			"factory": "./src/migrations/update-13-5-0/remove-library-generator-style-default",
+			"package": "@nrwl/angular",
+			"name": "remove-library-generator-style-default"
 		}
 	]
 }
