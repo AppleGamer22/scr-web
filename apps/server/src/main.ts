@@ -10,7 +10,11 @@ async function bootstrap() {
 	// const config = new DocumentBuilder().setTitle(name).setDescription(description).setVersion(version).setLicense(license, repository.url).build();
 	// const document = SwaggerModule.createDocument(app, config);
 	// SwaggerModule.setup("api/swagger", app, document);
-	await app.listen(port, () => console.log(`Listening at http://localhost:${port}/api`));
+	try {
+		await app.listen(port, () => console.log(`Listening at http://localhost:${port}/api`));
+	} catch (err) {
+		console.error(err);
+	}
 }
 
 bootstrap();
