@@ -3,34 +3,60 @@ import { Injectable } from "@nestjs/common";
 import { Browser, BrowserContext, Page } from "puppeteer-core";
 
 interface InstagramPost {
-	graphql: {
-		shortcode_media: {
-			display_url: string,
-			video_url?: string,
-			is_video: boolean,
-			edge_sidecar_to_children?: {
-				edges: {
-					node: {
-						display_url: string,
-						video_url?: string,
-						is_video: boolean,
-					}
+	items: [{
+		carousel_media?: {
+			image_versions2: {
+				candidates: {
+					url: string
 				}[]
 			},
-			owner: {
-				username: string
-			}
+			video_versions?: {
+				url: string
+			}[]
+		}[],
+		image_versions2?: {
+			candidates: {
+				url: string
+			}[]
+		},
+		video_versions?: {
+			url: string
+		}[],
+		user: {
+			username: string
 		}
+	}]
+}
+
+interface InstagramPostIncognito {
+	entry_data: {
+		PostPage: [{
+			graphql: {
+				shortcode_media: {
+					display_url: string,
+					video_url?: string,
+					is_video: boolean,
+					edge_sidecar_to_children?: {
+						edges: {
+							node: {
+								display_url: string,
+								video_url?: string,
+								is_video: boolean,
+							}
+						}[]
+					},
+					owner: {
+						username: string
+					}
+				}
+			}
+		}]
 	}
 }
 
 declare global {
 	interface Window {
-		_sharedData: {
-			entry_data: {
-				PostPage: InstagramPost[]
-			}
-		}
+		_sharedData: InstagramPostIncognito
 	}
 }
 
@@ -50,7 +76,6 @@ declare global {
 				await browser.close();
 				throw new Error(`Failed to find post ${id}`);
 			}
-			let json: InstagramPost;
 			await page.waitForSelector("script:nth-child(15)");
 			// await page.waitForTimeout(10000000)
 			if (!incognito) {
@@ -61,28 +86,59 @@ declare global {
 					}
 					return scriptText;
 				});
-				json = JSON.parse(script.slice("window.__additionalDataLoaded(/p/".length + id.length + 4, -2)) as InstagramPost;
+				const json = JSON.parse(script.slice("window.__additionalDataLoaded(/p/".length + id.length + 4, -2)) as InstagramPost;
+				return this.extractDataAuthenticated(json);
 			} else {
 				const sharedData = await page.evaluate(() => window._sharedData);
-				json = sharedData.entry_data.PostPage[0];
+				return this.extractDataIncognito(sharedData);
 			}
-			const username = json.graphql.shortcode_media.owner.username;
-			let urls: string[] = [];
-			if (json.graphql.shortcode_media.edge_sidecar_to_children) {
-				for (let edge of json.graphql.shortcode_media.edge_sidecar_to_children.edges) {
-					if (!edge.node.is_video) urls.push(edge.node.display_url);
-					if (edge.node.is_video) urls.push(edge.node.video_url);
-				}
-			} else {
-				if (!json.graphql.shortcode_media.is_video) urls.push(json.graphql.shortcode_media.display_url);
-				if (json.graphql.shortcode_media.is_video) urls.push(json.graphql.shortcode_media.video_url);
-			}
-			return { urls, username };
 		} catch (error) {
 			console.error(error.message);
 			await browser.close();
 			throw new Error(`Failed to process post ${id}`);
 		}
+	}
+
+	private extractDataAuthenticated(post: InstagramPost): {urls: string[], username: string} {
+		const [ item ] = post.items;
+		const { username } = item.user;
+		let urls: string[] = [];
+		if (item.carousel_media) {
+			for (let media of item.carousel_media) {
+				if (media.video_versions) {
+					const { url } = media.video_versions[0];
+					urls.push(url)
+				} else {
+					const { url } = media.image_versions2.candidates[0];
+					urls.push(url);
+				}
+			}
+		} else {
+			if (item.video_versions) {
+				const { url } = item.video_versions[0];
+				urls.push(url);
+			} else {
+				const { url } = item.image_versions2.candidates[0];
+				urls.push(url);
+			}
+		}
+		return { urls, username };
+	}
+
+	private extractDataIncognito(post: InstagramPostIncognito): {urls: string[], username: string} {
+		const [ item ] = post.entry_data.PostPage;
+		const username = item.graphql.shortcode_media.owner.username;
+		let urls: string[] = [];
+		if (item.graphql.shortcode_media.edge_sidecar_to_children) {
+			for (let edge of item.graphql.shortcode_media.edge_sidecar_to_children.edges) {
+				if (!edge.node.is_video) urls.push(edge.node.display_url);
+				if (edge.node.is_video) urls.push(edge.node.video_url);
+			}
+		} else {
+			if (!item.graphql.shortcode_media.is_video) urls.push(item.graphql.shortcode_media.display_url);
+			if (item.graphql.shortcode_media.is_video) urls.push(item.graphql.shortcode_media.video_url);
+		}
+		return { urls, username };
 	}
 
 	/**
