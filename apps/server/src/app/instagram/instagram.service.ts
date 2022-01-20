@@ -106,7 +106,7 @@ declare global {
 		if (item.carousel_media) {
 			for (let media of item.carousel_media) {
 				if (media.video_versions) {
-					const { url } = media.video_versions[media.video_versions.length - 1];
+					const { url } = media.video_versions[0];
 					urls.push(url)
 				} else {
 					const { url } = media.image_versions2.candidates[0];
@@ -115,7 +115,7 @@ declare global {
 			}
 		} else {
 			if (item.video_versions) {
-				const { url } = item.video_versions[item.video_versions.length - 1];
+				const { url } = item.video_versions[0];
 				urls.push(url);
 			} else {
 				const { url } = item.image_versions2.candidates[0];
