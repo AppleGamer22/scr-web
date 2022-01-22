@@ -16,7 +16,7 @@ import { Stream } from "stream";
 	 * @param data file contents (Buffer)
 	 */
 	// addFileFromBuffer(type: FileType, directory: string, file: string, data: Buffer) {
-	// 	const directoryPath = join(process.cwd(), "storage", type, directory);
+	// 	const directoryPath = join(process.env.STORAGE_PATH, type, directory);
 	// 	const fullPath = join(directoryPath, file);
 	// 	try {
 	// 		if (!existsSync(directoryPath)) mkdirSync(directoryPath, {recursive: true});
@@ -66,7 +66,7 @@ import { Stream } from "stream";
 	 * @param url file contents' URL
 	 */
 	async addFileFromURL(type: FileType, directory: string, file: string, url: string, tiktok = false, cookies?: string, userAgent?: string) {
-		const directoryPath = join(process.cwd(), "storage", type, directory);
+		const directoryPath = join(process.env.STORAGE_PATH, type, directory);
 		const fullPath = join(directoryPath, file);
 		try {
 			if (!existsSync(directoryPath)) mkdirSync(directoryPath, {recursive: true});
@@ -83,7 +83,7 @@ import { Stream } from "stream";
 	 * @param file file name
 	 */
 	removeFile(type: FileType, directory: string, file: string) {
-		const directoryPath = join(process.cwd(), "storage", type, directory);
+		const directoryPath = join(process.env.STORAGE_PATH, type, directory);
 		const fullPath = join(directoryPath, file);
 		try {
 			if (existsSync(fullPath)) {

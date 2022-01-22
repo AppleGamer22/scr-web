@@ -3,8 +3,10 @@ import { APP_FILTER, APP_INTERCEPTOR } from "@nestjs/core";
 import { ServeStaticModule } from "@nestjs/serve-static";
 import { MongooseModule, } from "@nestjs/mongoose";
 import { JwtModule } from "@nestjs/jwt";
+import { ConfigModule } from "@nestjs/config";
 import { UserSchema, HistorySchema } from "@scr-web/server-schemas";
-import { initEnvironment } from "@scr-web/server-interfaces";
+import * as joi from "joi";
+import { join } from "path";
 import { ErrorFilter } from "./error.filter";
 import { LogsInterceptor } from "./logs.interceptor";
 import { AppController } from "./app.controller";
@@ -29,7 +31,16 @@ import { VersionController } from "./version/version.controller";
 
 @Module({
 	imports: [
-		MongooseModule.forRoot(initEnvironment().DATABASE_URL, {
+		ConfigModule.forRoot({
+			envFilePath: "env.env",
+			validationSchema: joi.object({
+				JWT_SECRET: joi.string().required(),
+				DATABASE_URL: joi.string().required(),
+				STORAGE_PATH: joi.string().default(join(process.cwd(), "storage")),
+				USERS_PATH: joi.string().default(join(process.cwd(), "users"))
+			})
+		}),
+		MongooseModule.forRoot(process.env.DATABASE_URL, {
 			useNewUrlParser: true,
 			useFindAndModify: false,
 			useCreateIndex: true,
@@ -45,7 +56,7 @@ import { VersionController } from "./version/version.controller";
 				schema: HistorySchema
 			}
 		]),
-		JwtModule.register({secret: initEnvironment().JWT_SECRET}),
+		JwtModule.register({secret: process.env.JWT_SECRET}),
 		ServeStaticModule.forRoot({rootPath: `${__dirname}/../client/`}),
 		HttpModule
 	],

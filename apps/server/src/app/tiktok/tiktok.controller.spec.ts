@@ -3,7 +3,6 @@ import { getModelToken } from "@nestjs/mongoose";
 import { JwtModule } from "@nestjs/jwt";
 import { HttpModule } from "@nestjs/common";
 import { User, History } from "@scr-web/server-schemas";
-import { initEnvironment } from "@scr-web/server-interfaces";
 import { TikTokController } from "./tiktok.controller";
 import { TikTokService } from "./tiktok.service";
 import { StorageService } from "../storage/storage.service";
@@ -15,7 +14,7 @@ describe("Tiktok Controller", () => {
 	beforeEach(async () => {
 		const module: TestingModule = await Test.createTestingModule({
 			imports: [
-				JwtModule.register({secret: initEnvironment().JWT_SECRET}),
+				JwtModule.register({secret: process.env.JWT_SECRET}),
 				HttpModule
 			],
 			controllers: [TikTokController],

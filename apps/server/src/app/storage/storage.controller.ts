@@ -2,6 +2,7 @@ import { Controller, Get, Delete, Param, HttpException, HttpStatus, Res } from "
 import { History } from "@scr-web/server-schemas";
 import { FileType } from "@scr-web/client-schemas";
 import { Response } from "express";
+import { join } from "path";
 import { HistoryService } from "../history/history.service";
 import { StorageService } from "../storage/storage.service";
 
@@ -17,7 +18,7 @@ import { StorageService } from "../storage/storage.service";
 		@Param("file") file: string,
 		@Res() response: Response
 	) {
-		const fullPath = `${process.cwd()}/storage/${type}/${directory}/${file}`;
+		const fullPath = join(process.env.STORAGE_PATH, type, directory, file);
 		if (fullPath.includes("..")) {
 			throw new HttpException(`File at path ${fullPath} is out of scope.`, HttpStatus.FORBIDDEN);
 		}
@@ -33,7 +34,7 @@ import { StorageService } from "../storage/storage.service";
 		@Param("directory") directory: string,
 		@Param("file") file: string,
 	): Promise<History> {
-		const fullPath = `${process.cwd()}/storage/${type}/${directory}/${file}`;
+		const fullPath = join(process.env.STORAGE_PATH, type, directory, file);
 		if (fullPath.includes("..")) {
 			throw new HttpException(`File at path ${fullPath} is out of scope.`, HttpStatus.FORBIDDEN);
 		}

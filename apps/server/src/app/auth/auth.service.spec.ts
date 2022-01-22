@@ -2,7 +2,6 @@ import { Test, TestingModule } from "@nestjs/testing";
 import { getModelToken } from "@nestjs/mongoose";
 import { JwtModule } from "@nestjs/jwt";
 import { User } from "@scr-web/server-schemas";
-import { initEnvironment } from "@scr-web/server-interfaces";
 import { AuthService } from "./auth.service";
 import { InstagramService } from "../instagram/instagram.service";
 
@@ -12,7 +11,7 @@ describe("AuthService", () => {
 	beforeEach(async () => {
 		const module: TestingModule = await Test.createTestingModule({
 			imports: [
-				JwtModule.register({secret: initEnvironment().JWT_SECRET}),
+				JwtModule.register({secret: process.env.JWT_SECRET}),
 			],
 			providers: [
 				AuthService,

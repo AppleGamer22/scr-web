@@ -1,20 +1,8 @@
 import { homedir } from "os";
-import { config } from "dotenv";
 import * as puppeteer from "puppeteer-core";
 import { Request } from "express";
-/**
- * Initializes server environment
- */
-export function initEnvironment(): {JWT_SECRET: string, DATABASE_URL: string} {
-	config({path: `${process.cwd()}/env.env`});
-	const { JWT_SECRET, DATABASE_URL } = process.env;
-	if (JWT_SECRET !== undefined && DATABASE_URL !== undefined) {
-		return { JWT_SECRET, DATABASE_URL };
-	} else {
-		console.error("Some environment are not defined.");
-		process.exit(1);
-	}
-}
+import { join } from "path";
+
 /**
  * Finds Chrome user directory path
  * @param U_ID user's _id property
@@ -23,7 +11,8 @@ export function initEnvironment(): {JWT_SECRET: string, DATABASE_URL: string} {
 export function chromeUserDataDirectory(U_ID: string): string {
 	if (U_ID === "") return `${homedir()}/.scr-cli/`;
 	if (process.env.ENV === "docker") return `/scr/users/${U_ID}/`;
-	return `${process.cwd()}/users_dev/${U_ID}/`;
+	const userBrowserDirectory = join(process.env.USERS_PATH, U_ID);
+	return userBrowserDirectory;
 }
 
 export interface ScrapeRequest extends Request {

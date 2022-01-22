@@ -3,7 +3,6 @@ import { JwtModule } from "@nestjs/jwt";
 import { getModelToken } from "@nestjs/mongoose";
 import { HttpModule } from "@nestjs/common";
 import { User } from "@scr-web/server-schemas";
-import { initEnvironment } from "@scr-web/server-interfaces";
 import { InstagramController } from "./instagram.controller";
 import { InstagramService } from "./instagram.service";
 import { HistoryService } from "../history/history.service";
@@ -14,7 +13,7 @@ describe("InstagramController", () => {
 	beforeEach(async () => {
 		const module: TestingModule = await Test.createTestingModule({
 			imports: [
-				JwtModule.register({secret: initEnvironment().JWT_SECRET}),
+				JwtModule.register({secret: process.env.JWT_SECRET}),
 				HttpModule
 			],
 			controllers: [InstagramController],
