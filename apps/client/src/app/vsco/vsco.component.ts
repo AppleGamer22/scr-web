@@ -1,6 +1,6 @@
-import { Component, Inject } from "@angular/core";
-import { DOCUMENT } from "@angular/common";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Component } from "@angular/core";
+// import { DOCUMENT } from "@angular/common";
+import { HttpClient } from "@angular/common/http";
 import { Router, ActivatedRoute } from "@angular/router";
 import { Title } from "@angular/platform-browser";
 import { History } from "@scr-web/client-schemas";
@@ -18,7 +18,7 @@ import { ToastService } from "../toast.service";
 	history: History;
 	constructor(
 		private readonly http: HttpClient,
-		@Inject(DOCUMENT) private document: Document,
+		// @Inject(DOCUMENT) private document: Document,
 		private router: Router,
 		route: ActivatedRoute,
 		readonly toast: ToastService,
@@ -41,6 +41,7 @@ import { ToastService } from "../toast.service";
 	async submit(owner: string, id: string) {
 		if (this.history !== undefined) this.history.urls = [];
 		this.processing = true;
+		this.titleService.setTitle("scr-web/vsco");
 		await this.router.navigate(["/vsco"], {queryParams: { owner, id }, queryParamsHandling: "merge"});
 		try {
 			if (owner && id) {
