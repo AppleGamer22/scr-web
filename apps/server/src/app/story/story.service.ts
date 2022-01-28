@@ -18,14 +18,19 @@ import { Browser, Page } from "puppeteer-core";
 				await browser.close();
 				throw new Error(`Failed to find ${user}'s story feed.`);
 			}
-			await page.waitForSelector("header")
-			if ((await page.$("button.sqdOP.L3NKy.y1rQx.cB_4K")) !== null) {
-				await page.click("button.sqdOP.L3NKy.y1rQx.cB_4K");
-			}
+
+			try {
+				await page.waitForSelector("button.sqdOP.L3NKy.y1rQx.cB_4K");
+				if ((await page.$("button.sqdOP.L3NKy.y1rQx.cB_4K")) !== null) {
+					await page.click("button.sqdOP.L3NKy.y1rQx.cB_4K");
+				}
+			} catch (err) {}
+
 			for (let i = 0; i < item - 1; i++) {
 				await page.waitForSelector("div.coreSpriteRightChevron", {visible: true});
 				await page.click("div.coreSpriteRightChevron");
 			}
+
 			await page.waitForSelector("svg[aria-label='Pause']", {visible: true});
 			await page.waitForTimeout(50);
 			await page.click("svg[aria-label='Pause']");

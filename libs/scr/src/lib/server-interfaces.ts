@@ -54,7 +54,7 @@ export async function beginScrape(U_ID: string, incognito = false): Promise<{bro
 			"--disable-dev-shm-usage",
 			"--mute-audio",
 			"--disable-blink-features=AutomationControlled"
-		]
+		];
 		// if (incognito) args.push("--incognito");
 		const browser = await puppeteer.launch({
 			// headless: false,
