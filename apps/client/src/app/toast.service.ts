@@ -12,11 +12,11 @@ import { ToastController } from "@ionic/angular";
 		try {
 			const toast = await this.toastController.create({
 				message,
-				buttons: [{
-					text: "OK",
-					role: "cancel"
-				}],
-				duration: 5000,
+				// buttons: [{
+				// 	text: "OK",
+				// 	role: "cancel"
+				// }],
+				duration: type === "danger" ? 5000 : 500,
 				position: "top",
 				animated: true,
 				color: type

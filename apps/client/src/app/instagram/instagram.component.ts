@@ -49,10 +49,10 @@ import { ToastService } from "../toast.service";
 				}).toPromise();
 				await this.router.navigate(["/instagram"], {queryParams: {owner: this.history.owner, id}, queryParamsHandling: "merge"});
 				this.titleService.setTitle(`scr-web/${this.history._id}`);
-				await this.toast.showToast(`${this.history.urls.length} URL(s)`, "success");
+				this.toast.showToast(`${this.history.urls.length} URL(s)`, "success");
 				// for (const path of paths) this.urls.push(`${environment.server}/api/${path}`);
 			} else {
-				await this.toast.showToast("Please enter a post ID.", "danger");
+				this.toast.showToast("Please enter a post ID.", "danger");
 			}
 		} catch ({ error }) {
 			console.error(error);

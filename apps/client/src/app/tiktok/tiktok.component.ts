@@ -53,9 +53,9 @@ export class TikTokComponent {
 					await this.router.navigate(["/tiktok"], {queryParams: {owner: this.postOwner, id}, queryParamsHandling: "merge"});
 				}
 				this.titleService.setTitle(`scr-web/${this.history._id}`);
-				await this.toast.showToast("1 File", "success");
+				this.toast.showToast("1 File", "success");
 			} else {
-				await this.toast.showToast("Please enter a post owner & ID.", "danger");
+				this.toast.showToast("Please enter a post owner & ID.", "danger");
 			}
 		} catch ({ error }) {
 			console.error(error);

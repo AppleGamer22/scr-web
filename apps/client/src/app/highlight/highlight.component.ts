@@ -46,10 +46,10 @@ import { ToastService } from "../toast.service";
 			if (id && number) {
 				this.history = await this.http.get<History>(`${environment.server}/api/highlight/${id}/${number}`).toPromise();
 				this.titleService.setTitle(`scr-web/${this.history._id}`);
-				await this.toast.showToast(`${this.history.urls.length} URL(s)`, "success");
+				this.toast.showToast(`${this.history.urls.length} URL(s)`, "success");
 				// for (const path of this.history.urls) this.urls.push(`${environment.server}/api/${path}`);
 			} else {
-				await this.toast.showToast("Please enter a post ID.", "danger");
+				this.toast.showToast("Please enter a post ID.", "danger");
 			}
 		} catch ({ error }) {
 			console.error(error);

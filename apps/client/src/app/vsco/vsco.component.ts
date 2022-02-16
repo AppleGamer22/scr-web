@@ -51,10 +51,10 @@ import { ToastService } from "../toast.service";
 					await this.router.navigate(["/vsco"], {queryParams: {owner: this.postOwner, id}, queryParamsHandling: "merge"});
 				}
 				this.titleService.setTitle(`scr-web/${this.history._id}`);
-				await this.toast.showToast("1 URL", "success");
+				this.toast.showToast("1 URL", "success");
 				// this.urls = [`${environment.server}/api/${path}`];
 			} else {
-				await this.toast.showToast("Please enter a post owner & ID.", "danger");
+				this.toast.showToast("Please enter a post owner & ID.", "danger");
 			}
 		} catch ({ error }) {
 			console.error(error);
