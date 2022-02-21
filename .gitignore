@@ -31,7 +31,9 @@ testem.log
 .DS_Store
 Thumbs.db
 *.jpg
+*.webp
 *.mp4
+*.webm
 database
 users_dev
 users_prod

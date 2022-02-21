@@ -23,5 +23,5 @@
 	<ion-icon name="arrow-forward-outline"></ion-icon>
 </ion-button>
 <br>
-<img *ngIf="history.urls[i] && history.urls[i].endsWith('.jpg')" [src]="history.urls[i]">
-<video *ngIf="history.urls[i] && history.urls[i].endsWith('.mp4')" [src]="history.urls[i]" [muted]="true" controls loop></video>
+<img *ngIf="history.urls[i] && (history.urls[i].endsWith('.jpg') || history.urls[i].endsWith('.webp'))" [src]="history.urls[i]">
+<video *ngIf="history.urls[i] && (history.urls[i].endsWith('.mp4') || history.urls[i].endsWith('.webm'))" [src]="history.urls[i]" [muted]="true" controls loop></video>
