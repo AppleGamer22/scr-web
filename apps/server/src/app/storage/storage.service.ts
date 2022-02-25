@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { HttpService } from "@nestjs/common";
+import { HttpService } from "@nestjs/axios";
 import { FileType } from "@scr-web/client-schemas";
 import { AxiosRequestConfig } from "axios";
 import { existsSync, mkdirSync, readdirSync, rmSync, rmdirSync, createWriteStream } from "fs";

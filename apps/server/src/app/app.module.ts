@@ -1,6 +1,7 @@
-import { Module, HttpModule } from "@nestjs/common";
+import { Module } from "@nestjs/common";
 import { APP_FILTER, APP_INTERCEPTOR } from "@nestjs/core";
 import { ServeStaticModule } from "@nestjs/serve-static";
+import { HttpModule } from "@nestjs/axios";
 import { MongooseModule, } from "@nestjs/mongoose";
 import { JwtModule } from "@nestjs/jwt";
 import { ConfigModule } from "@nestjs/config";
