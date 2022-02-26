@@ -15,11 +15,11 @@
 			<ion-row>
 				<ion-col size="auto">
 					<ion-segment #segment value="none">
-						<ion-segment-button value="show">
+						<ion-segment-button value="show" [disabled]="segment.value === 'show'">
 							<ion-icon name="image-outline" *ngIf="url.endsWith('.jpg') || url.endsWith('.webp')"></ion-icon>
 							<ion-icon name="film-outline" *ngIf="url.endsWith('.mp4') || url.endsWith('.webm')"></ion-icon>
 						</ion-segment-button>
-						<ion-segment-button value="none">
+						<ion-segment-button value="none" [disabled]="segment.value === 'none'">
 							<ion-label>None</ion-label>
 						</ion-segment-button>
 						<!-- <ion-segment-button value="crop">

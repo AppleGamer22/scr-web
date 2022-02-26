@@ -70,7 +70,7 @@ declare global {
 	 */
 	async getPostFiles(id: string, browser: Browser | BrowserContext, page: Page, incognito: boolean): Promise<{urls: string[], username: string}> {
 		try {
-			await page.goto("https://www.instagram.com/", {waitUntil: "load"});
+			// await page.goto("https://www.instagram.com/", {waitUntil: "load"});
 			await page.goto(`https://www.instagram.com/p/${id}`, {waitUntil: "load"});
 			if ((await page.$("div.error-container")) !== null || (await page.content()).includes("Oops, an error occurred.")) {
 				await browser.close();

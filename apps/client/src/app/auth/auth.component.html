@@ -7,13 +7,13 @@
 <ion-content>
 	<ion-list>
 		<ion-segment (ionChange)="selectSegment($event)" [(ngModel)]="authOption" name="auth-type">
-			<ion-segment-button value="sign_up" id="sign_up">
+			<ion-segment-button value="sign_up" id="sign_up" [disabled]="authOption === 'sign_up'">
 				<ion-label>sign-up</ion-label>
 			</ion-segment-button>
-			<ion-segment-button value="sign_in" id="sign_in">
+			<ion-segment-button value="sign_in" id="sign_in" [disabled]="authOption === 'sign_in'">
 				<ion-label>sign-in</ion-label>
 			</ion-segment-button>
-			<ion-segment-button value="sign_out" id="sign_out">
+			<ion-segment-button value="sign_out" id="sign_out" [disabled]="authOption === 'sign_out'">
 				<ion-label>sign-out</ion-label>
 			</ion-segment-button>
 		</ion-segment>
