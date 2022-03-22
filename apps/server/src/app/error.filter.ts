@@ -11,8 +11,8 @@ import { Request, Response } from "express";
 		const request = host.switchToHttp().getRequest<Request>();
 		const response = host.switchToHttp().getResponse<Response>();
 		const status = exception instanceof HttpException ? exception.getStatus() : HttpStatus.INTERNAL_SERVER_ERROR;
-		const message = exception instanceof HttpException ? exception.message : "Unexpected internal server error.";
-		Logger.error(`${status} ${request.method} ${request.url}`, "", "Error", true);
+		const message = exception instanceof HttpException ? exception.message : `Unexpected internal server error: ${exception}`;
+		Logger.error(`${status} ${request.method} ${request.url}\n${message}`, "", "Error", true);
 		return response.status(status).json(message);
 	}
 }
