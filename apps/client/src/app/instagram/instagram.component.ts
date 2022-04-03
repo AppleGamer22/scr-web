@@ -13,7 +13,7 @@ import { ToastService } from "../toast.service";
 	styleUrls: ["./instagram.component.scss"],
 }) export class InstagramComponent {
 	postID: string;
-	incognito = false;
+	incognito = true;
 	processing = false;
 	history: History;
 	constructor(
