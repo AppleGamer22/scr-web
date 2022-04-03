@@ -47,8 +47,8 @@ import { InstagramService } from "../instagram/instagram.service";
 			if (!possibleUser) throw new Error("Authentication failed.");
 			const isRealUser = await compare(password, possibleUser.hash);
 			if (!isRealUser) throw new Error("Authentication failed.");
-			const webToken = await this.jwt.signAsync({username, U_ID: possibleUser._id});
-			const { browser, page } = await beginScrape(possibleUser._id);
+			const webToken = await this.jwt.signAsync({username, U_ID: `${possibleUser._id}`});
+			const { browser, page } = await beginScrape(`${possibleUser._id}`);
 			if (isRealUser && possibleUser.instagram) {
 				await browser.close();
 				return webToken;
